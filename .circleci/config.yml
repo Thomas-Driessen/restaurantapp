@@ -9,7 +9,7 @@ jobs:
       - run: npm run build
       - run: npm test --reporters=jest-junit
       - store_test_results
-          path: coverage
+          path: ./coverage
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
