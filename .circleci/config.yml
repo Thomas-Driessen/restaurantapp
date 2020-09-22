@@ -8,6 +8,4 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - store_artifacts:
-        path: build
-        destination: build
+      - run: ls
