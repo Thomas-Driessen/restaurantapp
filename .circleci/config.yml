@@ -7,24 +7,10 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build
+      - run: npm test --reporters=jest-junit
+      - run: cp -r coverage /tmp/test-results/jest
+      - store_test_results:
+          path: /tmp/test-results
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
-  test:
-    docker:
-      - image: cimg/node:14.10.1
-    steps:
-      - checkout
-      - run: 
-          command: npm test --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
-      - store_test_results:
-          path: ./reports/junit/
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
