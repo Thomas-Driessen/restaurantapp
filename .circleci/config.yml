@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run build
+      - run: CI=false npm run build
       - run: npm test --reporters=jest-junit
       - run: cp -r build /tmp/build
       - store_artifacts:
