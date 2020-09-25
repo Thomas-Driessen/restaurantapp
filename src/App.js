@@ -4,8 +4,6 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Link,
-    Redirect
 } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MenuPage from './pages/MenuPage';
