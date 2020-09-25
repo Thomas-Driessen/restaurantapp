@@ -1,8 +1,15 @@
 import React from 'react';
-import NavBar from './components/NavBar';
 import './App.css';
-import ProductsList from './components/ProductsList';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Link,
+    Redirect
+} from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import MenuPage from './pages/MenuPage';
+import NotFoundPage from './pages/NotFoundPage'
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -21,12 +28,14 @@ const theme = createMuiTheme({
 });
 function App() {
   return (
-    <div className="App">
       <MuiThemeProvider theme={theme}>
-      <NavBar />
-      <ProductsList />
+        <Router>
+          <Switch>
+          <Route exact path="/" component={MenuPage} />
+          <Route component={NotFoundPage} />
+          </Switch>
+        </Router>
       </MuiThemeProvider>
-    </div>
   );
 }
 

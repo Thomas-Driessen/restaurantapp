@@ -10,7 +10,7 @@ const Product = (props) => {
         <div>
             { props.product ? (
                 <Card >
-                    <CardMedia style={{height: 0, paddingTop: '56.25%'}}
+                    <CardMedia style={{height: 0, paddingTop: '20%'}}
                     image={`../images/${props.product.id}.jpg`}
                     title={props.product.title}
                     />
