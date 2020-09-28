@@ -11,7 +11,9 @@ const Product = (props) => {
             { props.product ? (
                 <Card >
                     <CardMedia style={{height: 0, paddingTop: '20%'}}
-                    image={`../images/${props.product.id}.jpg`}
+                    component="img"
+                    height="50"
+                    src={`../images/${props.product.id}.jpg`}
                     title={props.product.title}
                     />
                     <CardContent>

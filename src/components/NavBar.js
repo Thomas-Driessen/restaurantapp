@@ -6,8 +6,16 @@ import { Button } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import IconButton from '@material-ui/core/IconButton';
+import history from './history';
 
-const NavBar = () =>{
+
+class NavBar extends React.Component{
+    goToOrders = (e) => {
+        e.preventDefault();
+        history.push('/order');
+        window.location.reload();
+    }
+    render(){
     return(
         <div>
             <AppBar position="static">
@@ -15,8 +23,8 @@ const NavBar = () =>{
                     <Typography variant="title" color="inherit" text-align="center">
                         Restaurant
                     </Typography>
-                    <Button  variant="contained" color="default" startIcon={<FastfoodIcon />}>
-                    View my order
+                    <Button  onClick = {this.goToOrders} variant="contained" color="default" startIcon={<FastfoodIcon />}>
+                    View orders
                     </Button>
                     <IconButton>
                     <SettingsIcon />
@@ -25,7 +33,7 @@ const NavBar = () =>{
             </AppBar>
         </div>
 
-    )
+    )}
 }
 
 export default NavBar;

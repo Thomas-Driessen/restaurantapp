@@ -7,7 +7,7 @@ const PreviousOrders = ({orderNumbers}) => {
     <Grid container spacing={24} style={{padding: 15}}>
         { orderNumbers.map(currentOrder => (
             <Grid item xs={12} sm={6} lg={4} xl={3}>
-            <Order key={currentOrder.id} order={currentOrder} />
+            <Order key={currentOrder} order={currentOrder} />
         </Grid>
         ))}
     </Grid>
