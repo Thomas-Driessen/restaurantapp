@@ -1,7 +1,7 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
-import SortBar from '../components/SortBar'
-import ProductsList from '../components/ProductsList';
+import NavBar from '../components/Navigation bars/NavBar';
+import SortBar from '../components/Navigation bars/SortBar'
+import ProductsList from '../components/Product List/ProductsList';
 
 class MenuPage extends React.Component {
   constructor() {
@@ -39,9 +39,13 @@ class MenuPage extends React.Component {
   render(){
   return(
       <div>
-          <NavBar />
+          <NavBar page = "Menu"/>
           <SortBar showFoods = {this.showFoods} showDrinks = {this.showDrinks}/>
-          <ProductsList products={this.state.shownProducts} />
+          { this.state.shownProducts !== [] ? (
+            <ProductsList products={this.state.shownProducts} />
+          ) : (
+            <p>Choose between Foods, Drinks and Most Liked to see our products</p>
+            )}
       </div>
   )}
 }

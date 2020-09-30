@@ -30,7 +30,7 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-          <Route exact path="/" component={MenuPage}/>
+          <Route exact path="/menu" component={MenuPage}/>
           <Route  path="/order" component={() => <ViewOrder tableNumber/>} />
           <Route component={NotFoundPage} />
           </Switch>

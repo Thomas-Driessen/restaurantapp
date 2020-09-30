@@ -1,6 +1,8 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
-import PreviousOrders from '../components/PreviousOrders'
+import NavBar from '../components/Navigation bars/NavBar';
+import PreviousOrders from '../components/Previous Orders List/PreviousOrders'
+import CurrentOrder from '../components/Current Order/CurrentOrder'
+import { Button } from '@material-ui/core';
 
 class ViewOrder extends React.Component {
   constructor() {
@@ -20,7 +22,11 @@ class ViewOrder extends React.Component {
   render(){
   return(
       <div>
-          <NavBar />
+          <NavBar page="Order"/>
+          <Button color="secondary"variant="outlined">
+            Pay for orders
+          </Button>
+          <CurrentOrder />
           <PreviousOrders orderNumbers={this.state.previousOrderNumbers}/>
       </div>
   )}
