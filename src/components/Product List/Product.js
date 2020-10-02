@@ -14,12 +14,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import currentOrderList from '../Current Order/CurrentOrderList'
+import currentFoodList from '../Current Order/CurrentFoodList';
+import currentDrinkList from '../Current Order/CurrentDrinkList';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
-    details: {
-      marginRight: theme.spacing(34)
-    },
     price: {
         textAlign: "right",
         color: "green",
@@ -40,7 +39,12 @@ const Product = (props) => {
     };
     function addToOrder(e){
         e.preventDefault();
-        currentOrderList.push(props.product);
+        if(props.productType === "Food") {
+            currentFoodList.push(props.product);
+        }
+        else{
+            currentDrinkList.push(props.product);
+        }
     };
     return(
         <div>
@@ -65,7 +69,9 @@ const Product = (props) => {
                     </Typography>
                     </CardContent>
                     <CardActions>
-                    <Button size="small" color="primary" target="_blank" className={classes.details} onClick={handleClickOpen}>
+                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                    <div style={{display: 'flex', alignItems: 'right'}}>
+                    <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
                         View Details
                     </Button>
                     <Dialog
@@ -95,6 +101,8 @@ const Product = (props) => {
                     <IconButton aria-label="add to order" onClick={addToOrder}>
                         <AddIcon />
                     </IconButton>
+                    </div>
+                    </Grid>
                     </CardActions>
                 </Card>
                 </div>

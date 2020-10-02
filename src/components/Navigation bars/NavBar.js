@@ -6,7 +6,8 @@ import { Button } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import IconButton from '@material-ui/core/IconButton';
-import currentOrderList from '../Current Order/CurrentOrderList';
+import currentFoodList from '../Current Order/CurrentFoodList';
+import currentDrinkList from '../Current Order/CurrentDrinkList';
 import { Redirect } from 'react-router-dom'
 
 class NavBar extends React.Component{
@@ -44,8 +45,8 @@ class NavBar extends React.Component{
         }
     }
     totalProductsInOrder(){
-        if(currentOrderList.length !== this.state.totalProductsInOrder) {
-            this.setState({totalProductsInOrder: currentOrderList.length});
+        if(currentFoodList.length + currentDrinkList.length !== this.state.totalProductsInOrder) {
+            this.setState({totalProductsInOrder: currentFoodList.length + currentDrinkList.length});
         }
     }
     render(){

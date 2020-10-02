@@ -31,7 +31,7 @@ function App() {
         <Router>
           <Switch>
           <Route exact path="/menu" component={MenuPage}/>
-          <Route  path="/order" component={() => <ViewOrder tableNumber/>} />
+          <Route  path="/order" component={() => <ViewOrder tableId="1"/>} />
           <Route component={NotFoundPage} />
           </Switch>
         </Router>

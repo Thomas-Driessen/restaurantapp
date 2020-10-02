@@ -1,26 +1,35 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
+import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
 
 class Order extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            drink: []
+        }
+    }
     componentDidMount() {
-        fetch(`/api/order/${this.props.order}`)
+        fetch(`/api/drink/${this.props.orderId}`)
         .then(res => res.json())
         .then((data) => {
-          this.props.orderItems = data;
+          this.setState({drink: data});
         })
         .catch(console.log)
     }
     render(){
+        console.log(this.props.orderId);
     return(
         <div>
-            { this.props.orderItems ? (    
-            <Grid container spacing={24} style={{padding: 15}}>
-                { this.props.orderItems.map(currentItem => (
-                <Grid item xs={12} sm={6} lg={4} xl={3}>
-                    <p>{currentItem.title}  {currentItem.price}</p>
-                </Grid>
-                ))}
-            </Grid>
+            { this.state.drink ? (    
+                <Card>
+                    <Typography gutterBottom variant="headline" component="h2">
+                        {this.state.drink.title}
+                    </Typography>
+                    <Typography gutterBottom variant="headline" component="h2" textAlign="right">
+                        {this.state.drink.price}€
+                    </Typography>
+                </Card>
             ) : null}
         </div>
     )}

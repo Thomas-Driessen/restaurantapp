@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { makeStyles } from '@material-ui/core/styles';
-import currentOrderList from '../Current Order/CurrentOrderList'
+import currentFoodList from './CurrentFoodList'
+import currentDrinkList from './CurrentDrinkList'
 
 const useStyles = makeStyles((theme) => ({
     details: {
@@ -24,8 +25,15 @@ const CurrentOrderProducts = (props) => {
     const classes = useStyles();
     function removeFromOrder(e){
         e.preventDefault();
-        var index = currentOrderList.indexOf(props.product);
-        currentOrderList.splice(index, 1);
+        var index;
+        if(props.productType === "Food") {
+        index = currentFoodList.indexOf(props.product);
+        currentFoodList.splice(index, 1);
+        }
+        else{
+            index = currentDrinkList.indexOf(props.product);
+            currentDrinkList.splice(index, 1);
+        }
     };
     return(
         <div>
