@@ -4,7 +4,7 @@ import currentDrinkList from './CurrentDrinkList'
 import CurrentOrderProducts from './CurrentOrderProducts'
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
-//import tableId from '../TableId'
+import tableId from '../TableId'
 
 class CurrentOrder extends React.Component { 
     constructor() {
@@ -28,7 +28,7 @@ class CurrentOrder extends React.Component {
         }
     }
     sendOrder(){
-        /*currentDrinkList.map(currentDrink => {
+        currentDrinkList.map(currentDrink => {
             var drink ={
                 tableId: tableId,
                 paid: false,
@@ -61,9 +61,9 @@ class CurrentOrder extends React.Component {
         body: JSON.stringify(food)
         })
         return "Succes";
-        })*/
+        })
         currentDrinkList.splice(0,currentDrinkList.length);
-        currentFoodList.splice(0,currentDrinkList.length);
+        currentFoodList.splice(0,currentFoodList.length);
     }
     render(){
     return(

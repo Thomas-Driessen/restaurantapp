@@ -4,22 +4,8 @@ import PreviousOrders from '../components/Previous Orders List/PreviousOrders'
 import CurrentOrder from '../components/Current Order/CurrentOrder'
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import tableId from '../components/TableId'
 
 class ViewOrder extends React.Component {
-  constructor() {
-    super();
-    this.state = { previousOrderItems: [],
-    };
-  }
-  componentDidMount() {
-    fetch(`/api/orderdrink/${tableId}`)
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ previousOrderItems: data })
-    })
-    .catch(console.log)
-  }
   render(){
   return(
       <div>
@@ -30,7 +16,7 @@ class ViewOrder extends React.Component {
                   Pay for orders
                 </Button>
               <CurrentOrder />
-              <PreviousOrders previousOrderItems={this.state.previousOrderItems}/>
+              <PreviousOrders/>
             </Grid>
           </Grid>
       </div>
