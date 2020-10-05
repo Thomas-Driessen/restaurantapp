@@ -6,7 +6,7 @@ import {
     Switch,
 } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import MenuPage from './pages/MenuPage';
+import Menu from './pages/Menu';
 import ViewOrder from './pages/ViewOrder';
 import NotFoundPage from './pages/NotFoundPage'
 const theme = createMuiTheme({
@@ -30,8 +30,8 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-          <Route exact path="/" component={MenuPage}/>
-          <Route  path="/order" component={() => <ViewOrder tableNumber/>}/>
+          <Route exact path="/menu" component={Menu}/>
+          <Route  path="/order" component={() => <ViewOrder tableId="1"/>} />
           <Route component={NotFoundPage} />
           </Switch>
         </Router>
