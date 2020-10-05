@@ -16,19 +16,26 @@ class MenuPage extends React.Component {
     };
   }
   componentDidMount() {
+    let mounted = true;
     fetch(`/api/food`)
     .then(res => res.json())
     .then((data) => {
+      if(mounted){
       this.setState({ foods: data })
+      }
     })
     .catch(console.log)
 
     fetch(`/api/drink`)
     .then(res => res.json())
     .then((data) => {
-      this.setState({ drinks: data })
+      if(mounted){
+        this.setState({ drinks: data })
+      }
     })
     .catch(console.log)
+
+    return () => mounted = false;
   }
   showFoods = (e) => {
     e.preventDefault();

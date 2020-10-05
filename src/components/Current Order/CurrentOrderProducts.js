@@ -42,7 +42,7 @@ const CurrentOrderProducts = (props) => {
                 <div>
                 <Card >
                     <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
+                    <Typography gutterBottom variant="inherit" component="h2">
                         {props.product.title}
                     </Typography>
                     <Typography component="h6">

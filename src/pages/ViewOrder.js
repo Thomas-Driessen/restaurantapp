@@ -10,12 +10,12 @@ class ViewOrder extends React.Component {
   return(
       <div>
           <NavBar/>
-          <Grid container spacing={24} style={{padding: 25}}>
+          <Grid container spacing={0} style={{padding: 25}}>
             <Grid item xs={12} sm={6} lg={4} xl={3}>
                 <Button color="secondary"variant="outlined">
                   Pay for orders
                 </Button>
-              <CurrentOrder />
+              <CurrentOrder/>
               <PreviousOrders/>
             </Grid>
           </Grid>
