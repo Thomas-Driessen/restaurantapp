@@ -17,6 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
 import Grid from '@material-ui/core/Grid';
+
 const useStyles = makeStyles((theme) => ({
     price: {
         textAlign: "right",
@@ -58,10 +59,10 @@ const Product = (props) => {
                     title={props.product.title}
                     />
                     <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
+                    <Typography gutterBottom variant="inherit" component="h2">
                         {props.product.title}
                     </Typography>
-                    <Typography component="p">
+                    <Typography component="h6">
                         {props.product.description}
                     </Typography>
                     <Typography className={classes.price}>

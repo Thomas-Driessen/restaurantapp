@@ -6,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { makeStyles } from '@material-ui/core/styles';
-import currentFoodList from './CurrentFoodList'
-import currentDrinkList from './CurrentDrinkList'
+import currentFoodList from './CurrentFoodList';
+import currentDrinkList from './CurrentDrinkList';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     details: {
@@ -44,7 +45,7 @@ const CurrentOrderProducts = (props) => {
                     <Typography gutterBottom variant="headline" component="h2">
                         {props.product.title}
                     </Typography>
-                    <Typography component="p">
+                    <Typography component="h6">
                         {props.product.description}
                     </Typography>
                     <Typography gutterBottom className={classes.price}>
@@ -52,9 +53,11 @@ const CurrentOrderProducts = (props) => {
                     </Typography>
                     </CardContent>
                     <CardActions>
+                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
                     <IconButton aria-label="remove from order" onClick={removeFromOrder}>
                         <RemoveIcon />
                     </IconButton>
+                    </Grid>
                     </CardActions>
                 </Card>
                 </div>

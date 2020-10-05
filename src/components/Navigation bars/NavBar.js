@@ -54,7 +54,7 @@ class NavBar extends React.Component{
         <div>
             <AppBar position="static">
                 <ToolBar>
-                    <Typography variant="title" color="inherit" text-align="center">
+                    <Typography variant="h5" color="inherit" text-align="center">
                         Restaurant
                     </Typography>
                     {this.renderRedirect()}

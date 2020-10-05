@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 const SortBar = (props) => {
     return(
         <div>
-            <AppBar position="static" color="contrastText">
+            <AppBar position="static" color="transparent">
                 <ToolBar>
                     <Button  onClick={props.showFoods} variant="contained" color="default">
                     Food

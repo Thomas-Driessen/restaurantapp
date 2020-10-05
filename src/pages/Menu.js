@@ -48,12 +48,10 @@ class MenuPage extends React.Component {
           { this.state.shownProducts.length ? (
             <ProductsList products={this.state.shownProducts} productType={this.state.productType}/>
           ) : (
-            <Grid container spacing={24} style={{padding: 15}}>
-              <Grid item xs={12} sm={6} lg={4} xl={3}>
+            <Grid container spacing={0} style={{padding: 12}}>
                 <Typography variant="subtitle2" display="block">
                   Choose between Foods, Drinks and Most Liked to see our products
                 </Typography>
-              </Grid>
             </Grid>
             )}
       </div>
