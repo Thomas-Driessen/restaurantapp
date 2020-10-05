@@ -6,6 +6,20 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 class ViewOrder extends React.Component {
+  constructor() {
+    super();
+    this.state = { tableNumber: 1,
+      previousOrderNumbers: []
+    };
+  }
+  componentDidMount() {
+    fetch(`/api/order`)
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ previousOrderNumbers: data })
+    })
+    .catch(console.log)
+  }
   render(){
   return(
       <div>
@@ -20,6 +34,6 @@ class ViewOrder extends React.Component {
             </Grid>
           </Grid>
       </div>
-  )}
+  )};
 }
 export default ViewOrder
