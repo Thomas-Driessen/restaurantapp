@@ -1,9 +1,6 @@
 version: 2.1
 jobs:
   build:
-    branches:
-      only:
-        - master
     docker: 
       - image: cimg/node:14.10.1 
     steps:
@@ -14,3 +11,10 @@ jobs:
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
+workflows:
+  build_and_test:
+    jobs:
+      - build
+          filters:
+            branches:
+              only: master
