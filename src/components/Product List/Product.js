@@ -17,7 +17,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
 import Grid from '@material-ui/core/Grid';
-
 const useStyles = makeStyles((theme) => ({
     price: {
         textAlign: "right",
@@ -51,10 +50,11 @@ const Product = (props) => {
             { props.product ? (
                 <div>
                 <Card >
-                    <CardMedia style={{height: 0, paddingTop: '20%'}}
+                    <CardMedia style={{height: 400, paddingTop: '20%'}}
                     component="img"
-                    height="50"
-                    src={`../images/${props.product.id}.jpg`}
+                    height="250"
+                    src={`../../images/${props.productType}/${props.product.id}.jpg`}
+                    alt={`Image for ${props.product.title} Not Found`}
                     title={props.product.title}
                     />
                     <CardContent>
@@ -82,12 +82,12 @@ const Product = (props) => {
                     >
                         <DialogTitle id="product-title">{props.product.title}</DialogTitle>
                         <DialogContent>
-                        <DialogContentText id="product-description">
-                            {props.product.description}
-                        </DialogContentText>
-                        <DialogContentText id="product-description" className={classes.price}>
-                            {props.product.price}€
-                        </DialogContentText>
+                            <DialogContentText id="product-description">
+                                {props.product.description}
+                            </DialogContentText>
+                            <DialogContentText id="product-description" className={classes.price}>
+                                {props.product.price}€
+                            </DialogContentText>
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleClose} color="primary">

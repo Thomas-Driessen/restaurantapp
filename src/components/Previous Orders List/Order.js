@@ -18,7 +18,6 @@ class Order extends React.Component {
         .catch(console.log)
     }
     render(){
-        console.log(this.props.orderId);
     return(
         <div>
             { this.state.drink ? (    
