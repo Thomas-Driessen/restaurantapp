@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import CurrentOrderProducts from './CurrentOrderProducts';
-import ShallowRenderer from 'react-test-renderer/shallow';
 
 
 test('Render CurrentOrderProducts', () => {
