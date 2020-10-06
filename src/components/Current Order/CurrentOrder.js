@@ -71,18 +71,18 @@ class CurrentOrder extends React.Component {
             <h2>This is your current order</h2>
             { currentFoodList ? (
                 <Grid container spacing={1} style={{padding: 15}}>
-                    { currentFoodList.map(currentProduct => (
-                        <Grid key={currentProduct.id} item xs={12} sm={6} lg={4} xl={3}>
-                            <CurrentOrderProducts key={currentProduct.id} product={currentProduct} productType="Food"/>
+                    { currentFoodList.map((currentProduct, index) => (
+                        <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
+                            <CurrentOrderProducts key={index} product={currentProduct} productType="Food"/>
                         </Grid>
                     ))}
                 </Grid>
             ) : null}
             { currentDrinkList ? (
                 <Grid container spacing={1} style={{padding: 15}}>
-                    { currentDrinkList.map(currentProduct => (
-                        <Grid key={currentProduct.id} item xs={12} sm={6} lg={4} xl={3}>
-                            <CurrentOrderProducts key={currentProduct.id} product={currentProduct} productType="Drink"/>
+                    { currentDrinkList.map((currentProduct, index) => (
+                        <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
+                            <CurrentOrderProducts key={index} product={currentProduct} productType="Drink"/>
                         </Grid>
                     ))}
                 </Grid>
