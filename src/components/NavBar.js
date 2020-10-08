@@ -18,6 +18,9 @@ const NavBar = () =>{
                     <Button  variant="contained" color="default" startIcon={<FastfoodIcon />}>
                     View my order
                     </Button>
+                    <Button href={"/camera"} variant="contained" color="default" startIcon={<FastfoodIcon />}>
+                        Camera page
+                    </Button>
                     <IconButton>
                     <SettingsIcon />
                     </IconButton >

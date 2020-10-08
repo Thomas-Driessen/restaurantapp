@@ -8,6 +8,8 @@ import {
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MenuPage from './pages/MenuPage';
 import NotFoundPage from './pages/NotFoundPage'
+import CameraPage from "./pages/CameraPage";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -30,8 +32,9 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-          <Route exact path="/" component={MenuPage} />
-          <Route component={NotFoundPage} />
+              <Route exact path="/" component={MenuPage} />
+              <Route exact path="/camera" component={CameraPage} />
+              <Route component={NotFoundPage} />
           </Switch>
         </Router>
       </MuiThemeProvider>
