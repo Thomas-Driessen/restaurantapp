@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import QrReader from 'react-qr-scanner'
-import Redirect, {useParams} from "react-router-dom";
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 class QRScanner extends Component {
+    static scanned = false;
 
     constructor(props){
         super(props)
@@ -18,6 +18,12 @@ class QRScanner extends Component {
         this.setState({
             result: data,
         })
+        if(data != null && QRScanner.scanned === false)
+        {
+            QRScanner.scanned = true;
+            console.log(JSON.parse(data).tableNumber);
+            this.props.history.push("/menuredirect/" + JSON.parse(data).tableNumber);
+        }
     }
 
     handleError(err){

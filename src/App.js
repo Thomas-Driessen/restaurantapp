@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MenuPage from './pages/MenuPage';
+import MenuRedirectPage from './pages/MenuRedirectPage';
 import NotFoundPage from './pages/NotFoundPage'
 import CameraPage from "./pages/CameraPage";
 
@@ -34,6 +35,7 @@ function App() {
           <Switch>
               <Route exact path="/" component={MenuPage} />
               <Route exact path="/camera" component={CameraPage} />
+              <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
               <Route component={NotFoundPage} />
           </Switch>
         </Router>
