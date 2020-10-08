@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import App from './App';
-import Menu from './pages/Menu'
-import ViewOrder from './pages/ViewOrder'
 
 test('404 Not Found', () => {
   const { getByText } = render(<App />);
@@ -10,18 +9,9 @@ test('404 Not Found', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('Render Menu', () => {
-  const { getByText } = render(
-    <Menu />
-  );
-  const linkElement = getByText(/Choose between Foods, Drinks and Most Liked to see our products/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-test('Render ViewOrder', () => {
-  const { getByText } = render(
-    <ViewOrder />
-  );
-  const linkElement = getByText(/Pay for orders/i);
-  expect(linkElement).toBeInTheDocument();
+it('App renders correctly', () => {
+  const tree = renderer
+    .create(<App />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

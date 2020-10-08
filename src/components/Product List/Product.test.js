@@ -1,23 +1,23 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CurrentOrderProducts from './CurrentOrderProducts';
+import Product from './Product';
 import renderer from 'react-test-renderer';
 
-it('CurrentOrderProducts render correctly', () => {
+it('Product renders correctly', () => {
   const tree = renderer
-    .create(<CurrentOrderProducts />)
+    .create(<Product />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-test('Render CurrentOrderProducts', () => {
+test('Render Product', () => {
   var product = {
     id: 1,
     title: "Coca-Cola",
     price: 2.5,
     description: ""
   };
-  const { getByText } = render(<CurrentOrderProducts product={product}/>);
+  const { getByText } = render(<Product product={product}/>);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
   });
