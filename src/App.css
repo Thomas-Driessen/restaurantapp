@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* 
+* > Backgrounds
+*/
+
+.background-lightgray {
+ background-color: #e6e6e6;
+}
+
+/*
+* > Kitchen overview page
+*/
+
+.kitchen-overview-container {
+  padding: 10px 15px;
+  min-height: 75vh;
+}

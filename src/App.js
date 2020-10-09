@@ -9,6 +9,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Menu from './pages/Menu';
 import ViewOrder from './pages/ViewOrder';
 import NotFoundPage from './pages/NotFoundPage'
+import KitchenOverview from './pages/KitchenOverview'
+import { observer } from 'mobx-react'
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -30,12 +33,13 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
+          <Route exact path="/kitchenOverview" component={KitchenOverview}/>
           <Route exact path="/menu" component={Menu}/>
-          <Route  path="/order" component={() => <ViewOrder tableId="1"/>} />
+          <Route path="/order" component={() => <ViewOrder tableId="1"/>} />
           <Route component={NotFoundPage} />
           </Switch>
         </Router>
       </MuiThemeProvider>
   );
 }
-export default App
+export default observer(App)

@@ -5,11 +5,12 @@ import CurrentOrderProducts from './CurrentOrderProducts'
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import tableId from '../TableId'
+import UpdateKitchenOverview from '../UpdateKitchenOverview'
 
 class CurrentOrder extends React.Component { 
     constructor() {
         super();
-        this.state = { 
+        this.state = {
             currentFoodListLength: 0,
             currentDrinkListLength: 0,
         };
@@ -64,6 +65,7 @@ class CurrentOrder extends React.Component {
         })
         currentDrinkList.splice(0,currentDrinkList.length);
         currentFoodList.splice(0,currentFoodList.length);
+        UpdateKitchenOverview.update = true;
     }
     render(){
     return(
