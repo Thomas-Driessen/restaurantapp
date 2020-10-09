@@ -3,15 +3,15 @@ import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/Toolbar'
 import { Button } from '@material-ui/core';
 
-const SortBar = () =>{
+const SortBar = (props) => {
     return(
         <div>
-            <AppBar position="static" color="contrastText">
+            <AppBar position="static" color="transparent">
                 <ToolBar>
-                    <Button  variant="contained" color="default">
+                    <Button  onClick={props.showFoods} variant="contained" color="default">
                     Food
                     </Button>
-                    <Button  variant="contained" color="default">
+                    <Button onClick={props.showDrinks} variant="contained" color="default">
                     Drinks
                     </Button>
                     <Button  variant="contained" color="default">
@@ -20,7 +20,6 @@ const SortBar = () =>{
                 </ToolBar>
             </AppBar>
         </div>
-
     )
 }
 
