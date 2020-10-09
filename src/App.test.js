@@ -3,9 +3,9 @@ import { render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import App from './App';
 
-test('404 Not Found', () => {
+test('Menu shows up', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/It seems that this page does not exist/i);
+  const linkElement = getByText(/Choose between Foods, Drinks and Most Liked to see our products/i);
   expect(linkElement).toBeInTheDocument();
 });
 
