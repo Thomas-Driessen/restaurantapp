@@ -1,3 +1,10 @@
-const updateKitchenOverview = false;
+import { extendObservable } from 'mobx';
 
-export default updateKitchenOverview
+class UpdateKitchenOverview {
+    constructor() {
+        extendObservable(this, {
+            update: true
+        })
+    }
+}
+export default new UpdateKitchenOverview();

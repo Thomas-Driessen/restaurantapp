@@ -10,6 +10,7 @@ import Menu from './pages/Menu';
 import ViewOrder from './pages/ViewOrder';
 import NotFoundPage from './pages/NotFoundPage'
 import KitchenOverview from './pages/KitchenOverview'
+import { observer } from 'mobx-react'
 
 const theme = createMuiTheme({
   palette: {
@@ -41,4 +42,4 @@ function App() {
       </MuiThemeProvider>
   );
 }
-export default App
+export default observer(App)
