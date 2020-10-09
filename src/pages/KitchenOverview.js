@@ -1,5 +1,5 @@
 import React from 'react';
-import updateKitchenOverview from '../components/updateKitchenOverview'
+import UpdateKitchenOverview from '../components/UpdateKitchenOverview'
 import tableId from '../components/TableId'
 import { Typography } from '@material-ui/core';
 import NavBar from '../components/Navigation bars/NavBar';
@@ -10,6 +10,9 @@ import { spacing } from '@material-ui/system';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import displayedFoodOrders from '../components/Kitchen Overview/DisplayedFoodOrders'
+import displayedDrinkOrders from '../components/Kitchen Overview/DisplayedDrinkOrders'
+import KitchenProductList from '../components/Kitchen Overview/KitchenProductList'
 
 class KitchenOverview extends React.Component {
     constructor() {
@@ -17,52 +20,72 @@ class KitchenOverview extends React.Component {
 
         this.state = {
             foodOrders: [],
-            drinkOrders: [],
-            displayedFoodOrders: [],
-            displayedDrinkOrders: [],
+            drinkOrders: []
         }
     }
     
     componentDidMount() {
         setInterval(() => {
             this.updateOverview();
-        }, 10);
-    }
-    
-    updateOverview() {
-        if(updateKitchenOverview) {
-            fetch(`/api/orderfood/${tableId}`)
+        }, 50);
+        let mounted = false;
+        fetch(`/api/orderfood/${tableId}`)
                 .then(res => res.json())
                 .then((data) => {
-                this.setState({ foodOrders: data })
+                    if(mounted){
+                        this.setState({ foodOrders: data })
+                    }
             })
             .catch(console.log)
 
             fetch(`/api/orderdrink/${tableId}`)
                 .then(res => res.json())
                 .then((data) => {
+                    if(mounted){
+                        this.setState({ drinkOrders: data })
+                    }
+            })
+            .catch(console.log)
+
+            return () => mounted = true;
+    }
+    
+    async updateOverview() {
+        console.log(UpdateKitchenOverview.update);
+        if(UpdateKitchenOverview.update) {
+            await fetch(`/api/orderfood/${tableId}`)
+                .then(res => res.json())
+                .then((data) => {
+                this.setState({ foodOrders: data })
+            })
+            .catch(console.log)
+
+            await fetch(`/api/orderdrink/${tableId}`)
+                .then(res => res.json())
+                .then((data) => {
                 this.setState({ drinkOrders: data })
             })
             .catch(console.log)
-            
-            if(this.state.foodOrders.length !== this.state.displayedFoodOrders.length) {
-                for(let i = this.state.displayedFoodOrders.length; i < this.state.foodOrders.length; i++){
+
+            if(this.state.foodOrders.length !== displayedFoodOrders.length) {
+                for(let i = displayedFoodOrders.length; i < this.state.foodOrders.length; i++){
                     let foodOrder = this.state.foodOrders[i];
                     foodOrder.status = 0;
-                    this.state.displayedFoodOrders.push(foodOrder);
+                    displayedFoodOrders.push(foodOrder);
                 }
             }
-            this.loadTabels();
-            updateKitchenOverview = false;
+            UpdateKitchenOverview.update = false;
         }
     }
 
     loadTabels(){
         const table = document.getElementById("Orders");
-        this.state.displayedFoodOrders.foreach( item => {
+        displayedFoodOrders.map( item => {
             let row = table.insertRow();
             let receved = row.insertCell(0);
-            receved.innerHtml = item.title
+            receved.innerHtml = item.id
+
+            return "succes";
         })
     };
     render(){
@@ -202,6 +225,7 @@ class KitchenOverview extends React.Component {
                         </div>
                     </Grid>
                 </Grid>
+                {/* <KitchenProductList products ={displayedFoodOrders} productType="Food"/> */}
             </div>
         )}
 }
