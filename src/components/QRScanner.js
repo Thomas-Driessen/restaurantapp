@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import QrReader from 'react-qr-scanner'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class QRScanner extends Component {
     static scanned = false;
