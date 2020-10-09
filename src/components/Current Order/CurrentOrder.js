@@ -5,6 +5,7 @@ import CurrentOrderProducts from './CurrentOrderProducts'
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import tableId from '../TableId'
+import updateKitchenOverview from '../updateKitchenOverview'
 
 class CurrentOrder extends React.Component { 
     constructor() {
@@ -64,6 +65,7 @@ class CurrentOrder extends React.Component {
         })
         currentDrinkList.splice(0,currentDrinkList.length);
         currentFoodList.splice(0,currentFoodList.length);
+        updateKitchenOverview = true;
     }
     render(){
     return(
