@@ -9,7 +9,7 @@ class CameraPage extends React.Component {
 
     componentDidMount() {
         console.log(this.props.match.params.tableNumber);
-        localStorage.setItem("tableNumber", this.props.match.params.tableNumber);
+        localStorage.setItem("tableId", this.props.match.params.tableNumber);
         this.props.history.push("/");
     }
 
