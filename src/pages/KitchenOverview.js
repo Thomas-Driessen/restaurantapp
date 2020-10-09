@@ -51,7 +51,7 @@ class KitchenOverview extends React.Component {
     }
     
     async updateOverview() {
-        console.log(UpdateKitchenOverview.update);
+        //console.log(UpdateKitchenOverview.update);
         if(UpdateKitchenOverview.update) {
             await fetch(`/api/orderfood/${tableId}`)
                 .then(res => res.json())
@@ -91,7 +91,6 @@ class KitchenOverview extends React.Component {
     render(){
         return(
             <div>
-                <NavBar/>
                 <Grid container spacing={0} style={{padding: 5}}>
                     <Grid item xs={12} sm={6} lg={4} xl={4} style={{padding: 25}}>
                         <h2>Todo</h2>
