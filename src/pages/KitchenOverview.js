@@ -2,11 +2,9 @@ import React from 'react';
 import UpdateKitchenOverview from '../components/UpdateKitchenOverview'
 import tableId from '../components/TableId'
 import { Typography } from '@material-ui/core';
-import NavBar from '../components/Navigation bars/NavBar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { spacing } from '@material-ui/system';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
