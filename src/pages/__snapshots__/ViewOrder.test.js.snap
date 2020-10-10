@@ -38,6 +38,9 @@ exports[`ViewOrder renders correctly 1`] = `
           >
             Menu
           </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
         </button>
         <button
           className="MuiButtonBase-root MuiButton-root MuiButton-contained"
@@ -77,6 +80,9 @@ exports[`ViewOrder renders correctly 1`] = `
             My orders 
             
           </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
         </button>
         <button
           className="MuiButtonBase-root MuiIconButton-root"
@@ -110,6 +116,9 @@ exports[`ViewOrder renders correctly 1`] = `
               />
             </svg>
           </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
         </button>
       </div>
     </header>
@@ -147,6 +156,9 @@ exports[`ViewOrder renders correctly 1`] = `
         >
           Pay for orders
         </span>
+        <span
+          className="MuiTouchRipple-root"
+        />
       </button>
       <div>
         <h2>

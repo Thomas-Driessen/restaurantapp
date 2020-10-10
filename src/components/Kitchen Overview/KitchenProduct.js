@@ -8,49 +8,24 @@ import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 
 
-class Product extends React.Component {
-
-    constructor(){
-        super();
-
-        this.state = {
-            product: true
-        }
-    }
-
-    componentDidMount() {
-        let mounted = true;
-        fetch(`/api/${this.props.productType}/${this.props.productId}`)
-        .then(res => res.json())
-        .then((data) => {
-            if(mounted){
-                this.setState({ product: data })
-            }
-        })
-        .catch(console.log)
-
-        return() => mounted = false;
-    }
-
-    pushToNextColumn = (e) => {
-        e.preventDefault();
-    }
+class KitchenProduct extends React.Component {
 
     render(){
+        console.log(this.props.product);
     return(
         <div>
-            { this.state.product ? (
+            { this.props.product ? (
                 <div>
                 <Card >
                     <CardContent>
                     <Typography gutterBottom variant="inherit" component="h2">
-                        {this.state.product.title}
+                        {this.props.product.title}
                     </Typography>
                     </CardContent>
                     <CardActions>
                     <Grid container alignItems="flex-start" justify="flex-end" direction="row">
                     <div style={{display: 'flex', alignItems: 'right'}}>
-                    <IconButton aria-label="push" onClick={this.pushToNextColumn}>
+                    <IconButton aria-label="push" onClick={ () => this.props.goToNext(this.props.product.title)}>
                         <AddIcon />
                     </IconButton>
                     </div>
@@ -62,4 +37,4 @@ class Product extends React.Component {
         </div>
     )}
 }
-export default Product
+export default KitchenProduct

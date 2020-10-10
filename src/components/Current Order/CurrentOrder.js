@@ -5,7 +5,7 @@ import CurrentOrderProducts from './CurrentOrderProducts'
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import tableId from '../TableId'
-import UpdateKitchenOverview from '../UpdateKitchenOverview'
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
 class CurrentOrder extends React.Component { 
     constructor() {
@@ -13,13 +13,30 @@ class CurrentOrder extends React.Component {
         this.state = {
             currentFoodListLength: 0,
             currentDrinkListLength: 0,
+            hubConnection: null,
         };
     }
     componentDidMount(){
+        this.ConnectToHub();
         setInterval(() => {
             this.checkOrderListLength();
-        }, 10);
+        }, 50);
     }
+
+    ConnectToHub() {
+        const hubConnection =  new HubConnectionBuilder()
+          .withUrl("http://localhost:50232/Order")
+          .configureLogging(LogLevel.Information)
+          .build();
+      
+        this.setState({ hubConnection}, () => {
+          this.state.hubConnection
+            .start()
+            .then(() => console.log('Connection started!'))
+            .catch(err => console.log('Error while establishing connection :('));
+        });
+    }
+
     checkOrderListLength(){
         if(currentFoodList.length !== this.state.currentFoodListLength){
             this.setState({currentFoodListLength: currentFoodList.length});
@@ -29,12 +46,17 @@ class CurrentOrder extends React.Component {
         }
     }
     sendOrder(){
+        let order = [];
         currentDrinkList.map(currentDrink => {
             var drink ={
                 tableId: tableId,
                 paid: false,
                 drinkId: currentDrink.id
             };
+            let item = {
+                title: currentDrink.title
+            }
+            order.push(item);
         fetch('/api/orderdrink', {
             method: 'POST',
             mode: 'cors',
@@ -52,6 +74,10 @@ class CurrentOrder extends React.Component {
                 paid: false,
                 foodId: currentFood.id
             };
+            let item = {
+                title: currentFood.title
+            }
+            order.push(item);
         fetch('/api/orderfood', {
             method: 'POST',
             mode: 'cors',
@@ -65,7 +91,16 @@ class CurrentOrder extends React.Component {
         })
         currentDrinkList.splice(0,currentDrinkList.length);
         currentFoodList.splice(0,currentFoodList.length);
-        UpdateKitchenOverview.update = true;
+        
+        fetch('/sendorder', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(order)
+        })
     }
     render(){
     return(
