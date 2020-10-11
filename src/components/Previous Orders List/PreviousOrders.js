@@ -10,6 +10,7 @@ class PreviousOrders extends React.Component {
             previousFoods: []
           };
     }
+
     componentDidMount() {
         let mounted = true;
         fetch(`/api/orderdrink/${tableId}`)
@@ -31,6 +32,24 @@ class PreviousOrders extends React.Component {
 
         return() => mounted = false;
     }
+
+    componentDidUpdate(previousOrderNumbers) {
+        if (this.props.previousOrderNumbers !== previousOrderNumbers) {
+        fetch(`/api/orderdrink/${tableId}`)
+        .then(res => res.json())
+        .then((data) => {
+            this.setState({ previousDrinks: data })
+        })
+        .catch(console.log)
+        fetch(`/api/orderfood/${tableId}`)
+        .then(res => res.json())
+        .then((data) => {
+                this.setState({ previousFoods: data })
+        })
+        .catch(console.log)
+        }
+    }
+    
     render(){
     return(
     <div>

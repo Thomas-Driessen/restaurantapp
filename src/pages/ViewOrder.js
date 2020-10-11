@@ -4,22 +4,80 @@ import PreviousOrders from '../components/Previous Orders List/PreviousOrders'
 import CurrentOrder from '../components/Current Order/CurrentOrder'
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import currentFoodList from '../components/Current Order/CurrentFoodList'
+import currentDrinkList from '../components/Current Order/CurrentDrinkList'
+import tableId from '../components/TableId'
 
 class ViewOrder extends React.Component {
   constructor() {
     super();
     this.state = { tableNumber: 1,
-      previousOrderNumbers: []
+      updatePastOrders: 0
     };
   }
-  componentDidMount() {
-    fetch(`/api/order`)
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ previousOrderNumbers: data })
+
+  sendOrder(){
+    let order = [];
+    currentDrinkList.map(currentDrink => {
+        var drink ={
+            tableId: tableId,
+            paid: false,
+            drinkId: currentDrink.id
+        };
+        let item = {
+            title: currentDrink.title
+        }
+        order.push(item);
+    fetch('/api/orderdrink', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(drink)
     })
-    .catch(console.log)
+    return "Succes";
+    })
+
+    currentFoodList.map(currentFood => {
+        var food ={
+            tableId: tableId,
+            paid: false,
+            foodId: currentFood.id
+        };
+        let item = {
+            title: currentFood.title
+        }
+        order.push(item);
+    fetch('/api/orderfood', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(food)
+    })
+    return "Succes";
+    })
+
+    currentDrinkList.splice(0,currentDrinkList.length);
+    currentFoodList.splice(0,currentFoodList.length);
+    
+    fetch('/sendorder', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order)
+    })
+    
+    this.setState({ previousOrderNumbers: this.state.previousOrderNumbers + 1 })  
   }
+
   render(){
   return(
       <div>
@@ -29,8 +87,8 @@ class ViewOrder extends React.Component {
                 <Button color="secondary"variant="outlined">
                   Pay for orders
                 </Button>
-              <CurrentOrder/>
-              <PreviousOrders/>
+              <CurrentOrder sendOrder={ () => this.sendOrder()}/>
+              <PreviousOrders previousOrderNumbers={this.state.previousOrderNumbers}/>
             </Grid>
           </Grid>
       </div>

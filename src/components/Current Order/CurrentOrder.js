@@ -4,8 +4,6 @@ import currentDrinkList from './CurrentDrinkList'
 import CurrentOrderProducts from './CurrentOrderProducts'
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
-import tableId from '../TableId'
-import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
 class CurrentOrder extends React.Component { 
     constructor() {
@@ -17,24 +15,9 @@ class CurrentOrder extends React.Component {
         };
     }
     componentDidMount(){
-        this.ConnectToHub();
         setInterval(() => {
             this.checkOrderListLength();
         }, 50);
-    }
-
-    ConnectToHub() {
-        const hubConnection =  new HubConnectionBuilder()
-          .withUrl("http://localhost:50232/Order")
-          .configureLogging(LogLevel.Information)
-          .build();
-      
-        this.setState({ hubConnection}, () => {
-          this.state.hubConnection
-            .start()
-            .then(() => console.log('Connection started!'))
-            .catch(err => console.log('Error while establishing connection :('));
-        });
     }
 
     checkOrderListLength(){
@@ -45,63 +28,7 @@ class CurrentOrder extends React.Component {
             this.setState({currentDrinkListLength: currentDrinkList.length});
         }
     }
-    sendOrder(){
-        let order = [];
-        currentDrinkList.map(currentDrink => {
-            var drink ={
-                tableId: tableId,
-                paid: false,
-                drinkId: currentDrink.id
-            };
-            let item = {
-                title: currentDrink.title
-            }
-            order.push(item);
-        fetch('/api/orderdrink', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(drink)
-        })
-        return "Succes";
-        })
-        currentFoodList.map(currentFood => {
-            var food ={
-                tableId: tableId,
-                paid: false,
-                foodId: currentFood.id
-            };
-            let item = {
-                title: currentFood.title
-            }
-            order.push(item);
-        fetch('/api/orderfood', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(food)
-        })
-        return "Succes";
-        })
-        currentDrinkList.splice(0,currentDrinkList.length);
-        currentFoodList.splice(0,currentFoodList.length);
-        
-        fetch('/sendorder', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(order)
-        })
-    }
+
     render(){
     return(
         <div>
@@ -126,7 +53,7 @@ class CurrentOrder extends React.Component {
             ) : null}
             { currentFoodList.length + currentDrinkList.length ? (
                  <Grid container alignItems="center" justify="center" direction="row">
-                <Button variant="contained" color="default" onClick={this.sendOrder}>
+                <Button variant="contained" color="default" onClick={ () => this.props.sendOrder()}>
                     Place Order
                     </Button>
                 </Grid>
