@@ -28,12 +28,14 @@ const CurrentOrderProducts = (props) => {
         e.preventDefault();
         var index;
         if(props.productType === "Food") {
-        index = currentFoodList.indexOf(props.product);
-        currentFoodList.splice(index, 1);
+            index = currentFoodList.indexOf(props.product);
+            currentFoodList.splice(index, 1);
+            sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
         }
         else{
             index = currentDrinkList.indexOf(props.product);
             currentDrinkList.splice(index, 1);
+            sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
     };
     return(

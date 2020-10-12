@@ -64,6 +64,8 @@ class ViewOrder extends React.Component {
 
     currentDrinkList.splice(0,currentDrinkList.length);
     currentFoodList.splice(0,currentFoodList.length);
+    sessionStorage.removeItem("currentDrinkList");
+    sessionStorage.removeItem("currentFoodList");
     
     fetch('/sendorder', {
         method: 'POST',

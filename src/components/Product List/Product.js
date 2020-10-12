@@ -41,9 +41,11 @@ const Product = (props) => {
         e.preventDefault();
         if(props.productType === "Food") {
             currentFoodList.push(props.product);
+            sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
         }
         else{
             currentDrinkList.push(props.product);
+            sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
     };
     return(

@@ -20,9 +20,30 @@ class NavBar extends React.Component{
         }
     }
     componentDidMount(){
+        let mounted = true;
+
+        if(mounted) {
+            let items = sessionStorage.getItem("currentFoodList") ? JSON.parse(sessionStorage.getItem("currentFoodList") || []) : [];
+            currentFoodList.splice(0,currentFoodList.length);
+            items.map(item => {
+                currentFoodList.push(item);
+                return true;
+            })
+            
+            items = sessionStorage.getItem("currentDrinkList") ? JSON.parse(sessionStorage.getItem("currentDrinkList") || []) : [];
+            currentDrinkList.splice(0,currentDrinkList.length);
+            items.map(item => {
+                currentDrinkList.push(item);
+                return true;
+            })
+        }
+        
         setInterval(() => {
             this.totalProductsInOrder();
         }, 10);
+
+        return () => mounted = false;
+
     }
     setRedirect = () => {
         this.setState({
