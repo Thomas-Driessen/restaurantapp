@@ -15,6 +15,17 @@ class KitchenOverview extends React.Component {
     
     componentDidMount() {
         this.ConnectToHub();
+        let mounted = true;
+
+        if(mounted) {
+            let toDos = localStorage.getItem("toDo") ? JSON.parse(localStorage.getItem("toDo") || []) : [];
+            toDos.map(item => {
+                toDo.push(item);
+                return true;
+            })
+        }
+
+        return () => mounted = false;
     }
 
     ConnectToHub() {
@@ -41,6 +52,10 @@ class KitchenOverview extends React.Component {
                 toDo.push(item);
                 return true;
             })
+
+            if(this.state.order.length) {
+                localStorage.setItem("toDo", JSON.stringify(toDo));
+            }
         }
     }
 

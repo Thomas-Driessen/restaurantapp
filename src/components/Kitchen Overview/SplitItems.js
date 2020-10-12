@@ -21,6 +21,23 @@ class SplitItems extends React.Component {
         setInterval(() => {
             this.checkOrderListLength();
         }, 50);
+        let mounted = true;
+
+        if(mounted) {
+            let items = localStorage.getItem("progress") ? JSON.parse(localStorage.getItem("progress") || []) : [];
+            items.map(item => {
+                progress.push(item);
+                return true;
+            })
+
+            items = localStorage.getItem("done") ? JSON.parse(localStorage.getItem("done") || []) : [];
+            items.map(item => {
+                done.push(item);
+                return true;
+            })
+        }
+
+        return () => mounted = false;
     }
 
     checkOrderListLength(){
@@ -42,6 +59,8 @@ class SplitItems extends React.Component {
             if(toDo[i].title === title) {
                 progress.push(toDo[i]);
                 toDo.splice(i, 1);
+                localStorage.setItem("toDo", JSON.stringify(toDo));
+                localStorage.setItem("progress", JSON.stringify(progress));
                 break;
             }
         }
@@ -52,6 +71,8 @@ class SplitItems extends React.Component {
             if(progress[i].title === title) {
                 done.push(progress[i]);
                 progress.splice(i, 1);
+                localStorage.setItem("progress", JSON.stringify(progress));
+                localStorage.setItem("done", JSON.stringify(done));
                 break;
             }
         }
@@ -61,6 +82,7 @@ class SplitItems extends React.Component {
         for(let i = 0; i < done.length; i++) {
             if(done[i].title === title) {
                 done.splice(i, 1);
+                localStorage.setItem("done", JSON.stringify(done));
                 break;
             }
         }
@@ -68,11 +90,11 @@ class SplitItems extends React.Component {
 
     render(){
         return(
-                <Grid container spacing={0} style={{padding: 5}}>
-                    <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress}/>
-                    <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone}/>
-                    <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp}/>
-                </Grid>
+            <Grid container spacing={0} style={{padding: 5}}>
+                <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress}/>
+                <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone}/>
+                <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp}/>
+            </Grid>
         )}
 }
 export default SplitItems

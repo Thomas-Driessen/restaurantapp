@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 class KitchenProduct extends React.Component {
 
     render(){
-        console.log(this.props.product);
     return(
         <div>
             { this.props.product ? (
