@@ -48,7 +48,7 @@ const CurrentOrderProducts = (props) => {
                         {props.product.title}
                     </Typography>
                     <Typography component="h6">
-                        {props.product.description}
+                        {props.product.ingredients}
                     </Typography>
                     <Typography gutterBottom className={classes.price}>
                         {props.product.price}€
