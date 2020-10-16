@@ -1,14 +1,11 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
-import SortBar from '../components/SortBar'
-import ProductsList from '../components/ProductsList';
+import NavBar from '../components/Navigation bars/NavBar';
+//import SortBar from '../components/Navigation bars/SortBar'
+//import ProductsList from '../components/Product List/ProductsList';
 import QRScanner from "../components/QRScanner";
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    useParams
 } from "react-router-dom";
 
 class CameraPage extends React.Component {

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreviousOrders render correctly 1`] = `
+<div>
+  <h2>
+    These are your previous orders
+  </h2>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+    style={
+      Object {
+        "padding": 15,
+      }
+    }
+  />
+</div>
+`;
