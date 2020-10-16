@@ -122,20 +122,15 @@ exports[`App renders correctly 1`] = `
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <div
-          style={
-            Object {
-              "alignItems": "left",
-              "display": "flex",
-            }
-          }
+          className="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
             aria-label="text primary button group"
-            className="MuiButtonGroup-root"
+            className="MuiButtonGroup-root MuiButtonGroup-fullWidth"
             role="group"
           >
             <button
-              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary MuiButton-textPrimary"
+              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge MuiButton-fullWidth"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
@@ -159,7 +154,7 @@ exports[`App renders correctly 1`] = `
               </span>
             </button>
             <button
-              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary MuiButton-textPrimary"
+              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge MuiButton-fullWidth"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
@@ -183,7 +178,7 @@ exports[`App renders correctly 1`] = `
               </span>
             </button>
             <button
-              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary MuiButton-textPrimary"
+              className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge MuiButton-fullWidth"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}

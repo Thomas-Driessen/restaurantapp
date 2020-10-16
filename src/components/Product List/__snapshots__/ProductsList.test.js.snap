@@ -40,9 +40,7 @@ exports[`ProductsList renders correctly 1`] = `
             </h2>
             <h6
               className="MuiTypography-root MuiTypography-body1"
-            >
-              
-            </h6>
+            />
             <p
               className="MuiTypography-root makeStyles-price-3 MuiTypography-body1"
             >
@@ -194,9 +192,7 @@ exports[`ProductsList renders correctly 1`] = `
             </h2>
             <h6
               className="MuiTypography-root MuiTypography-body1"
-            >
-              
-            </h6>
+            />
             <p
               className="MuiTypography-root makeStyles-price-3 MuiTypography-body1"
             >
