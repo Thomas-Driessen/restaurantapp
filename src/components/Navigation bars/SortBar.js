@@ -2,21 +2,26 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/Toolbar'
 import { Button } from '@material-ui/core';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const SortBar = (props) => {
     return(
         <div>
             <AppBar position="static" color="transparent">
                 <ToolBar>
-                    <Button  onClick={props.showFoods} variant="contained" color="default">
-                    Food
-                    </Button>
-                    <Button onClick={props.showDrinks} variant="contained" color="default">
-                    Drinks
-                    </Button>
-                    <Button  variant="contained" color="default">
-                    Most Liked
-                    </Button>
+                    <div style={{display: 'flex', alignItems: 'left'}}>
+                        <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+                            <Button  onClick={props.showFoods}>
+                                Food
+                            </Button>
+                            <Button onClick={props.showDrinks}>
+                                Drinks
+                            </Button>
+                            <Button>
+                                Most Liked
+                            </Button>
+                        </ButtonGroup>
+                    </div>
                 </ToolBar>
             </AppBar>
         </div>
