@@ -8,7 +8,30 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import IconButton from '@material-ui/core/IconButton';
 import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
 import { Redirect } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import QRScanner from '../QRScanner'
+//import classes from '*.module.css';
+
+
+/* const useStyles = makeStyles((theme) => ({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+}));
+
+const classes = useStyles();*/
+
 
 class NavBar extends React.Component{
     constructor(){
@@ -16,8 +39,11 @@ class NavBar extends React.Component{
         this.state={
             totalProductsInOrder: 0,
             redirect: false,
-            redirectMenu: false
+            redirectMenu: false,
+            setOpen: false
         }
+        //const classes = useStyles();
+        //const [open, setOpen] = React.useState(false);
     }
     componentDidMount(){
         let mounted = true;
@@ -45,6 +71,27 @@ class NavBar extends React.Component{
         return () => mounted = false;
 
     }
+    useStyles = makeStyles((theme) => ({
+        modal: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        paper: {
+          backgroundColor: theme.palette.background.paper,
+          border: '2px solid #000',
+          boxShadow: theme.shadows[5],
+          padding: theme.spacing(2, 4, 3),
+        },
+      }));
+    handleOpenModal = () => {
+        this.setState({setOpen: true});
+        console.log(this.state.setOpen);
+    };
+    handleCloseModal = () => {
+        this.setState({setOpen: false});
+        console.log(this.state.setOpen);
+    };
     setRedirect = () => {
         this.setState({
           redirect: true
@@ -69,7 +116,7 @@ class NavBar extends React.Component{
         if(currentFoodList.length + currentDrinkList.length !== this.state.totalProductsInOrder) {
             this.setState({totalProductsInOrder: currentFoodList.length + currentDrinkList.length});
         }
-    }
+    }    
     render(){
     return(
         <div>
@@ -80,19 +127,40 @@ class NavBar extends React.Component{
                     </Typography>
                     {this.renderRedirect()}
                     {this.renderRedirectMenu()}
-                    <Button  onClick = {this.setRedirectMenu} variant="contained" color="default">
+                    <Button onClick = {this.setRedirectMenu} variant="contained" color="default">
                         Menu
                     </Button>
-                    <Button  onClick = {this.setRedirect} variant="contained" color="default" startIcon={<FastfoodIcon />}>
+                    <Button onClick = {this.setRedirect} variant="contained" color="default" startIcon={<FastfoodIcon />}>
                         My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
+                    </Button>
+                    <Button type="button" onClick={this.handleOpenModal} variant="contained" color="default">
+                        Scan table QR
                     </Button>
                     <IconButton>
                     <SettingsIcon />
                     </IconButton >
                 </ToolBar>
             </AppBar>
-        </div>
 
+            <Modal
+                open={this.state.setOpen}
+                onClose={this.handleCloseModal}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                //className={NavBar.modal}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+            >
+                <div>
+                    <h2 id="server-modal-title">Server-side modal</h2>
+                    <p id="server-modal-description">If you disable JavaScript, you will still see me.</p>
+                    <QRScanner />
+                </div>
+            </Modal>
+        </div>
     )}
 }
 
