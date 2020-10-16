@@ -3,14 +3,15 @@ import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/Toolbar'
 import { Button } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Container from '@material-ui/core/Container';
 
 const SortBar = (props) => {
     return(
         <div>
             <AppBar position="static" color="transparent">
-                <ToolBar>
-                    <div style={{display: 'flex', alignItems: 'left'}}>
-                        <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+                <ToolBar >
+                    <Container>
+                        <ButtonGroup fullWidth variant="text" size="large" color="primary" aria-label="text primary button group">
                             <Button  onClick={props.showFoods}>
                                 Food
                             </Button>
@@ -21,7 +22,7 @@ const SortBar = (props) => {
                                 Most Liked
                             </Button>
                         </ButtonGroup>
-                    </div>
+                    </Container>
                 </ToolBar>
             </AppBar>
         </div>

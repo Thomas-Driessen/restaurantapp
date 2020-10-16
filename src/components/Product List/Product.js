@@ -65,7 +65,7 @@ const Product = (props) => {
                         {props.product.title}
                     </Typography>
                     <Typography component="h6">
-                        {props.product.description}
+                        {props.product.ingredients}
                     </Typography>
                     <Typography className={classes.price}>
                         {props.product.price}€
