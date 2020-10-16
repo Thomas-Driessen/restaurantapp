@@ -98,9 +98,11 @@ class MenuPage extends React.Component {
           <SortBar showFoods = {this.showFoods} showDrinks = {this.showDrinks}/>
           {this.state.selectedCategory !== "" ? (
             <div>
-              <IconButton aria-label="return-to-categories" onClick={this.resetCategory}>
-                <ArrowBackIosIcon />
-              </IconButton>
+              <Grid container justify="flex-end">
+                <IconButton aria-label="return-to-categories" onClick={this.resetCategory}>
+                  <ArrowBackIosIcon />
+                </IconButton>
+              </Grid>
               <ProductsList products={this.state.shownProducts.filter(product => product.subcategory === this.state.selectedCategory)} productType={this.state.productType}/>
             </div>
           ) : (

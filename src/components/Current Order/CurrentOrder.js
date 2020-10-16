@@ -48,7 +48,7 @@ class CurrentOrder extends React.Component {
         <div>
             <h2>This is your current order</h2>
             { currentFoodList ? (
-                <Grid container spacing={1} style={{padding: 15}}>
+                <Grid container spacing={2} style={{padding: 15}}>
                     { currentFoodList.map((currentProduct, index) => (
                         <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
                             <CurrentOrderProducts key={index} product={currentProduct} productType="Food"/>
@@ -57,7 +57,7 @@ class CurrentOrder extends React.Component {
                 </Grid>
             ) : null}
             { currentDrinkList ? (
-                <Grid container spacing={1} style={{padding: 15}}>
+                <Grid container spacing={2} style={{padding: 15}}>
                     { currentDrinkList.map((currentProduct, index) => (
                         <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
                             <CurrentOrderProducts key={index} product={currentProduct} productType="Drink"/>

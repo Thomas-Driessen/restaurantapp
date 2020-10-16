@@ -1,14 +1,14 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar'
-import ToolBar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import AppBar from '@material-ui/core/AppBar';
+import ToolBar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
-import SettingsIcon from '@material-ui/icons/Settings';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-import IconButton from '@material-ui/core/IconButton';
 import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Container from '@material-ui/core/Container';
 
 class NavBar extends React.Component{
     constructor(){
@@ -73,22 +73,25 @@ class NavBar extends React.Component{
     render(){
     return(
         <div>
-            <AppBar position="static">
+            <AppBar position="static" elevation={0}>
                 <ToolBar>
                     <Typography variant="h5" color="inherit" text-align="center">
                         Restaurant
                     </Typography>
                     {this.renderRedirect()}
                     {this.renderRedirectMenu()}
-                    <Button  onClick = {this.setRedirectMenu} variant="contained" color="default">
-                        Menu
-                    </Button>
-                    <Button  onClick = {this.setRedirect} variant="contained" color="default" startIcon={<FastfoodIcon />}>
-                        My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
-                    </Button>
-                    <IconButton>
-                    <SettingsIcon />
-                    </IconButton >
+                    <Container disableGutters>
+                        <div style={{float: 'right'}}>
+                        <ButtonGroup variant="text" size="large" color="inherit" aria-label="text primary button group">
+                            <Button  onClick = {this.setRedirectMenu} color="inherit">
+                                Menu
+                            </Button>
+                            <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
+                                My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
+                            </Button>
+                        </ButtonGroup>
+                        </div>
+                    </Container>
                 </ToolBar>
             </AppBar>
         </div>

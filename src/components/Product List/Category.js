@@ -14,7 +14,7 @@ const Product = (props) => {
             { props.category ? (
                 <div>
                     <Card >
-                        <CardMedia style={{height: 400, paddingTop: '20%'}}
+                        <CardMedia style={{height: 400}}
                             component="img"
                             height="250"
                             src={`../../images/Categories/${props.category}.jpg`}
@@ -27,12 +27,10 @@ const Product = (props) => {
                             </Typography>
                         </CardContent>
                             <CardActions>
-                                <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                                    <div style={{display: 'flex', alignItems: 'center'}}>
-                                        <Button size="large" color="primary" target="_blank" onClick={() => props.selectCategory(props.category)}>
-                                            Select Category
-                                        </Button>
-                                    </div>
+                                <Grid container direction="row" justify="center" alignItems="center">
+                                    <Button size="large" color="primary" target="_blank" onClick={() => props.selectCategory(props.category)}>
+                                        Select Category
+                                    </Button>
                                 </Grid>
                             </CardActions>
                     </Card>
