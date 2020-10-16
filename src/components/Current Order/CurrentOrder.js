@@ -12,11 +12,13 @@ class CurrentOrder extends React.Component {
             currentFoodListLength: 0,
             currentDrinkListLength: 0,
             hubConnection: null,
+            totalPrice: 0,
         };
     }
     componentDidMount(){
         setInterval(() => {
             this.checkOrderListLength();
+            this.calculateTotalPrice();
         }, 50);
     }
 
@@ -27,6 +29,18 @@ class CurrentOrder extends React.Component {
         if(currentDrinkList.length !== this.state.currentDrinkListLength){
             this.setState({currentDrinkListLength: currentDrinkList.length});
         }
+    }
+
+    calculateTotalPrice() {
+        let total = 0;
+        for(let i = 0; i < currentFoodList.length; i++) {
+            total += currentFoodList[i].price;
+        }
+
+        for(let i = 0; i < currentDrinkList.length; i++) {
+            total += currentDrinkList[i].price;
+        }
+        this.setState({totalPrice: total});
     }
 
     render(){
@@ -52,7 +66,8 @@ class CurrentOrder extends React.Component {
                 </Grid>
             ) : null}
             { currentFoodList.length + currentDrinkList.length ? (
-                 <Grid container alignItems="center" justify="center" direction="row">
+                <Grid container alignItems="center" justify="space-between" direction="row">
+                <span>Subtotal: € {this.state.totalPrice.toFixed(2)}</span>
                 <Button variant="contained" color="default" onClick={ () => this.props.sendOrder()}>
                     Place Order
                     </Button>
