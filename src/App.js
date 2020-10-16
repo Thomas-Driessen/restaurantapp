@@ -12,6 +12,7 @@ import Menu from './pages/Menu';
 import ViewOrder from './pages/ViewOrder';
 import NotFoundPage from './pages/NotFoundPage'
 import KitchenOverview from './pages/KitchenOverview'
+import assistanceOverview from './pages/AssistanceOverview'
 import { observer } from 'mobx-react'
 
 const theme = createMuiTheme({
@@ -39,6 +40,7 @@ function App() {
             
             <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
             <Route exact path="/kitchenOverview" component={KitchenOverview}/>
+            <Route exact path="/assistanceOverview" component={assistanceOverview}/>
             <Route exact path="/menu" component={Menu}/>
             <Route path="/order" component={() => <ViewOrder tableId="1"/>} />
             <Route component={NotFoundPage} />
