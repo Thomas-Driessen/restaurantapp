@@ -2,7 +2,7 @@
 
 exports[`CategoryList renders correctly 1`] = `
 <div
-  className="MuiGrid-root MuiGrid-container"
+  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
   style={
     Object {
       "padding": 15,
@@ -25,7 +25,6 @@ exports[`CategoryList renders correctly 1`] = `
             style={
               Object {
                 "height": 400,
-                "paddingTop": "20%",
               }
             }
             title="Pizza"
@@ -43,42 +42,33 @@ exports[`CategoryList renders correctly 1`] = `
             className="MuiCardActions-root MuiCardActions-spacing"
           >
             <div
-              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
+              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center"
             >
-              <div
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                  }
-                }
+              <button
+                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                target="_blank"
+                type="button"
               >
-                <button
-                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
-                  disabled={false}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onDragLeave={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  tabIndex={0}
-                  target="_blank"
-                  type="button"
+                <span
+                  className="MuiButton-label"
                 >
-                  <span
-                    className="MuiButton-label"
-                  >
-                    Select Category
-                  </span>
-                </button>
-              </div>
+                  Select Category
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -101,7 +91,6 @@ exports[`CategoryList renders correctly 1`] = `
             style={
               Object {
                 "height": 400,
-                "paddingTop": "20%",
               }
             }
             title="Sushi"
@@ -119,42 +108,33 @@ exports[`CategoryList renders correctly 1`] = `
             className="MuiCardActions-root MuiCardActions-spacing"
           >
             <div
-              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
+              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center"
             >
-              <div
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                  }
-                }
+              <button
+                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                target="_blank"
+                type="button"
               >
-                <button
-                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
-                  disabled={false}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onDragLeave={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  tabIndex={0}
-                  target="_blank"
-                  type="button"
+                <span
+                  className="MuiButton-label"
                 >
-                  <span
-                    className="MuiButton-label"
-                  >
-                    Select Category
-                  </span>
-                </button>
-              </div>
+                  Select Category
+                </span>
+              </button>
             </div>
           </div>
         </div>

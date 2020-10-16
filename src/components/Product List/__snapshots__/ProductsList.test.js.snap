@@ -2,7 +2,7 @@
 
 exports[`ProductsList renders correctly 1`] = `
 <div
-  className="MuiGrid-root MuiGrid-container"
+  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
   style={
     Object {
       "padding": 15,
@@ -25,7 +25,6 @@ exports[`ProductsList renders correctly 1`] = `
             style={
               Object {
                 "height": 400,
-                "paddingTop": "20%",
               }
             }
             title="Coca-Cola"
@@ -177,7 +176,6 @@ exports[`ProductsList renders correctly 1`] = `
             style={
               Object {
                 "height": 400,
-                "paddingTop": "20%",
               }
             }
             title="Pepsi"
