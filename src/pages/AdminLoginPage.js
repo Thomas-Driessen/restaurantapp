@@ -7,56 +7,21 @@ import '../App.css';
 
 class LoginPage extends React.Component{
 
-    async componentDidMount(){
-        try{
-                let res = await fetch('/isLoggedIn',{
-                    method:'post',
-                    headers:{
-                        'Accept':'application/json',
-                        'Content-Type':'application/json'
-                    }
-                });
-
-                let result = res.json();
-
-                if(result && result.success){
-                    UserStore.loading = false;
-                    UserStore.isLoggedIn = true;
-                    UserStore.username = result.username;
-                }
-                else{
-                    UserStore.loading = false;
-                    UserStore.isLoggedIn = false;
-                }
-        }
-
-        catch(e){
-            UserStore.loading = false;
-            UserStore.isLoggedIn = false;
+    componentDidMount(){
+        let data = sessionStorage.getItem('sessionUserStore');
+        if(data!=null){
+            data = JSON.parse(data);
+            UserStore.isLoggedIn = data.isLoggedIn;
+            UserStore.username = data.username;
+            UserStore.loading = data.loading;
         }
     }
 
     async doLogout(){
-        try{
-                let res = await fetch('/logout',{
-                    method:'post',
-                    headers:{
-                        'Accept':'application/json',
-                        'Content-Type':'application/json'
-                    }
-                });
+        UserStore.isLoggedIn=false;
+        UserStore.username = '';
+        sessionStorage.setItem('sessionUserStore', JSON.stringify(UserStore));
 
-                let result = res.json();
-
-                if(result && result.success){
-                    UserStore.isLoggedIn = false;
-                    UserStore.username = '';
-                }
-        }
-
-        catch(e){
-            console.log(e);
-        }
     }
 
     render(){

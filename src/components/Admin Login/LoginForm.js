@@ -7,7 +7,7 @@ import UserStore from './UserStore';
 class LoginForm extends React.Component{
 
     constructor(props){
-        super(props);
+        super();
         this.state={
             username:'',
             password:'',
@@ -30,7 +30,23 @@ class LoginForm extends React.Component{
     }
 
     async doLogin(){
-
+        UserStore.loading = true;
+        fetch(`/api/User/username=`+this.state.username+`&password=`+this.state.password)
+        .then(res => res.json())
+        .then((data) => {
+          if(data==true){
+              UserStore.loading = false;
+              UserStore.isLoggedIn = true;
+              UserStore.username = this.state.username;
+              sessionStorage.setItem('sessionUserStore', JSON.stringify(UserStore));
+          }
+          else{
+              UserStore.loading = false;
+              UserStore.loggedIn=false;
+              sessionStorage.setItem('sessionUserStore', JSON.stringify(UserStore));
+          }
+        })
+        .catch(console.log)
      }
     render(){
         return(
