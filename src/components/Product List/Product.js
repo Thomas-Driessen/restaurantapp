@@ -98,12 +98,18 @@ const Product = (props) => {
                             </Button>
                         </DialogActions>
                     </Dialog>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="add to order" onClick={addToOrder}>
-                        <AddIcon />
-                    </IconButton>
+                    {localStorage.getItem("tableId") ? (
+                        <div>
+                            <IconButton aria-label="add to favorites">
+                                <FavoriteIcon />
+                            </IconButton>
+                            <IconButton aria-label="add to order" onClick={addToOrder}>
+                                <AddIcon />
+                            </IconButton>
+                        </div>
+                    ) : (
+                        null
+                    )}
                     </div>
                     </Grid>
                     </CardActions>

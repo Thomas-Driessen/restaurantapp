@@ -15,6 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import QRScanner from "../QRScanner";
+import CameraIcon from '@material-ui/icons/CameraAlt';
 
 class NavBar extends React.Component{
     constructor(){
@@ -88,7 +89,7 @@ class NavBar extends React.Component{
             <div>
                 <AppBar position="static">
                     <ToolBar>
-                        <Typography variant="h5" color="inherit" text-align="center">
+                        <Typography variant="h6" color="inherit" text-align="center">
                             Restaurant
                         </Typography>
                         {this.renderRedirect()}
@@ -99,12 +100,15 @@ class NavBar extends React.Component{
                                     <Button  onClick = {this.setRedirectMenu} color="inherit">
                                         Menu
                                     </Button>
-                                    <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
-                                        My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
-                                    </Button>
-                                    <Button type="button" onClick={this.handleOpenModal} variant="contained" color="default">
-                                        Scan table QR
-                                    </Button>
+                                    {localStorage.getItem("tableId") ? (
+                                        <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
+                                            My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
+                                        </Button>
+                                    ) : (
+                                        <Button  onClick={this.handleOpenModal} color="inherit" startIcon={<CameraIcon />}>
+                                            Scan QR
+                                        </Button>
+                                    )}
                                 </ButtonGroup>
                             </div>
                         </Container>
