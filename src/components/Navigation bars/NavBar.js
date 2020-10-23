@@ -3,12 +3,12 @@ import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
-import SettingsIcon from '@material-ui/icons/Settings';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-import IconButton from '@material-ui/core/IconButton';
 import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
 import { Redirect } from 'react-router-dom';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Container from '@material-ui/core/Container';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -93,18 +93,21 @@ class NavBar extends React.Component{
                         </Typography>
                         {this.renderRedirect()}
                         {this.renderRedirectMenu()}
-                        <Button onClick = {this.setRedirectMenu} variant="contained" color="default">
-                            Menu
-                        </Button>
-                        <Button onClick = {this.setRedirect} variant="contained" color="default" startIcon={<FastfoodIcon />}>
-                            My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
-                        </Button>
-                        <Button type="button" onClick={this.handleOpenModal} variant="contained" color="default">
-                            Scan table QR
-                        </Button>
-                        <IconButton>
-                            <SettingsIcon />
-                        </IconButton >
+                        <Container disableGutters>
+                            <div style={{float: 'right'}}>
+                                <ButtonGroup variant="text" size="large" color="inherit" aria-label="text primary button group">
+                                    <Button  onClick = {this.setRedirectMenu} color="inherit">
+                                        Menu
+                                    </Button>
+                                    <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
+                                        My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
+                                    </Button>
+                                    <Button type="button" onClick={this.handleOpenModal} variant="contained" color="default">
+                                        Scan table QR
+                                    </Button>
+                                </ButtonGroup>
+                            </div>
+                        </Container>
 
                         {this.state.setOpen ? (
                             <Dialog
