@@ -60,79 +60,79 @@ class NavBar extends React.Component{
     };
     setRedirect = () => {
         this.setState({
-          redirect: true
+            redirect: true
         })
     }
     renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='/order' />
+            return <Redirect to='/order' />
         }
     }
     setRedirectMenu = () => {
         this.setState({
-          redirectMenu: true
+            redirectMenu: true
         })
     }
     renderRedirectMenu = () => {
         if (this.state.redirectMenu) {
-          return <Redirect to='/menu' />
+            return <Redirect to='/menu' />
         }
     }
     totalProductsInOrder(){
         if(currentFoodList.length + currentDrinkList.length !== this.state.totalProductsInOrder) {
             this.setState({totalProductsInOrder: currentFoodList.length + currentDrinkList.length});
         }
-    }    
+    }
     render(){
-    return(
-        <div>
-            <AppBar position="static">
-                <ToolBar>
-                    <Typography variant="h5" color="inherit" text-align="center">
-                        Restaurant
-                    </Typography>
-                    {this.renderRedirect()}
-                    {this.renderRedirectMenu()}
-                    <Button onClick = {this.setRedirectMenu} variant="contained" color="default">
-                        Menu
-                    </Button>
-                    <Button onClick = {this.setRedirect} variant="contained" color="default" startIcon={<FastfoodIcon />}>
-                        My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
-                    </Button>
-                    <Button type="button" onClick={this.handleOpenModal} variant="contained" color="default">
-                        Scan table QR
-                    </Button>
-                    <IconButton>
-                    <SettingsIcon />
-                    </IconButton >
+        return(
+            <div>
+                <AppBar position="static">
+                    <ToolBar>
+                        <Typography variant="h5" color="inherit" text-align="center">
+                            Restaurant
+                        </Typography>
+                        {this.renderRedirect()}
+                        {this.renderRedirectMenu()}
+                        <Button onClick = {this.setRedirectMenu} variant="contained" color="default">
+                            Menu
+                        </Button>
+                        <Button onClick = {this.setRedirect} variant="contained" color="default" startIcon={<FastfoodIcon />}>
+                            My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
+                        </Button>
+                        <Button type="button" onClick={this.handleOpenModal} variant="contained" color="default">
+                            Scan table QR
+                        </Button>
+                        <IconButton>
+                            <SettingsIcon />
+                        </IconButton >
 
-                    {this.state.setOpen ? (
-                        <Dialog
-                            open={this.handleOpenModal}
-                            onClose={this.handleCloseModal}
-                            aria-labelledby="product-title"
-                            aria-describedby="product-description"
-                        >
-                            <DialogTitle id="product-title">QR-scanner</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText id="product-description">
-                                    Scan the QR-code which is on the table!
-                                </DialogContentText>
-                                <DialogContentText id="product-description">
-                                    <QRScanner />
-                                </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={this.handleCloseModal} color="primary">
-                                    Close
-                                </Button>
-                            </DialogActions>
-                        </Dialog>
-                    ): null}
-                </ToolBar>
-            </AppBar>
-        </div>
-    )}
+                        {this.state.setOpen ? (
+                            <Dialog
+                                open={this.handleOpenModal}
+                                onClose={this.handleCloseModal}
+                                aria-labelledby="product-title"
+                                aria-describedby="product-description"
+                            >
+                                <DialogTitle id="product-title">QR-scanner</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="product-description">
+                                        Scan the QR-code which is on the table!
+                                    </DialogContentText>
+                                    <DialogContentText id="product-description">
+                                        <QRScanner />
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={this.handleCloseModal} color="primary">
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        ): null}
+                    </ToolBar>
+                </AppBar>
+            </div>
+        )}
 }
 
 export default NavBar;
