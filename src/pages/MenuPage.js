@@ -51,7 +51,7 @@ class CameraPage extends React.Component {
       if (tableInStorage != null)
       {
           console.log(tableInStorage);
-          renderReserveTableButton();
+          //renderReserveTableButton();
       }
     }
 
