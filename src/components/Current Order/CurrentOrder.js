@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 
 class CurrentOrder extends React.Component { 
+    _isMounted = false;
+
     constructor() {
         super();
         this.state = {
@@ -16,6 +18,7 @@ class CurrentOrder extends React.Component {
         };
     }
     componentDidMount(){
+        this._isMounted = true;
         setInterval(() => {
             this.checkOrderListLength();
             this.calculateTotalPrice();
@@ -31,6 +34,10 @@ class CurrentOrder extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     calculateTotalPrice() {
         let total = 0;
         for(let i = 0; i < currentFoodList.length; i++) {
@@ -40,7 +47,10 @@ class CurrentOrder extends React.Component {
         for(let i = 0; i < currentDrinkList.length; i++) {
             total += currentDrinkList[i].price;
         }
-        this.setState({totalPrice: total});
+        
+        if (this._isMounted) {
+            this.setState({totalPrice: total});
+        }
     }
 
     render(){
