@@ -13,6 +13,7 @@ import ViewOrder from './pages/ViewOrder';
 import NotFoundPage from './pages/NotFoundPage'
 import KitchenOverview from './pages/KitchenOverview'
 import assistanceOverview from './pages/AssistanceOverview'
+import LoginPage from './pages/AdminLoginPage'
 import { observer } from 'mobx-react'
 
 const theme = createMuiTheme({
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/assistanceOverview" component={assistanceOverview}/>
             <Route exact path="/menu" component={Menu}/>
             <Route path="/order" component={() => <ViewOrder tableId="1"/>} />
+            <Route exact path="/adminLogin" component={LoginPage}/>
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
