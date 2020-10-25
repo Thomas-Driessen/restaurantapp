@@ -34,7 +34,7 @@ class LoginForm extends React.Component{
         fetch(`/api/User/username=`+this.state.username+`&password=`+this.state.password)
         .then(res => res.json())
         .then((data) => {
-          if(data===true){
+          if(data !== null){
               UserStore.loading = false;
               UserStore.isLoggedIn = true;
               UserStore.username = this.state.username;
