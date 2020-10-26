@@ -26,7 +26,7 @@ class Order extends React.Component {
     return(
         <div>
             { this.state.drink ? (    
-                <Card>
+                <Card style={{display: "flex", padding: "0 15px", justifyContent: "space-between", margin: "0 7px 7px 0"}}>
                     <Typography gutterBottom variant="inherit" component="h2">
                         {this.state.drink.title}
                     </Typography>
