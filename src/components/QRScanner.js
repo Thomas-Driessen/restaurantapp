@@ -15,9 +15,6 @@ class QRScanner extends Component {
     }
 
     async handleScan(data){
-        this.setState({
-            result: data,
-        })
         if(data != null && QRScanner.scanned === false)
         {
             QRScanner.scanned = true;
@@ -36,16 +33,23 @@ class QRScanner extends Component {
                 body: JSON.stringify(scannedResult)
             }).then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    this.setState({
+                        result: "Successfully scanned! Redirecting you to the menu page...",
+                    })
                     this.props.history.push("/menuredirect/" + data.id);
+                })
+                .catch(data => {
+                    this.setState({
+                        result: "There was an error scanning the QR-code! Please try again.",
+                    })
                 });
-
-
         }
     }
 
     handleError(err){
-        console.error(err)
+        this.setState({
+            result: "There was an error scanning the QR-code! Please try again.",
+        })
     }
 
     render(){
@@ -62,7 +66,6 @@ class QRScanner extends Component {
                     onError={this.handleError}
                     onScan={this.handleScan}
                 />
-
                 <p>{this.state.result}</p>
             </div>
         )
