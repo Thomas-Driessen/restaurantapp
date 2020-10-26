@@ -91,13 +91,13 @@ class PreviousOrders extends React.Component {
             <div id="totalPaid">{ this.state.totalPrice ? '€ ' + this.state.totalPrice.toFixed(2) : 'loading...' }</div>
         </Grid>
     <Grid container spacing={0}>
-        <Grid sm={12}><h3>Foods</h3></Grid>
+        <Grid item sm={12}><h3>Foods</h3></Grid>
         { this.state.previousFoods.map(currentItem => (
             <Grid key={currentItem.id} item xs={12} sm={6}>
                 <Order key={currentItem.id} orderId={currentItem.foodId} productType="food"/>
             </Grid>
         ))}
-        <Grid sm={12}><h3>Drinks</h3></Grid>
+        <Grid item sm={12}><h3>Drinks</h3></Grid>
         { this.state.previousDrinks.map(currentItem => (
             <Grid key={currentItem.id} item xs={12} sm={6}>
                 <Order key={currentItem.id} orderId={currentItem.drinkId} productType="drink"/>

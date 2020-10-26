@@ -195,14 +195,14 @@ exports[`ViewOrder renders correctly 1`] = `
           className="MuiGrid-root MuiGrid-container"
         >
           <div
-            className="MuiGrid-root MuiGrid-grid-sm-12"
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12"
           >
             <h3>
               Foods
             </h3>
           </div>
           <div
-            className="MuiGrid-root MuiGrid-grid-sm-12"
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12"
           >
             <h3>
               Drinks
