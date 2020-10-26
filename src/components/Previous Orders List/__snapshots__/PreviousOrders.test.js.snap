@@ -9,9 +9,44 @@ exports[`PreviousOrders render correctly 1`] = `
     className="MuiGrid-root MuiGrid-container"
     style={
       Object {
-        "padding": 15,
+        "display": "flex",
+        "justifyContent": "flex-start",
+        "margin": "0 0 15px 0",
       }
     }
-  />
+  >
+    <b
+      style={
+        Object {
+          "margin": "0 15px 0 0",
+        }
+      }
+    >
+      Total paid
+    </b>
+    <div
+      id="totalPaid"
+    >
+      loading...
+    </div>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-grid-sm-12"
+    >
+      <h3>
+        Foods
+      </h3>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-grid-sm-12"
+    >
+      <h3>
+        Drinks
+      </h3>
+    </div>
+  </div>
 </div>
 `;
