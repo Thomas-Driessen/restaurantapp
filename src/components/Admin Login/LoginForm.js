@@ -34,7 +34,7 @@ class LoginForm extends React.Component{
         fetch(`/api/User/username=`+this.state.username+`&password=`+this.state.password)
         .then(res => res.json())
         .then((data) => {
-          if(data==true){
+          if(data!==null){
               UserStore.loading = false;
               UserStore.isLoggedIn = true;
               UserStore.username = this.state.username;
@@ -51,24 +51,26 @@ class LoginForm extends React.Component{
     render(){
         return(
             <div className = "loginForm">
-                Log in
-                <InputField
-                    type='text'
-                    placeholder='Username'
-                    value={this.state.username ? this.state.username : ''}
-                    onChange = {(val) => this.setInputValue('username', val)}
-                />
-                <InputField
-                    type='password'
-                    placeholder='Password'
-                    value={this.state.password ? this.state.password : ''}
-                    onChange = {(val) => this.setInputValue('password', val)}
-                />
-                <SubmitButton
-                    text='Login'
-                    disabled = {this.state.buttonDisabled}
-                    onClick={()=>this.doLogin()}
-                />
+                <div className = "box">
+                    Log in
+                    <InputField
+                        type='text'
+                        placeholder='Username'
+                        value={this.state.username ? this.state.username : ''}
+                        onChange = {(val) => this.setInputValue('username', val)}
+                    />
+                    <InputField
+                        type='password'
+                        placeholder='Password'
+                        value={this.state.password ? this.state.password : ''}
+                        onChange = {(val) => this.setInputValue('password', val)}
+                    />
+                    <SubmitButton
+                        text='Login'
+                        disabled = {this.state.buttonDisabled}
+                        onClick={()=>this.doLogin()}
+                    />
+                </div>
             </div>
         );
     }
