@@ -85,11 +85,13 @@ class ViewOrder extends React.Component {
       <div>
           <NavBar/>
           <Grid container spacing={0} style={{padding: 25}}>
-            <Grid item xs={12} sm={6} lg={4} xl={3}>
-                <Button color="secondary"variant="outlined">
+            <Grid item xs={12} sm={12} lg={6} xl={6}>
+              <CurrentOrder sendOrder={ () => this.sendOrder()}/>
+              <Button color="secondary" variant="outlined">
                   Pay for orders
                 </Button>
-              <CurrentOrder sendOrder={ () => this.sendOrder()}/>
+            </Grid>
+            <Grid item xs={12} sm={12} lg={6} xl={6}>
               <PreviousOrders previousOrderNumbers={this.state.previousOrderNumbers}/>
             </Grid>
           </Grid>
