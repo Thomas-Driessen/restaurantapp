@@ -45,7 +45,7 @@ class MenuPage extends React.Component {
     })
     .catch(console.log)
 
-    fetch(`/api/food/category`)
+    fetch(`/api/category/food`)
     .then(res => res.json())
     .then((data) => {
       if(mounted){
@@ -54,7 +54,7 @@ class MenuPage extends React.Component {
     })
     .catch(console.log)
 
-    fetch(`/api/drink/category`)
+    fetch(`/api/category/drink`)
     .then(res => res.json())
     .then((data) => {
       if(mounted){
@@ -83,7 +83,7 @@ class MenuPage extends React.Component {
   }
 
   selectCategory = (category) => {
-    this.setState({selectedCategory: category});
+    this.setState({selectedCategory: category.categoryName});
   }
 
   resetCategory = (e) => {
@@ -103,7 +103,7 @@ class MenuPage extends React.Component {
                   <ArrowBackIosIcon />
                 </IconButton>
               </Grid>
-              <ProductsList products={this.state.shownProducts.filter(product => product.subcategory === this.state.selectedCategory)} productType={this.state.productType}/>
+              <ProductsList products={this.state.shownProducts.filter(product => product.category.categoryName === this.state.selectedCategory)} productType={this.state.productType}/>
             </div>
           ) : (
              this.state.categoriesShown.length ? (

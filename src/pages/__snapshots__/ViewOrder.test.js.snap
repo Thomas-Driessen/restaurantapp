@@ -53,6 +53,9 @@ exports[`ViewOrder renders correctly 1`] = `
                 >
                   Menu
                 </span>
+                <span
+                  className="MuiTouchRipple-root"
+                />
               </button>
               <button
                 className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButton-colorInherit MuiButton-textSizeLarge MuiButton-sizeLarge"
@@ -96,6 +99,9 @@ exports[`ViewOrder renders correctly 1`] = `
                   </span>
                   Scan QR
                 </span>
+                <span
+                  className="MuiTouchRipple-root"
+                />
               </button>
             </div>
           </div>
@@ -157,6 +163,9 @@ exports[`ViewOrder renders correctly 1`] = `
         >
           Pay for orders
         </span>
+        <span
+          className="MuiTouchRipple-root"
+        />
       </button>
     </div>
     <div

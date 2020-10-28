@@ -98,7 +98,7 @@ const Product = (props) => {
                             </Button>
                         </DialogActions>
                     </Dialog>
-                    {localStorage.getItem("tableId") ? (
+                    {sessionStorage.getItem("tableId") ? (
                         <div>
                             <IconButton aria-label="add to favorites">
                                 <FavoriteIcon />

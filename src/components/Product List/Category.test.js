@@ -11,7 +11,9 @@ it('Category renders correctly', () => {
 });
 
 test('Render Category', () => {
-  var category = "Cold";
+  let category = {
+    categoryName: "Cold"
+  };
   const { getByText } = render(<Category category={category}/>);
   const linkElement = getByText(/Cold/i);
   expect(linkElement).toBeInTheDocument();

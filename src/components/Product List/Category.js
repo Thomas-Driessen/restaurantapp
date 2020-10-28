@@ -17,13 +17,13 @@ const Product = (props) => {
                         <CardMedia style={{height: 400}}
                             component="img"
                             height="250"
-                            src={`../../images/Categories/${props.category}.jpg`}
-                            alt={`Image for ${props.category} Not Found`}
-                            title={props.category}
+                            src={`../../images/Categories/${props.category.categoryName}.jpg`}
+                            alt={`Image for ${props.category.categoryName} Not Found`}
+                            title={props.category.categoryName}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="inherit" component="h2">
-                                {props.category}
+                                {props.category.categoryName}
                             </Typography>
                         </CardContent>
                             <CardActions>

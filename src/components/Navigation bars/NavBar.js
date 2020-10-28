@@ -100,7 +100,7 @@ class NavBar extends React.Component{
                                     <Button  onClick = {this.setRedirectMenu} color="inherit">
                                         Menu
                                     </Button>
-                                    {localStorage.getItem("tableId") ? (
+                                    {sessionStorage.getItem("tableId") ? (
                                         <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
                                             My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
                                         </Button>
