@@ -6,7 +6,7 @@ import ProductsList from '../components/Product List/ProductsList';
 import CategoryList from '../components/Product List/CategoryList';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 class MenuPage extends React.Component {
 
@@ -96,26 +96,28 @@ class MenuPage extends React.Component {
       <div>
           <NavBar/>
           <SortBar showFoods = {this.showFoods} showDrinks = {this.showDrinks}/>
-          {this.state.selectedCategory !== "" ? (
-            <div>
-              <Grid container justify="flex-end">
-                <IconButton aria-label="return-to-categories" onClick={this.resetCategory}>
-                  <ArrowBackIosIcon />
-                </IconButton>
-              </Grid>
-              <ProductsList products={this.state.shownProducts.filter(product => product.category.categoryName === this.state.selectedCategory)} productType={this.state.productType}/>
-            </div>
-          ) : (
-             this.state.categoriesShown.length ? (
-              <CategoryList categories={this.state.categoriesShown} selectCategory={this.selectCategory}/>
+          <Grid container spacing={0} style={{padding: 15}}>
+            {this.state.selectedCategory !== "" ? (
+              <div>
+                <Grid container justify="flex-end">
+                  <IconButton aria-label="return-to-categories" onClick={this.resetCategory} color="primary">
+                    <ArrowBackIcon />
+                  </IconButton>
+                </Grid>
+                <ProductsList products={this.state.shownProducts.filter(product => product.category.categoryName === this.state.selectedCategory)} productType={this.state.productType}/>
+              </div>
             ) : (
-              <Grid container spacing={0} style={{padding: 12}}>
-                  <Typography variant="subtitle2" display="block">
-                    Choose between Foods, Drinks and Most Liked to see our products
-                  </Typography>
-              </Grid>
-              )
-          )}
+              this.state.categoriesShown.length ? (
+                <CategoryList categories={this.state.categoriesShown} selectCategory={this.selectCategory}/>
+              ) : (
+                <Grid container spacing={0} style={{padding: 12}}>
+                    <Typography variant="subtitle2" display="block">
+                      Choose between Foods, Drinks and Most Liked to see our products
+                    </Typography>
+                </Grid>
+                )
+            )}
+          </Grid>
       </div>
   )}
 }

@@ -5,23 +5,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme) => ({
-    details: {
-      marginRight: theme.spacing(34)
-    },
-    price: {
-        textAlign: "right",
-        color: "green",
-        fontWeight: "bold",
-        fontSize: "20px"
-    }
-  }));
-
 const CurrentOrderProducts = (props) => {
-    const classes = useStyles();
 
     return(
         <div>
@@ -30,13 +16,10 @@ const CurrentOrderProducts = (props) => {
                 <Card >
                     <CardContent>
                     <Typography gutterBottom variant="inherit" component="h2">
-                        {props.product.title}
+                        {props.product.title} <span style={{float: "right", color: "green"}}>{props.product.price}€</span>
                     </Typography>
                     <Typography component="h6">
                         {props.product.ingredients}
-                    </Typography>
-                    <Typography gutterBottom className={classes.price}>
-                        {props.product.price}€
                     </Typography>
                     </CardContent>
                     <CardActions>

@@ -9,7 +9,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MenuRedirectPage from './pages/MenuRedirectPage';
 //import CameraPage from "./pages/CameraPage";
 import Menu from './pages/Menu';
-import ViewOrder from './pages/ViewOrder';
+import Order from './pages/Order';
 import NotFoundPage from './pages/NotFoundPage'
 import KitchenOverview from './pages/KitchenOverview'
 import assistanceOverview from './pages/AssistanceOverview'
@@ -32,23 +32,24 @@ const theme = createMuiTheme({
     },
   },
 });
-function App() {
+class App extends React.Component {
+
+  render(){
   return (
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route exact path="/" component={Menu} />
-            
-            <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
-            <Route exact path="/kitchenOverview" component={KitchenOverview}/>
-            <Route exact path="/assistanceOverview" component={assistanceOverview}/>
-            <Route exact path="/menu" component={Menu}/>
-            <Route path="/order" component={() => <ViewOrder tableId="1"/>} />
-            <Route exact path="/adminLogin" component={LoginPage}/>
+            <Route exact path="/" component={() => <Menu theme={theme} />} />
+            <Route exact path="/menuredirect/:tableNumber" component={() => <MenuRedirectPage theme={theme} />} />
+            <Route exact path="/kitchenOverview" component={() => <KitchenOverview theme={theme} />}/>
+            <Route exact path="/assistanceOverview" component={() => <assistanceOverview theme={theme} />}/>
+            <Route exact path="/menu" component={() => <Menu theme={theme} />}/>
+            <Route path="/order" component={() => <Order theme={theme} />} />
+            <Route exact path="/adminLogin" component={() => <LoginPage theme={theme} />}/>
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
       </MuiThemeProvider>
-  );
+  )}
 }
 export default observer(App)

@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -17,18 +16,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
 import Grid from '@material-ui/core/Grid';
-
-const useStyles = makeStyles((theme) => ({
-    price: {
-        textAlign: "right",
-        color: "green",
-        fontWeight: "bold",
-        fontSize: "20px"
-    }
-  }));
+import CloseIcon from '@material-ui/icons/Close';
 
 const Product = (props) => {
-    const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
@@ -62,20 +52,17 @@ const Product = (props) => {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="inherit" component="h2">
-                        {props.product.title}
+                        {props.product.title} <span style={{float: "right", color: "green"}}>{props.product.price}€</span>
                     </Typography>
                     <Typography component="h6">
                         {props.product.ingredients}
-                    </Typography>
-                    <Typography className={classes.price}>
-                        {props.product.price}€
                     </Typography>
                     </CardContent>
                     <CardActions>
                     <Grid container alignItems="flex-start" justify="flex-end" direction="row">
                     <div style={{display: 'flex', alignItems: 'right'}}>
                     <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
-                        View Details
+                        <span style={{fontWeight:"bold"}}>View Details</span>
                     </Button>
                     <Dialog
                         open={open}
@@ -88,22 +75,22 @@ const Product = (props) => {
                             <DialogContentText id="product-description">
                                 {props.product.description}
                             </DialogContentText>
-                            <DialogContentText id="product-description" className={classes.price}>
-                                {props.product.price}€
+                            <DialogContentText id="product-description">
+                            <span style={{float: "right", color: "green", fontWeight: "bold"}}>{props.product.price}€</span>
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} color="primary">
-                                Close
-                            </Button>
+                            <IconButton aria-label="close" color="primary" onClick={handleClose}>
+                                <CloseIcon />
+                            </IconButton>
                         </DialogActions>
                     </Dialog>
                     {sessionStorage.getItem("tableId") ? (
                         <div>
-                            <IconButton aria-label="add to favorites">
+                            <IconButton aria-label="add to favorites" color="primary">
                                 <FavoriteIcon />
                             </IconButton>
-                            <IconButton aria-label="add to order" onClick={addToOrder}>
+                            <IconButton aria-label="add to order" color="primary" onClick={addToOrder}>
                                 <AddIcon />
                             </IconButton>
                         </div>

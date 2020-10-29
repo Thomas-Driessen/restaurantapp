@@ -1,38 +1,20 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
 class Order extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            drink: []
-        }
-    }
-    componentDidMount() {
-        let mounted = true;
-        fetch(`/api/${this.props.productType}/${this.props.orderId}`)
-        .then(res => res.json())
-        .then((data) => {
-            if(mounted){
-                this.setState({ drink: data })
-            }
-        })
-        .catch(console.log)
 
-        return() => mounted = false;
-    }
     render(){
     return(
         <div>
-            { this.state.drink ? (    
-                <Card style={{display: "flex", padding: "0 15px", justifyContent: "space-between", margin: "0 7px 7px 0"}}>
-                    <Typography gutterBottom variant="inherit" component="h2">
-                        {this.state.drink.title}
-                    </Typography>
-                    <Typography gutterBottom variant="inherit" component="h2" align="right">
-                        {this.state.drink.price}€
-                    </Typography>
+            { this.props.product ? (
+                <Card>
+                    <CardContent>
+                        <Typography gutterBottom variant="inherit" component="h2">
+                            {this.props.product.title}<span style={{float: "right", color: "green"}}>{this.props.product.price}€</span>
+                        </Typography>
+                    </CardContent>
                 </Card>
             ) : null}
         </div>

@@ -29,7 +29,7 @@ const Product = (props) => {
                             <CardActions>
                                 <Grid container direction="row" justify="center" alignItems="center">
                                     <Button size="large" color="primary" target="_blank" onClick={() => props.selectCategory(props.category)}>
-                                        Select Category
+                                    <span style={{fontWeight:"bold", fontSize: "18px"}}>Select Category</span>
                                     </Button>
                                 </Grid>
                             </CardActions>
