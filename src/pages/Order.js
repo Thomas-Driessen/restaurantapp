@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import currentFoodList from '../components/Current Order/CurrentFoodList';
 import currentDrinkList from '../components/Current Order/CurrentDrinkList';
-import tableId from '../components/TableNumber';
+import tableNumber from '../components/TableNumber';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
@@ -27,7 +27,7 @@ class ViewOrder extends React.Component {
   componentDidMount() {
     let mounted = true;
     let sum = 0;
-    fetch(`/api/orderdrink/${tableId}`)
+    fetch(`/api/orderdrink/${tableNumber}`)
     .then(res => res.json())
     .then((data) => {
         if(mounted){
@@ -38,7 +38,7 @@ class ViewOrder extends React.Component {
     })
     .catch(console.log)
 
-    fetch(`/api/orderfood/${tableId}`)
+    fetch(`/api/orderfood/${tableNumber}`)
     .then(res => res.json())
     .then((data) => {
         if(mounted){
@@ -81,7 +81,7 @@ class ViewOrder extends React.Component {
   }
 
   updatePreviousOrders(){
-    fetch(`/api/orderdrink/${tableId}`)
+    fetch(`/api/orderdrink/${tableNumber}`)
     .then(res => res.json())
     .then((data) => {
         let sum = data.reduce((totalPrice, product) => totalPrice + product.drink.price, 0);
@@ -89,7 +89,7 @@ class ViewOrder extends React.Component {
         this.setState({ previousDrinks: data })
     })
     .catch(console.log)
-    fetch(`/api/orderfood/${tableId}`)
+    fetch(`/api/orderfood/${tableNumber}`)
     .then(res => res.json())
     .then((data) => {
         let sum = data.reduce((totalPrice, product) => totalPrice + product.food.price, 0);
@@ -103,7 +103,7 @@ class ViewOrder extends React.Component {
     let order = [];
     currentDrinkList.map(currentDrink => {
         var drink ={
-            tableId: tableId,
+            tableId: tableNumber,
             paid: false,
             drinkId: currentDrink.id
         };
@@ -125,7 +125,7 @@ class ViewOrder extends React.Component {
 
     currentFoodList.map(currentFood => {
         var food ={
-            tableId: tableId,
+            tableId: tableNumber,
             paid: false,
             foodId: currentFood.id
         };

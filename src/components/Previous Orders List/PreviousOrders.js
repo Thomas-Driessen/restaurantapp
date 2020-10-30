@@ -7,7 +7,7 @@ class PreviousOrders extends React.Component {
     render(){
     return(
     <div>
-        <h2 style={{paddingLeft: 20, textDecorationLine: 'underline', textDecorationColor: this.props.theme.palette.primary.main}}>
+        <h2 style={{paddingLeft: 20, textDecorationLine: 'underline', textDecorationColor: 'primary'}}>
             These are your previous orders
         </h2>
         <h3 style={{paddingLeft: 20}}>

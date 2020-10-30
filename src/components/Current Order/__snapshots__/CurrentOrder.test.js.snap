@@ -6,7 +6,7 @@ exports[`CurrentOrder renders correctly 1`] = `
     style={
       Object {
         "paddingLeft": 20,
-        "textDecorationColor": "#b71c1c",
+        "textDecorationColor": "primary",
         "textDecorationLine": "underline",
       }
     }

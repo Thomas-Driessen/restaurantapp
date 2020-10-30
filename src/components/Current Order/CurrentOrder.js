@@ -13,7 +13,7 @@ class CurrentOrder extends React.Component {
     render(){
     return(
         <div>
-            <h2 style={{paddingLeft: 20, textDecorationLine: 'underline', textDecorationColor: this.props.theme.palette.primary.main}}>This is your current order</h2>
+            <h2 style={{paddingLeft: 20, textDecorationLine: 'underline', textDecorationColor: 'primary'}}>This is your current order</h2>
             { currentFoodList ? (
                 <Grid container spacing={2} style={{paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
                     { currentFoodList.map((currentProduct, index) => (

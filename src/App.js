@@ -32,6 +32,7 @@ const theme = createMuiTheme({
     },
   },
 });
+
 class App extends React.Component {
 
   render(){
@@ -39,13 +40,13 @@ class App extends React.Component {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route exact path="/" component={() => <Menu theme={theme} />} />
-            <Route exact path="/menuredirect/:tableNumber" component={() => <MenuRedirectPage theme={theme} />} />
-            <Route exact path="/kitchenOverview" component={() => <KitchenOverview theme={theme} />}/>
-            <Route exact path="/assistanceOverview" component={() => <assistanceOverview theme={theme} />}/>
-            <Route exact path="/menu" component={() => <Menu theme={theme} />}/>
-            <Route path="/order" component={() => <Order theme={theme} />} />
-            <Route exact path="/adminLogin" component={() => <LoginPage theme={theme} />}/>
+            <Route exact path="/" component={Menu} />
+            <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
+            <Route exact path="/kitchenOverview" component={KitchenOverview}/>
+            <Route exact path="/assistanceOverview" component={assistanceOverview}/>
+            <Route exact path="/menu" component={Menu}/>
+            <Route path="/order" component={Order} />
+            <Route exact path="/adminLogin" component={LoginPage}/>
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
