@@ -10,6 +10,7 @@ import MenuRedirectPage from './pages/MenuRedirectPage';
 //import CameraPage from "./pages/CameraPage";
 import Menu from './pages/Menu';
 import Order from './pages/Order';
+import Admin from './components/Admin/Admin'
 import NotFoundPage from './pages/NotFoundPage'
 import KitchenOverview from './pages/KitchenOverview'
 import assistanceOverview from './pages/AssistanceOverview'
@@ -33,9 +34,7 @@ const theme = createMuiTheme({
   },
 });
 
-class App extends React.Component {
-
-  render(){
+function App(){
   return (
       <MuiThemeProvider theme={theme}>
         <Router>
@@ -47,10 +46,11 @@ class App extends React.Component {
             <Route exact path="/menu" component={Menu}/>
             <Route path="/order" component={Order} />
             <Route exact path="/adminLogin" component={LoginPage}/>
+            <Route exact path="/admin" component={Admin}/>
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
       </MuiThemeProvider>
-  )}
+  );
 }
 export default observer(App)

@@ -14,9 +14,9 @@ class PreviousOrders extends React.Component {
             Foods
         </h3>
         <Grid container spacing={2} style={{paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
-            { this.props.previousFoods.map(currentItem => (
-                <Grid key={currentItem.id} item xs={12} sm={6}>
-                    <Order key={currentItem.id} product={currentItem.food}/>
+            { this.props.previousFoods.map((currentItem, index) => (
+                <Grid key={index} item xs={12} sm={6}>
+                    <Order key={index} product={currentItem}/>
                 </Grid>
             ))}
         </Grid>
@@ -24,9 +24,9 @@ class PreviousOrders extends React.Component {
             Drinks
         </h3>
         <Grid container spacing={2} style={{paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
-            { this.props.previousDrinks.map(currentItem => (
-                <Grid key={currentItem.id} item xs={12} sm={6}>
-                    <Order key={currentItem.id} product={currentItem.drink}/>
+            { this.props.previousDrinks.map((currentItem, index) => (
+                <Grid key={index} item xs={12} sm={6}>
+                    <Order key={index} product={currentItem}/>
                 </Grid>
             ))}
         </Grid>
