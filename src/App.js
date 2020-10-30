@@ -34,9 +34,7 @@ const theme = createMuiTheme({
   },
 });
 
-class App extends React.Component {
-
-  render(){
+function App(){
   return (
       <MuiThemeProvider theme={theme}>
         <Router>
@@ -53,6 +51,6 @@ class App extends React.Component {
           </Switch>
         </Router>
       </MuiThemeProvider>
-  )}
+  );
 }
 export default observer(App)

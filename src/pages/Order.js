@@ -31,7 +31,7 @@ class ViewOrder extends React.Component {
     .then(res => res.json())
     .then((data) => {
         if(mounted){
-            sum = data.reduce((totalPrice, product) => totalPrice + product.drink.price, 0);
+            sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
             this.setState({pricePreviousDrinks: sum});
             this.setState({ previousDrinks: data });
         }
@@ -42,7 +42,7 @@ class ViewOrder extends React.Component {
     .then(res => res.json())
     .then((data) => {
         if(mounted){
-            sum = data.reduce((totalPrice, product) => totalPrice + product.food.price, 0);
+            sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
             this.setState({pricePreviousFoods: sum});
             this.setState({ previousFoods: data })
         }
@@ -84,7 +84,7 @@ class ViewOrder extends React.Component {
     fetch(`/api/orderdrink/${tableNumber}`)
     .then(res => res.json())
     .then((data) => {
-        let sum = data.reduce((totalPrice, product) => totalPrice + product.drink.price, 0);
+        let sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
         this.setState({pricePreviousDrinks: sum});
         this.setState({ previousDrinks: data })
     })
@@ -92,7 +92,7 @@ class ViewOrder extends React.Component {
     fetch(`/api/orderfood/${tableNumber}`)
     .then(res => res.json())
     .then((data) => {
-        let sum = data.reduce((totalPrice, product) => totalPrice + product.food.price, 0);
+        let sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
         this.setState({pricePreviousFoods: sum});
         this.setState({ previousFoods: data })
     })
@@ -149,6 +149,8 @@ class ViewOrder extends React.Component {
     currentFoodList.splice(0,currentFoodList.length);
     sessionStorage.removeItem("currentDrinkList");
     sessionStorage.removeItem("currentFoodList");
+    this.setState({priceCurrentDrinks: 0});
+    this.setState({priceCurrentFoods: 0});
     
     fetch('/sendorder', {
         method: 'POST',

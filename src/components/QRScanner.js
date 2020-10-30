@@ -22,7 +22,7 @@ class QRScanner extends Component {
             var scannedResult = JSON.parse(data);
 
             console.log(data)
-            await fetch('/api/table/gettable', {
+            await fetch('/api/table/table', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
