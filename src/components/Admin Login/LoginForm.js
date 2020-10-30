@@ -1,7 +1,8 @@
 import React from 'react';
-import InputField from './InputField';
+import UsernameInput from './UsernameInput';
 import SubmitButton from './SubmitButton';
 import UserStore from './UserStore';
+import PasswordInput from './PasswordInput';
 
 
 class LoginForm extends React.Component{
@@ -20,6 +21,12 @@ class LoginForm extends React.Component{
             [property]:val
         })
     }
+
+    onChange = event => {
+        const { name, value } = event.target;
+    
+        this.setState({ [name]: value });
+      };
 
     resetForm(){
         this.setState({
@@ -49,21 +56,22 @@ class LoginForm extends React.Component{
         .catch(console.log)
      }
     render(){
+        const { password } = this.state;
         return(
             <div className = "loginForm">
                 <div className = "box">
                     Log in
-                    <InputField
+                    <UsernameInput
                         type='text'
-                        placeholder='Username'
+                        label='Username'
                         value={this.state.username ? this.state.username : ''}
                         onChange = {(val) => this.setInputValue('username', val)}
                     />
-                    <InputField
-                        type='password'
-                        placeholder='Password'
+                    <PasswordInput
+                        label="Password"
+                        name="password"
                         value={this.state.password ? this.state.password : ''}
-                        onChange = {(val) => this.setInputValue('password', val)}
+                        onChange={this.onChange}
                     />
                     <SubmitButton
                         text='Login'
