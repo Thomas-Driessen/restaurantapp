@@ -10,7 +10,7 @@ jobs:
       - run: 
           command: npm test --reporters=jest-junit
           environment:
-            NODE_OPTIONS: --max_old_space_size=8192
+            NODE_OPTIONS: --max_old_space_size=16384
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
