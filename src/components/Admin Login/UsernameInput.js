@@ -1,12 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { InputAdornment, withStyles } from '@material-ui/core';
-import { RemoveRedEye } from '@material-ui/icons';
-import PropTypes from 'prop-types';
+
 
 class UsernameInput extends React.Component{
-
-    
 
     render(){
         return(
