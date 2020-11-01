@@ -1,0 +1,310 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Order renders correctly 1`] = `
+<div>
+  <div>
+    <header
+      className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+    >
+      <div
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
+          text-align="center"
+        >
+          Restaurant
+        </h6>
+        <div
+          className="MuiContainer-root MuiContainer-disableGutters MuiContainer-maxWidthLg"
+        >
+          <div
+            style={
+              Object {
+                "float": "right",
+              }
+            }
+          >
+            <div
+              aria-label="text primary button group"
+              className="MuiButtonGroup-root"
+              role="group"
+            >
+              <button
+                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButton-colorInherit MuiButton-textSizeLarge MuiButton-sizeLarge"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <span
+                  className="MuiButton-label"
+                >
+                  Menu
+                </span>
+                <span
+                  className="MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButton-colorInherit MuiButton-textSizeLarge MuiButton-sizeLarge"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <span
+                  className="MuiButton-label"
+                >
+                  <span
+                    className="MuiButton-startIcon MuiButton-iconSizeLarge"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="3.2"
+                      />
+                      <path
+                        d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
+                      />
+                    </svg>
+                  </span>
+                  Scan QR
+                </span>
+                <span
+                  className="MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+    style={
+      Object {
+        "padding": 15,
+      }
+    }
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-lg-6 MuiGrid-grid-xl-6"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-center"
+      >
+        <header
+          className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorTransparent MuiPaper-elevation0"
+          style={
+            Object {
+              "paddingLeft": 15,
+              "paddingRight": 20,
+            }
+          }
+        >
+          <div
+            className="MuiToolbar-root MuiToolbar-regular"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge MuiButton-disableElevation"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "borderRadius": 50,
+                  "float": "left",
+                  "minHeight": "40px",
+                  "minWidth": "200px",
+                }
+              }
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                Pay for Orders
+              </span>
+              <span
+                className="MuiTouchRipple-root"
+              />
+            </button>
+            <div
+              className="MuiContainer-root MuiContainer-disableGutters MuiContainer-maxWidthLg"
+            >
+              <h3
+                style={
+                  Object {
+                    "float": "right",
+                  }
+                }
+              >
+                Total:  
+                <span
+                  style={
+                    Object {
+                      "color": "green",
+                    }
+                  }
+                >
+                  0.00
+                  €
+                </span>
+              </h3>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div>
+        <h2
+          style={
+            Object {
+              "paddingLeft": 20,
+              "textDecorationColor": "primary",
+              "textDecorationLine": "underline",
+            }
+          }
+        >
+          This is your current order
+        </h2>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          style={
+            Object {
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "paddingTop": 15,
+            }
+          }
+        />
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          style={
+            Object {
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "paddingTop": 15,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-lg-6 MuiGrid-grid-xl-6"
+    >
+      <div>
+        <h2
+          style={
+            Object {
+              "paddingLeft": 20,
+              "textDecorationColor": "primary",
+              "textDecorationLine": "underline",
+            }
+          }
+        >
+          These are your previous orders
+        </h2>
+        <h3
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          Foods
+        </h3>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          style={
+            Object {
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "paddingTop": 15,
+            }
+          }
+        />
+        <h3
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          Drinks
+        </h3>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          style={
+            Object {
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "paddingTop": 15,
+            }
+          }
+        />
+        <h3
+          style={
+            Object {
+              "float": "right",
+              "paddingRight": 20,
+            }
+          }
+        >
+          Total to be paid:  
+          <span
+            style={
+              Object {
+                "color": "green",
+              }
+            }
+          >
+            0.00
+            €
+          </span>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+`;

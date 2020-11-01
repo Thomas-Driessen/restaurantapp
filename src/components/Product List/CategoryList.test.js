@@ -3,21 +3,13 @@ import { render } from '@testing-library/react';
 import CategoryList from './CategoryList';
 import renderer from 'react-test-renderer';
 
-const categories = [
-        "Pizza",
-        "Sushi"
-        
-];
+const categories = [{
+        categoryName: "Pizza"
+}];
 
 test('Render Category Pizza', () => {
   const { getByText } = render(<CategoryList categories={categories}/>);
   const linkElement = getByText(/Pizza/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-test('Render Product Pepsi', () => {
-  const { getByText } = render(<CategoryList categories={categories}/>);
-  const linkElement = getByText(/Sushi/i);
   expect(linkElement).toBeInTheDocument();
 });
 

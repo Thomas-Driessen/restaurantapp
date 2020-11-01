@@ -4,7 +4,7 @@ import Product from './Product';
 
 const ProductsList = (props) => {
     return(
-    <Grid container spacing={2} style={{padding: 20}}>
+    <Grid container spacing={1} style={{padding: 10}}>
         { props.products.map(currentProduct => (
             <Grid key={currentProduct.id} item xs={12} sm={6} lg={4} xl={3}>
                 <Product key={currentProduct.id} product={currentProduct} productType={props.productType}/>

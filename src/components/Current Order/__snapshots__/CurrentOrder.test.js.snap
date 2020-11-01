@@ -2,14 +2,24 @@
 
 exports[`CurrentOrder renders correctly 1`] = `
 <div>
-  <h2>
+  <h2
+    style={
+      Object {
+        "paddingLeft": 20,
+        "textDecorationColor": "primary",
+        "textDecorationLine": "underline",
+      }
+    }
+  >
     This is your current order
   </h2>
   <div
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
     style={
       Object {
-        "padding": 15,
+        "paddingLeft": 15,
+        "paddingRight": 15,
+        "paddingTop": 15,
       }
     }
   />
@@ -17,7 +27,9 @@ exports[`CurrentOrder renders correctly 1`] = `
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
     style={
       Object {
-        "padding": 15,
+        "paddingLeft": 15,
+        "paddingRight": 15,
+        "paddingTop": 15,
       }
     }
   />

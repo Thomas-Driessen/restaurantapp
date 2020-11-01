@@ -85,7 +85,6 @@ class LoginForm extends React.Component {
             disabled={this.state.buttonDisabled}
             onClick={() => this.doLogin()}
           />
-
             {this.state.logInFailed ? (
                 <div className = "failLogInBox">Sorry, your credentials were incorrect.</div>
             ) : null}

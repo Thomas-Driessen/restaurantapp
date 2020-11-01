@@ -22,8 +22,8 @@ test('Render NavBar Restaurant Button', () => {
     expect(linkElement).toBeInTheDocument();
   });
   
-  test('Render NavBar My Orders Button', () => {
+  test('Render NavBar QR Button', () => {
     const { getByText } = render(<NavBar />);
-    const linkElement = getByText(/My orders/i);
+    const linkElement = getByText(/Scan QR/i);
     expect(linkElement).toBeInTheDocument();
   });

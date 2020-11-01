@@ -4,17 +4,17 @@ exports[`Menu renders correctly 1`] = `
 <div>
   <div>
     <header
-      className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation0"
+      className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
     >
       <div
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
-        <h5
-          className="MuiTypography-root MuiTypography-h5 MuiTypography-colorInherit"
+        <h6
+          className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
           text-align="center"
         >
           Restaurant
-        </h5>
+        </h6>
         <div
           className="MuiContainer-root MuiContainer-disableGutters MuiContainer-maxWidthLg"
         >
@@ -84,13 +84,17 @@ exports[`Menu renders correctly 1`] = `
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="3.2"
+                      />
                       <path
-                        d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z"
+                        d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
                       />
                     </svg>
                   </span>
-                  My orders 
-                  
+                  Scan QR
                 </span>
               </button>
             </div>
@@ -190,15 +194,24 @@ exports[`Menu renders correctly 1`] = `
     className="MuiGrid-root MuiGrid-container"
     style={
       Object {
-        "padding": 12,
+        "padding": 15,
       }
     }
   >
-    <h6
-      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-displayBlock"
+    <div
+      className="MuiGrid-root MuiGrid-container"
+      style={
+        Object {
+          "padding": 12,
+        }
+      }
     >
-      Choose between Foods, Drinks and Most Liked to see our products
-    </h6>
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-displayBlock"
+      >
+        Choose between Foods, Drinks and Most Liked to see our products
+      </h6>
+    </div>
   </div>
 </div>
 `;
