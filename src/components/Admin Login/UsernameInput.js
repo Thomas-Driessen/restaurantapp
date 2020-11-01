@@ -1,20 +1,25 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
-class InputField extends React.Component{
+
+class UsernameInput extends React.Component{
 
     render(){
         return(
             <div className = "inputField">
-                <input
+                <TextField
+                    id="outlined-search" 
+                    label={this.props.label} 
+                    variant="outlined"
                     className = 'input'
                     type={this.props.type}
-                    placeholder={this.props.placeholder}
                     value={this.props.value}
                     onChange={(e) => this.props.onChange(e.target.value)}
                 />
             </div>
+            
         )
     }
 }
 
-export default InputField;
+export default UsernameInput;

@@ -1,111 +1,95 @@
-import React from 'react';
-import InputField from './InputField';
-import SubmitButton from './SubmitButton';
-import UserStore from './UserStore';
+import React from "react";
+import UsernameInput from "./UsernameInput";
+import SubmitButton from "./SubmitButton";
+import UserStore from "./UserStore";
+import PasswordInput from "./PasswordInput";
 
+class LoginForm extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      username: "",
+      password: "",
+      buttonDisabled: false,
+      logInFailed: false
+    };
+  }
 
-class LoginForm extends React.Component{
+  setInputValue(property, val) {
+    this.setState({
+      [property]: val,
+    });
+  }
 
-    constructor(props){
-        super();
-        this.state={
-            username:'',
-            password:'',
-            buttonDisabled:false,
+  onChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  resetForm() {
+    this.setState({
+      username: "",
+      password: "",
+    });
+  }
+
+  async doLogin() {
+    fetch(
+      `/api/User/username=` +
+        this.state.username +
+        `&password=` +
+        this.state.password
+    )
+      .then((res) => {
+        if (res.status !== 200) {
+            this.setState({logInFailed: true})
+          sessionStorage.setItem("sessionUserStore", JSON.stringify(UserStore));
+        } else{ 
+            UserStore.loading = true;
+            return res.json();
         }
-        this.loginFailed = false;
-    }
-
-    setInputValue(property, val){
-        this.setState({
-            [property]:val
-        })
-    }
-
-    resetForm(){
-        this.setState({
-            username:'',
-            password:'',
-            buttonDisabled: false
-        })
-    }
-
-    async doLogin(){
-        UserStore.loading = true;
-        fetch(`/api/User/username=`+this.state.username+`&password=`+this.state.password)
-        .then(res => res.json())
-        .then((data) => {
-          if(data !== null){
-              UserStore.loading = false;
-              UserStore.isLoggedIn = true;
-              UserStore.username = this.state.username;
-              sessionStorage.setItem('sessionUserStore', JSON.stringify(UserStore));
-              this.loginFailed = false;
-          }
-          else{
-              UserStore.loading = false;
-              UserStore.loggedIn=false;
-              sessionStorage.setItem('sessionUserStore', JSON.stringify(UserStore));
-              this.loginFailed = true;
-          }
-        })
-        .catch(console.log)
-     }
-    render(){
-        if(this.loginFailed === false){
-            return(
-                <div className = "loginForm">
-                    <div className = "box">
-                        Log in
-                        <InputField
-                            type='text'
-                            placeholder='Username'
-                            value={this.state.username ? this.state.username : ''}
-                            onChange = {(val) => this.setInputValue('username', val)}
-                        />
-                        <InputField
-                            type='password'
-                            placeholder='Password'
-                            value={this.state.password ? this.state.password : ''}
-                            onChange = {(val) => this.setInputValue('password', val)}
-                        />
-                        <SubmitButton
-                            text='Login'
-                            disabled = {this.state.buttonDisabled}
-                            onClick={()=>this.doLogin()}
-                        />
-                    </div>
-                </div>
-            );
+      })
+      .then((data) => {
+        if (data !== undefined) {
+          console.log(data);
+          UserStore.loading = false;
+          UserStore.isLoggedIn = true;
+          UserStore.username = this.state.username;
+          sessionStorage.setItem("sessionUserStore", JSON.stringify(UserStore));
         }
-        else{
-            return(
-                <div className = "loginForm">
-                    <div className = "box">
-                        Log in FAILED
-                        Log in
-                        <InputField
-                            type='text'
-                            placeholder='Username'
-                            value={this.state.username ? this.state.username : ''}
-                            onChange = {(val) => this.setInputValue('username', val)}
-                        />
-                        <InputField
-                            type='password'
-                            placeholder='Password'
-                            value={this.state.password ? this.state.password : ''}
-                            onChange = {(val) => this.setInputValue('password', val)}
-                        />
-                        <SubmitButton
-                            text='Login'
-                            disabled = {this.state.buttonDisabled}
-                            onClick={()=>this.doLogin()}
-                        />
-                    </div>
-                </div>
-            );
-        }
-    }
+      })
+      .catch(console.log);
+  }
+  
+  render() {
+    return (
+      <div className="loginForm">
+        <div className="box">
+          Log in
+          <UsernameInput
+            type="text"
+            label="Username"
+            value={this.state.username ? this.state.username : ""}
+            onChange={(val) => this.setInputValue("username", val)}
+          />
+          <PasswordInput
+            label="Password"
+            name="password"
+            value={this.state.password ? this.state.password : ""}
+            onChange={this.onChange}
+          />
+          <SubmitButton
+            text="Login"
+            disabled={this.state.buttonDisabled}
+            onClick={() => this.doLogin()}
+          />
+            {this.state.logInFailed ? (
+                <div className = "failLogInBox">Sorry, your credentials were incorrect.</div>
+            ) : null}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default LoginForm;

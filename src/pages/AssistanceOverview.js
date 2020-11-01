@@ -3,7 +3,7 @@ import React from 'react';
 import NavBar from '../components/Navigation bars/NavBar';
 import AssistanceList from '../components/Table Assistance/TableAssistanceList';
 import Grid from '@material-ui/core/Grid';
-import tableId from '../components/TableId';
+import tableNumber from '../components/TableNumber';
 import { Button } from '@material-ui/core';
 
 class MenuPage extends React.Component {
@@ -43,7 +43,7 @@ class MenuPage extends React.Component {
   
   callStaff = () => {
     var tableInfo = {
-        "Id": tableId,
+        "Id": tableNumber,
         "RequiresAssistance": true
     };
     fetch('/api/table/settableassistance', {
@@ -61,7 +61,7 @@ class MenuPage extends React.Component {
 
   callStaffPay = () => {
     var tableInfo = {
-        "Id": tableId,
+        "Id": tableNumber,
         "PayAssistance": true
     };
     fetch('/api/table/settablepayassistance', {

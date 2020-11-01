@@ -27,6 +27,7 @@ class NavBar extends React.Component{
             setOpen: false
         }
     }
+
     componentDidMount() {
         let mounted = true;
 
@@ -51,39 +52,46 @@ class NavBar extends React.Component{
         }, 10);
 
         return () => mounted = false;
-
     }
+
     handleOpenModal = () => {
         this.setState({setOpen: true});
     };
+
     handleCloseModal = () => {
         this.setState({setOpen: false});
     };
+
     setRedirect = () => {
         this.setState({
             redirect: true
         })
     }
+
     renderRedirect = () => {
         if (this.state.redirect) {
             return <Redirect to='/order' />
         }
     }
+
     setRedirectMenu = () => {
         this.setState({
             redirectMenu: true
         })
     }
+
     renderRedirectMenu = () => {
         if (this.state.redirectMenu) {
             return <Redirect to='/menu' />
         }
     }
+
     totalProductsInOrder(){
         if(currentFoodList.length + currentDrinkList.length !== this.state.totalProductsInOrder) {
             this.setState({totalProductsInOrder: currentFoodList.length + currentDrinkList.length});
         }
     }
+    
     render(){
         return(
             <div>
@@ -100,7 +108,7 @@ class NavBar extends React.Component{
                                     <Button  onClick = {this.setRedirectMenu} color="inherit">
                                         Menu
                                     </Button>
-                                    {localStorage.getItem("tableId") ? (
+                                    {sessionStorage.getItem("tableId") ? (
                                         <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
                                             My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
                                         </Button>

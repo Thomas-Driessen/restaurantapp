@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CurrentOrder from './CurrentOrder';
+import Order from './Order'
 import renderer from 'react-test-renderer';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -21,15 +21,21 @@ const theme = createMuiTheme({
   },
 });
 
-it('CurrentOrder renders correctly', () => {
+it('Order renders correctly', () => {
   const tree = renderer
-    .create(<CurrentOrder theme={theme}/>)
+    .create(<Order theme={theme}/>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-test('Render CurrentOrder', () => {
-    const { getByText } = render(<CurrentOrder theme={theme}/>);
-    const linkElement = getByText(/This is your current order/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+test('Render Order', () => {
+  const { getByText } = render(<Order theme={theme}/>);
+  const linkElement = getByText(/Pay for orders/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+test('Render Order', () => {
+  const { getByText } = render(<Order theme={theme}/>);
+  const linkElement = getByText(/This is your current order/i);
+  expect(linkElement).toBeInTheDocument();
+});

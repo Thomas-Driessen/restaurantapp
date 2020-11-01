@@ -194,15 +194,24 @@ exports[`Menu renders correctly 1`] = `
     className="MuiGrid-root MuiGrid-container"
     style={
       Object {
-        "padding": 12,
+        "padding": 15,
       }
     }
   >
-    <h6
-      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-displayBlock"
+    <div
+      className="MuiGrid-root MuiGrid-container"
+      style={
+        Object {
+          "padding": 12,
+        }
+      }
     >
-      Choose between Foods, Drinks and Most Liked to see our products
-    </h6>
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-displayBlock"
+      >
+        Choose between Foods, Drinks and Most Liked to see our products
+      </h6>
+    </div>
   </div>
 </div>
 `;
