@@ -128,9 +128,9 @@ class Content extends React.Component {
                 </Toolbar>
             </AppBar>
             <div>
-                { this.state.productType != '' ? (
+                { this.state.productType !== '' ? (
                       <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
-                  ) : this.state.categoryType != '' ? (
+                  ) : this.state.categoryType !== '' ? (
                       <CategoryList categories={this.state.shownCategories} categoryType={this.state.productType}/>
                   ) : (
                       <Typography color="textSecondary" align="center">
