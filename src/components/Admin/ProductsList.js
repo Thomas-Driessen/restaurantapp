@@ -7,7 +7,7 @@ const ProductsList = (props) => {
     <Grid container spacing={1} style={{padding: 10}}>
         { props.products.map((currentProduct, index) => (
             <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
-                <Product key={index} product={currentProduct} productType={props.productType}/>
+                <Product key={index} product={currentProduct} productType={props.productType} foodCategories={props.foodCategories} drinkCategories={props.drinkCategories}/>
             </Grid>
         ))}
     </Grid>

@@ -110,7 +110,7 @@ class Content extends React.Component {
             </AppBar>
             <div>
                 {this.state.shownProducts.length ? (
-                    <ProductsList products={this.state.shownProducts} productType={this.state.productType}/>
+                    <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
                 ) : (
                     <Typography color="textSecondary" align="center">
                         No results found

@@ -19,6 +19,8 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from "@material-ui/core/FormControl";
 import SaveIcon from '@material-ui/icons/Save';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
       flexWrap: "wrap"
     },
     margin: {
-      margin: theme.spacing(4)
+      margin: theme.spacing(1)
     },
     withoutLabel: {
-      marginTop: theme.spacing(4)
+      marginTop: theme.spacing(2)
     },
     textField: {
-      width: "40ch"
+      width: "50ch"
     }
 }));
 
@@ -40,6 +42,9 @@ const Product = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [del, setDelete] = React.useState(false);
+    const [values, setValues] = React.useState({...props.product});
+    const [category, setCategory] = React.useState({...props.product.category});
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -56,11 +61,12 @@ const Product = (props) => {
         setDelete(false);
     };
 
-    const [values, setValues] = React.useState({...props.product});
-
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
-        console.log(values);
+    };
+
+    const handleCategoryChange = (prop) => (event) => {
+        setCategory({ ...category, [prop]: event.target.value });
     };
 
     React.useEffect(() => {
@@ -74,7 +80,16 @@ const Product = (props) => {
         }
         else{
             let product = values;
+            let cat = category.categoryName;
+
+            console.log(category);
             product.price = price;
+            if(props.productType === 'Food'){
+                product.category = props.foodCategories.find(element => element.categoryName === cat);
+            }
+            else{
+                product.category = props.drinkCategories.find(element => element.categoryName === cat);
+            }
 
             fetch(`/api/${props.productType}/${props.product.id}`, {
                 method: 'PUT',
@@ -89,6 +104,24 @@ const Product = (props) => {
             alert('Your changes have been saved');
             setOpen(false);
         }
+    }
+
+    const renderSelect = (type) => {
+        let categories = [];
+        if(type === 'Food'){
+            categories = props.foodCategories;
+        }
+        else{
+            categories = props.drinkCategories;
+        }
+        return categories.map((currentCategory) => (
+          <MenuItem
+            key={currentCategory.categoryName}
+            value={currentCategory.categoryName}
+          >
+            {currentCategory.categoryName}
+          </MenuItem>
+        ))
     }
 
     return(
@@ -150,48 +183,87 @@ const Product = (props) => {
                             <DialogContentText>
                                 Edit this product's details
                             </DialogContentText>
-                                <FormControl
-                                    className={clsx(
-                                    classes.margin,
-                                    classes.withoutLabel,
-                                    classes.textField
-                                  )}
-                                >
                                     {props.product.title ? (
-                                        <TextField
-                                            label="Title"
-                                            value={values.title}
-                                            onChange={handleChange("title")}
-                                        />
+                                        <FormControl
+                                            className={clsx(
+                                                classes.margin,
+                                                classes.withoutLabel,
+                                                classes.textField
+                                            )}
+                                        >
+                                            <TextField
+                                                label="Title"
+                                                value={values.title}
+                                                onChange={handleChange("title")}
+                                            />
+                                        </FormControl>
                                     ) : null}
                                     {props.product.description ? (
-                                        <TextField
-                                            label="Description"
-                                            value={values.description}
-                                            onChange={handleChange("description")}
-                                            multiline
-                                        />
+                                        <FormControl
+                                            className={clsx(
+                                                classes.margin,
+                                                classes.withoutLabel,
+                                                classes.textField
+                                            )}
+                                        >
+                                            <TextField
+                                                label="Description"
+                                                value={values.description}
+                                                onChange={handleChange("description")}
+                                                multiline
+                                            />
+                                        </FormControl>
                                     ) : null}
                                     {props.product.ingredients ? (
-                                        <TextField
-                                            label="Ingredients"
-                                            value={values.ingredients}
-                                            onChange={handleChange("ingredients")}
-                                            multiline
-                                        />
+                                        <FormControl
+                                            className={clsx(
+                                                classes.margin,
+                                                classes.withoutLabel,
+                                                classes.textField
+                                            )}
+                                        >
+                                            <TextField
+                                                label="Ingredients"
+                                                value={values.ingredients}
+                                                onChange={handleChange("ingredients")}
+                                                multiline
+                                            />
+                                        </FormControl>
                                     ) : null}
+                                    <FormControl
+                                    className={clsx(
+                                        classes.margin,
+                                        classes.withoutLabel,
+                                        classes.textField
+                                    )}
+                                    >
+                                        <Select
+                                            id="select-food-category"
+                                            value={category.categoryName}
+                                            onChange={handleCategoryChange("categoryName")}
+                                        >
+                                            {renderSelect(props.productType)}
+                                        </Select>
+                                    </FormControl>
                                     {props.product.price ? (
-                                        <TextField
-                                            label="Price"
-                                            value={values.price}
-                                            onChange={handleChange("price")}
-                                            InputProps={{
-                                                endAdornment: <InputAdornment position="end">€</InputAdornment>
-                                              }}
-                                            style={{ display: "inline-block", width: "6ch"}}
-                                        />
+                                        <FormControl
+                                            className={clsx(
+                                                classes.margin,
+                                                classes.withoutLabel,
+                                                classes.textField
+                                            )}
+                                        >
+                                            <TextField
+                                                label="Price"
+                                                value={values.price}
+                                                onChange={handleChange("price")}
+                                                InputProps={{
+                                                    endAdornment: <InputAdornment position="end">€</InputAdornment>
+                                                }}
+                                                style={{ display: "inline-block", width: "6ch"}}
+                                            />
+                                        </FormControl>
                                     ) : null}
-                                </FormControl>
                         </DialogContent>
                         <DialogActions>
                             <Button size="large" color="primary" target="_blank" onClick={saveProduct}>
