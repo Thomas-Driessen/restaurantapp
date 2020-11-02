@@ -366,7 +366,8 @@ class Content extends React.Component {
                       </IconButton>
                     </DialogActions>
                   </Dialog>
-                </Grid>
+                  </Grid>
+                  </Grid>
                 </Toolbar>
             </AppBar>
             <div>
