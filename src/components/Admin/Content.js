@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import Navigator from './Navigator';
 import ProductsList from './ProductsList'
+import CategoryList from './CategoryList'
 
 class Content extends React.Component {
     constructor(){
@@ -20,7 +21,9 @@ class Content extends React.Component {
             foodCategories: [],
             drinkCategories: [],
             shownProducts: [],
-            productType: ''
+            shownCategories:[],
+            productType: '',
+            categoryType: '',
         }
     }
 
@@ -69,18 +72,34 @@ class Content extends React.Component {
         e.preventDefault();
         this.setState({shownProducts: this.state.foods});
         this.setState({productType: "Food"});
+        this.setState({categoryType: ""});
     }
 
     selectDrinks = (e) => {
         e.preventDefault();
         this.setState({shownProducts: this.state.drinks});
         this.setState({productType: "Drink"});
+        this.setState({categoryType: ""});
     }
 
+    selectCategoryDrinks = (e) => {
+        e.preventDefault();
+        this.setState({shownCategories: this.state.drinkCategories});
+        this.setState({productType: ""});
+        this.setState({categoryType: "DrinkC"});
+    }
+
+    selectCategoryFood = (e) => {
+      e.preventDefault();
+      this.setState({shownCategories: this.state.foodCategories});
+      this.setState({productType: ""});
+      this.setState({categoryType: "FoodC"});
+  }
+    
     render(){
     return (
         <div>
-            <Navigator selectFoods={this.selectFoods} selectDrinks={this.selectDrinks} />
+            <Navigator selectFoods={this.selectFoods} selectDrinks={this.selectDrinks} selectCategoryDrinks={this.selectCategoryDrinks} selectCategoryFood={this.selectCategoryFood}/>
             <Paper style={{paddingLeft: 230, paddingRight: 60}}>
             <AppBar position="static" color="default" elevation={0}>
                 <Toolbar>
@@ -109,13 +128,16 @@ class Content extends React.Component {
                 </Toolbar>
             </AppBar>
             <div>
-                {this.state.shownProducts.length ? (
-                    <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
-                ) : (
-                    <Typography color="textSecondary" align="center">
-                        No results found
-                    </Typography>
-                )}
+                { this.state.productType != '' ? (
+                      <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
+                  ) : this.state.categoryType != '' ? (
+                      <CategoryList categories={this.state.shownCategories} categoryType={this.state.productType}/>
+                  ) : (
+                      <Typography color="textSecondary" align="center">
+                          No results found
+                      </Typography>
+                  )
+                }
             </div>
             </Paper>
         </div>
