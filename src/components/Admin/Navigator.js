@@ -8,47 +8,54 @@ import LocalCafeIcon from '@material-ui/icons/LocalCafe';
 import Button from '@material-ui/core/Button';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CategoryIcon from '@material-ui/icons/Category';
+import PaletteIcon from '@material-ui/icons/Palette';
 
 class Navigator extends React.Component{
     
     render(){
-  return (
-    <Drawer variant="permanent">
-      <List>
-        <ListItem>
-          Restaurant
-        </ListItem>
-        <ListItem>
-            <Button>
-                <HomeIcon/> Dashboard
-            </Button>
-        </ListItem>
-        <ListItem>
-            
-        </ListItem>
-        <ListItem>
-            <Button onClick={this.props.selectFoods}>
-                <FastFoodIcon /> Foods
-            </Button>
-        </ListItem>
-        <ListItem>
-            <Button onClick={this.props.selectDrinks}>
-                <LocalCafeIcon /> Drinks
-            </Button>
-        </ListItem>
-        <ListItem>
-            <Button>
-                <CategoryIcon /> Categories
-            </Button>
-        </ListItem>
-        <ListItem>
-            <Button>
-                <MenuBookIcon /> Not On Menu
-            </Button>
-        </ListItem>
-      </List>
-    </Drawer>
-  )}
+        return (
+            <Drawer variant="permanent">
+                <List>
+                    <ListItem>
+                    Restaurant
+                    </ListItem>
+                    <ListItem>
+                        <Button>
+                            <HomeIcon/> Dashboard
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        
+                    </ListItem>
+                    <ListItem>
+                        <Button onClick={this.props.selectFoods}>
+                            <FastFoodIcon /> Foods
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button onClick={this.props.selectDrinks}>
+                            <LocalCafeIcon /> Drinks
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button>
+                            <CategoryIcon /> Categories
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button>
+                            <MenuBookIcon /> Not On Menu
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button>
+                            <PaletteIcon /> Theme
+                        </Button>
+                    </ListItem>
+                </List>
+            </Drawer>
+        )
+    }
 }
 
 export default Navigator;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Content from './Content';
-import LogOut from './LogOut';
+import Content from '../components/Admin/Content';
+import LogOut from '../components/Admin/LogOut';
 
 class Admin extends React.Component {
     render(){

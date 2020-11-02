@@ -71,6 +71,7 @@ const Product = (props) => {
 
     React.useEffect(() => {
         setValues(props.product);
+        setCategory(props.product.category);
     }, [props.product]);
 
     const saveProduct = () => {
