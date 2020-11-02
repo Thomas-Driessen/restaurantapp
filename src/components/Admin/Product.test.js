@@ -8,7 +8,8 @@ const product = {
   id: 1,
   title: "Coca-Cola",
   price: 2.5,
-  description: ""
+  description: "",
+  category: {categoryName: "Drinks"}
 };
 const categories= [
   {categoryName: "Drinks"},
