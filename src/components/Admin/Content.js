@@ -20,7 +20,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { observer } from "mobx-react";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 class Content extends React.Component {
   constructor() {
@@ -34,19 +34,22 @@ class Content extends React.Component {
       shownProducts: [],
       productType: "",
       openAddProduct: false,
+
       newProduct: {
         title: "",
-        category: "",
-        subcategory: "",
+        type: "",
+        categoryName: "",
+        ingredients: "",
+        price: 0,
+        quantity: 0,
+        description: "",
       },
-      type: {
-        food: "food",
-        drink: "drink",
-      },
+
       style: {
         width: "40ch",
         display: "flex",
         flexWrap: "wrap",
+        padding: "5px",
       },
     };
   }
@@ -60,8 +63,18 @@ class Content extends React.Component {
   };
 
   handleNewProductChange = (prop) => (event) => {
+    const { name, value } = event.target;
     this.setState({
-      newProduct: { ...this.state.newProduct, [prop]: event.target.value },
+      newProduct: {
+        ...this.state.newProduct,
+        [name]: value,
+        categoryName:
+          name === "type"
+            ? ""
+            : name === "categoryName"
+            ? value
+            : this.state.newProduct.categoryName,
+      },
     });
   };
 
@@ -118,7 +131,7 @@ class Content extends React.Component {
     this.setState({ productType: "Drink" });
   };
 
-  renderSelect(prop) {
+  renderSelectCategories(prop) {
     return prop.map((currentCategory) => (
       <MenuItem
         key={currentCategory.categoryName}
@@ -127,6 +140,68 @@ class Content extends React.Component {
         {currentCategory.categoryName}
       </MenuItem>
     ));
+  }
+  saveProduct = () => {
+    let price = parseFloat(this.state.newProduct.price);
+    let quantity = parseFloat(this.state.newProduct.quantity);
+    if (isNaN(price) || isNaN(quantity)) {
+      alert("Price is not a valid number");
+    } else {
+      let product = this.RemovePropertyWithoutAltering(
+        "type",
+        this.state.newProduct
+      );
+
+      if (this.state.newProduct.type === "drink") {
+        product = this.RemovePropertyWithoutAltering("description", product);
+        for (let i = 0; i < this.state.drinkCategories.length; i = i + 1) {
+          if (
+            product.categoryName === this.state.drinkCategories[i].categoryName
+          ) {
+            product.category = this.state.drinkCategories[i];
+          }
+        }
+      }
+
+      if (this.state.newProduct.type === "food") {
+        for (let i = 0; i < this.state.foodCategories.length; i = i + 1) {
+          if (
+            product.categoryName === this.state.foodCategories[i].categoryName
+          ) {
+            product.category = this.state.foodCategories[i];
+          }
+        }
+      }
+
+      product = this.RemovePropertyWithoutAltering("categoryName", product);
+
+      product.price = price;
+      product.quantity = quantity;
+
+      fetch(`/api/${this.state.newProduct.type}`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }).catch(console.log);
+
+      alert("Your changes have been saved");
+      this.setState({ openAddProduct: false });
+    }
+  };
+
+  RemovePropertyWithoutAltering(prop, originalObject) {
+    let obj = Object.keys(originalObject).reduce((object, key) => {
+      if (key !== prop) {
+        object[key] = originalObject[key];
+      }
+      return object;
+    }, {});
+
+    return obj;
   }
 
   render() {
@@ -178,64 +253,108 @@ class Content extends React.Component {
                         You want to add a new product, huh?
                       </DialogContentText>
 
-                      <FormControl
-                        style={
-                          this.state.style
-                        }
-                      >
-                        <TextField label="Title" />
+                      <FormControl style={this.state.style}>
+                        <TextField
+                          label="Title"
+                          name="title"
+                          onChange={this.handleNewProductChange("title")}
+                        />
                       </FormControl>
 
-                      <FormControl
-                        style={
-                          this.state.style
-                        }
-                      >
+                      <FormControl style={this.state.style}>
                         <Select
                           id="select-type"
-                          value={this.state.newProduct.category}
-                          onChange={this.handleNewProductChange("category")}
+                          name="type"
+                          value={this.state.newProduct.type}
+                          onChange={this.handleNewProductChange("type")}
                         >
                           <MenuItem value="food">Food</MenuItem>
                           <MenuItem value="drink">Drink</MenuItem>
                         </Select>
                       </FormControl>
 
-                      <FormControl
-                        style={
-                          this.state.style
-                        }
-                      >
-                        {this.state.newProduct.category === "food" ? (
+                      {this.state.newProduct.type === "food" ? (
+                        <FormControl style={this.state.style}>
                           <Select
                             id="select-food-category"
-                            value={this.state.newProduct.subcategory}
+                            name="categoryName"
+                            value={this.state.newProduct.categoryName}
                             onChange={this.handleNewProductChange(
-                              "subcategory"
+                              "categoryName"
                             )}
                           >
-                            {this.renderSelect(this.state.foodCategories)}
+                            {this.renderSelectCategories(
+                              this.state.foodCategories
+                            )}
                           </Select>
-                        ) : null}
-                      </FormControl>
+                        </FormControl>
+                      ) : null}
 
-                      <FormControl
-                        style={
-                          this.state.style
-                        }
-                      >
-                        {this.state.newProduct.category === "drink" ? (
+                      {this.state.newProduct.type === "drink" ? (
+                        <FormControl style={this.state.style}>
                           <Select
                             id="select-drink-category"
-                            value={this.state.newProduct.subcategory}
+                            name="categoryName"
+                            value={this.state.newProduct.categoryName}
+                            onChange={this.handleNewProductChange(
+                              "categoryName"
+                            )}
                           >
-                            {this.renderSelect(this.state.drinkCategories)}
+                            {this.renderSelectCategories(
+                              this.state.drinkCategories
+                            )}
                           </Select>
-                        ) : null}
+                        </FormControl>
+                      ) : null}
+
+                      <FormControl style={this.state.style}>
+                        <TextField
+                          label="Ingredients"
+                          name="ingredients"
+                          onChange={this.handleNewProductChange("ingredients")}
+                        />
                       </FormControl>
+
+                      <FormControl style={this.state.style}>
+                        <TextField
+                          label="Price"
+                          name="price"
+                          onChange={this.handleNewProductChange("price")}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">€</InputAdornment>
+                            ),
+                          }}
+                        />
+                      </FormControl>
+
+                      <FormControl style={this.state.style}>
+                        <TextField
+                          label="Quantity"
+                          name="quantity"
+                          onChange={this.handleNewProductChange("quantity")}
+                        />
+                      </FormControl>
+
+                      {this.state.newProduct.type === "food" ? (
+                        <FormControl style={this.state.style}>
+                          <TextField
+                            label="Description"
+                            name="description"
+                            onChange={this.handleNewProductChange(
+                              "description"
+                            )}
+                          />
+                        </FormControl>
+                      ) : null}
                     </DialogContent>
                     <DialogActions>
-                      <Button size="large" color="primary" target="_blank">
+                      <Button
+                        size="large"
+                        color="primary"
+                        target="_blank"
+                        onClick={this.saveProduct}
+                      >
                         <SaveIcon /> Add new product
                       </Button>
                       <IconButton
@@ -269,4 +388,4 @@ class Content extends React.Component {
   }
 }
 
-export default observer(Content);
+export default Content;
