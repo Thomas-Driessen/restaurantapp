@@ -3,7 +3,6 @@ jobs:
   build:
     docker: 
       - image: cimg/node:15.0.1
-    resource_class: medium+
     steps:
       - checkout
       - run: npm install
