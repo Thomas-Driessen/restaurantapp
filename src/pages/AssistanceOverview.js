@@ -104,7 +104,7 @@ class MenuPage extends React.Component {
           ) : (
             <Grid container spacing={0} style={{padding: 12}}>
                 <Typography variant="subtitle2" display="block">
-                  There are no tables that request payment.
+                  There are no tables that request Assistance.
                 </Typography>
             </Grid>
             )}
