@@ -18,21 +18,26 @@ const products = [
       },
 ];
 
+const categories= [
+  {categoryName: "Drinks"},
+  {categoryName: "Coffee"}
+]
+
 test('Render Product Coca-Cola', () => {
-  const { getByText } = render(<ProductsList products={products}/>);
+  const { getByText } = render(<ProductsList products={products} foodCategories={categories} drinkCategories={categories}/>);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 test('Render Product Pepsi', () => {
-  const { getByText } = render(<ProductsList products={products}/>);
+  const { getByText } = render(<ProductsList products={products} foodCategories={categories} drinkCategories={categories}/>);
   const linkElement = getByText(/Pepsi/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 it('ProductsList renders correctly', () => {
     const tree = renderer
-      .create(<ProductsList products={products}/>)
+      .create(<ProductsList products={products} foodCategories={categories} drinkCategories={categories}/>)
       .toJSON();
       expect(tree).toMatchSnapshot();
 });
