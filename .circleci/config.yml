@@ -2,12 +2,15 @@ version: 2.1
 jobs:
   build:
     docker: 
-      - image: cimg/node:15.0.1
+      - image: cimg/node:14.10.1 
     steps:
       - checkout
       - run: npm install
       - run: npm run build
-      - run: npm test --reporters=jest-junit --maxWorkers=2
+      - run: 
+          command: npm test --reporters=jest-junit --maxWorkers=2
+          environment:
+            NODE_OPTIONS: --max_old_space_size=8192
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
