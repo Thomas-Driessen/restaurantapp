@@ -21,6 +21,7 @@ import FormControl from "@material-ui/core/FormControl";
 import SaveIcon from '@material-ui/icons/Save';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+require('dotenv').config()
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,6 +45,8 @@ const Product = (props) => {
     const [del, setDelete] = React.useState(false);
     const [values, setValues] = React.useState({...props.product});
     const [category, setCategory] = React.useState({...props.product.category});
+    const [loading, setLoading] = React.useState(false);
+    const [image, setImage] = React.useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -83,7 +86,7 @@ const Product = (props) => {
             let product = values;
             let cat = category.categoryName;
 
-            console.log(category);
+            product.image = image;
             product.price = price;
             if(props.productType === 'Food'){
                 product.category = props.foodCategories.find(element => element.categoryName === cat);
@@ -125,66 +128,139 @@ const Product = (props) => {
         ))
     }
 
+    const uploadImage = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', `${props.productType}Images`);
+        setLoading(true);
+
+        const res = await fetch('https://api.cloudinary.com/v1_1/drb2yh2dy/image/upload',
+        {
+            method: 'POST',
+            body: data
+        });
+
+        const file = await res.json();
+
+        setImage(file.secure_url);
+
+        setLoading(false);
+    }
+
     return(
         <div>
-            { props.product ? (
-                <div>
-                <Card >
-                    <CardMedia style={{height: 400}}
-                    component="img"
-                    height="250"
-                    src={`../../images/${props.productType}/${props.product.id}.jpg`}
-                    alt={`Image for ${props.product.title} Not Found`}
-                    title={props.product.title}
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="inherit" component="h2">
-                        {props.product.title} <span style={{float: "right", color: "green"}}>{props.product.price}€</span>
-                    </Typography>
-                    <Typography component="h6">
-                        {props.product.ingredients}
-                    </Typography>
-                    </CardContent>
-                    <CardActions>
-                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                    <div style={{display: 'flex', alignItems: 'right'}}>
-                    <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
-                        <span style={{fontWeight:"bold"}}>Edit</span>
-                    </Button>
-                    <Button size="large" color="primary" target="_blank" onClick={handleDeleteOpen}>
-                        <span style={{fontWeight:"bold"}}>Delete</span>
-                    </Button>
-                    <Dialog
-                        open={del}
-                        onClose={handleDeleteClose}
-                        aria-labelledby="product-title"
-                    >
-                        <DialogTitle id="product-title">{props.product.title}</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                Are you sure you want to delete this product?
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button size="medium" color="primary" >
-                                Yes
+                { props.product ? (
+                    <div>
+                        <Card >
+                            <CardMedia style={{height: 400}}
+                            component="img"
+                            height="250"
+                            src={props.product.image}
+                            alt={`Image for ${props.product.title} Not Found`}
+                            title={props.product.title}
+                            />
+                            <CardContent>
+                            <Typography gutterBottom variant="inherit" component="h2">
+                                {props.product.title} <span style={{float: "right", color: "green"}}>{props.product.price}€</span>
+                            </Typography>
+                            <Typography component="h6">
+                                {props.product.ingredients}
+                            </Typography>
+                            </CardContent>
+                            <CardActions>
+                            <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                            <div style={{display: 'flex', alignItems: 'right'}}>
+                            <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
+                                <span style={{fontWeight:"bold"}}>Edit</span>
                             </Button>
-                            <Button size="medium" color="primary" onClick={handleDeleteClose}>
-                                No
+                            <Button size="large" color="primary" target="_blank" onClick={handleDeleteOpen}>
+                                <span style={{fontWeight:"bold"}}>Delete</span>
                             </Button>
-                        </DialogActions>
-                    </Dialog>
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="product-title"
-                    >
-                        <DialogTitle id="product-title">Id: {props.product.id}</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                Edit this product's details
-                            </DialogContentText>
-                                    {props.product.title ? (
+                            <Dialog
+                                open={del}
+                                onClose={handleDeleteClose}
+                                aria-labelledby="product-title"
+                            >
+                                <DialogTitle id="product-title">{props.product.title}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        Are you sure you want to delete this product?
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button size="medium" color="primary" >
+                                        Yes
+                                    </Button>
+                                    <Button size="medium" color="primary" onClick={handleDeleteClose}>
+                                        No
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="product-title"
+                            >
+                                <DialogTitle id="product-title">Id: {props.product.id}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        Edit this product's details
+                                    </DialogContentText>
+                                    <CardMedia style={{height: 400}}
+                                        component="img"
+                                        height="250"
+                                        src={props.product.image}
+                                        alt={`Image for ${props.product.title} Not Found`}
+                                        title={props.product.title}
+                                    />
+                                        {props.product.title ? (
+                                            <FormControl
+                                                className={clsx(
+                                                    classes.margin,
+                                                    classes.withoutLabel,
+                                                    classes.textField
+                                                )}
+                                            >
+                                                <TextField
+                                                    label="Title"
+                                                    value={values.title}
+                                                    onChange={handleChange("title")}
+                                                />
+                                            </FormControl>
+                                        ) : null}
+                                        {props.product.description ? (
+                                            <FormControl
+                                                className={clsx(
+                                                    classes.margin,
+                                                    classes.withoutLabel,
+                                                    classes.textField
+                                                )}
+                                            >
+                                                <TextField
+                                                    label="Description"
+                                                    value={values.description}
+                                                    onChange={handleChange("description")}
+                                                    multiline
+                                                />
+                                            </FormControl>
+                                        ) : null}
+                                        {props.product.ingredients ? (
+                                            <FormControl
+                                                className={clsx(
+                                                    classes.margin,
+                                                    classes.withoutLabel,
+                                                    classes.textField
+                                                )}
+                                            >
+                                                <TextField
+                                                    label="Ingredients"
+                                                    value={values.ingredients}
+                                                    onChange={handleChange("ingredients")}
+                                                    multiline
+                                                />
+                                            </FormControl>
+                                        ) : null}
                                         <FormControl
                                             className={clsx(
                                                 classes.margin,
@@ -192,14 +268,33 @@ const Product = (props) => {
                                                 classes.textField
                                             )}
                                         >
-                                            <TextField
-                                                label="Title"
-                                                value={values.title}
-                                                onChange={handleChange("title")}
-                                            />
+                                            <Select
+                                                id="select-food-category"
+                                                value={category.categoryName}
+                                                onChange={handleCategoryChange("categoryName")}
+                                            >
+                                                {renderSelect(props.productType)}
+                                            </Select>
                                         </FormControl>
-                                    ) : null}
-                                    {props.product.description ? (
+                                        {props.product.price ? (
+                                            <FormControl
+                                                className={clsx(
+                                                    classes.margin,
+                                                    classes.withoutLabel,
+                                                    classes.textField
+                                                )}
+                                            >
+                                                <TextField
+                                                    label="Price"
+                                                    value={values.price}
+                                                    onChange={handleChange("price")}
+                                                    InputProps={{
+                                                        endAdornment: <InputAdornment position="end">€</InputAdornment>
+                                                    }}
+                                                    style={{ display: "inline-block", width: "6ch"}}
+                                                />
+                                            </FormControl>
+                                        ) : null}
                                         <FormControl
                                             className={clsx(
                                                 classes.margin,
@@ -207,78 +302,27 @@ const Product = (props) => {
                                                 classes.textField
                                             )}
                                         >
-                                            <TextField
-                                                label="Description"
-                                                value={values.description}
-                                                onChange={handleChange("description")}
-                                                multiline
-                                            />
+                                            <input type='file' name='file' placeholder='Upload a file' onChange={uploadImage}/>
                                         </FormControl>
-                                    ) : null}
-                                    {props.product.ingredients ? (
-                                        <FormControl
-                                            className={clsx(
-                                                classes.margin,
-                                                classes.withoutLabel,
-                                                classes.textField
-                                            )}
-                                        >
-                                            <TextField
-                                                label="Ingredients"
-                                                value={values.ingredients}
-                                                onChange={handleChange("ingredients")}
-                                                multiline
-                                            />
-                                        </FormControl>
-                                    ) : null}
-                                    <FormControl
-                                    className={clsx(
-                                        classes.margin,
-                                        classes.withoutLabel,
-                                        classes.textField
-                                    )}
-                                    >
-                                        <Select
-                                            id="select-food-category"
-                                            value={category.categoryName}
-                                            onChange={handleCategoryChange("categoryName")}
-                                        >
-                                            {renderSelect(props.productType)}
-                                        </Select>
-                                    </FormControl>
-                                    {props.product.price ? (
-                                        <FormControl
-                                            className={clsx(
-                                                classes.margin,
-                                                classes.withoutLabel,
-                                                classes.textField
-                                            )}
-                                        >
-                                            <TextField
-                                                label="Price"
-                                                value={values.price}
-                                                onChange={handleChange("price")}
-                                                InputProps={{
-                                                    endAdornment: <InputAdornment position="end">€</InputAdornment>
-                                                }}
-                                                style={{ display: "inline-block", width: "6ch"}}
-                                            />
-                                        </FormControl>
-                                    ) : null}
-                        </DialogContent>
-                        <DialogActions>
-                            <Button size="large" color="primary" target="_blank" onClick={saveProduct}>
-                                <SaveIcon /> Save
-                            </Button>
-                            <IconButton aria-label="close" color="primary" onClick={handleClose}>
-                                <CloseIcon />
-                            </IconButton>
-                        </DialogActions>
-                    </Dialog>
-                    </div>
-                    </Grid>
-                    </CardActions>
-                </Card>
+                                        {loading ? (
+                                            <DialogContentText>
+                                                Loading...
+                                            </DialogContentText>
+                                        ) : null}
+                            </DialogContent>
+                            <DialogActions>
+                                <Button size="large" color="primary" target="_blank" onClick={saveProduct} disabled={loading}>
+                                    <SaveIcon /> Save
+                                </Button>
+                                <IconButton aria-label="close" color="primary" onClick={handleClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </DialogActions>
+                        </Dialog>
+                        </div>
+                        </Grid>
+                        </CardActions>
+                    </Card>
                 </div>
             ) : null}
         </div>

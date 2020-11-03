@@ -366,22 +366,23 @@ class Content extends React.Component {
                       </IconButton>
                     </DialogActions>
                   </Dialog>
-                  </Grid>
-                  </Grid>
-                </Toolbar>
-            </AppBar>
-            <div>
-                {this.state.shownProducts.length ? (
-                    <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
-                ) : (
-                    <Typography color="textSecondary" align="center">
-                        No results found
-                    </Typography>
-                )}
-            </div>
-            </Paper>
-        </div>
-  )}
+                </Grid>
+              </Grid>
+            </Toolbar>
+          </AppBar>
+          <div>
+              {this.state.shownProducts.length ? (
+                <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
+              ) : (
+                <Typography color="textSecondary" align="center">
+                  No results found
+                </Typography>
+              )}
+          </div>
+        </Paper>
+      </div>
+    )
+  }
 }
 
 export default Content;
