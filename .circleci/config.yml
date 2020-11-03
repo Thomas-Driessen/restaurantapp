@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build
-      - run: npm test --reporters=jest-junit --maxWorkers=2
+      - run: npm test --reporters=jest-junit --maxWorkers=2 -w 1
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
