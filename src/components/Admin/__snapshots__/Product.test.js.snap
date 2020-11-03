@@ -10,7 +10,6 @@ exports[`Product renders correctly 1`] = `
         alt="Image for Coca-Cola Not Found"
         className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
         height="250"
-        src="../../images/undefined/1.jpg"
         style={
           Object {
             "height": 400,
