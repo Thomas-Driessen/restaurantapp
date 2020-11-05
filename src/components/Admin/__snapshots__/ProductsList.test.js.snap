@@ -15,7 +15,7 @@ exports[`ProductsList renders correctly 1`] = `
     <div>
       <div>
         <div
-          className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root makeStyles-blur-15 MuiPaper-elevation1 MuiPaper-rounded"
         >
           <img
             alt="Image for Coca-Cola Not Found"
@@ -128,7 +128,7 @@ exports[`ProductsList renders correctly 1`] = `
                         }
                       }
                     >
-                      Delete
+                      Back to menu
                     </span>
                   </span>
                 </button>
@@ -145,7 +145,7 @@ exports[`ProductsList renders correctly 1`] = `
     <div>
       <div>
         <div
-          className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root makeStyles-blur-15 MuiPaper-elevation1 MuiPaper-rounded"
         >
           <img
             alt="Image for Pepsi Not Found"
@@ -258,7 +258,7 @@ exports[`ProductsList renders correctly 1`] = `
                         }
                       }
                     >
-                      Delete
+                      Back to menu
                     </span>
                   </span>
                 </button>
