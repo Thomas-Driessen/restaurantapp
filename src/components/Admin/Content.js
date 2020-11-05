@@ -34,7 +34,7 @@ class Content extends React.Component {
       shownProducts: [],
       productType: "",
       openAddProduct: false,
-
+      loading: false,
       newProduct: {
         title: "",
         type: "",
@@ -43,6 +43,7 @@ class Content extends React.Component {
         price: 0,
         quantity: 0,
         description: "",
+        image: "",
       },
 
       style: {
@@ -121,14 +122,21 @@ class Content extends React.Component {
 
   selectFoods = (e) => {
     e.preventDefault();
-    this.setState({ shownProducts: this.state.foods });
+    this.setState({ shownProducts: this.state.foods.filter(item => item.onMenu === true) });
     this.setState({ productType: "Food" });
   };
 
   selectDrinks = (e) => {
     e.preventDefault();
-    this.setState({ shownProducts: this.state.drinks });
+
+    this.setState({ shownProducts: this.state.drinks.filter(item => item.onMenu === true) });
     this.setState({ productType: "Drink" });
+  };
+
+  selectNotOnMenu = (e) => {
+    e.preventDefault();
+    let productsNotOnMenu = [...this.state.foods, ...this.state.drinks].filter(item=>item.onMenu === false) 
+    this.setState({ shownProducts: productsNotOnMenu });
   };
 
   renderSelectCategories(prop) {
@@ -204,12 +212,39 @@ class Content extends React.Component {
     return obj;
   }
 
+  uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", `${this.state.newProduct.type}Images`);
+    this.setState({ loading: true });
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/drb2yh2dy/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    const file = await res.json();
+
+    this.setState({
+      newProduct: {
+        ...this.state.newProduct,
+        image: file.secure_url,
+      },
+    });
+    this.setState({ loading: false });
+  };
+
   render() {
     return (
       <div>
         <Navigator
           selectFoods={this.selectFoods}
           selectDrinks={this.selectDrinks}
+          selectNotOnMenu={this.selectNotOnMenu}
         />
         <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
           <AppBar position="static" color="default" elevation={0}>
@@ -347,6 +382,19 @@ class Content extends React.Component {
                           />
                         </FormControl>
                       ) : null}
+
+                      <FormControl style={this.state.style}>
+                        <input
+                          type="file"
+                          name="file"
+                          placeholder="Upload a file"
+                          onChange={this.uploadImage}
+                        />
+                      </FormControl>
+
+                      {this.state.loading ? (
+                        <DialogContentText>Loading...</DialogContentText>
+                      ) : null}
                     </DialogContent>
                     <DialogActions>
                       <Button
@@ -354,6 +402,7 @@ class Content extends React.Component {
                         color="primary"
                         target="_blank"
                         onClick={this.saveProduct}
+                        disabled={this.state.loading}
                       >
                         <SaveIcon /> Add new product
                       </Button>
@@ -368,20 +417,25 @@ class Content extends React.Component {
                   </Dialog>
                 </Grid>
               </Grid>
-            </Toolbar>
+            </Toolbar>  
           </AppBar>
           <div>
-              {this.state.shownProducts.length ? (
-                <ProductsList products={this.state.shownProducts} productType={this.state.productType} foodCategories={this.state.foodCategories} drinkCategories={this.state.drinkCategories}/>
-              ) : (
-                <Typography color="textSecondary" align="center">
-                  No results found
-                </Typography>
-              )}
+            {this.state.shownProducts.length ? (
+              <ProductsList
+                products={this.state.shownProducts}
+                productType={this.state.productType}
+                foodCategories={this.state.foodCategories}
+                drinkCategories={this.state.drinkCategories}
+              />
+            ) : (
+              <Typography color="textSecondary" align="center">
+                No results found
+              </Typography>
+            )}
           </div>
         </Paper>
       </div>
-    )
+    );
   }
 }
 

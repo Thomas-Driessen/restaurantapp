@@ -43,7 +43,7 @@ class Navigator extends React.Component{
                         </Button>
                     </ListItem>
                     <ListItem>
-                        <Button>
+                        <Button onClick={this.props.selectNotOnMenu}>
                             <MenuBookIcon /> Not On Menu
                         </Button>
                     </ListItem>
