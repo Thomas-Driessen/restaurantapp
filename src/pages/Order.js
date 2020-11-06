@@ -191,7 +191,7 @@ class ViewOrder extends React.Component {
               <Grid container justify="center">
               <AppBar position="static" color="transparent"  elevation={0} style={{paddingLeft: 15, paddingRight: 20}}>
                         <ToolBar disableGutters>
-                            <Button variant="contained" disableElevation style={{float: 'left', minWidth:"200px", minHeight:"40px", borderRadius: 50}} size="large" color="primary" onClick={this.callStaffPay()}>
+                            <Button variant="contained" disableElevation style={{float: 'left', minWidth:"200px", minHeight:"40px", borderRadius: 50}} size="large" color="primary" onClick={this.callStaffPay}>
                                 Pay for Orders
                             </Button>
                             <Container disableGutters>
