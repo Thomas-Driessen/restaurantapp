@@ -21,6 +21,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import InputLabel from "@material-ui/core/InputLabel";
 
 class Content extends React.Component {
   constructor() {
@@ -122,20 +123,26 @@ class Content extends React.Component {
 
   selectFoods = (e) => {
     e.preventDefault();
-    this.setState({ shownProducts: this.state.foods.filter(item => item.onMenu === true) });
+    this.setState({
+      shownProducts: this.state.foods.filter((item) => item.onMenu === true),
+    });
     this.setState({ productType: "Food" });
   };
 
   selectDrinks = (e) => {
     e.preventDefault();
 
-    this.setState({ shownProducts: this.state.drinks.filter(item => item.onMenu === true) });
+    this.setState({
+      shownProducts: this.state.drinks.filter((item) => item.onMenu === true),
+    });
     this.setState({ productType: "Drink" });
   };
 
   selectNotOnMenu = (e) => {
     e.preventDefault();
-    let productsNotOnMenu = [...this.state.foods, ...this.state.drinks].filter(item=>item.onMenu === false) 
+    let productsNotOnMenu = [...this.state.foods, ...this.state.drinks].filter(
+      (item) => item.onMenu === false
+    );
     this.setState({ shownProducts: productsNotOnMenu });
   };
 
@@ -297,9 +304,13 @@ class Content extends React.Component {
                       </FormControl>
 
                       <FormControl style={this.state.style}>
+                        <InputLabel id="demo-simple-select-label">
+                          Type
+                        </InputLabel>
                         <Select
                           id="select-type"
                           name="type"
+                          label="Yype"
                           value={this.state.newProduct.type}
                           onChange={this.handleNewProductChange("type")}
                         >
@@ -310,6 +321,9 @@ class Content extends React.Component {
 
                       {this.state.newProduct.type === "food" ? (
                         <FormControl style={this.state.style}>
+                          <InputLabel id="demo-simple-select-label">
+                            Category
+                          </InputLabel>
                           <Select
                             id="select-food-category"
                             name="categoryName"
@@ -327,6 +341,9 @@ class Content extends React.Component {
 
                       {this.state.newProduct.type === "drink" ? (
                         <FormControl style={this.state.style}>
+                          <InputLabel id="demo-simple-select-label">
+                            Category
+                          </InputLabel>
                           <Select
                             id="select-drink-category"
                             name="categoryName"
@@ -417,7 +434,7 @@ class Content extends React.Component {
                   </Dialog>
                 </Grid>
               </Grid>
-            </Toolbar>  
+            </Toolbar>
           </AppBar>
           <div>
             {this.state.shownProducts.length ? (
