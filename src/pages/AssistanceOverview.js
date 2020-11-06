@@ -3,7 +3,6 @@ import React from 'react';
 import NavBar from '../components/Navigation bars/NavBar';
 import AssistanceList from '../components/Table Assistance/TableAssistanceList';
 import Grid from '@material-ui/core/Grid';
-import tableId from '../components/TableId';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
 class MenuPage extends React.Component {
@@ -64,24 +63,7 @@ class MenuPage extends React.Component {
         });
     });
   }
-  
-  callStaff = () => {
-    var tableInfo = {
-        "Id": tableId,
-        "RequiresAssistance": true
-    };
-    fetch('/api/table/tableAssistance', {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(tableInfo)
-    }).then(response => response.json())
-        .then(data => {
-            console.log(data)
-        });
-  }
+
   render(){
   return(
       <div>
