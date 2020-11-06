@@ -4,13 +4,12 @@ exports[`Product renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+      className="MuiPaper-root MuiCard-root makeStyles-blur-5 MuiPaper-elevation1 MuiPaper-rounded"
     >
       <img
         alt="Image for Coca-Cola Not Found"
         className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
         height="250"
-        src="../../images/undefined/1.jpg"
         style={
           Object {
             "height": 400,
@@ -118,7 +117,7 @@ exports[`Product renders correctly 1`] = `
                     }
                   }
                 >
-                  Delete
+                  Back to menu
                 </span>
               </span>
             </button>

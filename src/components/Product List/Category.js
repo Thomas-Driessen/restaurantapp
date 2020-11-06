@@ -17,7 +17,7 @@ const Product = (props) => {
                         <CardMedia style={{height: 400}}
                             component="img"
                             height="250"
-                            src={`../../images/Categories/${props.category.categoryName}.jpg`}
+                            src={props.category.image}
                             alt={`Image for ${props.category.categoryName} Not Found`}
                             title={props.category.categoryName}
                         />

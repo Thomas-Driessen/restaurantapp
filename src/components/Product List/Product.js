@@ -46,7 +46,7 @@ const Product = (props) => {
                     <CardMedia style={{height: 400}}
                     component="img"
                     height="250"
-                    src={`../../images/${props.productType}/${props.product.id}.jpg`}
+                    src={props.product.image}
                     alt={`Image for ${props.product.title} Not Found`}
                     title={props.product.title}
                     />

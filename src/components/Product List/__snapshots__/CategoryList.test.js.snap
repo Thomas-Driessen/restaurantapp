@@ -21,7 +21,6 @@ exports[`CategoryList renders correctly 1`] = `
             alt="Image for Pizza Not Found"
             className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
             height="250"
-            src="../../images/Categories/Pizza.jpg"
             style={
               Object {
                 "height": 400,
