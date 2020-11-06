@@ -24,7 +24,8 @@ class NavBar extends React.Component{
             totalProductsInOrder: 0,
             redirect: false,
             redirectMenu: false,
-            setOpen: false
+            setOpen: false,
+            tableId: sessionStorage.getItem("tableId")
         }
     }
 
@@ -91,6 +92,25 @@ class NavBar extends React.Component{
             this.setState({totalProductsInOrder: currentFoodList.length + currentDrinkList.length});
         }
     }
+
+    callStaff = () => {
+
+        var tableInfo = {
+            "Id": this.state.tableId,
+            "RequiresAssistance": true
+        };
+        fetch('/api/table/tableAssistance', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(tableInfo)
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+            });
+      }
     
     render(){
         return(
@@ -109,9 +129,14 @@ class NavBar extends React.Component{
                                         Menu
                                     </Button>
                                     {sessionStorage.getItem("tableId") ? (
-                                        <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
-                                            My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
-                                        </Button>
+                                        <div>
+                                            <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
+                                                My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
+                                            </Button>
+                                            <Button  onClick = {this.callStaff} color="inherit">
+                                                Call Waiter
+                                            </Button>
+                                        </div>
                                     ) : (
                                         <Button  onClick={this.handleOpenModal} color="inherit" startIcon={<CameraIcon />}>
                                             Scan QR
