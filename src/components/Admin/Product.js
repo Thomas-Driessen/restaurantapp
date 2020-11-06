@@ -99,7 +99,7 @@ const Product = (props) => {
       let product = values;
       let cat = category.categoryName;
 
-      product.image = image;
+      product.image = image ? image : props.product.image;
       product.price = price;
       if (props.productType === "Food") {
         product.category = props.foodCategories.find(
