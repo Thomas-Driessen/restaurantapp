@@ -3,8 +3,8 @@ import React from 'react';
 import NavBar from '../components/Navigation bars/NavBar';
 import AssistanceList from '../components/Table Assistance/TableAssistanceList';
 import Grid from '@material-ui/core/Grid';
-import tableNumber from '../components/TableNumber';
-import { Button } from '@material-ui/core';
+import tableId from '../components/TableId';
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
 class MenuPage extends React.Component {
   constructor() {
@@ -13,12 +13,18 @@ class MenuPage extends React.Component {
       pay: [],
       help: [],
       AssistancePay: [],
-      Assistance: []
+      Assistance: [],
+      hubConnection: null,
     };
   }
   componentDidMount() {
+    this.ConnectToHub();
+    this.fetchTableAssistanceData();
+  }
+
+  fetchTableAssistanceData(){
     let mounted = true;
-    fetch(`/api/table/gettablepayassistance`)
+    fetch(`/api/table/tablePayAssistance`)
     .then(res => res.json())
     .then((data) => {
       if(mounted){
@@ -28,7 +34,7 @@ class MenuPage extends React.Component {
     })
     .catch(console.log)
 
-    fetch(`/api/table/gettableassistance`)
+    fetch(`/api/table/tableAssistance`)
     .then(res => res.json())
     .then((data) => {
       if(mounted){
@@ -37,34 +43,34 @@ class MenuPage extends React.Component {
       }
     })
     .catch(console.log)
-
+    
     return () => mounted = false;
+  }
+
+  ConnectToHub() {
+    const hubConnection =  new HubConnectionBuilder()
+      .withUrl("https://localhost:5001/Order")
+      .configureLogging(LogLevel.Information)
+      .build();
+  
+    this.setState({ hubConnection}, () => {
+        this.state.hubConnection
+        .start()
+        .then(() => console.log('Connection started!'))
+        .catch(err => console.log('Error while establishing connection :('));
+
+        this.state.hubConnection.on('UpdateAssistance', () => {
+          this.fetchTableAssistanceData();
+        });
+    });
   }
   
   callStaff = () => {
     var tableInfo = {
-        "Id": tableNumber,
+        "Id": tableId,
         "RequiresAssistance": true
     };
-    fetch('/api/table/settableassistance', {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(tableInfo)
-    }).then(response => response.json())
-        .then(data => {
-            console.log(data)
-        });
-  }
-
-  callStaffPay = () => {
-    var tableInfo = {
-        "Id": tableNumber,
-        "PayAssistance": true
-    };
-    fetch('/api/table/settablepayassistance', {
+    fetch('/api/table/tableAssistance', {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -80,12 +86,6 @@ class MenuPage extends React.Component {
   return(
       <div>
           <NavBar/>
-          <Button  onClick = {this.callStaff} variant="contained" color="default">
-            Call Waiter
-          </Button>
-          <Button  onClick = {this.callStaffPay} variant="contained" color="default">
-            Request Payment
-          </Button>
           { this.state.pay.length ? (
             <Typography variant="subtitle2" display="block">
               <AssistanceList TableAssistance={this.state.pay} AssistanceType={this.state.AssistancePay}/>
