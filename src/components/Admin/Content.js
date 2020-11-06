@@ -38,6 +38,7 @@ class Content extends React.Component {
       productType: "",
       categoryType: "",
       openAddProduct: false,
+      openAddCategory: false,
       loading: false,
       newProduct: {
         title: "",
@@ -49,7 +50,11 @@ class Content extends React.Component {
         description: "",
         image: "",
       },
-
+      newCategory: {
+        type: "",
+        categoryName: "",
+        image: "",
+      },
       style: {
         width: "40ch",
         display: "flex",
@@ -67,6 +72,14 @@ class Content extends React.Component {
     this.setState({ openAddProduct: false });
   };
 
+  handleCategoryAddOpen = () => {
+    this.setState({ openAddCategory: true });
+  };
+  
+  handleCategoryAddClose = () => {
+    this.setState({ openAddCategory: false });
+  };
+
   handleNewProductChange = (prop) => (event) => {
     const { name, value } = event.target;
     this.setState({
@@ -81,6 +94,21 @@ class Content extends React.Component {
             : this.state.newProduct.categoryName,
       },
     });
+  };
+
+  handleNewCategoryChange = (prop) => (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      newCategory: {
+        ...this.state.newCategory,
+        [name]: value,
+        type: 
+           name === "type" 
+          ? value 
+          : this.state.newCategory.type,
+      },
+    });
+    console.log(this.state.newCategory);
   };
 
   componentDidMount() {
@@ -146,10 +174,17 @@ class Content extends React.Component {
     this.setState({ categoryType: "" });
   };
   
-  selectCategories = (e) => {
+  selectFoodCategories = (e) => {
     e.preventDefault();
     this.setState({ shownCategories: this.state.foodCategories });
-    this.setState({ categoryType: "open" });
+    this.setState({ categoryType: "Food" });
+    this.setState({ productType: "" });
+  }
+
+  selectDrinkCategories = (e) => {
+    e.preventDefault();
+    this.setState({ shownCategories: this.state.drinkCategories });
+    this.setState({ categoryType: "Drink" });
     this.setState({ productType: "" });
   }
 
@@ -163,6 +198,26 @@ class Content extends React.Component {
       </MenuItem>
     ));
   }
+
+  addCategory = () => {
+      // let category = this.RemovePropertyWithoutAltering("type",this.state.newCategory);
+      // category = this.RemovePropertyWithoutAltering("categoryName", category);
+
+      // console.log("category type: " + this.state.newCategory.type);
+      // console.log("category: " + category);
+      console.log(this.state.newCategory.type);
+      fetch(`/api/category/${this.state.newCategory.type}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.state.newCategory)
+      }).catch(console.log);
+
+      alert("Your changes have been saved");
+      this.setState({ openAddCategory: false });
+  };
 
   saveProduct = () => {
     let price = parseFloat(this.state.newProduct.price);
@@ -208,7 +263,7 @@ class Content extends React.Component {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(product),
+        body: JSON.stringify(product)
       }).catch(console.log);
 
       alert("Your changes have been saved");
@@ -225,13 +280,13 @@ class Content extends React.Component {
     }, {});
 
     return obj;
-  }
+  };
 
-  uploadImage = async (e) => {
+  uploadCategoryImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", `${this.state.newProduct.type}Images`);
+    data.append("upload_preset", `Categories`);
     this.setState({ loading: true });
 
     const res = await fetch(
@@ -252,6 +307,33 @@ class Content extends React.Component {
     });
     this.setState({ loading: false });
   };
+
+  uploadProductImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", `${this.state.newCategory.type}Images`);
+    this.setState({ loading: true });
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/drb2yh2dy/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    const file = await res.json();
+
+    this.setState({
+      newCategory: {
+        ...this.state.newCategory,
+        image: file.secure_url,
+      },
+    });
+    this.setState({ loading: false });
+  };
+  
   render() {
     return (
       <div>
@@ -259,7 +341,8 @@ class Content extends React.Component {
           selectFoods={this.selectFoods}
           selectDrinks={this.selectDrinks}
           selectNotOnMenu={this.selectNotOnMenu}
-          selectCategories={this.selectCategories}
+          selectFoodCategories={this.selectFoodCategories}
+          selectDrinkCategories={this.selectDrinkCategories}
         />
         <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
           <AppBar position="static" color="default" elevation={0}>
@@ -283,18 +366,14 @@ class Content extends React.Component {
                   />
                 </Grid>
                 <Grid item xs>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleClickOpen}
-                  >
+                  <Button variant="contained" color="primary" onClick={this.handleClickOpen} >
                     Add product
                   </Button>
-                  <Dialog
-                    open={this.state.openAddProduct}
-                    onClose={this.handleClose}
-                    aria-labelledby="product-title"
-                  >
+                  <Button variant="contained" color="primary" onClick={this.handleCategoryAddOpen} >
+                    Add Category
+                  </Button>
+                  {/* Begin add product dialog */}
+                  <Dialog open={this.state.openAddProduct} onClose={this.handleClose} aria-labelledby="product-title" >
                     <DialogTitle id="product-title">
                       Add a new product
                     </DialogTitle>
@@ -304,20 +383,11 @@ class Content extends React.Component {
                       </DialogContentText>
 
                       <FormControl style={this.state.style}>
-                        <TextField
-                          label="Title"
-                          name="title"
-                          onChange={this.handleNewProductChange("title")}
-                        />
+                        <TextField label="Title" name="title" onChange={this.handleNewProductChange("title")} />
                       </FormControl>
 
                       <FormControl style={this.state.style}>
-                        <Select
-                          id="select-type"
-                          name="type"
-                          value={this.state.newProduct.type}
-                          onChange={this.handleNewProductChange("type")}
-                        >
+                        <Select id="select-type" name="type" value={this.state.newProduct.type} onChange={this.handleNewProductChange("type")} >
                           <MenuItem value="food">Food</MenuItem>
                           <MenuItem value="drink">Drink</MenuItem>
                         </Select>
@@ -325,10 +395,7 @@ class Content extends React.Component {
 
                       {this.state.newProduct.type === "food" ? (
                         <FormControl style={this.state.style}>
-                          <Select
-                            id="select-food-category"
-                            name="categoryName"
-                            value={this.state.newProduct.categoryName}
+                          <Select id="select-food-category" name="categoryName" value={this.state.newProduct.categoryName}
                             onChange={this.handleNewProductChange(
                               "categoryName"
                             )}
@@ -342,10 +409,7 @@ class Content extends React.Component {
 
                       {this.state.newProduct.type === "drink" ? (
                         <FormControl style={this.state.style}>
-                          <Select
-                            id="select-drink-category"
-                            name="categoryName"
-                            value={this.state.newProduct.categoryName}
+                          <Select id="select-drink-category" name="categoryName" value={this.state.newProduct.categoryName}
                             onChange={this.handleNewProductChange(
                               "categoryName"
                             )}
@@ -358,17 +422,13 @@ class Content extends React.Component {
                       ) : null}
 
                       <FormControl style={this.state.style}>
-                        <TextField
-                          label="Ingredients"
-                          name="ingredients"
+                        <TextField label="Ingredients" name="ingredients"
                           onChange={this.handleNewProductChange("ingredients")}
                         />
                       </FormControl>
 
                       <FormControl style={this.state.style}>
-                        <TextField
-                          label="Price"
-                          name="price"
+                        <TextField label="Price" name="price"
                           onChange={this.handleNewProductChange("price")}
                           InputProps={{
                             endAdornment: (
@@ -379,18 +439,12 @@ class Content extends React.Component {
                       </FormControl>
 
                       <FormControl style={this.state.style}>
-                        <TextField
-                          label="Quantity"
-                          name="quantity"
-                          onChange={this.handleNewProductChange("quantity")}
-                        />
+                        <TextField label="Quantity" name="quantity" onChange={this.handleNewProductChange("quantity")} />
                       </FormControl>
 
                       {this.state.newProduct.type === "food" ? (
                         <FormControl style={this.state.style}>
-                          <TextField
-                            label="Description"
-                            name="description"
+                          <TextField label="Description" name="description"
                             onChange={this.handleNewProductChange(
                               "description"
                             )}
@@ -399,12 +453,7 @@ class Content extends React.Component {
                       ) : null}
 
                       <FormControl style={this.state.style}>
-                        <input
-                          type="file"
-                          name="file"
-                          placeholder="Upload a file"
-                          onChange={this.uploadImage}
-                        />
+                        <input type="file" name="file" placeholder="Upload a file" onChange={this.uploadProductImage} />
                       </FormControl>
 
                       {this.state.loading ? (
@@ -412,24 +461,54 @@ class Content extends React.Component {
                       ) : null}
                     </DialogContent>
                     <DialogActions>
-                      <Button
-                        size="large"
-                        color="primary"
-                        target="_blank"
-                        onClick={this.saveProduct}
-                        disabled={this.state.loading}
-                      >
+                      <Button size="large" color="primary" target="_blank" onClick={this.saveProduct} disabled={this.state.loading} >
                         <SaveIcon /> Add new product
                       </Button>
-                      <IconButton
-                        aria-label="close"
-                        color="primary"
-                        onClick={this.handleClose}
-                      >
+                      <IconButton aria-label="close" color="primary" onClick={this.handleClose} >
                         <CloseIcon />
                       </IconButton>
                     </DialogActions>
                   </Dialog>
+                  {/* End add product dialog */}
+
+                  {/* Begin add category dialog */}
+                  <Dialog open={this.state.openAddCategory} onClose={this.handleCategoryAddClose} aria-labelledby="product-title" >
+                    <DialogTitle id="product-title">
+                      Add a new category
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        You want to add a new category, huh?
+                      </DialogContentText>
+
+                      <FormControl style={this.state.style}>
+                        <TextField label="Category name" name="categoryName" onChange={this.handleNewCategoryChange("categoryName")} />
+                      </FormControl>
+
+                      <FormControl style={this.state.style}>
+                        <Select id="select-type" name="type" value={this.state.newCategory.type} onChange={this.handleNewCategoryChange("type")} >
+                          <MenuItem value="food">Food Category</MenuItem>
+                          <MenuItem value="drink">Drink Category</MenuItem>
+                        </Select>
+                      </FormControl>
+                      <FormControl style={this.state.style}>
+                        <input type="file" name="file" placeholder="Upload a file" onChange={this.uploadProductImage} />
+                      </FormControl>
+
+                      {this.state.loading ? (
+                        <DialogContentText>Loading...</DialogContentText>
+                      ) : null}
+                    </DialogContent>
+                    <DialogActions>
+                      <Button size="large" color="primary" target="_blank" onClick={this.addCategory} disabled={this.state.loading} >
+                        <SaveIcon /> Add new product
+                      </Button>
+                      <IconButton aria-label="close" color="primary" onClick={this.handleCategoryAddClose} >
+                        <CloseIcon />
+                      </IconButton>
+                    </DialogActions>
+                  </Dialog>
+                  {/* End add category dialog */}
                 </Grid>
               </Grid>
             </Toolbar>  
@@ -437,17 +516,17 @@ class Content extends React.Component {
           <div>
             {this.state.productType !== ""  ? (
               <ProductsList
-              products={this.state.shownProducts}
-              productType={this.state.productType}
-              foodCategories={this.state.foodCategories}
-              drinkCategories={this.state.drinkCategories} />
+                products={this.state.shownProducts}
+                productType={this.state.productType}
+                foodCategories={this.state.foodCategories}
+                drinkCategories={this.state.drinkCategories} 
+              />
 
             ) : this.state.categoryType !== ""? (
-              <div>
-                               
-                <CategoryList categories={this.state.shownCategories} />
-                
-              </div>       
+              <CategoryList 
+                categories={this.state.shownCategories}
+                type={this.state.categoryType}
+              />
             ): (
               <Typography color="textSecondary" align="center">
               No results found

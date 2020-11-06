@@ -43,7 +43,6 @@ const Product = (props) => {
     const [values, setValues] = React.useState({ ...props.category });
     const [image, setImage] = React.useState("");
     const [loading, setLoading] = React.useState(false);
-    
       const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
       };
@@ -85,7 +84,40 @@ const Product = (props) => {
     
         setLoading(false);
       };
+    
+      var tableInfo = {};
 
+      const editCategory = () => {
+        let category = values;
+      
+        fetch(`/api/category/${props.categoryType}`, {
+          method: 'put',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+            body: JSON.stringify(category)
+          }).then(response => response.json())
+            .then(data => {
+              console.log(data)
+          });
+        }
+
+        
+      const deleteCategory = (category) => {
+        fetch(`/api/category/${props.categoryType}`, {
+          method: 'delete',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+            body: JSON.stringify(category)
+          }).then(response => response.json())
+            .then(data => {
+              console.log(data)
+          });
+        }
+    
     return(
         <div>
             { props.category ? (
@@ -125,7 +157,7 @@ const Product = (props) => {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button size="medium" color="primary">
+                                <Button size="medium" color="primary" onClick={() => deleteCategory(props.category)}>
                                     Yes
                                 </Button>
                                 <Button size="medium" color="primary" onClick={handleDeleteClose}>
@@ -153,7 +185,7 @@ const Product = (props) => {
                                     <FormControl>
                                         {props.category.categoryName ? (
                                             <FormControl>
-                                            <TextField label="Title" value={values.categoryName} onChange={handleChange("categoryName")} />
+                                              <TextField label="Title" value={values.categoryName} onChange={handleChange("categoryName")} />
                                             </FormControl>
                                         ) : null}
                                             <FormControl>
@@ -172,7 +204,7 @@ const Product = (props) => {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button size="medium" color="primary">
+                                <Button size="medium" color="primary" onClick={editCategory}>
                                     Update
                                 </Button>
                             </DialogActions>
