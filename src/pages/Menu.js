@@ -68,7 +68,7 @@ class MenuPage extends React.Component {
 
   showFoods = (e) => {
     e.preventDefault();
-    this.setState({shownProducts: this.state.foods});
+    this.setState({shownProducts: this.state.foods.filter(item=>item.onMenu === true) });
     this.setState({categoriesShown: this.state.foodCategories});
     this.setState({productType: "Food"});
     this.setState({selectedCategory: ""});
@@ -76,7 +76,7 @@ class MenuPage extends React.Component {
 
   showDrinks = (e) => {
     e.preventDefault();
-    this.setState({shownProducts: this.state.drinks});
+    this.setState({shownProducts: this.state.drinks.filter(item=>item.onMenu === true)});
     this.setState({categoriesShown: this.state.drinkCategories});
     this.setState({productType: "Drink"});
     this.setState({selectedCategory: ""});
