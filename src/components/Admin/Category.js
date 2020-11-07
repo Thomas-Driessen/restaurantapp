@@ -118,6 +118,8 @@ const Product = (props) => {
           },
             body: JSON.stringify(props.category)
           }).then(response => response.json())
+          alert("Your category has been deleted");
+          setDelete(false);
         }
     
     return(

@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
     width: "50ch",
   },
   blur: {
-    filter: "blur(1px)",
+    filter: "grayscale(80%)",
     transition: "filter .1s",
-    '&:hover': {filter:"blur(0px)"}
+    '&:hover': {filter:"grayscale(0%)"}
   }
 }));
 
@@ -100,6 +100,11 @@ const Product = (props) => {
       let cat = category.categoryName;
       product.image = image ? image : props.product.image;
       product.price = price;
+
+      let productType = props.productType;
+      if(productType === "NotOnMenu"){
+        productType = props.product.productType;
+      }
       if (props.productType === "Food") {
         product.category = props.foodCategories.find(
           (element) => element.categoryName === cat
@@ -109,8 +114,7 @@ const Product = (props) => {
           (element) => element.categoryName === cat
         );
       }
-
-      fetch(`/api/${props.productType}/${props.product.id}`, {
+      fetch(`/api/${productType}/${props.product.id}`, {
         method: "PUT",
         mode: "cors",
         headers: {
@@ -127,7 +131,7 @@ const Product = (props) => {
 
   const setItemOnMenu = (isOnMenu) => {
     props.product.onMenu = isOnMenu;
-    fetch(`/api/${props.productType}/${props.product.id}`, {
+    fetch(`/api/${props.product.productType}/${props.product.id}`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -355,7 +359,7 @@ const Product = (props) => {
                           />
                         </FormControl>
                       ) : null}
-                      {props.product.ingredients ? (
+                     
                         <FormControl
                           className={clsx(
                             classes.margin,
@@ -365,12 +369,12 @@ const Product = (props) => {
                         >
                           <TextField
                             label="Ingredients"
-                            value={values.ingredients}
+                            value={values.ingredients ? values.ingredients : ""}
                             onChange={handleChange("ingredients")}
                             multiline
                           />
                         </FormControl>
-                      ) : null}
+                      
                       <FormControl
                         className={clsx(
                           classes.margin,
