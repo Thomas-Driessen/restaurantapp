@@ -38,8 +38,13 @@ class Navigator extends React.Component{
                         </Button>
                     </ListItem>
                     <ListItem>
-                        <Button>
-                            <CategoryIcon /> Categories
+                        <Button onClick={this.props.selectFoodCategories}>
+                            <CategoryIcon /> Food Categories
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button onClick={this.props.selectDrinkCategories}>
+                            <CategoryIcon /> Drink Categories
                         </Button>
                     </ListItem>
                     <ListItem>

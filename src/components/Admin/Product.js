@@ -98,7 +98,6 @@ const Product = (props) => {
     } else {
       let product = values;
       let cat = category.categoryName;
-
       product.image = image ? image : props.product.image;
       product.price = price;
       if (props.productType === "Food") {
@@ -183,7 +182,6 @@ const Product = (props) => {
     const file = await res.json();
 
     setImage(file.secure_url);
-
     setLoading(false);
   };
 
