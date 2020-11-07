@@ -99,7 +99,7 @@ const Product = (props) => {
       let product = values;
       let cat = category.categoryName;
 
-      product.image = image;
+      product.image = image ? image : product.image;
       product.price = price;
       if (props.productType === "Food") {
         product.category = props.foodCategories.find(
@@ -183,7 +183,6 @@ const Product = (props) => {
     const file = await res.json();
 
     setImage(file.secure_url);
-
     setLoading(false);
   };
 

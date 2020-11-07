@@ -11,38 +11,43 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import SaveIcon from "@material-ui/icons/Save";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-    withoutLabel: {
-      marginTop: theme.spacing(2),
-    },
-    textField: {
-      width: "50ch",
-    },
-    blur: {
-      filter: "blur(1px)",
-      transition: "filter .1s",
-      '&:hover': {filter:"blur(0px)"}
-    }
-  }));  
-
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(2),
+  },
+  textField: {
+    width: "50ch",
+  },
+  blur: {
+    filter: "blur(1px)",
+    transition: "filter .1s",
+    '&:hover': {filter:"blur(0px)"}
+  }
+}));
 
 const Product = (props) => {
+    const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [del, setDelete] = React.useState(false);
     const [values, setValues] = React.useState({ ...props.category });
     const [image, setImage] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+
       const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
       };
@@ -67,7 +72,7 @@ const Product = (props) => {
         const files = e.target.files;
         const data = new FormData();
         data.append("file", files[0]);
-        data.append("upload_preset", `CatImages`);
+        data.append("upload_preset", `Categories`);
         setLoading(true);
     
         const res = await fetch(
@@ -84,38 +89,35 @@ const Product = (props) => {
     
         setLoading(false);
       };
-    
-      var tableInfo = {};
 
       const editCategory = () => {
         let category = values;
-      
-        fetch(`/api/category/${props.categoryType}`, {
-          method: 'put',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-            body: JSON.stringify(category)
-          }).then(response => response.json())
-            .then(data => {
-              console.log(data)
-          });
-        }
+        category.image = image ? image : category.image;
 
-        
-      const deleteCategory = (category) => {
         fetch(`/api/category/${props.categoryType}`, {
-          method: 'delete',
+          method: "PUT",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(category),
+        }).catch(console.log);
+
+        alert("Your changes have been saved");
+        setOpen(false);
+      }
+        
+      const deleteCategory = () => {
+        fetch(`/api/category/${props.categoryType}`, {
+          method: "DELETE",
+          mode: "cors",
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-            body: JSON.stringify(category)
+            body: JSON.stringify(props.category)
           }).then(response => response.json())
-            .then(data => {
-              console.log(data)
-          });
         }
     
     return(
@@ -136,15 +138,29 @@ const Product = (props) => {
                             </Typography>
                         </CardContent>
                             <CardActions>
-                                <Grid container direction="row" justify="center" alignItems="center">
-                                <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
-                                        <span style={{ fontWeight: "bold" }}>Edit</span>
-                                    </Button>
-                                    <Button size="large" color="primary" target="_blank" onClick={handleDeleteOpen} >
-                                        <span style={{ fontWeight: "bold" }}>Delete</span>
-                                    </Button>
-                                </Grid>
-                        </CardActions>
+                              <Grid
+                                container
+                                alignItems="flex-start"
+                                justify="flex-end"
+                                direction="row"
+                              >
+                              <div style={{ display: "flex", alignItems: "right" }}>
+                                <Button
+                                  size="large"
+                                  color="primary"
+                                  target="_blank"
+                                  onClick={handleClickOpen}
+                                >
+                                  <span style={{ fontWeight: "bold" }}>Edit</span>
+                                </Button>
+                                <Button
+                                size="large"
+                                color="primary"
+                                target="_blank"
+                                onClick={handleDeleteOpen}
+                              >
+                                <span style={{ fontWeight: "bold" }}>Delete</span>
+                              </Button>
                         
                         {/* Delete pop up */}
                         <Dialog open={del} onClose={handleDeleteClose} aria-labelledby="product-title">
@@ -157,7 +173,7 @@ const Product = (props) => {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button size="medium" color="primary" onClick={() => deleteCategory(props.category)}>
+                                <Button size="medium" color="primary" onClick={deleteCategory}>
                                     Yes
                                 </Button>
                                 <Button size="medium" color="primary" onClick={handleDeleteClose}>
@@ -173,7 +189,6 @@ const Product = (props) => {
                                 {props.category.categoryName}
                             </DialogTitle>
                             <DialogContent>
-                                <DialogContentText>
                                 <CardMedia
                                         style={{ height: 400 }}
                                         component="img"
@@ -182,13 +197,24 @@ const Product = (props) => {
                                         alt={`Image for ${props.category.categoryName} Not Found`}
                                         title={props.category.categoryName}
                                     />
-                                    <FormControl>
                                         {props.category.categoryName ? (
-                                            <FormControl>
+                                            <FormControl
+                                              className={clsx(
+                                                classes.margin,
+                                                classes.withoutLabel,
+                                                classes.textField
+                                              )}
+                                            >
                                               <TextField label="Title" value={values.categoryName} onChange={handleChange("categoryName")} />
                                             </FormControl>
                                         ) : null}
-                                            <FormControl>
+                                            <FormControl
+                                              className={clsx(
+                                                classes.margin,
+                                                classes.withoutLabel,
+                                                classes.textField
+                                              )}
+                                            >
                                             <input
                                                 type="file"
                                                 name="file"
@@ -196,22 +222,35 @@ const Product = (props) => {
                                                 onChange={uploadImage}
                                                 />
                                             </FormControl>
-                                    </FormControl>
                                     
                                         {loading ? (
                                             <DialogContentText>Loading...</DialogContentText>
                                         ) : null}
-                                </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button size="medium" color="primary" onClick={editCategory}>
-                                    Update
-                                </Button>
+                              <Button
+                                size="large"
+                                color="primary"
+                                target="_blank"
+                                onClick={editCategory}
+                                disabled={loading}
+                              >
+                                <SaveIcon /> Save
+                              </Button>
+                              <IconButton
+                                aria-label="close"
+                                color="primary"
+                                onClick={handleClose}
+                              >
+                                <CloseIcon />
+                              </IconButton>
                             </DialogActions>
-                        </Dialog>
-                        
+                            </Dialog>
+                            </div>
+                        </Grid>
+                      </CardActions>
                     </Card>
-                </div>
+                  </div>
             ) : null}
         </div>
     )

@@ -200,11 +200,6 @@ class Content extends React.Component {
   }
 
   addCategory = () => {
-      // let category = this.RemovePropertyWithoutAltering("type",this.state.newCategory);
-      // category = this.RemovePropertyWithoutAltering("categoryName", category);
-
-      // console.log("category type: " + this.state.newCategory.type);
-      // console.log("category: " + category);
       console.log(this.state.newCategory.type);
       fetch(`/api/category/${this.state.newCategory.type}`, {
         method: "POST",
@@ -300,8 +295,8 @@ class Content extends React.Component {
     const file = await res.json();
 
     this.setState({
-      newProduct: {
-        ...this.state.newProduct,
+      newCategory: {
+        ...this.state.newCategory,
         image: file.secure_url,
       },
     });
@@ -312,7 +307,7 @@ class Content extends React.Component {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", `${this.state.newCategory.type}Images`);
+    data.append("upload_preset", `${this.state.newProduct.type}Images`);
     this.setState({ loading: true });
 
     const res = await fetch(
@@ -326,8 +321,8 @@ class Content extends React.Component {
     const file = await res.json();
 
     this.setState({
-      newCategory: {
-        ...this.state.newCategory,
+      newProduct: {
+        ...this.state.newProduct,
         image: file.secure_url,
       },
     });
@@ -501,7 +496,7 @@ class Content extends React.Component {
                     </DialogContent>
                     <DialogActions>
                       <Button size="large" color="primary" target="_blank" onClick={this.addCategory} disabled={this.state.loading} >
-                        <SaveIcon /> Add new product
+                        <SaveIcon /> Add new Category
                       </Button>
                       <IconButton aria-label="close" color="primary" onClick={this.handleCategoryAddClose} >
                         <CloseIcon />
