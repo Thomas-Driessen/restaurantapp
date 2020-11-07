@@ -20,7 +20,8 @@ class ViewOrder extends React.Component {
       pricePreviousDrinks: 0,
       pricePreviousFoods: 0,
       priceCurrentDrinks: 0,
-      priceCurrentFoods: 0
+      priceCurrentFoods: 0,
+      tableId: sessionStorage.getItem("tableId")
     };
   }
 
@@ -163,6 +164,24 @@ class ViewOrder extends React.Component {
     })
   }
 
+  callStaffPay = () => {
+    var tableInfo = {
+        "Id": this.state.tableId,
+        "PayAssistance": true
+    };
+    fetch('/api/table/tablePayAssistance', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tableInfo)
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data)
+        });
+  }
+
   render(){
   return(
       <div>
@@ -172,7 +191,7 @@ class ViewOrder extends React.Component {
               <Grid container justify="center">
               <AppBar position="static" color="transparent"  elevation={0} style={{paddingLeft: 15, paddingRight: 20}}>
                         <ToolBar disableGutters>
-                            <Button variant="contained" disableElevation style={{float: 'left', minWidth:"200px", minHeight:"40px", borderRadius: 50}} size="large" color="primary" onClick={ () => this.props.sendOrder()}>
+                            <Button variant="contained" disableElevation style={{float: 'left', minWidth:"200px", minHeight:"40px", borderRadius: 50}} size="large" color="primary" onClick={this.callStaffPay}>
                                 Pay for Orders
                             </Button>
                             <Container disableGutters>

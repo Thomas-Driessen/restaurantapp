@@ -17,7 +17,7 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "PayAssistance": false
             };
-            fetch('/api/table/settablepayassistance', {
+            fetch('/api/table/tablePayAssistance', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -34,7 +34,7 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "RequiresAssistance": false
             };
-            fetch('/api/table/settableassistance', {
+            fetch('/api/table/tableAssistance', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
