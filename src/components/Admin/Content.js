@@ -109,7 +109,6 @@ class Content extends React.Component {
             : this.state.newCategory.type,
       },
     });
-    console.log(this.state.newCategory);
   };
 
   componentDidMount() {
@@ -182,7 +181,20 @@ class Content extends React.Component {
 
   selectNotOnMenu = (e) => {
     e.preventDefault();
-    let productsNotOnMenu = [...this.state.foods, ...this.state.drinks].filter(
+    let productsNotOnMenu = [];
+    this.state.foods.map((item) => {
+      let product = item;
+      product.productType = 'Food';
+      productsNotOnMenu.push(product);
+      return product;
+    });
+    this.state.drinks.map((item) => {
+      let product = item;
+      product.productType = 'Drink';
+      productsNotOnMenu.push(product);
+      return product;
+    });
+    productsNotOnMenu = productsNotOnMenu.filter(
       (item) => item.onMenu === false
     );
     this.setState({ shownProducts: productsNotOnMenu });
@@ -223,15 +235,14 @@ class Content extends React.Component {
   }
 
   addCategory = () => {
-    console.log(this.state.newCategory.type);
-    fetch(`/api/category/${this.state.newCategory.type}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(this.state.newCategory)
-    }).catch(console.log);
+      fetch(`/api/category/${this.state.newCategory.type}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.state.newCategory)
+      }).catch(console.log);
 
     alert("Your changes have been saved");
     this.setState({ openAddCategory: false });
