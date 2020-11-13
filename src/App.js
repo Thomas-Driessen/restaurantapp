@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
 } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MenuRedirectPage from './pages/MenuRedirectPage';
@@ -38,22 +38,22 @@ const theme = createMuiTheme({
 
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
     runInAction(() => {
       let data = sessionStorage.getItem('sessionUserStore');
-        if(data!=null){
-            data = JSON.parse(data);
-            UserStore.isLoggedIn = data.isLoggedIn;
-            UserStore.username = data.username;
-            UserStore.loading = data.loading;
-        }
+      if (data != null) {
+        data = JSON.parse(data);
+        UserStore.isLoggedIn = data.isLoggedIn;
+        UserStore.username = data.username;
+        UserStore.loading = data.loading;
+      }
     })
   }
 
-  render(){
-    if(UserStore.loading) {
+  render() {
+    if (UserStore.loading) {
       return (
         <div className="loginForm">
           <div className="box">
@@ -63,19 +63,19 @@ class App extends React.Component {
       )
     }
     else {
-      if(UserStore.isLoggedIn) {
+      if (UserStore.isLoggedIn) {
         return (
           <MuiThemeProvider theme={theme}>
             <Router>
               <Switch>
                 <Route exact path="/" component={Menu} />
                 <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
-                <Route exact path="/kitchenOverview" component={KitchenOverview}/>
-                <Route exact path="/assistanceOverview" component={assistanceOverview}/>
-                <Route exact path="/menu" component={Menu}/>
+                <Route exact path="/kitchenOverview" component={KitchenOverview} />
+                <Route exact path="/assistanceOverview" component={assistanceOverview} />
+                <Route exact path="/menu" component={Menu} />
                 <Route path="/order" component={Order} />
-                <Route exact path="/admin" component={Admin}/>
-                <Route exact path="/login" render={() => (<Redirect to="/admin" />)}/>
+                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/login" render={() => (<Redirect to="/admin" />)} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Router>
@@ -88,12 +88,12 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Menu} />
               <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
-              <Route exact path="/kitchenOverview" component={KitchenOverview}/>
-              <Route exact path="/assistanceOverview" component={assistanceOverview}/>
-              <Route exact path="/menu" component={Menu}/>
+              <Route exact path="/kitchenOverview" component={KitchenOverview} />
+              <Route exact path="/assistanceOverview" component={assistanceOverview} />
+              <Route exact path="/menu" component={Menu} />
               <Route path="/order" component={Order} />
-              <Route exact path="/admin" render={() => (<Redirect to="/login" />)}/>
-              <Route exact path="/login" component={LoginPage}/>
+              <Route exact path="/admin" render={() => (<Redirect to="/login" />)} />
+              <Route exact path="/login" component={LoginPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </Router>

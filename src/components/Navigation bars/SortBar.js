@@ -5,12 +5,12 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Container from '@material-ui/core/Container';
 
 const SortBar = (props) => {
-    return(
+    return (
         <div>
             <AppBar position="static" color="transparent">
                 <Container disableGutters>
                     <ButtonGroup fullWidth variant="text" size="large" color="primary" aria-label="text primary button group">
-                        <Button  onClick={props.showFoods}>
+                        <Button onClick={props.showFoods}>
                             Food
                         </Button>
                         <Button onClick={props.showDrinks}>

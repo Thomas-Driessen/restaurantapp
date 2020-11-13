@@ -9,12 +9,13 @@ import Grid from '@material-ui/core/Grid';
 
 const Product = (props) => {
 
-    return(
+    return (
         <div>
             { props.category ? (
                 <div>
                     <Card >
-                        <CardMedia style={{height: 400}}
+                        <CardMedia 
+                            style={{ height: 400 }}
                             component="img"
                             height="250"
                             src={props.category.image}
@@ -26,13 +27,13 @@ const Product = (props) => {
                                 {props.category.categoryName}
                             </Typography>
                         </CardContent>
-                            <CardActions>
-                                <Grid container direction="row" justify="center" alignItems="center">
-                                    <Button size="large" color="primary" target="_blank" onClick={() => props.selectCategory(props.category)}>
-                                    <span style={{fontWeight:"bold", fontSize: "18px"}}>Select Category</span>
-                                    </Button>
-                                </Grid>
-                            </CardActions>
+                        <CardActions>
+                            <Grid container direction="row" justify="center" alignItems="center">
+                                <Button size="large" color="primary" target="_blank" onClick={() => props.selectCategory(props.category)}>
+                                    <span style={{ fontWeight: "bold", fontSize: "18px" }}>Select Category</span>
+                                </Button>
+                            </Grid>
+                        </CardActions>
                     </Card>
                 </div>
             ) : null}

@@ -4,15 +4,15 @@ import { RemoveRedEye } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-const styles = theme => ({
+const styles = () => ({
   eye: {
     cursor: 'pointer',
   },
 });
 
 class PasswordInput extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       passwordIsMasked: true,
@@ -30,24 +30,24 @@ class PasswordInput extends Component {
     const { passwordIsMasked } = this.state;
 
     return (
-        <div className = "inputField">
-            <TextField
-                type={passwordIsMasked ? 'password' : 'text'}
-                id="outlined-search" 
-                variant="outlined"
-                className = 'input'
-                 {...this.props}
-                InputProps={{
-                 endAdornment: (
-                    <InputAdornment position="end">
-                    <RemoveRedEye
-                         className={classes.eye}
-                        onClick={this.togglePasswordMask}
-                     />
-                </InputAdornment>
-                ),
-            }}
-         />
+      <div className="inputField">
+        <TextField
+          type={passwordIsMasked ? 'password' : 'text'}
+          id="outlined-search"
+          variant="outlined"
+          className='input'
+          {...this.props}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <RemoveRedEye
+                  className={classes.eye}
+                  onClick={this.togglePasswordMask}
+                />
+              </InputAdornment>
+            ),
+          }}
+        />
       </div>
     );
   }

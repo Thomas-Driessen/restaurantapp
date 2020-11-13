@@ -11,22 +11,22 @@ import CategoryIcon from '@material-ui/icons/Category';
 import PaletteIcon from '@material-ui/icons/Palette';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 
-class Navigator extends React.Component{
-    
-    render(){
+class Navigator extends React.Component {
+
+    render() {
         return (
             <Drawer variant="permanent">
                 <List>
                     <ListItem>
-                    Restaurant
+                        Restaurant
                     </ListItem>
                     <ListItem>
                         <Button>
-                            <HomeIcon/> Dashboard
+                            <HomeIcon /> Dashboard
                         </Button>
                     </ListItem>
                     <ListItem>
-                        
+
                     </ListItem>
                     <ListItem>
                         <Button onClick={this.props.selectFoods}>

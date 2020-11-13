@@ -1,11 +1,11 @@
-import {extendObservable} from 'mobx';
+import { extendObservable } from 'mobx';
 
-class UserStore{
-    constructor(){
+class UserStore {
+    constructor() {
         extendObservable(this, {
-            loading:false,
-            isLoggedIn:false,
-            username:''
+            loading: false,
+            isLoggedIn: false,
+            username: ''
         })
     }
 }
