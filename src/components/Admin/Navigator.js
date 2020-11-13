@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CategoryIcon from '@material-ui/icons/Category';
 import PaletteIcon from '@material-ui/icons/Palette';
+import KitchenIcon from '@material-ui/icons/Kitchen';
 
 class Navigator extends React.Component{
     
@@ -45,6 +46,11 @@ class Navigator extends React.Component{
                     <ListItem>
                         <Button onClick={this.props.selectDrinkCategories}>
                             <CategoryIcon /> Drink Categories
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button onClick={this.props.selectIngredients}>
+                            <KitchenIcon /> Ingredients
                         </Button>
                     </ListItem>
                     <ListItem>

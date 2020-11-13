@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -20,9 +19,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import CategoryList from "./CategoryList";
-import InputLabel from "@material-ui/core/InputLabel";
+import IngredientsList from "./IngredientsList";
+import AddProductButton from './AddProductButton';
 
 class Content extends React.Component {
   constructor() {
@@ -36,8 +35,9 @@ class Content extends React.Component {
       foodCategories: [],
       drinkCategories: [],
       shownProducts: [],
+      ingredients: [],
+      selectedType: "",
       productType: "",
-      categoryType: "",
       openAddProduct: false,
       openAddCategory: false,
       loading: false,
@@ -68,7 +68,7 @@ class Content extends React.Component {
   handleClickOpen = () => {
     this.setState({ openAddProduct: true });
   };
-  
+
   handleClose = () => {
     this.setState({ openAddProduct: false });
   };
@@ -76,7 +76,7 @@ class Content extends React.Component {
   handleCategoryAddOpen = () => {
     this.setState({ openAddCategory: true });
   };
-  
+
   handleCategoryAddClose = () => {
     this.setState({ openAddCategory: false });
   };
@@ -91,8 +91,8 @@ class Content extends React.Component {
           name === "type"
             ? ""
             : name === "categoryName"
-            ? value
-            : this.state.newProduct.categoryName,
+              ? value
+              : this.state.newProduct.categoryName,
       },
     });
   };
@@ -103,10 +103,10 @@ class Content extends React.Component {
       newCategory: {
         ...this.state.newCategory,
         [name]: value,
-        type: 
-           name === "type" 
-          ? value 
-          : this.state.newCategory.type,
+        type:
+          name === "type"
+            ? value
+            : this.state.newCategory.type,
       },
     });
     console.log(this.state.newCategory);
@@ -150,6 +150,15 @@ class Content extends React.Component {
       })
       .catch(console.log);
 
+    fetch(`/api/ingredients`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (mounted) {
+          this.setState({ ingredients: data });
+        }
+      })
+      .catch(console.log);
+
     return () => (mounted = false);
   }
 
@@ -158,8 +167,8 @@ class Content extends React.Component {
     this.setState({
       shownProducts: this.state.foods.filter((item) => item.onMenu === true),
     });
+    this.setState({ selectedType: "Product" });
     this.setState({ productType: "Food" });
-    this.setState({ categoryType: "" });
   };
 
   selectDrinks = (e) => {
@@ -167,8 +176,8 @@ class Content extends React.Component {
     this.setState({
       shownProducts: this.state.drinks.filter((item) => item.onMenu === true),
     });
+    this.setState({ selectedType: "Product" });
     this.setState({ productType: "Drink" });
-    this.setState({ categoryType: "" });
   };
 
   selectNotOnMenu = (e) => {
@@ -177,21 +186,28 @@ class Content extends React.Component {
       (item) => item.onMenu === false
     );
     this.setState({ shownProducts: productsNotOnMenu });
-    this.setState({ productType: "NotOnMenu" });
-    this.setState({ categoryType: "" });
+    this.setState({ selectedType: "NotOnMenu" });
+    this.setState({ productType: "" });
   };
-  
+
   selectFoodCategories = (e) => {
     e.preventDefault();
     this.setState({ shownCategories: this.state.foodCategories });
-    this.setState({ categoryType: "Food" });
-    this.setState({ productType: "" });
+    this.setState({ selectedType: "Category" });
+    this.setState({ productType: "Food" });
   }
 
   selectDrinkCategories = (e) => {
     e.preventDefault();
     this.setState({ shownCategories: this.state.drinkCategories });
-    this.setState({ categoryType: "Drink" });
+    this.setState({ selectedType: "Category" });
+    this.setState({ productType: "Drink" });
+  }
+
+  selectIngredients = (e) => {
+    e.preventDefault();
+    this.setState({ shownCategories: this.state.drinkCategories });
+    this.setState({ selectedType: "Ingredients" });
     this.setState({ productType: "" });
   }
 
@@ -207,18 +223,18 @@ class Content extends React.Component {
   }
 
   addCategory = () => {
-      console.log(this.state.newCategory.type);
-      fetch(`/api/category/${this.state.newCategory.type}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.state.newCategory)
-      }).catch(console.log);
+    console.log(this.state.newCategory.type);
+    fetch(`/api/category/${this.state.newCategory.type}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(this.state.newCategory)
+    }).catch(console.log);
 
-      alert("Your changes have been saved");
-      this.setState({ openAddCategory: false });
+    alert("Your changes have been saved");
+    this.setState({ openAddCategory: false });
   };
 
   saveProduct = () => {
@@ -324,7 +340,6 @@ class Content extends React.Component {
         body: data,
       }
     );
-
     const file = await res.json();
 
     this.setState({
@@ -335,7 +350,38 @@ class Content extends React.Component {
     });
     this.setState({ loading: false });
   };
-  
+
+  renderProducts(selectedType, productType) {
+    console.log(productType);
+    switch (selectedType) {
+      case 'Product':
+        return <ProductsList
+          products={this.state.shownProducts}
+          productType={productType}
+          foodCategories={this.state.foodCategories}
+          drinkCategories={this.state.drinkCategories}
+        />;
+      case 'Category':
+        return <CategoryList
+          categories={this.state.shownCategories}
+          type={productType}
+        />;
+      case 'Ingredients':
+        return <IngredientsList
+          ingredients={this.state.ingredients}
+        />;
+      case 'NotOnMenu':
+        return <ProductsList
+          products={this.state.shownProducts}
+          productType={productType}
+          foodCategories={this.state.foodCategories}
+          drinkCategories={this.state.drinkCategories}
+        />;
+      default:
+        return null;
+    }
+  };
+
   render() {
     return (
       <div>
@@ -345,6 +391,7 @@ class Content extends React.Component {
           selectNotOnMenu={this.selectNotOnMenu}
           selectFoodCategories={this.selectFoodCategories}
           selectDrinkCategories={this.selectDrinkCategories}
+          selectIngredients={this.selectIngredients}
         />
         <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
           <AppBar position="static" color="default" elevation={0}>
@@ -368,131 +415,13 @@ class Content extends React.Component {
                   />
                 </Grid>
                 <Grid item xs>
-                  <Button variant="contained" color="primary" onClick={this.handleClickOpen} >
-                    Add product
-                  </Button>
+                  <AddProductButton
+                    foodCategories={this.state.foodCategories}
+                    drinkCategories={this.state.drinkCategories}
+                  />
                   <Button variant="contained" color="primary" onClick={this.handleCategoryAddOpen} >
                     Add Category
                   </Button>
-                  {/* Begin add product dialog */}
-                  <Dialog open={this.state.openAddProduct} onClose={this.handleClose} aria-labelledby="product-title" >
-                    <DialogTitle id="product-title">
-                      Add a new product
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>
-                        You want to add a new product, huh?
-                      </DialogContentText>
-
-                      <FormControl style={this.state.style}>
-                        <TextField label="Title" name="title" onChange={this.handleNewProductChange("title")} />
-                      </FormControl>
-
-                      <FormControl style={this.state.style}>
-                        <InputLabel id="demo-simple-select-label">
-                          Type
-                        </InputLabel>
-                        <Select
-                          id="select-type"
-                          name="type"
-                          label="Yype"
-                          value={this.state.newProduct.type}
-                          onChange={this.handleNewProductChange("type")}
-                        >
-                          <MenuItem value="food">Food</MenuItem>
-                          <MenuItem value="drink">Drink</MenuItem>
-                        </Select>
-                      </FormControl>
-
-                      {this.state.newProduct.type === "food" ? (
-                        <FormControl style={this.state.style}>
-                          <InputLabel id="demo-simple-select-label">
-                            Category
-                          </InputLabel>
-                          <Select
-                            id="select-food-category"
-                            name="categoryName"
-                            value={this.state.newProduct.categoryName}
-                            onChange={this.handleNewProductChange(
-                              "categoryName"
-                            )}
-                          >
-                            {this.renderSelectCategories(
-                              this.state.foodCategories
-                            )}
-                          </Select>
-                        </FormControl>
-                      ) : null}
-
-                      {this.state.newProduct.type === "drink" ? (
-                        <FormControl style={this.state.style}>
-                          <InputLabel id="demo-simple-select-label">
-                            Category
-                          </InputLabel>
-                          <Select
-                            id="select-drink-category"
-                            name="categoryName"
-                            value={this.state.newProduct.categoryName}
-                            onChange={this.handleNewProductChange(
-                              "categoryName"
-                            )}
-                          >
-                            {this.renderSelectCategories(
-                              this.state.drinkCategories
-                            )}
-                          </Select>
-                        </FormControl>
-                      ) : null}
-
-                      <FormControl style={this.state.style}>
-                        <TextField label="Ingredients" name="ingredients"
-                          onChange={this.handleNewProductChange("ingredients")}
-                        />
-                      </FormControl>
-
-                      <FormControl style={this.state.style}>
-                        <TextField label="Price" name="price"
-                          onChange={this.handleNewProductChange("price")}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">€</InputAdornment>
-                            ),
-                          }}
-                        />
-                      </FormControl>
-
-                      <FormControl style={this.state.style}>
-                        <TextField label="Quantity" name="quantity" onChange={this.handleNewProductChange("quantity")} />
-                      </FormControl>
-
-                      {this.state.newProduct.type === "food" ? (
-                        <FormControl style={this.state.style}>
-                          <TextField label="Description" name="description"
-                            onChange={this.handleNewProductChange(
-                              "description"
-                            )}
-                          />
-                        </FormControl>
-                      ) : null}
-
-                      <FormControl style={this.state.style}>
-                        <input type="file" name="file" placeholder="Upload a file" onChange={this.uploadProductImage} />
-                      </FormControl>
-
-                      {this.state.loading ? (
-                        <DialogContentText>Loading...</DialogContentText>
-                      ) : null}
-                    </DialogContent>
-                    <DialogActions>
-                      <Button size="large" color="primary" target="_blank" onClick={this.saveProduct} disabled={this.state.loading} >
-                        <SaveIcon /> Add new product
-                      </Button>
-                      <IconButton aria-label="close" color="primary" onClick={this.handleClose} >
-                        <CloseIcon />
-                      </IconButton>
-                    </DialogActions>
-                  </Dialog>
-                  {/* End add product dialog */}
 
                   {/* Begin add category dialog */}
                   <Dialog open={this.state.openAddCategory} onClose={this.handleCategoryAddClose} aria-labelledby="product-title" >
@@ -537,24 +466,7 @@ class Content extends React.Component {
             </Toolbar>
           </AppBar>
           <div>
-            {this.state.productType !== ""  ? (
-              <ProductsList
-                products={this.state.shownProducts}
-                productType={this.state.productType}
-                foodCategories={this.state.foodCategories}
-                drinkCategories={this.state.drinkCategories} 
-              />
-
-            ) : this.state.categoryType !== ""? (
-              <CategoryList 
-                categories={this.state.shownCategories}
-                type={this.state.categoryType}
-              />
-            ): (
-              <Typography color="textSecondary" align="center">
-              No results found
-              </Typography>
-            )}
+            {this.renderProducts(this.state.selectedType, this.state.productType)}
           </div>
         </Paper>
       </div>

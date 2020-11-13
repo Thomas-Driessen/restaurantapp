@@ -68,6 +68,10 @@ const Product = (props) => {
         setDelete(false);
       };
 
+      React.useEffect(() => {
+        setValues(props.category);
+      }, [props.category]);
+
       const uploadImage = async (e) => {
         const files = e.target.files;
         const data = new FormData();
@@ -118,6 +122,9 @@ const Product = (props) => {
           },
             body: JSON.stringify(props.category)
           }).then(response => response.json())
+
+          alert("This Category has been deleted");
+          setDelete(false);
         }
     
     return(
