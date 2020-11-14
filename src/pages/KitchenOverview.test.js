@@ -15,3 +15,7 @@ test('Render KitchenOverview', () => {
   const linkElement = getByText(/To do/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+  global.gc && global.gc()
+})

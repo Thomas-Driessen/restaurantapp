@@ -39,3 +39,7 @@ test('Render ProductDelete NotOnMenu', () => {
     const linkElement = getByText(/Back to menu/i);
     expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+    global.gc && global.gc()
+})

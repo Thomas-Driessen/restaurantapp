@@ -21,3 +21,7 @@ it('Navigator renders correctly', () => {
         .toJSON();
     expect(tree).toMatchSnapshot();
 });
+
+afterAll(() => {
+    global.gc && global.gc()
+})

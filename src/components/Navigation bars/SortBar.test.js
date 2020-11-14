@@ -21,9 +21,13 @@ test('Render SortBar Drink Button', () => {
   const linkElement = getByText(/Drink/i);
   expect(linkElement).toBeInTheDocument();
 });
-  
+
 test('Render SortBar Most Liked Button', () => {
   const { getByText } = render(<SortBar />);
   const linkElement = getByText(/Most Liked/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+  global.gc && global.gc()
+})

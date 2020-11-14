@@ -13,20 +13,24 @@ const product = {
     onMenu: true
 };
 
-const categories= [
-    {categoryName: "Drinks"},
-    {categoryName: "Coffee"}
-  ]
+const categories = [
+    { categoryName: "Drinks" },
+    { categoryName: "Coffee" }
+]
 
 it('ProductEdit renders correctly', () => {
     const tree = renderer
-        .create(<ProductEdit product={product} foodCategories={categories} drinkCategories={categories}/>)
+        .create(<ProductEdit product={product} foodCategories={categories} drinkCategories={categories} />)
         .toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 test('Render ProductEdit', () => {
-    const { getByText } = render(<ProductEdit product={product} foodCategories={categories} drinkCategories={categories}/>);
+    const { getByText } = render(<ProductEdit product={product} foodCategories={categories} drinkCategories={categories} />);
     const linkElement = getByText(/Edit/i);
     expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+    global.gc && global.gc()
+})

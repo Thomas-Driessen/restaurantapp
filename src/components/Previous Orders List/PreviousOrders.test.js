@@ -23,33 +23,38 @@ const theme = createMuiTheme({
 
 const previousFoods = [
   {
-    id:1,
-    food:"Pizza"
+    id: 1,
+    food: "Pizza"
   },
   {
-    id:2,
-    food:"Pasta"
+    id: 2,
+    food: "Pasta"
   }
 ];
 const previousDrinks = [
   {
-    id:1,
-    drink:"Coca-Cola"
+    id: 1,
+    drink: "Coca-Cola"
   },
-  {id: 2,
-  drink: "Pepsi"
+  {
+    id: 2,
+    drink: "Pepsi"
   }
 ];
 
 it('PreviousOrders render correctly', () => {
   const tree = renderer
-    .create(<PreviousOrders theme={theme} previousFoods={previousFoods} previousDrinks={previousDrinks} totalPrice={0}/>)
+    .create(<PreviousOrders theme={theme} previousFoods={previousFoods} previousDrinks={previousDrinks} totalPrice={0} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test('Render PreviousOrders', () => {
-    const { getByText } = render(<PreviousOrders theme={theme} previousFoods={previousFoods} previousDrinks={previousDrinks} totalPrice={0}/>);
-    const linkElement = getByText(/These are your previous orders/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+  const { getByText } = render(<PreviousOrders theme={theme} previousFoods={previousFoods} previousDrinks={previousDrinks} totalPrice={0} />);
+  const linkElement = getByText(/These are your previous orders/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

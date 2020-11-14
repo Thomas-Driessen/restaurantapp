@@ -9,13 +9,17 @@ const category = {
 
 it('CategoryDelete renders correctly', () => {
   const tree = renderer
-    .create(<CategoryDelete category={category}/>)
+    .create(<CategoryDelete category={category} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test('Render CategoryDelete', () => {
-  const { getByText } = render(<CategoryDelete category={category}/>);
+  const { getByText } = render(<CategoryDelete category={category} />);
   const linkElement = getByText(/Delete/i);
   expect(linkElement).toBeInTheDocument();
-  });
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

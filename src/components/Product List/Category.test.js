@@ -14,7 +14,11 @@ test('Render Category', () => {
   let category = {
     categoryName: "Cold"
   };
-  const { getByText } = render(<Category category={category}/>);
+  const { getByText } = render(<Category category={category} />);
   const linkElement = getByText(/Cold/i);
   expect(linkElement).toBeInTheDocument();
-  });
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

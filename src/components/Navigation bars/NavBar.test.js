@@ -11,19 +11,23 @@ it('NavBar renders correctly', () => {
 });
 
 test('Render NavBar Restaurant Button', () => {
-    const { getByText } = render(<NavBar />);
-    const linkElement = getByText(/Restaurant/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+  const { getByText } = render(<NavBar />);
+  const linkElement = getByText(/Restaurant/i);
+  expect(linkElement).toBeInTheDocument();
+});
 
-  test('Render NavBar Menu Button', () => {
-    const { getByText } = render(<NavBar />);
-    const linkElement = getByText(/Menu/i);
-    expect(linkElement).toBeInTheDocument();
-  });
-  
-  test('Render NavBar QR Button', () => {
-    const { getByText } = render(<NavBar />);
-    const linkElement = getByText(/Scan QR/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+test('Render NavBar Menu Button', () => {
+  const { getByText } = render(<NavBar />);
+  const linkElement = getByText(/Menu/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+test('Render NavBar QR Button', () => {
+  const { getByText } = render(<NavBar />);
+  const linkElement = getByText(/Scan QR/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

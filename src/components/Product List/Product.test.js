@@ -17,7 +17,11 @@ test('Render Product', () => {
     price: 2.5,
     description: ""
   };
-  const { getByText } = render(<Product product={product}/>);
+  const { getByText } = render(<Product product={product} />);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
-  });
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

@@ -4,18 +4,22 @@ import CategoryList from './CategoryList';
 import renderer from 'react-test-renderer';
 
 const categories = [{
-        categoryName: "Pizza"
+  categoryName: "Pizza"
 }];
 
 test('Render Category Pizza', () => {
-  const { getByText } = render(<CategoryList categories={categories}/>);
+  const { getByText } = render(<CategoryList categories={categories} />);
   const linkElement = getByText(/Pizza/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 it('CategoryList renders correctly', () => {
-    const tree = renderer
-      .create(<CategoryList categories={categories}/>)
-      .toJSON();
-      expect(tree).toMatchSnapshot();
+  const tree = renderer
+    .create(<CategoryList categories={categories} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });
+
+afterAll(() => {
+  global.gc && global.gc()
+})
