@@ -6,7 +6,6 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import currentFoodList from '../components/Current Order/CurrentFoodList';
 import currentDrinkList from '../components/Current Order/CurrentDrinkList';
-import tableNumber from '../components/TableNumber';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
@@ -26,13 +25,21 @@ class ViewOrder extends React.Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         let mounted = true;
         let sum = 0;
-        fetch(`/api/orderdrink/${tableNumber}`)
+        await fetch(`/api/table/tableNumber/${this.state.tableId}`)
             .then(res => res.json())
             .then((data) => {
                 if (mounted) {
+                    this.setState({ tableNumber: data.tableNumber });
+                }
+            })
+            .catch(console.log)
+        fetch(`/api/orderdrink/${this.state.tableNumber}`)
+            .then(res => res.json())
+            .then((data) => {
+                if (mounted && data) {
                     sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
                     this.setState({ pricePreviousDrinks: sum });
                     this.setState({ previousDrinks: data });
@@ -40,10 +47,10 @@ class ViewOrder extends React.Component {
             })
             .catch(console.log)
 
-        fetch(`/api/orderfood/${tableNumber}`)
+        fetch(`/api/orderfood/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
-                if (mounted) {
+                if (mounted && data) {
                     sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
                     this.setState({ pricePreviousFoods: sum });
                     this.setState({ previousFoods: data })
@@ -83,7 +90,7 @@ class ViewOrder extends React.Component {
     }
 
     updatePreviousOrders() {
-        fetch(`/api/orderdrink/${tableNumber}`)
+        fetch(`/api/orderdrink/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
                 let sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
@@ -91,7 +98,7 @@ class ViewOrder extends React.Component {
                 this.setState({ previousDrinks: data })
             })
             .catch(console.log)
-        fetch(`/api/orderfood/${tableNumber}`)
+        fetch(`/api/orderfood/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
                 let sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
@@ -105,7 +112,7 @@ class ViewOrder extends React.Component {
         let order = [];
         currentDrinkList.map(currentDrink => {
             var drink = {
-                tableId: tableNumber,
+                tableId: this.state.tableNumber,
                 paid: false,
                 drinkId: currentDrink.id
             };
@@ -127,7 +134,7 @@ class ViewOrder extends React.Component {
 
         currentFoodList.map(currentFood => {
             var food = {
-                tableId: tableNumber,
+                tableId: this.state.tableNumber,
                 paid: false,
                 foodId: currentFood.id
             };
@@ -178,9 +185,6 @@ class ViewOrder extends React.Component {
             },
             body: JSON.stringify(tableInfo)
         }).then(response => response.json())
-            .then(data => {
-                console.log(data)
-            });
     }
 
     render() {
@@ -192,21 +196,21 @@ class ViewOrder extends React.Component {
                         <Grid container justify="center">
                             <AppBar position="static" color="transparent" elevation={0} style={{ paddingLeft: 15, paddingRight: 20 }}>
                                 <ToolBar disableGutters>
-                                    <Button 
-                                        variant="contained" 
-                                        disableElevation 
-                                        style={{ 
-                                            float: 'left', 
+                                    <Button
+                                        variant="contained"
+                                        disableElevation
+                                        style={{
+                                            float: 'left',
                                             minWidth: "200px",
-                                            minHeight: "40px", 
-                                            borderRadius: 50 
-                                        }} 
-                                        size="large" 
-                                        color="primary" 
+                                            minHeight: "40px",
+                                            borderRadius: 50
+                                        }}
+                                        size="large"
+                                        color="primary"
                                         onClick={this.callStaffPay}
                                     >
                                         Pay for Orders
-                            </Button>
+                                    </Button>
                                     <Container disableGutters>
                                         <h3 style={{ float: 'right' }}>
                                             Total:  <span style={{ color: "green" }}>{(this.state.priceCurrentDrinks + this.state.priceCurrentFoods + this.state.pricePreviousDrinks + this.state.pricePreviousFoods).toFixed(2)}€</span>
@@ -216,17 +220,17 @@ class ViewOrder extends React.Component {
                             </AppBar>
                         </Grid>
                         <CurrentOrder
-                            totalPrice={this.state.priceCurrentDrinks + this.state.priceCurrentFoods} 
-                            sendOrder={() => this.sendOrder()} 
-                            removeDrink={this.removeDrink} 
-                            removeFood={this.removeFood} 
+                            totalPrice={this.state.priceCurrentDrinks + this.state.priceCurrentFoods}
+                            sendOrder={() => this.sendOrder()}
+                            removeDrink={this.removeDrink}
+                            removeFood={this.removeFood}
                         />
                     </Grid>
                     <Grid item xs={12} sm={12} lg={6} xl={6}>
                         <PreviousOrders
                             totalPrice={this.state.pricePreviousDrinks + this.state.pricePreviousFoods}
-                            previousFoods={this.state.previousFoods} 
-                            previousDrinks={this.state.previousDrinks} 
+                            previousFoods={this.state.previousFoods}
+                            previousDrinks={this.state.previousDrinks}
                         />
                     </Grid>
                 </Grid>

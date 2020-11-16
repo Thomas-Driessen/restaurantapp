@@ -92,4 +92,5 @@ class MenuPage extends React.Component {
     )
   }
 }
+
 export default MenuPage

@@ -17,6 +17,13 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "PayAssistance": false
             };
+            fetch(`/api/OrderDrink/${props.TableAssistance.tableNumber}`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
             fetch('/api/table/tablePayAssistance', {
                 method: 'post',
                 headers: {
