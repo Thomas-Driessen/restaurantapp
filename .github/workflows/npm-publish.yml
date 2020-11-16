@@ -29,10 +29,10 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      #- run: npm ci
+      #- run: npm publish
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
   publish-gpr:
     needs: build
@@ -43,10 +43,10 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      #- run: npm ci
+      #- run: npm publish
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
       - name: Checkout
         uses: actions/checkout@v2
