@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 
-class SubmitButton extends React.Component{
+class SubmitButton extends React.Component {
 
-    render(){
-        return(
-            <div className = "submitButton">
+    render() {
+        return (
+            <div className="submitButton">
                 <Button
-                    className ='btn'
-                    disabled = {this.props.disabled}
+                    className='btn'
+                    disabled={this.props.disabled}
                     onClick={() => this.props.onClick()}
                     variant="outlined"
                 >

@@ -23,19 +23,23 @@ const theme = createMuiTheme({
 
 it('Order renders correctly', () => {
   const tree = renderer
-    .create(<Order theme={theme}/>)
+    .create(<Order theme={theme} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test('Render Order', () => {
-  const { getByText } = render(<Order theme={theme}/>);
+  const { getByText } = render(<Order theme={theme} />);
   const linkElement = getByText(/Pay for orders/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 test('Render Order', () => {
-  const { getByText } = render(<Order theme={theme}/>);
+  const { getByText } = render(<Order theme={theme} />);
   const linkElement = getByText(/This is your current order/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+  global.gc && global.gc();
+})

@@ -11,7 +11,11 @@ it('NotFoundPage renders correctly', () => {
 });
 
 test('404 Not Found', () => {
-  const { getByText } = render(<NotFoundPage/>);
+  const { getByText } = render(<NotFoundPage />);
   const linkElement = getByText(/It seems that this page does not exist/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+  global.gc && global.gc();
+})

@@ -9,22 +9,26 @@ const product = {
   title: "Coca-Cola",
   price: 2.5,
   description: "",
-  category: {categoryName: "Drinks"}
+  category: { categoryName: "Drinks" }
 };
-const categories= [
-  {categoryName: "Drinks"},
-  {categoryName: "Coffee"}
+const categories = [
+  { categoryName: "Drinks" },
+  { categoryName: "Coffee" }
 ]
 
 it('Product renders correctly', () => {
   const tree = renderer
-    .create(<Product product={product} foodCategories={categories} drinkCategories={categories}/>)
+    .create(<Product product={product} foodCategories={categories} drinkCategories={categories} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test('Render Product', () => {
-  const { getByText } = render(<Product product={product} foodCategories={categories} drinkCategories={categories}/>);
+  const { getByText } = render(<Product product={product} foodCategories={categories} drinkCategories={categories} />);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
-  });
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

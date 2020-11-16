@@ -14,7 +14,11 @@ test('Render KitchenProduct', () => {
   var product = {
     title: "Coca-Cola",
   };
-  const { getByText } = render(<KitchenProduct product={product}/>);
+  const { getByText } = render(<KitchenProduct product={product} />);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
-  });
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

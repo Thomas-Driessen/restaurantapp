@@ -291,7 +291,7 @@ exports[`Order renders correctly 1`] = `
             }
           }
         >
-          Total to be paid:  
+          Subtotal for Previous Orders:  
           <span
             style={
               Object {

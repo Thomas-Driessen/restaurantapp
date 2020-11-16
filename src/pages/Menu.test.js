@@ -15,3 +15,7 @@ test('Render Menu', () => {
   const linkElement = getByText(/Choose between Foods, Drinks and Most Liked to see our products/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+afterAll(() => {
+  global.gc && global.gc();
+})

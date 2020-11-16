@@ -37,27 +37,27 @@ class LoginForm extends React.Component {
   async doLogin() {
     fetch(
       `/api/User/username=` +
-        this.state.username +
-        `&password=` +
-        this.state.password
+      this.state.username +
+      `&password=` +
+      this.state.password
     )
       .then((res) => {
         if (res.status !== 200) {
-            this.setState({logInFailed: true})
+          this.setState({ logInFailed: true })
           sessionStorage.setItem("sessionUserStore", JSON.stringify(UserStore));
-        } else{ 
+        } else {
           runInAction(() => {
             UserStore.loading = true;
           });
-            return res.json();
+          return res.json();
         }
       })
       .then((data) => {
         if (data !== undefined) {
           runInAction(() => {
-          UserStore.loading = false;
-          UserStore.isLoggedIn = true;
-          UserStore.username = this.state.username;
+            UserStore.loading = false;
+            UserStore.isLoggedIn = true;
+            UserStore.username = this.state.username;
           });
 
           sessionStorage.setItem("sessionUserStore", JSON.stringify(UserStore));
@@ -65,7 +65,7 @@ class LoginForm extends React.Component {
       })
       .catch(console.log);
   }
-  
+
   render() {
     return (
       <div className="loginForm">
@@ -90,9 +90,9 @@ class LoginForm extends React.Component {
             disabled={this.state.buttonDisabled}
             onClick={() => this.doLogin()}
           />
-            {this.state.logInFailed ? (
-                <div className = "failLogInBox">Sorry, your credentials were incorrect.</div>
-            ) : null}
+          {this.state.logInFailed ? (
+            <div className="failLogInBox">Sorry, your credentials were incorrect.</div>
+          ) : null}
         </div>
       </div>
     );

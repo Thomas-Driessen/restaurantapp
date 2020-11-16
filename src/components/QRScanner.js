@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom'
 class QRScanner extends Component {
     static scanned = false;
 
-    constructor(props){
-        super(props)
+    constructor() {
+        super()
         this.state = {
             delay: 100,
             result: 'No result'
@@ -14,9 +14,8 @@ class QRScanner extends Component {
         this.handleScan = this.handleScan.bind(this)
     }
 
-    async handleScan(data){
-        if(data != null && QRScanner.scanned === false)
-        {
+    async handleScan(data) {
+        if (data != null && QRScanner.scanned === false) {
             QRScanner.scanned = true;
 
             var scannedResult = JSON.parse(data);
@@ -46,19 +45,19 @@ class QRScanner extends Component {
         }
     }
 
-    handleError(err){
+    handleError(err) {
         this.setState({
             result: "There was an error scanning the QR-code! Please try again.",
         })
     }
 
-    render(){
+    render() {
         const previewStyle = {
             height: 240,
             width: 320,
         }
 
-        return(
+        return (
             <div>
                 <QrReader
                     delay={this.state.delay}

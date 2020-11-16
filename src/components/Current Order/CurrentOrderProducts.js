@@ -9,27 +9,27 @@ import Grid from '@material-ui/core/Grid';
 
 const CurrentOrderProducts = (props) => {
 
-    return(
+    return (
         <div>
             { props.product ? (
                 <div>
-                <Card >
-                    <CardContent>
-                    <Typography gutterBottom variant="inherit" component="h2">
-                        {props.product.title} <span style={{float: "right", color: "green"}}>{props.product.price}€</span>
-                    </Typography>
-                    <Typography component="h6">
-                        {props.product.ingredients}
-                    </Typography>
-                    </CardContent>
-                    <CardActions>
-                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                    <IconButton aria-label="remove from order" onClick={ () => props.remove(props.product)}>
-                        <RemoveIcon />
-                    </IconButton>
-                    </Grid>
-                    </CardActions>
-                </Card>
+                    <Card >
+                        <CardContent>
+                            <Typography gutterBottom variant="inherit" component="h2">
+                                {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
+                            </Typography>
+                            <Typography component="h6">
+                                {props.product.ingredients}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                                <IconButton aria-label="remove from order" onClick={() => props.remove(props.product)}>
+                                    <RemoveIcon />
+                                </IconButton>
+                            </Grid>
+                        </CardActions>
+                    </Card>
                 </div>
             ) : null}
         </div>

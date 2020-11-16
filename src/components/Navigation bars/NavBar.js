@@ -17,10 +17,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import QRScanner from "../QRScanner";
 import CameraIcon from '@material-ui/icons/CameraAlt';
 
-class NavBar extends React.Component{
-    constructor(){
+class NavBar extends React.Component {
+    constructor() {
         super();
-        this.state={
+        this.state = {
             totalProductsInOrder: 0,
             redirect: false,
             redirectMenu: false,
@@ -56,11 +56,11 @@ class NavBar extends React.Component{
     }
 
     handleOpenModal = () => {
-        this.setState({setOpen: true});
+        this.setState({ setOpen: true });
     };
 
     handleCloseModal = () => {
-        this.setState({setOpen: false});
+        this.setState({ setOpen: false });
     };
 
     setRedirect = () => {
@@ -87,9 +87,9 @@ class NavBar extends React.Component{
         }
     }
 
-    totalProductsInOrder(){
-        if(currentFoodList.length + currentDrinkList.length !== this.state.totalProductsInOrder) {
-            this.setState({totalProductsInOrder: currentFoodList.length + currentDrinkList.length});
+    totalProductsInOrder() {
+        if (currentFoodList.length + currentDrinkList.length !== this.state.totalProductsInOrder) {
+            this.setState({ totalProductsInOrder: currentFoodList.length + currentDrinkList.length });
         }
     }
 
@@ -110,10 +110,10 @@ class NavBar extends React.Component{
             .then(data => {
                 console.log(data)
             });
-      }
-    
-    render(){
-        return(
+    }
+
+    render() {
+        return (
             <div>
                 <AppBar position="static">
                     <ToolBar>
@@ -123,25 +123,25 @@ class NavBar extends React.Component{
                         {this.renderRedirect()}
                         {this.renderRedirectMenu()}
                         <Container disableGutters>
-                            <div style={{float: 'right'}}>
+                            <div style={{ float: 'right' }}>
                                 <ButtonGroup variant="text" size="large" color="inherit" aria-label="text primary button group">
-                                    <Button  onClick = {this.setRedirectMenu} color="inherit">
+                                    <Button onClick={this.setRedirectMenu} color="inherit">
                                         Menu
                                     </Button>
                                     {sessionStorage.getItem("tableId") ? (
                                         <div>
-                                            <Button  onClick = {this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
+                                            <Button onClick={this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
                                                 My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
                                             </Button>
-                                            <Button  onClick = {this.callStaff} color="inherit">
+                                            <Button onClick={this.callStaff} color="inherit">
                                                 Call Waiter
                                             </Button>
                                         </div>
                                     ) : (
-                                        <Button  onClick={this.handleOpenModal} color="inherit" startIcon={<CameraIcon />}>
-                                            Scan QR
-                                        </Button>
-                                    )}
+                                            <Button onClick={this.handleOpenModal} color="inherit" startIcon={<CameraIcon />}>
+                                                Scan QR
+                                            </Button>
+                                        )}
                                 </ButtonGroup>
                             </div>
                         </Container>
@@ -168,11 +168,12 @@ class NavBar extends React.Component{
                                     </Button>
                                 </DialogActions>
                             </Dialog>
-                        ): null}
+                        ) : null}
                     </ToolBar>
                 </AppBar>
             </div>
-        )}
+        )
+    }
 }
 
 export default NavBar;

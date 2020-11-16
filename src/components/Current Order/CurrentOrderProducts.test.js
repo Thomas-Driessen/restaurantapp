@@ -17,7 +17,11 @@ test('Render CurrentOrderProducts', () => {
     price: 2.5,
     description: ""
   };
-  const { getByText } = render(<CurrentOrderProducts product={product}/>);
+  const { getByText } = render(<CurrentOrderProducts product={product} />);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
-  });
+});
+
+afterAll(() => {
+  global.gc && global.gc()
+})

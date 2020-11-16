@@ -10,30 +10,31 @@ import Grid from '@material-ui/core/Grid';
 
 class KitchenProduct extends React.Component {
 
-    render(){
-    return(
-        <div>
-            { this.props.product ? (
-                <div>
-                <Card >
-                    <CardContent>
-                    <Typography gutterBottom variant="inherit" component="h2">
-                        {this.props.product.title}
-                    </Typography>
-                    </CardContent>
-                    <CardActions>
-                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                    <div style={{display: 'flex', alignItems: 'right'}}>
-                    <IconButton aria-label="push" onClick={ () => this.props.goToNext(this.props.product.title)}>
-                        <AddIcon />
-                    </IconButton>
+    render() {
+        return (
+            <div>
+                { this.props.product ? (
+                    <div>
+                        <Card>
+                            <CardContent>
+                                <Typography gutterBottom variant="inherit" component="h2">
+                                    {this.props.product.title}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                                    <div style={{ display: 'flex', alignItems: 'right' }}>
+                                        <IconButton aria-label="push" onClick={() => this.props.goToNext(this.props.product.title)}>
+                                            <AddIcon />
+                                        </IconButton>
+                                    </div>
+                                </Grid>
+                            </CardActions>
+                        </Card>
                     </div>
-                    </Grid>
-                    </CardActions>
-                </Card>
-                </div>
-            ) : null}
-        </div>
-    )}
+                ) : null}
+            </div>
+        )
+    }
 }
 export default KitchenProduct

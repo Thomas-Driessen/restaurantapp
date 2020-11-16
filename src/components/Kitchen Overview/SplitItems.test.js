@@ -4,13 +4,17 @@ import renderer from 'react-test-renderer';
 
 
 var order = [
-    {title: "Coca-Cola"},
-    {title: "Pizza"}
+  { title: "Coca-Cola" },
+  { title: "Pizza" }
 ];
 
 it('SplitItems renders correctly', () => {
   const tree = renderer
-    .create(<SplitItems order={order}/>)
+    .create(<SplitItems order={order} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+afterAll(() => {
+  global.gc && global.gc()
+})

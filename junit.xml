@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="70" failures="0" time="18.161">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:08" time="10.819" tests="2">
+    <testcase classname=" Render LoginForm Restaurant" name=" Render LoginForm Restaurant" time="0.182">
+    </testcase>
+    <testcase classname=" LoginForm renders correctly" name=" LoginForm renders correctly" time="0.049">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:08" time="10.846" tests="2">
+    <testcase classname=" Render AdminLoginPage Restaurant" name=" Render AdminLoginPage Restaurant" time="0.19">
+    </testcase>
+    <testcase classname=" AdminLoginPage renders correctly" name=" AdminLoginPage renders correctly" time="0.049">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:19" time="0.701" tests="3">
+    <testcase classname=" Order renders correctly" name=" Order renders correctly" time="0.116">
+    </testcase>
+    <testcase classname=" Render Order" name=" Render Order" time="0.052">
+    </testcase>
+    <testcase classname=" Render Order" name=" Render Order" time="0.053">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:19" time="0.478" tests="4">
+    <testcase classname=" NavBar renders correctly" name=" NavBar renders correctly" time="0.028">
+    </testcase>
+    <testcase classname=" Render NavBar Restaurant Button" name=" Render NavBar Restaurant Button" time="0.02">
+    </testcase>
+    <testcase classname=" Render NavBar Menu Button" name=" Render NavBar Menu Button" time="0.014">
+    </testcase>
+    <testcase classname=" Render NavBar QR Button" name=" Render NavBar QR Button" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:19" time="1.352" tests="1">
+    <testcase classname=" PasswordInput renders correctly" name=" PasswordInput renders correctly" time="0.026">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:20" time="0.535" tests="2">
+    <testcase classname=" Menu renders correctly" name=" Menu renders correctly" time="0.054">
+    </testcase>
+    <testcase classname=" Render Menu" name=" Render Menu" time="0.075">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:20" time="0.547" tests="3">
+    <testcase classname=" Render Product Coca-Cola" name=" Render Product Coca-Cola" time="0.114">
+    </testcase>
+    <testcase classname=" Render Product Pepsi" name=" Render Product Pepsi" time="0.058">
+    </testcase>
+    <testcase classname=" ProductsList renders correctly" name=" ProductsList renders correctly" time="0.052">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:21" time="0.482" tests="3">
+    <testcase classname=" Render Navigator Restaurant" name=" Render Navigator Restaurant" time="0.059">
+    </testcase>
+    <testcase classname=" Render Navigator Dashboard" name=" Render Navigator Dashboard" time="0.055">
+    </testcase>
+    <testcase classname=" Navigator renders correctly" name=" Navigator renders correctly" time="0.04">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:21" time="0.44" tests="2">
+    <testcase classname=" Render Category Pizza" name=" Render Category Pizza" time="0.074">
+    </testcase>
+    <testcase classname=" CategoryList renders correctly" name=" CategoryList renders correctly" time="0.036">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:21" time="0.447" tests="3">
+    <testcase classname=" Render Product Coca-Cola" name=" Render Product Coca-Cola" time="0.057">
+    </testcase>
+    <testcase classname=" Render Product Pepsi" name=" Render Product Pepsi" time="0.045">
+    </testcase>
+    <testcase classname=" ProductsList renders correctly" name=" ProductsList renders correctly" time="0.037">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:21" time="0.429" tests="2">
+    <testcase classname=" KitchenOverview renders correctly" name=" KitchenOverview renders correctly" time="0.051">
+    </testcase>
+    <testcase classname=" Render KitchenOverview" name=" Render KitchenOverview" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:22" time="0.43" tests="4">
+    <testcase classname=" SortBar renders correctly" name=" SortBar renders correctly" time="0.024">
+    </testcase>
+    <testcase classname=" Render SortBar Food Button" name=" Render SortBar Food Button" time="0.02">
+    </testcase>
+    <testcase classname=" Render SortBar Drink Button" name=" Render SortBar Drink Button" time="0.012">
+    </testcase>
+    <testcase classname=" Render SortBar Most Liked Button" name=" Render SortBar Most Liked Button" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:22" time="0.389" tests="2">
+    <testcase classname=" Render SubmitButton Restaurant" name=" Render SubmitButton Restaurant" time="0.02">
+    </testcase>
+    <testcase classname=" SubmitButton renders correctly" name=" SubmitButton renders correctly" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:22" time="0.36" tests="2">
+    <testcase classname=" Product renders correctly" name=" Product renders correctly" time="0.04">
+    </testcase>
+    <testcase classname=" Render Product" name=" Render Product" time="0.032">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:22" time="0.377" tests="3">
+    <testcase classname=" Render Product Coca-Cola" name=" Render Product Coca-Cola" time="0.048">
+    </testcase>
+    <testcase classname=" Render Product Pepsi" name=" Render Product Pepsi" time="0.031">
+    </testcase>
+    <testcase classname=" KitchenProductList renders correctly" name=" KitchenProductList renders correctly" time="0.024">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:22" time="0.336" tests="2">
+    <testcase classname=" Category renders correctly" name=" Category renders correctly" time="0.002">
+    </testcase>
+    <testcase classname=" Render Category" name=" Render Category" time="0.048">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:22" time="0.37" tests="2">
+    <testcase classname=" CurrentOrder renders correctly" name=" CurrentOrder renders correctly" time="0.011">
+    </testcase>
+    <testcase classname=" Render CurrentOrder" name=" Render CurrentOrder" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:23" time="0.286" tests="2">
+    <testcase classname=" ProductEdit renders correctly" name=" ProductEdit renders correctly" time="0.015">
+    </testcase>
+    <testcase classname=" Render ProductEdit" name=" Render ProductEdit" time="0.014">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:23" time="0.289" tests="2">
+    <testcase classname=" Render Category Pizza" name=" Render Category Pizza" time="0.033">
+    </testcase>
+    <testcase classname=" CategoryList renders correctly" name=" CategoryList renders correctly" time="0.019">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:23" time="0.301" tests="3">
+    <testcase classname=" ProductDelete renders correctly" name=" ProductDelete renders correctly" time="0.017">
+    </testcase>
+    <testcase classname=" Render ProductDelete OnMenu" name=" Render ProductDelete OnMenu" time="0.012">
+    </testcase>
+    <testcase classname=" Render ProductDelete NotOnMenu" name=" Render ProductDelete NotOnMenu" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:23" time="0.295" tests="2">
+    <testcase classname=" KitchenProduct renders correctly" name=" KitchenProduct renders correctly" time="0.003">
+    </testcase>
+    <testcase classname=" Render KitchenProduct" name=" Render KitchenProduct" time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:23" time="0.311" tests="2">
+    <testcase classname=" CategoryEdit renders correctly" name=" CategoryEdit renders correctly" time="0.015">
+    </testcase>
+    <testcase classname=" Render CategoryEdit" name=" Render CategoryEdit" time="0.016">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:23" time="0.315" tests="2">
+    <testcase classname=" Render AddCategoryButton" name=" Render AddCategoryButton" time="0.02">
+    </testcase>
+    <testcase classname=" AddCategoryButton renders correctly" name=" AddCategoryButton renders correctly" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:24" time="0.321" tests="2">
+    <testcase classname=" Product renders correctly" name=" Product renders correctly" time="0.003">
+    </testcase>
+    <testcase classname=" Render Product" name=" Render Product" time="0.051">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:24" time="0.311" tests="2">
+    <testcase classname=" Render AddProductButton" name=" Render AddProductButton" time="0.025">
+    </testcase>
+    <testcase classname=" AddProductButton renders correctly" name=" AddProductButton renders correctly" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:24" time="0.285" tests="2">
+    <testcase classname=" CategoryDelete renders correctly" name=" CategoryDelete renders correctly" time="0.021">
+    </testcase>
+    <testcase classname=" Render CategoryDelete" name=" Render CategoryDelete" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:24" time="0.287" tests="2">
+    <testcase classname=" PreviousOrders render correctly" name=" PreviousOrders render correctly" time="0.02">
+    </testcase>
+    <testcase classname=" Render PreviousOrders" name=" Render PreviousOrders" time="0.014">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:24" time="0.273" tests="2">
+    <testcase classname=" CurrentOrderProducts render correctly" name=" CurrentOrderProducts render correctly" time="0.003">
+    </testcase>
+    <testcase classname=" Render CurrentOrderProducts" name=" Render CurrentOrderProducts" time="0.034">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:24" time="0.273" tests="2">
+    <testcase classname=" Category renders correctly" name=" Category renders correctly" time="0.002">
+    </testcase>
+    <testcase classname=" Render Category" name=" Render Category" time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:25" time="0.225" tests="2">
+    <testcase classname=" NotFoundPage renders correctly" name=" NotFoundPage renders correctly" time="0.003">
+    </testcase>
+    <testcase classname=" 404 Not Found" name=" 404 Not Found" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-11-14T09:11:25" time="0.19" tests="1">
+    <testcase classname=" SplitItems renders correctly" name=" SplitItems renders correctly" time="0.018">
+    </testcase>
+  </testsuite>
+</testsuites>

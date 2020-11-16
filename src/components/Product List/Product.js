@@ -27,80 +27,86 @@ const Product = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
-    function addToOrder(e){
+    function addToOrder(e) {
         e.preventDefault();
-        if(props.productType === "Food") {
+        if (props.productType === "Food") {
             currentFoodList.push(props.product);
             sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
         }
-        else{
+        else {
             currentDrinkList.push(props.product);
             sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
     };
-    return(
+    return (
         <div>
             { props.product ? (
                 <div>
-                <Card >
-                    <CardMedia style={{height: 400}}
-                    component="img"
-                    height="250"
-                    src={props.product.image}
-                    alt={`Image for ${props.product.title} Not Found`}
-                    title={props.product.title}
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="inherit" component="h2">
-                        {props.product.title} <span style={{float: "right", color: "green"}}>{props.product.price}€</span>
-                    </Typography>
-                    <Typography component="h6">
-                        {props.product.ingredients}
-                    </Typography>
-                    </CardContent>
-                    <CardActions>
-                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                    <div style={{display: 'flex', alignItems: 'right'}}>
-                    <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
-                        <span style={{fontWeight:"bold"}}>View Details</span>
-                    </Button>
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="product-title"
-                        aria-describedby="product-description"
-                    >
-                        <DialogTitle id="product-title">{props.product.title}</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText id="product-description">
-                                {props.product.description}
-                            </DialogContentText>
-                            <DialogContentText id="product-description">
-                            <span style={{float: "right", color: "green", fontWeight: "bold"}}>{props.product.price}€</span>
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <IconButton aria-label="close" color="primary" onClick={handleClose}>
-                                <CloseIcon />
-                            </IconButton>
-                        </DialogActions>
-                    </Dialog>
-                    {sessionStorage.getItem("tableId") ? (
-                        <div>
-                            <IconButton aria-label="add to favorites" color="primary">
-                                <FavoriteIcon />
-                            </IconButton>
-                            <IconButton aria-label="add to order" color="primary" onClick={addToOrder}>
-                                <AddIcon />
-                            </IconButton>
-                        </div>
-                    ) : (
-                        null
-                    )}
-                    </div>
-                    </Grid>
-                    </CardActions>
-                </Card>
+                    <Card >
+                        <CardMedia 
+                            style={{ height: 400 }}
+                            component="img"
+                            height="250"
+                            src={props.product.image}
+                            alt={`Image for ${props.product.title} Not Found`}
+                            title={props.product.title}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="inherit" component="h2">
+                                {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
+                            </Typography>
+                            <Typography component="h6">
+                                {props.product.ingredients}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Grid 
+                                container 
+                                alignItems="flex-start" 
+                                justify="flex-end" 
+                                direction="row"
+                            >
+                                <div style={{ display: 'flex', alignItems: 'right' }}>
+                                    <Button size="large" color="primary" target="_blank" onClick={handleClickOpen}>
+                                        <span style={{ fontWeight: "bold" }}>View Details</span>
+                                    </Button>
+                                    <Dialog
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="product-title"
+                                        aria-describedby="product-description"
+                                    >
+                                        <DialogTitle id="product-title">{props.product.title}</DialogTitle>
+                                        <DialogContent>
+                                            <DialogContentText id="product-description">
+                                                {props.product.description}
+                                            </DialogContentText>
+                                            <DialogContentText id="product-description">
+                                                <span style={{ float: "right", color: "green", fontWeight: "bold" }}>{props.product.price}€</span>
+                                            </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <IconButton aria-label="close" color="primary" onClick={handleClose}>
+                                                <CloseIcon />
+                                            </IconButton>
+                                        </DialogActions>
+                                    </Dialog>
+                                    {sessionStorage.getItem("tableId") ? (
+                                        <div>
+                                            <IconButton aria-label="add to favorites" color="primary">
+                                                <FavoriteIcon />
+                                            </IconButton>
+                                            <IconButton aria-label="add to order" color="primary" onClick={addToOrder}>
+                                                <AddIcon />
+                                            </IconButton>
+                                        </div>
+                                    ) : (
+                                            null
+                                        )}
+                                </div>
+                            </Grid>
+                        </CardActions>
+                    </Card>
                 </div>
             ) : null}
         </div>
