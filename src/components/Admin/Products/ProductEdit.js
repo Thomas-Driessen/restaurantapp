@@ -37,6 +37,10 @@ const ProductEdit = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [values, setValues] = React.useState({ ...props.product });
+    const [ingredients, setIngredients] = React.useState(() => {
+        const initialState = renderIngredients();
+        return initialState;
+    });
     const [category, setCategory] = React.useState({ ...props.product.category });
     const [loading, setLoading] = React.useState(false);
     const [image, setImage] = React.useState("");
@@ -53,6 +57,10 @@ const ProductEdit = (props) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    const handleIngredientsChange = () => (event) => {
+        setIngredients(event.target.value);
+    };
+
     const handleCategoryChange = (prop) => (event) => {
         setCategory({ ...category, [prop]: event.target.value });
     };
@@ -63,9 +71,16 @@ const ProductEdit = (props) => {
     }, [props.product]);
 
     const saveProduct = () => {
+        let error = '';
         let price = parseFloat(values.price);
-        if (isNaN(price)) {
-            alert("Price is not a valid number");
+        let newIngredients = ingredients.split(',');
+        console.log(props.ingredients);
+        newIngredients.map(currentIngredient => (
+            error = !props.ingredients.some(e => e.ingredientTitle === currentIngredient) ? `Ingredient ${currentIngredient} does not exist` : error
+        ));
+        error = isNaN(price) ? 'Price is not a valid number' : error;
+        if (error) {
+            alert(error);
         } else {
             let product = values;
             let cat = category.categoryName;
@@ -140,7 +155,7 @@ const ProductEdit = (props) => {
 
     function renderIngredients() {
         let ingredients = [];
-        values.ingredients.map(currentIngredient => (
+        props.product.ingredients.map(currentIngredient => (
             ingredients.push(currentIngredient.ingredient.ingredientTitle)
         ));
 
@@ -218,8 +233,8 @@ const ProductEdit = (props) => {
                     >
                         <TextField
                             label="Ingredients"
-                            value={values.ingredients ? renderIngredients() : ""}
-                            onChange={handleChange("ingredients")}
+                            value={ingredients ? ingredients : ""}
+                            onChange={handleIngredientsChange()}
                             multiline
                         />
                     </FormControl>

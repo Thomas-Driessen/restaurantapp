@@ -82,6 +82,7 @@ const Product = (props) => {
                     foodCategories={props.foodCategories}
                     drinkCategories={props.drinkCategories}
                     productType={props.productType}
+                    ingredients={props.ingredients}
                   />
                   <ProductDelete
                     product={props.product}

@@ -35,14 +35,23 @@ const categories = [
   { categoryName: "Coffee" }
 ]
 
+const ingredients = [
+  {ingredient: [{
+    ingredientTitle: "Salt"
+  }]},
+  {ingredient: [{
+    ingredientTitle: "Water"
+  }]}
+]
+
 test('Render Product Coca-Cola', () => {
-  const { getByText } = render(<ProductsList products={products} foodCategories={categories} drinkCategories={categories} />);
+  const { getByText } = render(<ProductsList products={products} foodCategories={categories} drinkCategories={categories} ingredients={ingredients} />);
   const linkElement = getByText(/Coca-cola/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 test('Render Product Pepsi', () => {
-  const { getByText } = render(<ProductsList products={products} foodCategories={categories} drinkCategories={categories} />);
+  const { getByText } = render(<ProductsList products={products} foodCategories={categories} drinkCategories={categories} ingredients={ingredients} />);
   const linkElement = getByText(/Pepsi/i);
   expect(linkElement).toBeInTheDocument();
 });

@@ -68,7 +68,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`/api/ingredients`)
+        fetch(`/api/ingredient`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -152,6 +152,7 @@ class Admin extends React.Component {
                     productType={productType}
                     foodCategories={this.state.foodCategories}
                     drinkCategories={this.state.drinkCategories}
+                    ingredients={this.state.ingredients}
                 />;
             case 'Category':
                 return <CategoryList
@@ -168,6 +169,7 @@ class Admin extends React.Component {
                     productType={productType}
                     foodCategories={this.state.foodCategories}
                     drinkCategories={this.state.drinkCategories}
+                    ingredients={this.state.ingredients}
                 />;
             default:
                 return null;
@@ -195,9 +197,9 @@ class Admin extends React.Component {
                                         drinkCategories={this.state.drinkCategories}
                                     />
                                     <AddCategoryButton />
-                                    <Button variant="text" disabled={true}/>
-                                        <Button variant="text" size="large" color="inherit">
-                                            Log Out
+                                    <Button variant="text" disabled={true} />
+                                    <Button variant="text" size="large" color="inherit">
+                                        Log Out
                                         </Button>
                                 </ButtonGroup>
                             </div>

@@ -10,7 +10,12 @@ const product = {
     price: 2.5,
     description: "",
     category: { categoryName: "Drinks" },
-    onMenu: true
+    onMenu: true,
+    ingredients: [{
+      ingredient: [{
+        ingredientTitle: ""
+      }]
+    }]
 };
 
 const categories = [
