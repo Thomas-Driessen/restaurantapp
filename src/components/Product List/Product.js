@@ -27,6 +27,7 @@ const Product = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
+    
     function addToOrder(e) {
         e.preventDefault();
         if (props.productType === "Food") {
@@ -38,6 +39,16 @@ const Product = (props) => {
             sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
     };
+
+    function renderIngredients() {
+        let ingredients = [];
+            props.product.ingredients.map(currentIngredient => (
+                ingredients.push(currentIngredient.ingredient.ingredientTitle)
+            ));
+
+        return ingredients.toString();
+    }
+
     return (
         <div>
             { props.product ? (
@@ -56,7 +67,7 @@ const Product = (props) => {
                                 {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
                             </Typography>
                             <Typography component="h6">
-                                {props.product.ingredients}
+                                {renderIngredients()}
                             </Typography>
                         </CardContent>
                         <CardActions>

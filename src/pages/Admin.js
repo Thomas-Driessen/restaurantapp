@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Box from '@material-ui/core/Box';
 import Navigator from '../components/Admin/Navigator';
 import ProductsList from '../components/Admin/Products/ProductsList'
 import CategoryList from "../components/Admin/Categories/CategoryList";
@@ -196,11 +195,10 @@ class Admin extends React.Component {
                                         drinkCategories={this.state.drinkCategories}
                                     />
                                     <AddCategoryButton />
-                                    <Box pl={13}>
-                                        <Button variant="text" size="large" color="inherit" paddingLeft='12px'>
+                                    <Button variant="text" disabled={true}/>
+                                        <Button variant="text" size="large" color="inherit">
                                             Log Out
                                         </Button>
-                                    </Box>
                                 </ButtonGroup>
                             </div>
                         </Container>

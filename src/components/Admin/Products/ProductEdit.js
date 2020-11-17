@@ -138,6 +138,15 @@ const ProductEdit = (props) => {
         setLoading(false);
     };
 
+    function renderIngredients() {
+        let ingredients = [];
+        values.ingredients.map(currentIngredient => (
+            ingredients.push(currentIngredient.ingredient.ingredientTitle)
+        ));
+
+        return ingredients.toString();
+    }
+
     return (
         <div>
             <Button
@@ -209,7 +218,7 @@ const ProductEdit = (props) => {
                     >
                         <TextField
                             label="Ingredients"
-                            value={values.ingredients ? values.ingredients : ""}
+                            value={values.ingredients ? renderIngredients() : ""}
                             onChange={handleChange("ingredients")}
                             multiline
                         />

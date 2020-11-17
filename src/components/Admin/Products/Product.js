@@ -31,8 +31,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 const Product = (props) => {
   const classes = useStyles();
+
+  function renderIngredients() {
+    let ingredients = [];
+    props.product.ingredients.map(currentIngredient => (
+      ingredients.push(currentIngredient.ingredient.ingredientTitle)
+    ));
+
+    return ingredients.toString();
+  }
 
   return (
     <div>
@@ -55,7 +66,7 @@ const Product = (props) => {
                 </span>
               </Typography>
               <Typography component="h6">
-                {props.product.ingredients}
+                {renderIngredients()}
               </Typography>
             </CardContent>
             <CardActions>
