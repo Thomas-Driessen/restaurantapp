@@ -1,14 +1,11 @@
 import React from 'react';
 import NavBar from '../components/Navigation bars/NavBar';
-import PreviousOrders from '../components/Previous Orders List/PreviousOrders'
-import CurrentOrder from '../components/Current Order/CurrentOrder'
-import { Button } from '@material-ui/core';
+import PreviousOrders from '../components/Previous Orders List/PreviousOrders';
+import CurrentOrder from '../components/Current Order/CurrentOrder';
 import Grid from '@material-ui/core/Grid';
 import currentFoodList from '../components/Current Order/CurrentFoodList';
 import currentDrinkList from '../components/Current Order/CurrentDrinkList';
-import AppBar from '@material-ui/core/AppBar';
-import ToolBar from '@material-ui/core/Toolbar';
-import Container from '@material-ui/core/Container';
+import PayForOrders from '../components/Current Order/PayForOrders';
 
 class ViewOrder extends React.Component {
     constructor() {
@@ -68,20 +65,16 @@ class ViewOrder extends React.Component {
 
     removeFood = (product) => {
         let index = currentFoodList.indexOf(product);
+        this.setState({ priceCurrentFoods: this.state.priceCurrentFoods - currentFoodList[index].price });
         currentFoodList.splice(index, 1);
         sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
-
-        let sum = currentFoodList.reduce((totalPrice, food) => totalPrice + food.price, 0);
-        this.setState({ priceCurrentFoods: sum });
     }
 
     removeDrink = (product) => {
         let index = currentDrinkList.indexOf(product);
+        this.setState({ priceCurrentDrinks: this.state.priceCurrentDrinks - currentDrinkList[index].price });
         currentDrinkList.splice(index, 1);
         sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
-
-        let sum = currentDrinkList.reduce((totalPrice, drink) => totalPrice + drink.price, 0);
-        this.setState({ priceCurrentDrinks: sum });
     }
 
     sendOrder() {
@@ -116,10 +109,6 @@ class ViewOrder extends React.Component {
                 paid: false,
                 drinkId: currentDrink.id
             };
-            let item = {
-                title: currentDrink.title
-            }
-            order.push(item);
             fetch('/api/orderdrink', {
                 method: 'POST',
                 mode: 'cors',
@@ -129,6 +118,10 @@ class ViewOrder extends React.Component {
                 },
                 body: JSON.stringify(drink)
             })
+            let item = {
+                title: currentDrink.title
+            }
+            order.push(item);
             return "Succes";
         })
 
@@ -138,10 +131,6 @@ class ViewOrder extends React.Component {
                 paid: false,
                 foodId: currentFood.id
             };
-            let item = {
-                title: currentFood.title
-            }
-            order.push(item);
             fetch('/api/orderfood', {
                 method: 'POST',
                 mode: 'cors',
@@ -151,6 +140,10 @@ class ViewOrder extends React.Component {
                 },
                 body: JSON.stringify(food)
             })
+            let item = {
+                title: currentFood.title
+            }
+            order.push(item);
             return "Succes";
         })
 
@@ -172,53 +165,19 @@ class ViewOrder extends React.Component {
         })
     }
 
-    callStaffPay = () => {
-        var tableInfo = {
-            "Id": this.state.tableId,
-            "PayAssistance": true
-        };
-        fetch('/api/table/tablePayAssistance', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(tableInfo)
-        }).then(response => response.json())
-    }
-
     render() {
         return (
             <div>
                 <NavBar />
                 <Grid container spacing={0} style={{ padding: 15 }}>
                     <Grid item xs={12} sm={12} lg={6} xl={6}>
-                        <Grid container justify="center">
-                            <AppBar position="static" color="transparent" elevation={0} style={{ paddingLeft: 15, paddingRight: 20 }}>
-                                <ToolBar disableGutters>
-                                    <Button
-                                        variant="contained"
-                                        disableElevation
-                                        style={{
-                                            float: 'left',
-                                            minWidth: "200px",
-                                            minHeight: "40px",
-                                            borderRadius: 50
-                                        }}
-                                        size="large"
-                                        color="primary"
-                                        onClick={this.callStaffPay}
-                                    >
-                                        Pay for Orders
-                                    </Button>
-                                    <Container disableGutters>
-                                        <h3 style={{ float: 'right' }}>
-                                            Total:  <span style={{ color: "green" }}>{(this.state.priceCurrentDrinks + this.state.priceCurrentFoods + this.state.pricePreviousDrinks + this.state.pricePreviousFoods).toFixed(2)}€</span>
-                                        </h3>
-                                    </Container>
-                                </ToolBar>
-                            </AppBar>
-                        </Grid>
+                        <PayForOrders
+                            priceCurrentDrinks={this.state.priceCurrentDrinks}
+                            priceCurrentFoods={this.state.priceCurrentFoods}
+                            pricePreviousDrinks={this.state.pricePreviousDrinks}
+                            pricePreviousFoods={this.state.pricePreviousFoods}
+                            tableId={this.state.tableId}
+                        />
                         <CurrentOrder
                             totalPrice={this.state.priceCurrentDrinks + this.state.priceCurrentFoods}
                             sendOrder={() => this.sendOrder()}

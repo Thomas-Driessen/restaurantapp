@@ -130,15 +130,15 @@ class NavBar extends React.Component {
                                     </Button>
                                     {sessionStorage.getItem("tableId") ? (
                                         <div>
-                                            <Button onClick={this.setRedirect} color="inherit" startIcon={<FastfoodIcon />}>
+                                            <Button onClick={this.setRedirect} size="large" color="inherit" startIcon={<FastfoodIcon />}>
                                                 My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
                                             </Button>
-                                            <Button onClick={this.callStaff} color="inherit">
+                                            <Button onClick={this.callStaff} size="large" color="inherit">
                                                 Call Waiter
                                             </Button>
                                         </div>
                                     ) : (
-                                            <Button onClick={this.handleOpenModal} color="inherit" startIcon={<CameraIcon />}>
+                                            <Button onClick={this.handleOpenModal} size="large" color="inherit" startIcon={<CameraIcon />}>
                                                 Scan QR
                                             </Button>
                                         )}

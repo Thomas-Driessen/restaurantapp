@@ -9,6 +9,15 @@ import Grid from '@material-ui/core/Grid';
 
 const CurrentOrderProducts = (props) => {
 
+    function renderIngredients() {
+        let ingredients = [];
+        props.product.ingredients.map(currentIngredient => (
+            ingredients.push(currentIngredient.ingredient.ingredientTitle)
+        ));
+
+        return ingredients.toString();
+    }
+
     return (
         <div>
             { props.product ? (
@@ -19,7 +28,7 @@ const CurrentOrderProducts = (props) => {
                                 {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
                             </Typography>
                             <Typography component="h6">
-                                {props.product.ingredients}
+                                {renderIngredients()}
                             </Typography>
                         </CardContent>
                         <CardActions>

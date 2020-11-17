@@ -31,10 +31,10 @@ class CurrentOrder extends React.Component {
                         }}>
                         { currentFoodList.map((currentProduct, index) => (
                             <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
-                                <CurrentOrderProducts 
-                                    key={index} 
-                                    product={currentProduct} 
-                                    productType="Food" 
+                                <CurrentOrderProducts
+                                    key={index}
+                                    product={currentProduct}
+                                    productType="Food"
                                     remove={this.props.removeFood}
                                 />
                             </Grid>
@@ -42,21 +42,21 @@ class CurrentOrder extends React.Component {
                     </Grid>
                 ) : null}
                 { currentDrinkList ? (
-                    <Grid 
-                    container spacing={2} 
-                    style={{ 
-                        paddingTop: 15, 
-                        paddingLeft: 15, 
-                        paddingRight: 15 
-                    }}>
+                    <Grid
+                        container spacing={2}
+                        style={{
+                            paddingTop: 15,
+                            paddingLeft: 15,
+                            paddingRight: 15
+                        }}>
                         { currentDrinkList.map((currentProduct, index) => (
                             <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
-                                <CurrentOrderProducts 
-                                key={index} 
-                                product={currentProduct} 
-                                productType="Drink" 
-                                remove={this.props.removeDrink} 
-                            />
+                                <CurrentOrderProducts
+                                    key={index}
+                                    product={currentProduct}
+                                    productType="Drink"
+                                    remove={this.props.removeDrink}
+                                />
                             </Grid>
                         ))}
                     </Grid>
@@ -65,17 +65,17 @@ class CurrentOrder extends React.Component {
                     <div>
                         <AppBar position="static" color="transparent" elevation={0} style={{ paddingLeft: 15, paddingRight: 20 }}>
                             <ToolBar disableGutters>
-                                <Button 
+                                <Button
                                     variant="contained"
-                                    disableElevation 
-                                    style={{ 
-                                        float: 'left', 
-                                        minWidth: "160px", 
-                                        minHeight: "40px", 
-                                        borderRadius: 50 
-                                    }} 
-                                    size="large" 
-                                    color="primary" 
+                                    disableElevation
+                                    style={{
+                                        float: 'left',
+                                        minWidth: "160px",
+                                        minHeight: "40px",
+                                        borderRadius: 50
+                                    }}
+                                    size="large"
+                                    color="primary"
                                     onClick={() => this.props.sendOrder()}
                                 >
                                     Place Order

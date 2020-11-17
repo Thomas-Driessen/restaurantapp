@@ -1,3 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CurrentOrderProducts render correctly 1`] = `<div />`;
+exports[`CurrentOrderProducts render correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+    >
+      <div
+        className="MuiCardContent-root"
+      >
+        <h2
+          className="MuiTypography-root MuiTypography-gutterBottom"
+        >
+          Coca-Cola
+           
+          <span
+            style={
+              Object {
+                "color": "green",
+                "float": "right",
+              }
+            }
+          >
+            2.5
+            €
+          </span>
+        </h2>
+        <h6
+          className="MuiTypography-root MuiTypography-body1"
+        >
+          
+        </h6>
+      </div>
+      <div
+        className="MuiCardActions-root MuiCardActions-spacing"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
+        >
+          <button
+            aria-label="remove from order"
+            className="MuiButtonBase-root MuiIconButton-root"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13H5v-2h14v2z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
