@@ -8,13 +8,23 @@ const products = [
     id: 1,
     title: "Coca-Cola",
     price: 2.5,
-    description: ""
+    description: "",
+    ingredients: [{
+      ingredient: [{
+        ingredientTitle: ""
+      }]
+    }]
   },
   {
     id: 2,
     title: "Pepsi",
     price: 2,
-    description: ""
+    description: "",
+    ingredients: [{
+      ingredient: [{
+        ingredientTitle: ""
+      }]
+    }]
   },
 ];
 

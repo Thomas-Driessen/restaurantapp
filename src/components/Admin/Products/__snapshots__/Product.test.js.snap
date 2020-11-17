@@ -39,7 +39,9 @@ exports[`Product renders correctly 1`] = `
         </h2>
         <h6
           className="MuiTypography-root MuiTypography-body1"
-        />
+        >
+          
+        </h6>
       </div>
       <div
         className="MuiCardActions-root MuiCardActions-spacing"

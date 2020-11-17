@@ -9,7 +9,12 @@ const product = {
   title: "Coca-Cola",
   price: 2.5,
   description: "",
-  category: { categoryName: "Drinks" }
+  category: { categoryName: "Drinks" },
+  ingredients: [{
+    ingredient: [{
+      ingredientTitle: ""
+    }]
+  }]
 };
 const categories = [
   { categoryName: "Drinks" },

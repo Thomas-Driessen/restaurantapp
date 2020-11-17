@@ -15,7 +15,12 @@ test('Render Product', () => {
     id: 1,
     title: "Coca-Cola",
     price: 2.5,
-    description: ""
+    description: "",
+    ingredients: [{
+      ingredient: [{
+        ingredientTitle: ""
+      }]
+    }]
   };
   const { getByText } = render(<Product product={product} />);
   const linkElement = getByText(/Coca-cola/i);
