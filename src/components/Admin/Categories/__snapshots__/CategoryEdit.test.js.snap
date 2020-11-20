@@ -3,7 +3,7 @@
 exports[`CategoryEdit renders correctly 1`] = `
 <div>
   <button
-    className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
@@ -18,21 +18,21 @@ exports[`CategoryEdit renders correctly 1`] = `
     onTouchMove={[Function]}
     onTouchStart={[Function]}
     tabIndex={0}
-    target="_blank"
     type="button"
   >
     <span
-      className="MuiButton-label"
+      className="MuiIconButton-label"
     >
-      <span
-        style={
-          Object {
-            "fontWeight": "bold",
-          }
-        }
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
       >
-        Edit
-      </span>
+        <path
+          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+        />
+      </svg>
     </span>
   </button>
 </div>

@@ -10,28 +10,13 @@ import Grid from "@material-ui/core/Grid";
 import ProductEdit from './ProductEdit';
 import ProductDelete from './ProductDelete'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(2),
-  },
-  textField: {
-    width: "50ch",
-  },
+const useStyles = makeStyles(() => ({
   blur: {
     filter: "grayscale(80%)",
     transition: "filter .1s",
     '&:hover': { filter: "grayscale(0%)" }
   }
 }));
-
-
 
 const Product = (props) => {
   const classes = useStyles();

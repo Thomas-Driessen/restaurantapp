@@ -13,6 +13,7 @@ import clsx from "clsx";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,14 +96,13 @@ const Product = (props) => {
 
   return (
     <div>
-      <Button
-        size="large"
+      <IconButton
+        size="medium"
         color="primary"
-        target="_blank"
         onClick={handleClickOpen}
       >
-        <span style={{ fontWeight: "bold" }}>Edit</span>
-      </Button>
+        <EditIcon />
+      </IconButton>
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="product-title">
         <DialogTitle id="product-title">

@@ -28,12 +28,6 @@ it('ProductDelete renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
-test('Render ProductDelete OnMenu', () => {
-    const { getByText } = render(<ProductDelete product={product} />);
-    const linkElement = getByText(/Delete/i);
-    expect(linkElement).toBeInTheDocument();
-});
-
 test('Render ProductDelete NotOnMenu', () => {
     const { getByText } = render(<ProductDelete product={productNotOnMenu} />);
     const linkElement = getByText(/Back to menu/i);

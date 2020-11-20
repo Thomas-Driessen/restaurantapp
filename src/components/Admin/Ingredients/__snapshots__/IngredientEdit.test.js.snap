@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductEdit renders correctly 1`] = `
+exports[`IngredientEdit renders correctly 1`] = `
 <div>
   <button
+    aria-label="edit"
     className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
     disabled={false}
     onBlur={[Function]}

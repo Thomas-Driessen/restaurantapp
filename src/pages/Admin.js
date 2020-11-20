@@ -11,6 +11,7 @@ import CategoryList from "../components/Admin/Categories/CategoryList";
 import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
+import AddIngredientButton from '../components/Admin/AddIngredientButton';
 
 class Admin extends React.Component {
     constructor() {
@@ -197,6 +198,7 @@ class Admin extends React.Component {
                                         drinkCategories={this.state.drinkCategories}
                                     />
                                     <AddCategoryButton />
+                                    <AddIngredientButton />
                                     <Button variant="text" disabled={true} />
                                     <Button variant="text" size="large" color="inherit">
                                         Log Out

@@ -5,6 +5,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import RemoveIcon from '@material-ui/icons/Remove';
+import { IconButton } from '@material-ui/core';
 
 const Product = (props) => {
   const [del, setDelete] = React.useState(false);
@@ -33,14 +35,13 @@ const Product = (props) => {
 
   return (
     <div>
-      <Button
-        size="large"
+      <IconButton
+        size="medium"
         color="primary"
-        target="_blank"
         onClick={handleDeleteOpen}
       >
-        <span style={{ fontWeight: "bold" }}>Delete</span>
-      </Button>
+        <RemoveIcon />
+      </IconButton>
 
       <Dialog open={del} onClose={handleDeleteClose} aria-labelledby="product-title">
         <DialogTitle id="product-title">

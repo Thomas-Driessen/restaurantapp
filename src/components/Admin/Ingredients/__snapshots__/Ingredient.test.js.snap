@@ -1,46 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Product renders correctly 1`] = `
+exports[`Ingredient renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="MuiPaper-root MuiCard-root makeStyles-blur-1 MuiPaper-elevation1 MuiPaper-rounded"
+      className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
     >
-      <img
-        alt="Image for Coca-Cola Not Found"
-        className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
-        height="250"
-        style={
-          Object {
-            "height": 400,
-          }
-        }
-        title="Coca-Cola"
-      />
       <div
         className="MuiCardContent-root"
       >
         <h2
           className="MuiTypography-root MuiTypography-gutterBottom"
         >
-          Coca-Cola
+          Salt
            
           <span
             style={
               Object {
-                "color": "green",
                 "float": "right",
               }
             }
           >
-            2.5
-            €
+            <span
+              style={
+                Object {
+                  "color": "green",
+                }
+              }
+            >
+               
+              2.5
+              € 
+            </span>
+             / 100g
           </span>
         </h2>
         <h6
           className="MuiTypography-root MuiTypography-body1"
         >
-          
+          Quantity: 
+          400
         </h6>
       </div>
       <div
@@ -59,6 +58,7 @@ exports[`Product renders correctly 1`] = `
           >
             <div>
               <button
+                aria-label="edit"
                 className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
                 disabled={false}
                 onBlur={[Function]}
@@ -94,7 +94,7 @@ exports[`Product renders correctly 1`] = `
             </div>
             <div>
               <button
-                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
+                className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
                 disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -109,21 +109,21 @@ exports[`Product renders correctly 1`] = `
                 onTouchMove={[Function]}
                 onTouchStart={[Function]}
                 tabIndex={0}
-                target="_blank"
                 type="button"
               >
                 <span
-                  className="MuiButton-label"
+                  className="MuiIconButton-label"
                 >
-                  <span
-                    style={
-                      Object {
-                        "fontWeight": "bold",
-                      }
-                    }
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    Back to menu
-                  </span>
+                    <path
+                      d="M19 13H5v-2h14v2z"
+                    />
+                  </svg>
                 </span>
               </button>
             </div>

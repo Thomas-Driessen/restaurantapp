@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import ProductEdit from './ProductEdit';
 import renderer from 'react-test-renderer';
 
@@ -28,12 +27,6 @@ it('ProductEdit renders correctly', () => {
         .create(<ProductEdit product={product} foodCategories={categories} drinkCategories={categories} />)
         .toJSON();
     expect(tree).toMatchSnapshot();
-});
-
-test('Render ProductEdit', () => {
-    const { getByText } = render(<ProductEdit product={product} foodCategories={categories} drinkCategories={categories} />);
-    const linkElement = getByText(/Edit/i);
-    expect(linkElement).toBeInTheDocument();
 });
 
 afterAll(() => {

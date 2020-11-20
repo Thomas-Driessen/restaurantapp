@@ -50,7 +50,7 @@ class AddProductButton extends React.Component {
     this.setState({ openAddProduct: false });
   };
 
-  handleNewProductChange = (prop) => (event) => {
+  handleNewProductChange = () => (event) => {
     const { name, value } = event.target;
     this.setState({
       newProduct: {
@@ -78,9 +78,12 @@ class AddProductButton extends React.Component {
   }
 
   saveProduct = () => {
+    let error = '';
     let price = parseFloat(this.state.newProduct.price);
     let quantity = parseFloat(this.state.newProduct.quantity);
-    if (isNaN(price) || isNaN(quantity)) {
+    error = isNaN(price) ? "Price is not a valid number" : error;
+    error = isNaN(quantity) ? "Quantity is not a valid number" : error;
+    if (error !== '') {
       alert("Price is not a valid number");
     } else {
       let product = this.RemovePropertyWithoutAltering(

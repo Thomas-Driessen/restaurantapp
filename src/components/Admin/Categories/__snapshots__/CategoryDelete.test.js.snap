@@ -3,7 +3,7 @@
 exports[`CategoryDelete renders correctly 1`] = `
 <div>
   <button
-    className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
@@ -18,21 +18,21 @@ exports[`CategoryDelete renders correctly 1`] = `
     onTouchMove={[Function]}
     onTouchStart={[Function]}
     tabIndex={0}
-    target="_blank"
     type="button"
   >
     <span
-      className="MuiButton-label"
+      className="MuiIconButton-label"
     >
-      <span
-        style={
-          Object {
-            "fontWeight": "bold",
-          }
-        }
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
       >
-        Delete
-      </span>
+        <path
+          d="M19 13H5v-2h14v2z"
+        />
+      </svg>
     </span>
   </button>
 </div>

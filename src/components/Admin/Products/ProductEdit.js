@@ -16,6 +16,7 @@ import FormControl from "@material-ui/core/FormControl";
 import SaveIcon from "@material-ui/icons/Save";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -123,10 +124,7 @@ const ProductEdit = (props) => {
             categories = props.drinkCategories;
         }
         return categories.map((currentCategory) => (
-            <MenuItem
-                key={currentCategory.categoryName}
-                value={currentCategory.categoryName}
-            >
+            <MenuItem key={currentCategory.categoryName} value={currentCategory.categoryName} >
                 {currentCategory.categoryName}
             </MenuItem>
         ));
@@ -138,17 +136,8 @@ const ProductEdit = (props) => {
         data.append("file", files[0]);
         data.append("upload_preset", `${props.productType}Images`);
         setLoading(true);
-
-        const res = await fetch(
-            "https://api.cloudinary.com/v1_1/drb2yh2dy/image/upload",
-            {
-                method: "POST",
-                body: data,
-            }
-        );
-
+        const res = await fetch("https://api.cloudinary.com/v1_1/drb2yh2dy/image/upload", { method: "POST", body: data, });
         const file = await res.json();
-
         setImage(file.secure_url);
         setLoading(false);
     };
@@ -164,14 +153,13 @@ const ProductEdit = (props) => {
 
     return (
         <div>
-            <Button
-                size="large"
+            <IconButton
+                size="medium"
                 color="primary"
-                target="_blank"
                 onClick={handleClickOpen}
             >
-                <span style={{ fontWeight: "bold" }}>Edit</span>
-            </Button>
+                <EditIcon />
+            </IconButton>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -193,13 +181,7 @@ const ProductEdit = (props) => {
                         title={props.product.title}
                     />
                     {props.product.title ? (
-                        <FormControl
-                            className={clsx(
-                                classes.margin,
-                                classes.withoutLabel,
-                                classes.textField
-                            )}
-                        >
+                        <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                             <TextField
                                 label="Title"
                                 value={values.title}
@@ -208,13 +190,7 @@ const ProductEdit = (props) => {
                         </FormControl>
                     ) : null}
                     {props.product.description ? (
-                        <FormControl
-                            className={clsx(
-                                classes.margin,
-                                classes.withoutLabel,
-                                classes.textField
-                            )}
-                        >
+                        <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                             <TextField
                                 label="Description"
                                 value={values.description}
@@ -224,13 +200,7 @@ const ProductEdit = (props) => {
                         </FormControl>
                     ) : null}
 
-                    <FormControl
-                        className={clsx(
-                            classes.margin,
-                            classes.withoutLabel,
-                            classes.textField
-                        )}
-                    >
+                    <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                         <TextField
                             label="Ingredients"
                             value={ingredients ? ingredients : ""}
@@ -239,13 +209,7 @@ const ProductEdit = (props) => {
                         />
                     </FormControl>
 
-                    <FormControl
-                        className={clsx(
-                            classes.margin,
-                            classes.withoutLabel,
-                            classes.textField
-                        )}
-                    >
+                    <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                         <Select
                             id="select-food-category"
                             value={category.categoryName}
@@ -255,13 +219,7 @@ const ProductEdit = (props) => {
                         </Select>
                     </FormControl>
                     {props.product.price ? (
-                        <FormControl
-                            className={clsx(
-                                classes.margin,
-                                classes.withoutLabel,
-                                classes.textField
-                            )}
-                        >
+                        <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                             <TextField
                                 label="Price"
                                 value={values.price}
@@ -277,13 +235,7 @@ const ProductEdit = (props) => {
                             />
                         </FormControl>
                     ) : null}
-                    <FormControl
-                        className={clsx(
-                            classes.margin,
-                            classes.withoutLabel,
-                            classes.textField
-                        )}
-                    >
+                    <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                         <input
                             type="file"
                             name="file"
