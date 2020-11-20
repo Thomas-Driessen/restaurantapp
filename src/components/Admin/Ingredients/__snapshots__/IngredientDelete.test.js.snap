@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IngredientDelete renders correctly 1`] = `
+<div>
+  <button
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiIconButton-label"
+    >
+      <svg
+        aria-hidden={true}
+        className="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13H5v-2h14v2z"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
