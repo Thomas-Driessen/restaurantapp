@@ -15,7 +15,7 @@ exports[`ProductsList renders correctly 1`] = `
     <div>
       <div>
         <div
-          className="MuiPaper-root MuiCard-root makeStyles-blur-11 MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root makeStyles-blur-13 MuiPaper-elevation1 MuiPaper-rounded"
         >
           <img
             alt="Image for Coca-Cola Not Found"
@@ -151,7 +151,7 @@ exports[`ProductsList renders correctly 1`] = `
     <div>
       <div>
         <div
-          className="MuiPaper-root MuiCard-root makeStyles-blur-11 MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root makeStyles-blur-13 MuiPaper-elevation1 MuiPaper-rounded"
         >
           <img
             alt="Image for Pepsi Not Found"

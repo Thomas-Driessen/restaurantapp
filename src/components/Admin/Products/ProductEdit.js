@@ -17,12 +17,10 @@ import SaveIcon from "@material-ui/icons/Save";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        flexWrap: "wrap",
-    },
     margin: {
         margin: theme.spacing(1),
     },
@@ -30,7 +28,17 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
     textField: {
-        width: "50ch",
+        width: "60ch",
+    },
+    ingredients: {
+        '& > *': {
+            width: '20ch',
+            marginRight: theme.spacing(2),
+        }
+    },
+    button: {
+        float: 'right',
+        marginTop: theme.spacing(2),
     }
 }));
 
@@ -38,13 +46,11 @@ const ProductEdit = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [values, setValues] = React.useState({ ...props.product });
-    const [ingredients, setIngredients] = React.useState(() => {
-        const initialState = renderIngredients();
-        return initialState;
-    });
+    const [ingredients, setIngredients] = React.useState({ ...props.product.ingredients });
     const [category, setCategory] = React.useState({ ...props.product.category });
     const [loading, setLoading] = React.useState(false);
     const [image, setImage] = React.useState("");
+    const [show, setShow] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -54,12 +60,23 @@ const ProductEdit = (props) => {
         setOpen(false);
     };
 
+    const handleShow = () => {
+        setShow(true);
+    }
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const handleIngredientsChange = () => (event) => {
-        setIngredients(event.target.value);
+    const handleIngredientsAmountChange = (id) => (event) => {
+        let ingredientsEdit = [];
+        ingredients.map(currentIngredient => {
+            currentIngredient.amount = currentIngredient.ingredient.ingredientId === id ? event.target.value : currentIngredient.amount;
+            ingredientsEdit.push(currentIngredient);
+
+            return true;
+        });
+        setIngredients(ingredientsEdit);
     };
 
     const handleCategoryChange = (prop) => (event) => {
@@ -69,16 +86,16 @@ const ProductEdit = (props) => {
     React.useEffect(() => {
         setValues(props.product);
         setCategory(props.product.category);
+        setIngredients(props.product.ingredients);
     }, [props.product]);
 
     const saveProduct = () => {
         let error = '';
         let price = parseFloat(values.price);
-        let newIngredients = ingredients.split(',');
-        console.log(props.ingredients);
-        newIngredients.map(currentIngredient => (
-            error = !props.ingredients.some(e => e.ingredientTitle === currentIngredient) ? `Ingredient ${currentIngredient} does not exist` : error
-        ));
+        ingredients.map(currentIngredient => {
+            error = isNaN(currentIngredient.amount) ? 'Amount is not a valid number' : error;
+            return true;
+        });
         error = isNaN(price) ? 'Price is not a valid number' : error;
         if (error) {
             alert(error);
@@ -87,6 +104,7 @@ const ProductEdit = (props) => {
             let cat = category.categoryName;
             product.image = image ? image : props.product.image;
             product.price = price;
+            product.ingredients = ingredients;
 
             let productType = props.productType;
             if (productType === "NotOnMenu") {
@@ -130,6 +148,78 @@ const ProductEdit = (props) => {
         ));
     };
 
+    const addIngredient = (newIngredient) => {
+        let ingredientsEdit = ingredients;
+        let ingredient = {
+            amount: 0,
+            ingredient: newIngredient,
+        }
+        let newEntry = {
+            ingredient: { ingredientId: newIngredient.ingredientId },
+            amount: 0
+        }
+        if (props.productType === 'Food') {
+            newEntry.food = { id: props.product.id };
+        }
+        else {
+            newEntry.drink = { id: props.product.id };
+        }
+
+        fetch(`/api/Ingredient${props.productType}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newEntry),
+        }).then((res) => res.json())
+            .then((data) => {
+                if (props.productType === 'Food') {
+                    ingredient.ingredientFoodId = data.ingredientFoodId;
+                }
+                else {
+                    ingredient.ingredientDrinkId = data.ingredientDrinkId;
+                }
+            })
+            .catch(console.log);
+
+        ingredientsEdit.push(ingredient);
+        setIngredients(ingredientsEdit);
+        setShow(false);
+
+        alert('Ingredient added');
+    }
+
+    const deleteIngredient = (id) => {
+        fetch(`/api/Ingredient${props.productType}/${id}`, {
+            method: "DELETE",
+            mode: "cors",
+        }).catch(console.log);
+
+        let ingredientsEdit = [];
+        if (props.productType === 'Food') {
+            ingredients.map(currentIngredient => {
+                if (currentIngredient.ingredientFoodId !== id) {
+                    ingredientsEdit.push(currentIngredient);
+                }
+                return true;
+            });
+            setIngredients(ingredientsEdit);
+        }
+        else {
+            ingredients.map(currentIngredient => {
+                if (currentIngredient.ingredientDrinkId !== id) {
+                    ingredientsEdit.push(currentIngredient);
+                }
+                return true;
+            });
+            setIngredients(ingredientsEdit);
+        }
+
+        alert('Ingredient deleted');
+    }
+
     const uploadImage = async (e) => {
         const files = e.target.files;
         const data = new FormData();
@@ -141,15 +231,6 @@ const ProductEdit = (props) => {
         setImage(file.secure_url);
         setLoading(false);
     };
-
-    function renderIngredients() {
-        let ingredients = [];
-        props.product.ingredients.map(currentIngredient => (
-            ingredients.push(currentIngredient.ingredient.ingredientTitle)
-        ));
-
-        return ingredients.toString();
-    }
 
     return (
         <div>
@@ -200,14 +281,71 @@ const ProductEdit = (props) => {
                         </FormControl>
                     ) : null}
 
-                    <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
-                        <TextField
-                            label="Ingredients"
-                            value={ingredients ? ingredients : ""}
-                            onChange={handleIngredientsChange()}
-                            multiline
-                        />
-                    </FormControl>
+                    {ingredients.length ? ingredients.map((currentIngredient, id) => (
+                        <form key={id} className={clsx(classes.margin, classes.withoutLabel)} >
+                            <TextField
+                                key={id + ingredients.length}
+                                className={classes.ingredients}
+                                label="Ingredient"
+                                value={currentIngredient.ingredient ? currentIngredient.ingredient.ingredientTitle : ''}
+                                multiline
+                            />
+                            <TextField
+                                key={id + ingredients.length + 1}
+                                className={classes.ingredients}
+                                label="Amount"
+                                value={currentIngredient ? currentIngredient.amount : ''}
+                                onChange={currentIngredient.ingredient ? handleIngredientsAmountChange(currentIngredient.ingredient.ingredientId) : null}
+                                multiline
+                            />
+                            <div key={id + ingredients.length + 2} className={classes.button}>
+                                <IconButton
+                                    size='small'
+                                    key={id + ingredients.length + 3}
+                                    onClick={() => deleteIngredient(props.productType === 'Food' ? currentIngredient.ingredientFoodId : currentIngredient.ingredientDrinkId)}
+                                >
+                                    <RemoveIcon key={id + ingredients.length + 4} />
+                                </IconButton>
+                            </div>
+                        </form>
+                    )) : null}
+
+                    <div className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
+                        {show ? (
+                            <div>
+                                <span>
+                                    Search:
+                                </span>
+                            </div>
+                        ) : (
+                                <span>Add ingredients:</span>)}
+                        <div style={{ float: 'right' }}>
+                            <IconButton
+                                size='small'
+                                onClick={handleShow}
+                            >
+                                <AddIcon />
+                            </IconButton>
+                        </div>
+                    </div>
+
+                    {show ? (<div>
+                        {props.ingredients.map((currentIngredient, index) => {
+                            let found = false;
+                            ingredients.map(ingredient => {
+                                if (ingredient.ingredient.ingredientTitle === currentIngredient.ingredientTitle) {
+                                    found = true;
+                                }
+                                return true;
+                            })
+                            if (!found) {
+                                return < Button key={index} onClick={() => addIngredient(currentIngredient)}>
+                                    {currentIngredient.ingredientTitle}
+                                </Button>
+                            }
+                            return true;
+                        })}
+                    </div>) : null}
 
                     <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                         <Select
@@ -266,7 +404,7 @@ const ProductEdit = (props) => {
                     </IconButton>
                 </DialogActions>
             </Dialog>
-        </div>
+        </div >
     );
 };
 export default ProductEdit;

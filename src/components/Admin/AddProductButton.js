@@ -244,12 +244,6 @@ class AddProductButton extends React.Component {
             ) : null}
 
             <FormControl style={this.state.style}>
-              <TextField label="Ingredients" name="ingredients"
-                onChange={this.handleNewProductChange("ingredients")}
-              />
-            </FormControl>
-
-            <FormControl style={this.state.style}>
               <TextField label="Price" name="price"
                 onChange={this.handleNewProductChange("price")}
                 InputProps={{
