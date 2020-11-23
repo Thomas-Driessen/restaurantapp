@@ -30,7 +30,7 @@ class KitchenOverview extends React.Component {
 
     ConnectToHub() {
         const hubConnection = new HubConnectionBuilder()
-            .withUrl("https://localhost:5001/Order")
+            .withUrl("https://144.91.105.50:5001/Order")
             .configureLogging(LogLevel.Information)
             .build();
 
