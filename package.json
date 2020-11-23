@@ -52,5 +52,5 @@
       "src/node_modules/(?!@sapper)"
     ]
   },
-  "proxy": "https://localhost:5001"
+  "proxy": "https://144.91.105.50:5001"
 }
