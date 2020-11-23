@@ -25,12 +25,18 @@ exports[`IngredientsList renders correctly 1`] = `
             >
               <h2
                 className="MuiTypography-root MuiTypography-gutterBottom"
+                style={
+                  Object {
+                    "color": "black",
+                  }
+                }
               >
                 Salt
                  
                 <span
                   style={
                     Object {
+                      "color": "black",
                       "float": "right",
                     }
                   }
@@ -46,13 +52,14 @@ exports[`IngredientsList renders correctly 1`] = `
                     2.5
                     € 
                   </span>
-                   / 100g
+                   / 100
                 </span>
               </h2>
               <h6
                 className="MuiTypography-root MuiTypography-body1"
               >
-                Quantity: 
+                Milliliters
+                 in inventory: 
                 400
               </h6>
             </div>
@@ -165,12 +172,18 @@ exports[`IngredientsList renders correctly 1`] = `
             >
               <h2
                 className="MuiTypography-root MuiTypography-gutterBottom"
+                style={
+                  Object {
+                    "color": "black",
+                  }
+                }
               >
                 Vinegar
                  
                 <span
                   style={
                     Object {
+                      "color": "black",
                       "float": "right",
                     }
                   }
@@ -186,13 +199,14 @@ exports[`IngredientsList renders correctly 1`] = `
                     2.5
                     € 
                   </span>
-                   / 100g
+                   / 100
                 </span>
               </h2>
               <h6
                 className="MuiTypography-root MuiTypography-body1"
               >
-                Quantity: 
+                Milliliters
+                 in inventory: 
                 400
               </h6>
             </div>
