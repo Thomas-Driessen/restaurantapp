@@ -28,7 +28,7 @@ class MenuPage extends React.Component {
 
   componentDidMount() {
     let mounted = true;
-    fetch(`/api/food`)
+    fetch(`/api/food/available`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -37,7 +37,7 @@ class MenuPage extends React.Component {
       })
       .catch(console.log)
 
-    fetch(`/api/drink`)
+    fetch(`/api/drink/available`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {

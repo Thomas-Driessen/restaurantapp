@@ -293,7 +293,7 @@ const ProductEdit = (props) => {
                             <TextField
                                 key={id + ingredients.length + 1}
                                 className={classes.ingredients}
-                                label="Amount"
+                                label={currentIngredient ? `${currentIngredient.ingredient.unit === 'g' ? 'Grams' : 'Milliliters'} needed` : ''}
                                 value={currentIngredient ? currentIngredient.amount : ''}
                                 onChange={currentIngredient.ingredient ? handleIngredientsAmountChange(currentIngredient.ingredient.ingredientId) : null}
                                 multiline

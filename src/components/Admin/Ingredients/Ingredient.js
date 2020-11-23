@@ -9,20 +9,31 @@ import IngredientDelete from "./IngredientDelete";
 
 const Ingredient = (props) => {
 
+    const getIngredientColor = () => {
+        if(props.ingredient.ingredientQuantity < 20) {
+            return 'red';
+        }
+        if(props.ingredient.ingredientQuantity < 100){
+            return 'gold';
+        }
+
+        return 'black';
+    }
+
     return (
         <div>
             {props.ingredient ? (
                 <div>
                     <Card>
                         <CardContent>
-                            <Typography gutterBottom variant="inherit" component="h2">
-                                {props.ingredient.ingredientTitle}{" "}
-                                <span style={{ float: "right" }}>
-                                    <span style={{ color: "green" }}> {props.ingredient.price}€ </span> / 100g
+                            <Typography gutterBottom variant="inherit" component="h2" style={{color:getIngredientColor()}}>
+                                {props.ingredient.ingredientQuantity < 20 ? `!${props.ingredient.ingredientTitle}` : props.ingredient.ingredientTitle}{" "}
+                                <span style={{ float: "right", color:"black" }}>
+                                    <span style={{ color: "green" }}> {props.ingredient.price}€ </span> / 100{props.ingredient.unit}
                                 </span>
                             </Typography>
                             <Typography component="h6">
-                                Quantity: {props.ingredient.ingredientQuantity}
+                                {props.ingredient.unit === 'g' ? 'Grams' : 'Milliliters'} in inventory: {props.ingredient.ingredientQuantity}
                             </Typography>
                         </CardContent>
                         <CardActions>
