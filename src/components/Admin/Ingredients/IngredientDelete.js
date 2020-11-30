@@ -20,7 +20,7 @@ const Product = (props) => {
     };
 
     const deleteIngredient = () => {
-        fetch(`/api/Ingredient/${props.ingredient.ingredientId}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient/${props.ingredient.ingredientId}`, {
             method: "DELETE",
             mode: "cors",
             headers: {

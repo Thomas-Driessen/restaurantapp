@@ -51,6 +51,5 @@
     "transformIgnorePatterns": [
       "src/node_modules/(?!@sapper)"
     ]
-  },
-  "proxy": "https://144.91.105.50:5001"
+  }
 }

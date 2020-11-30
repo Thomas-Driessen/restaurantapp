@@ -119,7 +119,7 @@ const ProductEdit = (props) => {
                     (element) => element.categoryName === cat
                 );
             }
-            fetch(`/api/${productType}/${props.product.id}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/${productType}/${props.product.id}`, {
                 method: "PUT",
                 mode: "cors",
                 headers: {
@@ -165,7 +165,7 @@ const ProductEdit = (props) => {
             newEntry.drink = { id: props.product.id };
         }
 
-        fetch(`/api/Ingredient${props.productType}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient${props.productType}`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -192,7 +192,7 @@ const ProductEdit = (props) => {
     }
 
     const deleteIngredient = (id) => {
-        fetch(`/api/Ingredient${props.productType}/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient${props.productType}/${id}`, {
             method: "DELETE",
             mode: "cors",
         }).catch(console.log);

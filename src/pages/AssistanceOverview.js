@@ -22,7 +22,7 @@ class MenuPage extends React.Component {
 
   fetchTableAssistanceData() {
     let mounted = true;
-    fetch(`/api/table/tablePayAssistance`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -32,7 +32,7 @@ class MenuPage extends React.Component {
       })
       .catch(console.log)
 
-    fetch(`/api/table/tableAssistance`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/table/tableAssistance`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {

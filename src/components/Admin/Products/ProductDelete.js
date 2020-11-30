@@ -30,7 +30,7 @@ const Product = (props) => {
 
     const setItemOnMenu = (isOnMenu) => {
         props.product.onMenu = isOnMenu;
-        fetch(`/api/${props.product.productType}/${props.product.id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/${props.product.productType}/${props.product.id}`, {
             method: "PUT",
             mode: "cors",
             headers: {

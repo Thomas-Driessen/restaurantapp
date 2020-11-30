@@ -65,7 +65,7 @@ const ProductEdit = (props) => {
             ingredient.price = price;
             ingredient.ingredientQuantity = quantity;
 
-            fetch(`/api/Ingredient/${props.ingredient.ingredientId}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient/${props.ingredient.ingredientId}`, {
                 method: "PUT",
                 mode: "cors",
                 headers: {
