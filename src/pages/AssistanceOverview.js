@@ -22,7 +22,7 @@ class MenuPage extends React.Component {
 
   fetchTableAssistanceData() {
     let mounted = true;
-    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/table/tablePayAssistance`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -32,7 +32,7 @@ class MenuPage extends React.Component {
       })
       .catch(console.log)
 
-    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/table/tableAssistance`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/table/tableAssistance`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {

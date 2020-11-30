@@ -117,7 +117,7 @@ class AddProductButton extends React.Component {
       product.price = price;
       product.quantity = quantity;
 
-      fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/${this.state.newProduct.type}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/api/${this.state.newProduct.type}`, {
         method: "POST",
         mode: "cors",
         headers: {

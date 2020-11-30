@@ -17,14 +17,14 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "PayAssistance": false
             };
-            fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/OrderDrink/${props.TableAssistance.tableNumber}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/OrderDrink/${props.TableAssistance.tableNumber}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             });
-            fetch('/api/table/tablePayAssistance', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -41,7 +41,7 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "RequiresAssistance": false
             };
-            fetch('/api/table/tableAssistance', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/table/tableAssistance`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',

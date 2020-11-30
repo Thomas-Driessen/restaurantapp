@@ -99,7 +99,7 @@ class NavBar extends React.Component {
             "Id": this.state.tableId,
             "RequiresAssistance": true
         };
-        fetch('/api/table/tableAssistance', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/table/tableAssistance`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

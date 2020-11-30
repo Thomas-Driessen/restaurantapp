@@ -40,7 +40,6 @@ const theme = createMuiTheme({
 class App extends React.Component {
   constructor() {
     super();
-
     runInAction(() => {
       let data = sessionStorage.getItem('sessionUserStore');
       if (data != null) {

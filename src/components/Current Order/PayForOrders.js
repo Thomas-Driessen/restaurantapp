@@ -12,7 +12,7 @@ class PayForOrders extends React.Component {
             "Id": this.props.tableId,
             "PayAssistance": true
         };
-        fetch('/api/table/tablePayAssistance', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

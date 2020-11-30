@@ -25,7 +25,7 @@ class ViewOrder extends React.Component {
     async componentDidMount() {
         let mounted = true;
         let sum = 0;
-        await fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/table/tableNumber/${this.state.tableId}`)
+        await fetch(`${process.env.REACT_APP_API_URL}/api/table/tableNumber/${this.state.tableId}`)
             .then(res => res.json())
             .then((data) => {
                 if (mounted) {
@@ -33,7 +33,7 @@ class ViewOrder extends React.Component {
                 }
             })
             .catch(console.log)
-        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/orderdrink/${this.state.tableNumber}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
                 if (mounted && data) {
@@ -44,7 +44,7 @@ class ViewOrder extends React.Component {
             })
             .catch(console.log)
 
-        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/orderfood/${this.state.tableNumber}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/orderfood/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
                 if (mounted && data) {
@@ -83,7 +83,7 @@ class ViewOrder extends React.Component {
     }
 
     updatePreviousOrders() {
-        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/orderdrink/${this.state.tableNumber}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
                 let sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
@@ -91,7 +91,7 @@ class ViewOrder extends React.Component {
                 this.setState({ previousDrinks: data })
             })
             .catch(console.log)
-        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/orderfood/${this.state.tableNumber}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/orderfood/${this.state.tableNumber}`)
             .then(res => res.json())
             .then((data) => {
                 let sum = data.reduce((totalPrice, product) => totalPrice + product.price, 0);
@@ -109,7 +109,7 @@ class ViewOrder extends React.Component {
                 paid: false,
                 drinkId: currentDrink.id
             };
-            fetch('/api/orderdrink', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -131,7 +131,7 @@ class ViewOrder extends React.Component {
                 paid: false,
                 foodId: currentFood.id
             };
-            fetch('/api/orderfood', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -154,7 +154,7 @@ class ViewOrder extends React.Component {
         this.setState({ priceCurrentDrinks: 0 });
         this.setState({ priceCurrentFoods: 0 });
 
-        fetch('/sendorder', {
+        fetch(`${process.env.REACT_APP_API_URL}/sendorder`, {
             method: 'POST',
             mode: 'cors',
             headers: {
