@@ -28,7 +28,7 @@ class MenuPage extends React.Component {
 
   componentDidMount() {
     let mounted = true;
-    fetch(`/api/food/available`)
+    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/food/available`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -37,7 +37,7 @@ class MenuPage extends React.Component {
       })
       .catch(console.log)
 
-    fetch(`/api/drink/available`)
+    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/drink/available`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -46,7 +46,7 @@ class MenuPage extends React.Component {
       })
       .catch(console.log)
 
-    fetch(`/api/category/food`)
+    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/food`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -55,7 +55,7 @@ class MenuPage extends React.Component {
       })
       .catch(console.log)
 
-    fetch(`/api/category/drink`)
+    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/drink`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {

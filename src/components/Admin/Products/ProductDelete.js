@@ -30,7 +30,7 @@ const Product = (props) => {
 
     const setItemOnMenu = (isOnMenu) => {
         props.product.onMenu = isOnMenu;
-        fetch(`/api/${props.product.productType}/${props.product.id}`, {
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/${props.product.productType}/${props.product.id}`, {
             method: "PUT",
             mode: "cors",
             headers: {

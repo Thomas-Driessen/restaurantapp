@@ -65,7 +65,7 @@ const ProductEdit = (props) => {
             ingredient.price = price;
             ingredient.ingredientQuantity = quantity;
 
-            fetch(`/api/Ingredient/${props.ingredient.ingredientId}`, {
+            fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/Ingredient/${props.ingredient.ingredientId}`, {
                 method: "PUT",
                 mode: "cors",
                 headers: {

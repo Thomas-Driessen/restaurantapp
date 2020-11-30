@@ -17,7 +17,7 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "PayAssistance": false
             };
-            fetch(`/api/OrderDrink/${props.TableAssistance.tableNumber}`, {
+            fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/OrderDrink/${props.TableAssistance.tableNumber}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',

@@ -80,7 +80,7 @@ const Product = (props) => {
     let category = values;
     category.image = image ? image : category.image;
 
-    fetch(`/api/category/${props.categoryType}`, {
+    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/${props.categoryType}`, {
       method: "PUT",
       mode: "cors",
       headers: {

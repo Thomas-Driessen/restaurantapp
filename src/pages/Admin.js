@@ -33,7 +33,7 @@ class Admin extends React.Component {
 
     componentDidMount() {
         let mounted = true;
-        fetch(`/api/food`)
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/food`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -42,7 +42,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`/api/drink`)
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/drink`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -51,7 +51,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`/api/category/food`)
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/food`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -60,7 +60,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`/api/category/drink`)
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/drink`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -69,7 +69,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`/api/ingredient`)
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/ingredient`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {

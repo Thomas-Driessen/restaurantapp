@@ -20,7 +20,7 @@ const Product = (props) => {
     };
 
     const deleteIngredient = () => {
-        fetch(`/api/Ingredient/${props.ingredient.ingredientId}`, {
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/Ingredient/${props.ingredient.ingredientId}`, {
             method: "DELETE",
             mode: "cors",
             headers: {

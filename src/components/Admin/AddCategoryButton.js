@@ -84,7 +84,7 @@ class AddCategoryButton extends React.Component {
     };
 
     saveCategory = () => {
-        fetch(`/api/category/${this.state.newCategory.type}`, {
+        fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/${this.state.newCategory.type}`, {
             method: "POST",
             headers: {
                 Accept: "application/json",

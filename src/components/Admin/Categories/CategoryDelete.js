@@ -20,7 +20,7 @@ const Product = (props) => {
   };
 
   const deleteCategory = () => {
-    fetch(`/api/category/${props.categoryType}`, {
+    fetch(`https://cors-anywhere.herokuapp.com/http://s3-restaurant-api.herokuapp.com/api/category/${props.categoryType}`, {
       method: "DELETE",
       mode: "cors",
       headers: {
