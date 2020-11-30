@@ -35,12 +35,7 @@ class LoginForm extends React.Component {
   }
 
   async doLogin() {
-    fetch(
-      `/api/User/username=` +
-      this.state.username +
-      `&password=` +
-      this.state.password
-    )
+    fetch(`${process.env.REACT_APP_API_URL}/api/User/username=${this.state.username}&password=${this.state.password}`)
       .then((res) => {
         if (res.status !== 200) {
           this.setState({ logInFailed: true })
