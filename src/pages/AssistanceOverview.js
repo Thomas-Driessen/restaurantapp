@@ -47,7 +47,7 @@ class MenuPage extends React.Component {
 
   ConnectToHub() {
     const hubConnection = new HubConnectionBuilder()
-      .withUrl(`${process.env.REACT_APP_API_URL}/Order`)
+      .withUrl(`https://s3-restaurant-api.herokuapp.com/Order`)
       .configureLogging(LogLevel.Information)
       .build();
 
