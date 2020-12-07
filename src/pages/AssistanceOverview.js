@@ -16,6 +16,7 @@ class MenuPage extends React.Component {
     };
   }
   componentDidMount() {
+    document.title = "Assistance | "+this.props.name
     this.ConnectToHub();
     this.fetchTableAssistanceData();
   }

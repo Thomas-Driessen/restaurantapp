@@ -8,6 +8,7 @@ import '../App.css';
 class LoginPage extends React.Component {
 
     componentDidMount() {
+        document.title = "Admin Login | "+this.props.name
         let data = sessionStorage.getItem('sessionUserStore');
         if (data != null) {
             data = JSON.parse(data);
@@ -25,7 +26,6 @@ class LoginPage extends React.Component {
     }
 
     render() {
-
         if (UserStore.loading) {
             return (
                 <div className="app">
