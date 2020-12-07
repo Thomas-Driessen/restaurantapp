@@ -19,7 +19,9 @@ import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
 
 const Product = (props) => {
+    const likes = localStorage.getItem('likes');
     const [open, setOpen] = React.useState(false);
+    const [like, setLike] = React.useState(likes.indexOf(props.id) > -1 ? true : false)
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -27,6 +29,22 @@ const Product = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const addLike = (e) => {
+        e.preventDefault();
+        let index = likes.indexOf(props.id);
+
+        if(index > -1){
+            likes.splice(index, 1);
+            setLike(false);
+        }
+        else{
+            likes.push(props.id);
+            setLike(true);
+        }
+
+        localStorage.setItem('likes', likes);
+    }
     
     function addToOrder(e) {
         e.preventDefault();
@@ -104,8 +122,8 @@ const Product = (props) => {
                                     </Dialog>
                                     {sessionStorage.getItem("tableId") ? (
                                         <div>
-                                            <IconButton aria-label="add to favorites" color="primary">
-                                                <FavoriteIcon />
+                                            <IconButton aria-label="add to favorites" color="primary" onClick={addLike}>
+                                                <FavoriteIcon style={{color: like ? 'red' : 'inherit'}}/>
                                             </IconButton>
                                             <IconButton aria-label="add to order" color="primary" onClick={addToOrder}>
                                                 <AddIcon />
