@@ -19,9 +19,9 @@ import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
 
 const Product = (props) => {
-    const likes = localStorage.getItem('likes');
+    const likes = localStorage.getItem('likes') ? localStorage.getItem('likes') : [];
     const [open, setOpen] = React.useState(false);
-    const [like, setLike] = React.useState(likes.indexOf(props.id) > -1 ? true : false)
+    const [like, setLike] = React.useState(likes ? likes.indexOf(props.id) > -1 ? true : false : false)
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -32,7 +32,7 @@ const Product = (props) => {
 
     const addLike = (e) => {
         e.preventDefault();
-        let index = likes.indexOf(props.id);
+        let index = likes ? likes.indexOf(props.id) : -1;
 
         if(index > -1){
             likes.splice(index, 1);
