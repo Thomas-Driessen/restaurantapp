@@ -16,9 +16,6 @@ const SortBar = (props) => {
                         <Button onClick={props.showDrinks}>
                             Drinks
                         </Button>
-                        <Button>
-                            Most Liked
-                        </Button>
                     </ButtonGroup>
                 </Container>
             </AppBar>

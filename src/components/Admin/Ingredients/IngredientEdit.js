@@ -101,62 +101,57 @@ const ProductEdit = (props) => {
                     <DialogContentText>
                         Edit this ingredient's details
                       </DialogContentText>
-                    {props.ingredient.ingredientTitle ? (
-                        <FormControl
-                            className={clsx(
-                                classes.margin,
-                                classes.withoutLabel,
-                                classes.textField
-                            )}
-                        >
-                            <TextField
-                                label="Title"
-                                value={values.ingredientTitle}
-                                onChange={handleChange("ingredientTitle")}
-                            />
-                        </FormControl>
-                    ) : null}
+                    <FormControl
+                        className={clsx(
+                            classes.margin,
+                            classes.withoutLabel,
+                            classes.textField
+                        )}
+                    >
+                        <TextField
+                            label="Title"
+                            value={values.ingredientTitle}
+                            onChange={handleChange("ingredientTitle")}
+                        />
+                    </FormControl>
 
-                    {props.ingredient.ingredientQuantity ? (
-                        <FormControl
-                            className={clsx(
-                                classes.margin,
-                                classes.withoutLabel,
-                                classes.textField
-                            )}
-                        >
-                            <TextField
-                                label="Quantity"
-                                value={values.ingredientQuantity}
-                                onChange={handleChange("ingredientQuantity")}
-                                multiline
-                            />
-                        </FormControl>
-                    ) : null}
 
-                    {props.ingredient.price ? (
-                        <FormControl
-                            className={clsx(
-                                classes.margin,
-                                classes.withoutLabel,
-                                classes.textField
-                            )}
-                        >
-                            <TextField
-                                label="Price"
-                                value={values.price}
-                                onChange={handleChange("price")}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            €
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={{ display: "inline-block", width: "6ch" }}
-                            />
-                        </FormControl>
-                    ) : null}
+                    <FormControl
+                        className={clsx(
+                            classes.margin,
+                            classes.withoutLabel,
+                            classes.textField
+                        )}
+                    >
+                        <TextField
+                            label="Quantity"
+                            value={values.ingredientQuantity}
+                            onChange={handleChange("ingredientQuantity")}
+                            multiline
+                        />
+                    </FormControl>
+
+                    <FormControl
+                        className={clsx(
+                            classes.margin,
+                            classes.withoutLabel,
+                            classes.textField
+                        )}
+                    >
+                        <TextField
+                            label="Price"
+                            value={values.price}
+                            onChange={handleChange("price")}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        €
+                                    </InputAdornment>
+                                ),
+                            }}
+                            style={{ display: "inline-block", width: "6ch" }}
+                        />
+                    </FormControl>
                 </DialogContent>
                 <DialogActions>
                     <Button

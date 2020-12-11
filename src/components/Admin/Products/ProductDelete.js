@@ -29,15 +29,17 @@ const Product = (props) => {
     };
 
     const setItemOnMenu = (isOnMenu) => {
-        props.product.onMenu = isOnMenu;
-        fetch(`${process.env.REACT_APP_API_URL}/api/${props.product.productType}/${props.product.id}`, {
+        let newProduct = props.product;
+        let productType = isOnMenu === 1 ? props.productType : props.product.productType;
+        newProduct.onMenu = isOnMenu;
+        fetch(`${process.env.REACT_APP_API_URL}/api/${productType}/${newProduct.id}`, {
             method: "PUT",
             mode: "cors",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(props.product),
+            body: JSON.stringify(newProduct),
         }).catch(console.log);
 
         alert("Your changes have been saved");

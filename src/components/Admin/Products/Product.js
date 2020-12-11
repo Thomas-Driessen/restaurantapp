@@ -71,6 +71,7 @@ const Product = (props) => {
                   />
                   <ProductDelete
                     product={props.product}
+                    productType={props.productType}
                   />
                 </div>
               </Grid>
