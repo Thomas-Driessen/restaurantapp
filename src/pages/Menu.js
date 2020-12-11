@@ -32,6 +32,8 @@ class MenuPage extends React.Component {
   }
 
   async componentDidMount() {
+  componentDidMount() {
+    document.title = "Menu | "+this.props.name
     let mounted = true;
     await fetch(`${process.env.REACT_APP_API_URL}/api/food/available`)
       .then(res => res.json())

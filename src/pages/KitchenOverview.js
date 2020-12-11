@@ -14,6 +14,7 @@ class KitchenOverview extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "Kitchen Overview | "+this.props.name
         this.ConnectToHub();
         let mounted = true;
 

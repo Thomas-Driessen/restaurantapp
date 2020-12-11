@@ -12,6 +12,10 @@ class CameraPage extends React.Component {
         this.state = { products: [] };
     }
 
+    componentDidMount(){
+        document.title = "Scan QR | "+this.props.name
+    }
+
     render() {
         return (
             <div>

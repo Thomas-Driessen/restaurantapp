@@ -32,6 +32,7 @@ class Admin extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "Admin | "+this.props.name
         let mounted = true;
         fetch(`${process.env.REACT_APP_API_URL}/api/food`)
             .then((res) => res.json())

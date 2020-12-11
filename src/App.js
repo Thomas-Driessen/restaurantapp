@@ -40,6 +40,9 @@ const theme = createMuiTheme({
 class App extends React.Component {
   constructor() {
     super();
+    this.state = {
+      restaurantName: "Restaurant"
+    };
     runInAction(() => {
       let data = sessionStorage.getItem('sessionUserStore');
       if (data != null) {
@@ -67,13 +70,13 @@ class App extends React.Component {
           <MuiThemeProvider theme={theme}>
             <Router>
               <Switch>
-                <Route exact path="/" component={Menu} />
-                <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
-                <Route exact path="/kitchenOverview" component={KitchenOverview} />
-                <Route exact path="/assistanceOverview" component={assistanceOverview} />
-                <Route exact path="/menu" component={Menu} />
-                <Route path="/order" component={Order} />
-                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/" component={ () => (<Menu name={this.state.restaurantName} />)}/>
+                <Route exact path="/menuredirect/:tableNumber" component={ () => (<MenuRedirectPage name={this.state.restaurantName} />)} />
+                <Route exact path="/kitchenOverview" component={ () => (<KitchenOverview name={this.state.restaurantName} />)} />
+                <Route exact path="/assistanceOverview" component={ () => (<assistanceOverview name={this.state.restaurantName} />)} />
+                <Route exact path="/menu" component={ () => (<Menu name={this.state.restaurantName} />)} />
+                <Route path="/order" component={ () => (<Order name={this.state.restaurantName} />)} />
+                <Route exact path="/admin" component={ () => (<Admin name={this.state.restaurantName} />)} />
                 <Route exact path="/login" render={() => (<Redirect to="/admin" />)} />
                 <Route component={NotFoundPage} />
               </Switch>
@@ -85,14 +88,14 @@ class App extends React.Component {
         <MuiThemeProvider theme={theme}>
           <Router>
             <Switch>
-              <Route exact path="/" component={Menu} />
-              <Route exact path="/menuredirect/:tableNumber" component={MenuRedirectPage} />
-              <Route exact path="/kitchenOverview" component={KitchenOverview} />
-              <Route exact path="/assistanceOverview" component={assistanceOverview} />
-              <Route exact path="/menu" component={Menu} />
-              <Route path="/order" component={Order} />
+              <Route exact path="/" component={ () => (<Menu name={this.state.restaurantName}/>)}/>
+              <Route exact path="/menuredirect/:tableNumber" component={ () => (<MenuRedirectPage name={this.state.restaurantName} />)} />
+              <Route exact path="/kitchenOverview" component={ () => (<KitchenOverview name={this.state.restaurantName} />)} />
+              <Route exact path="/assistanceOverview" component={ () => (<assistanceOverview name={this.state.restaurantName} />)} />
+              <Route exact path="/menu" component={ () => (<Menu name={this.state.restaurantName} />)} />
+              <Route path="/order" component={ () => (<Order name={this.state.restaurantName} />)} />
               <Route exact path="/admin" render={() => (<Redirect to="/login" />)} />
-              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/login" component={ () => (<LoginPage name={this.state.restaurantName} />)} />
               <Route component={NotFoundPage} />
             </Switch>
           </Router>

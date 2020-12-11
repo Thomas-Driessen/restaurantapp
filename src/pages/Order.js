@@ -23,6 +23,7 @@ class ViewOrder extends React.Component {
     }
 
     async componentDidMount() {
+        document.title = "Your Order | "+this.props.name
         let mounted = true;
         let sum = 0;
         await fetch(`${process.env.REACT_APP_API_URL}/api/table/tableNumber/${this.state.tableId}`)
