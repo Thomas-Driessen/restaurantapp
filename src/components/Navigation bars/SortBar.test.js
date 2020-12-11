@@ -22,12 +22,6 @@ test('Render SortBar Drink Button', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('Render SortBar Most Liked Button', () => {
-  const { getByText } = render(<SortBar />);
-  const linkElement = getByText(/Most Liked/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
 afterAll(() => {
   global.gc && global.gc()
 })

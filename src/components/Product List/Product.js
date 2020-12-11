@@ -20,6 +20,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const Product = (props) => {
     const [open, setOpen] = React.useState(false);
+    const [foodLike, setFoodLike] = React.useState(localStorage.getItem('foodLikes') ? localStorage.getItem('foodLikes').indexOf(props.product.id) > -1 ? true : false : false)
+    const [drinkLike, setDrinkLike] = React.useState(localStorage.getItem('drinkLikes') ? localStorage.getItem('drinkLikes').indexOf(props.product.id) > -1 ? true : false : false)
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -27,7 +30,71 @@ const Product = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
-    
+
+    const addFoodLikes = (e) => {
+        e.preventDefault();
+        let foodLikeNew = {
+            food: props.product,
+            likes: props.product.likes
+        }
+        let likes = localStorage.getItem('foodLikes') ? localStorage.getItem('foodLikes').split(',') : [];
+        if (foodLike) {
+            let index = likes.indexOf(props.product.id);
+            likes.splice(index, 1);
+            foodLikeNew.likes--;
+            setFoodLike(false);
+        }
+        else {
+            likes.push(props.product.id);
+            foodLikeNew.likes++;
+            setFoodLike(true);
+        }
+
+        fetch(`${process.env.REACT_APP_API_URL}/api/FoodLikes`, {
+            method: "PUT",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(foodLikeNew),
+        }).catch(console.log);
+
+        localStorage.setItem('foodLikes', likes);
+    }
+
+    const addDrinkLikes = (e) => {
+        e.preventDefault();
+        let drinkLikeNew = {
+            drink: props.product,
+            likes: props.product.likes
+        }
+        let likes = localStorage.getItem('drinkLikes') ? localStorage.getItem('drinkLikes').split(',') : [];
+        if (drinkLike) {
+            let index = likes.indexOf(props.product.id);
+            likes.splice(index, 1);
+            drinkLikeNew.likes--;
+            setDrinkLike(false);
+        }
+        else {
+            likes.push(props.product.id);
+            drinkLikeNew.likes++;
+            setDrinkLike(true);
+        }
+
+        fetch(`${process.env.REACT_APP_API_URL}/api/DrinkLikes`, {
+            method: "PUT",
+            mode: "cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(drinkLikeNew),
+        }).catch(console.log);
+
+        localStorage.setItem('drinkLikes', likes);
+    }
+
     function addToOrder(e) {
         e.preventDefault();
         if (props.productType === "Food") {
@@ -42,9 +109,9 @@ const Product = (props) => {
 
     function renderIngredients() {
         let ingredients = [];
-            props.product.ingredients.map(currentIngredient => (
-                ingredients.push(currentIngredient.ingredient.ingredientTitle)
-            ));
+        props.product.ingredients.map(currentIngredient => (
+            ingredients.push(currentIngredient.ingredient.ingredientTitle)
+        ));
 
         return ingredients.toString();
     }
@@ -54,7 +121,7 @@ const Product = (props) => {
             { props.product ? (
                 <div>
                     <Card >
-                        <CardMedia 
+                        <CardMedia
                             style={{ height: 400 }}
                             component="img"
                             height="250"
@@ -71,10 +138,10 @@ const Product = (props) => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Grid 
-                                container 
-                                alignItems="flex-start" 
-                                justify="flex-end" 
+                            <Grid
+                                container
+                                alignItems="flex-start"
+                                justify="flex-end"
                                 direction="row"
                             >
                                 <div style={{ display: 'flex', alignItems: 'right' }}>
@@ -104,9 +171,15 @@ const Product = (props) => {
                                     </Dialog>
                                     {sessionStorage.getItem("tableId") ? (
                                         <div>
-                                            <IconButton aria-label="add to favorites" color="primary">
-                                                <FavoriteIcon />
+                                            {props.productType === 'Food' ? (
+                                                <IconButton aria-label="add to favorites" color="primary" onClick={addFoodLikes}>
+                                                <FavoriteIcon style={{ color: foodLike ? 'inherit' : 'gray' }} />
                                             </IconButton>
+                                            ) : (
+                                                <IconButton aria-label="add to favorites" color="primary" onClick={addDrinkLikes}>
+                                                <FavoriteIcon style={{ color: drinkLike ? 'inherit' : 'gray' }} />
+                                            </IconButton>
+                                            )}
                                             <IconButton aria-label="add to order" color="primary" onClick={addToOrder}>
                                                 <AddIcon />
                                             </IconButton>
