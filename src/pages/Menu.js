@@ -21,7 +21,7 @@ class MenuPage extends React.Component {
       drinkLikes: [],
       mostLikedFoods: [],
       shownProducts: [],
-      productType: "Food",
+      productType: "",
       foodCategories: [],
       drinkCategories: [],
       categoriesShown: [],
@@ -147,7 +147,7 @@ class MenuPage extends React.Component {
     return (
       <div>
         <NavBar />
-        <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} />
+        <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType}/>
         <Grid container spacing={0} style={{ padding: 15 }}>
           {this.state.selectedCategory !== "" ? (
             <div>
@@ -159,6 +159,7 @@ class MenuPage extends React.Component {
                   <ArrowBackIcon />
                 </IconButton>
               </Grid>
+              <h1>{this.state.selectedCategory}</h1>
               <ProductsList products={this.state.shownProducts.filter(product => product.category.categoryName === this.state.selectedCategory)} productType={this.state.productType} />
             </div>
           ) : (
