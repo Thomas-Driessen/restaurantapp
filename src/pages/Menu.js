@@ -146,7 +146,7 @@ class MenuPage extends React.Component {
     console.log(this.state.drinksLikes);
     return (
       <div>
-        <NavBar />
+        <NavBar pageName="menu"/>
         <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType}/>
         <Grid container spacing={0} style={{ padding: 15 }}>
           {this.state.selectedCategory !== "" ? (

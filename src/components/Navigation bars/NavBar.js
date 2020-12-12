@@ -16,6 +16,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import QRScanner from "../QRScanner";
 import CameraIcon from '@material-ui/icons/CameraAlt';
+import { withStyles } from "@material-ui/styles";
+
+const styles = {
+    buttonPressed: {
+        background: "white",
+        color: "#b71c1c",
+      }
+  };
 
 class NavBar extends React.Component {
     constructor() {
@@ -113,6 +121,7 @@ class NavBar extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <div>
                 <AppBar position="static">
@@ -125,12 +134,12 @@ class NavBar extends React.Component {
                         <Container disableGutters>
                             <div style={{ float: 'right' }}>
                                 <ButtonGroup variant="text" size="large" color="inherit" aria-label="text primary button group">
-                                    <Button onClick={this.setRedirectMenu} color="inherit">
+                                    <Button onClick={this.setRedirectMenu} className={this.props.pageName === "menu" ? classes.buttonPressed : ""} color="inherit">
                                         Menu
                                     </Button>
                                     {sessionStorage.getItem("tableId") ? (
                                         <div>
-                                            <Button onClick={this.setRedirect} size="large" color="inherit" startIcon={<FastfoodIcon />}>
+                                            <Button onClick={this.setRedirect} size="large" color="inherit" className={this.props.pageName === "order" ? classes.buttonPressed : ""} startIcon={<FastfoodIcon />}>
                                                 My orders {this.state.totalProductsInOrder ? ` (${this.state.totalProductsInOrder})` : ''}
                                             </Button>
                                             <Button onClick={this.callStaff} size="large" color="inherit">
@@ -176,4 +185,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default withStyles(styles)(NavBar);

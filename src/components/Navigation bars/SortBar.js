@@ -8,11 +8,7 @@ const useStyles = makeStyles(
   (theme) => ({
     buttonPressed: {
       background: theme.palette.primary.main,
-      borderRadius: 3,
-      border: 0,
       color: "white",
-      height: 48,
-      padding: "0 30px",
     },
   }),
   { withTheme: true }
@@ -20,7 +16,7 @@ const useStyles = makeStyles(
 
 const SortBar = (props) => {
   const classes = useStyles();
-      return (
+  return (
     <div>
       <AppBar position="static" color="transparent">
         <Container disableGutters>
