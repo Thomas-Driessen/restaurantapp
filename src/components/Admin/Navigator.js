@@ -63,6 +63,11 @@ class Navigator extends React.Component {
                             <PaletteIcon /> Theme
                         </Button>
                     </ListItem>
+                    <ListItem>
+                        <Button onClick={this.props.selectShowCharts}>
+                            <PaletteIcon /> Charts
+                        </Button>
+                    </ListItem>
                 </List>
             </Drawer>
         )

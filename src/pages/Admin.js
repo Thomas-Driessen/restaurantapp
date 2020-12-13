@@ -12,6 +12,7 @@ import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
 import AddIngredientButton from '../components/Admin/AddIngredientButton';
+import LineChartLikes from '../components/Charts/LineChartLikes'
 
 class Admin extends React.Component {
     constructor() {
@@ -28,6 +29,7 @@ class Admin extends React.Component {
             ingredients: [],
             selectedType: "",
             productType: "",
+            showCharts: false
         };
     }
 
@@ -89,6 +91,13 @@ class Admin extends React.Component {
         });
         this.setState({ selectedType: "Product" });
         this.setState({ productType: "Food" });
+    };
+
+    showCharts = (e) => {
+        e.preventDefault();
+        this.setState({
+            showCharts: this.state.showCharts = !this.state.showCharts
+        });
     };
 
     selectDrinks = (e) => {
@@ -188,6 +197,7 @@ class Admin extends React.Component {
                     selectFoodCategories={this.selectFoodCategories}
                     selectDrinkCategories={this.selectDrinkCategories}
                     selectIngredients={this.selectIngredients}
+                    selectShowCharts={this.showCharts}
                 />
                 <AppBar position="static">
                     <ToolBar>
@@ -209,9 +219,16 @@ class Admin extends React.Component {
                         </Container>
                     </ToolBar>
                 </AppBar>
-                <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
-                    {this.renderProducts(this.state.selectedType, this.state.productType)}
-                </Paper>
+                {this.state.showCharts
+                    ?
+                    <div style={{ paddingLeft: 230, paddingRight: 60 }}>
+                        <LineChartLikes />
+                    </div>
+                    :
+                    <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
+                        {this.renderProducts(this.state.selectedType, this.state.productType)}
+                    </Paper>
+                }
             </div>
         );
     }

@@ -83,7 +83,7 @@ const Product = (props) => {
         }
 
         fetch(`${process.env.REACT_APP_API_URL}/api/DrinkLikes`, {
-            method: "PUT",
+            method: "POST",
             mode: "cors",
             headers: {
                 Accept: "application/json",
