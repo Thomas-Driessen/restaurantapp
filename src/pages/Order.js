@@ -169,7 +169,7 @@ class ViewOrder extends React.Component {
     render() {
         return (
             <div>
-                <NavBar />
+                <NavBar pageName="order"/>
                 <Grid container spacing={0} style={{ padding: 15 }}>
                     <Grid item xs={12} sm={12} lg={6} xl={6}>
                         <PayForOrders
