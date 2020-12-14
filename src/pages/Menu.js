@@ -32,7 +32,7 @@ class MenuPage extends React.Component {
   }
 
   async componentDidMount() {
-    document.title = "Menu | "+this.props.name
+    document.title = "Menu | " + this.props.name
     let mounted = true;
     await fetch(`${process.env.REACT_APP_API_URL}/api/food/available`)
       .then(res => res.json())
@@ -107,18 +107,22 @@ class MenuPage extends React.Component {
 
   showFoods = (e) => {
     e.preventDefault();
-    this.setState({ shownProducts: this.state.foodsLikes.filter(item => item.onMenu === true) });
-    this.setState({ categoriesShown: this.state.foodCategories });
-    this.setState({ productType: "Food" });
-    this.setState({ selectedCategory: "" });
+    if (this.state.foodsLikes) {
+      this.setState({ shownProducts: this.state.foodsLikes.filter(item => item.onMenu === true) });
+      this.setState({ categoriesShown: this.state.foodCategories });
+      this.setState({ productType: "Food" });
+      this.setState({ selectedCategory: "" });
+    }
   }
 
   showDrinks = (e) => {
     e.preventDefault();
-    this.setState({ shownProducts: this.state.drinksLikes.filter(item => item.onMenu === true) });
-    this.setState({ categoriesShown: this.state.drinkCategories });
-    this.setState({ productType: "Drink" });
-    this.setState({ selectedCategory: "" });
+    if (this.state.drinksLikes) {
+      this.setState({ shownProducts: this.state.drinksLikes.filter(item => item.onMenu === true) });
+      this.setState({ categoriesShown: this.state.drinkCategories });
+      this.setState({ productType: "Drink" });
+      this.setState({ selectedCategory: "" });
+    }
   }
 
   showMostLiked = (e) => {
@@ -146,8 +150,8 @@ class MenuPage extends React.Component {
     console.log(this.state.drinksLikes);
     return (
       <div>
-        <NavBar pageName="menu"/>
-        <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType}/>
+        <NavBar pageName="menu" />
+        <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType} />
         <Grid container spacing={0} style={{ padding: 15 }}>
           {this.state.selectedCategory !== "" ? (
             <div>
