@@ -129,10 +129,11 @@ const Product = (props) => {
                             alt={`Image for ${props.product.title} Not Found`}
                             title={props.product.title}
                         />
-                        <CardContent>
+                        <CardContent style={{display: 'flex', flexDirection: 'column'}}>
                             <Typography gutterBottom variant="inherit" component="h2">
-                                {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
+                                {props.product.title} 
                             </Typography>
+                            <span style={{ float: "right", color: "green", display: "block", fontWeight: 'bold', fontSize: 20, marginBottom: 15 }}>{props.product.price}€</span>
                             <Typography component="h6">
                                 {renderIngredients()}
                             </Typography>
