@@ -122,3 +122,32 @@ body, html, #root,.app, .loginPage, .container {
 h1{
   text-align: center;
 }
+
+.feather-icon-basic {
+  stroke: inherit;
+  stroke-linecap: round;
+  width: 25px;
+  height: 25px;
+  stroke-width: 3px;
+}
+
+.clickable-card {
+  cursor: pointer;
+}
+
+.clickable-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  stroke: black;
+  transition: 0.05s ease-in;
+}
+
+.clickable-card:hover .clickable-card-bottom {
+  color: #f03131;
+  stroke: #f03131;
+}
+
+.width-100-percent{
+  width: 100%;
+}

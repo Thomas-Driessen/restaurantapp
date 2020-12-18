@@ -13,7 +13,7 @@ const Product = (props) => {
         <div>
             { props.category ? (
                 <div>
-                    <Card >
+                    <Card className="clickable-card" onClick={() => props.selectCategory(props.category)}>
                         <CardMedia 
                             style={{ height: 400 }}
                             component="img"
@@ -22,18 +22,14 @@ const Product = (props) => {
                             alt={`Image for ${props.category.categoryName} Not Found`}
                             title={props.category.categoryName}
                         />
-                        <CardContent>
+                        <CardContent className="clickable-card-bottom">
                             <Typography gutterBottom variant="inherit" component="h2">
                                 {props.category.categoryName}
                             </Typography>
+                            <svg className="feather-icon-basic" viewBox="0 0 24 24" fill="none">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </CardContent>
-                        <CardActions>
-                            <Grid container direction="row" justify="center" alignItems="center">
-                                <Button size="large" color="primary" target="_blank" onClick={() => props.selectCategory(props.category)}>
-                                    <span style={{ fontWeight: "bold", fontSize: "18px" }}>Select Category</span>
-                                </Button>
-                            </Grid>
-                        </CardActions>
                     </Card>
                 </div>
             ) : null}

@@ -120,9 +120,9 @@ const Product = (props) => {
         <div>
             { props.product ? (
                 <div>
-                    <Card >
+                    <Card style={{display: 'flex'}}>
                         <CardMedia
-                            style={{ height: 400 }}
+                            style={{ height: 200, width: 250 }}
                             component="img"
                             height="250"
                             src={props.product.image}
@@ -137,7 +137,7 @@ const Product = (props) => {
                                 {renderIngredients()}
                             </Typography>
                         </CardContent>
-                        <CardActions>
+                        <CardActions style={{ marginLeft: 'auto'}}>
                             <Grid
                                 container
                                 alignItems="flex-start"
