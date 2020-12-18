@@ -154,16 +154,16 @@ class MenuPage extends React.Component {
         <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType} />
         <Grid container spacing={0} style={{ padding: 15 }}>
           {this.state.selectedCategory !== "" ? (
-            <div>
-              <Grid container justify="flex-end">
-                <Button size='large' color={this.state.sorted === true ? 'primary.dark' : 'primary'} variant='contained' onClick={this.showMostLiked}>
-                  <span>Most Liked</span>
-                </Button>
+            <div className="width-100-percent">
+              <Grid container justify="space-between">
                 <IconButton aria-label="return-to-categories" onClick={this.resetCategory} color="primary">
                   <ArrowBackIcon />
                 </IconButton>
+                <h1>{this.state.selectedCategory}</h1>
+                <Button style={{margin: 'auto 0'}} size='large' color={this.state.sorted === true ? 'primary.dark' : 'primary'} variant='contained' onClick={this.showMostLiked}>
+                  <span>Most Liked</span>
+                </Button>
               </Grid>
-              <h1>{this.state.selectedCategory}</h1>
               <ProductsList products={this.state.shownProducts.filter(product => product.category.categoryName === this.state.selectedCategory)} productType={this.state.productType} />
             </div>
           ) : (

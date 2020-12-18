@@ -17,9 +17,12 @@ import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
 import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 const Product = (props) => {
     const [open, setOpen] = React.useState(false);
+    const [successMessage, showSuccessMessage] = React.useState(false);
     const [foodLike, setFoodLike] = React.useState(localStorage.getItem('foodLikes') ? localStorage.getItem('foodLikes').indexOf(props.product.id) > -1 ? true : false : false)
     const [drinkLike, setDrinkLike] = React.useState(localStorage.getItem('drinkLikes') ? localStorage.getItem('drinkLikes').indexOf(props.product.id) > -1 ? true : false : false)
 
@@ -29,6 +32,14 @@ const Product = (props) => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleSuccessOpen = () => {
+        showSuccessMessage(true);
+    };
+
+    const handleSuccessClose = () => {
+        showSuccessMessage(false);
     };
 
     const addFoodLikes = (e) => {
@@ -105,6 +116,7 @@ const Product = (props) => {
             currentDrinkList.push(props.product);
             sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
+        handleSuccessOpen();
     };
 
     function renderIngredients() {
@@ -120,24 +132,25 @@ const Product = (props) => {
         <div>
             { props.product ? (
                 <div>
-                    <Card >
+                    <Card style={{display: 'flex'}}>
                         <CardMedia
-                            style={{ height: 400 }}
+                            style={{ height: 200, width: 250 }}
                             component="img"
                             height="250"
                             src={props.product.image}
                             alt={`Image for ${props.product.title} Not Found`}
                             title={props.product.title}
                         />
-                        <CardContent>
+                        <CardContent style={{display: 'flex', flexDirection: 'column'}}>
                             <Typography gutterBottom variant="inherit" component="h2">
-                                {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
+                                {props.product.title} 
                             </Typography>
+                            <span style={{ float: "right", color: "green", display: "block", fontWeight: 'bold', fontSize: 20, marginBottom: 15 }}>{props.product.price}€</span>
                             <Typography component="h6">
                                 {renderIngredients()}
                             </Typography>
                         </CardContent>
-                        <CardActions>
+                        <CardActions style={{ marginLeft: 'auto'}}>
                             <Grid
                                 container
                                 alignItems="flex-start"
@@ -191,6 +204,11 @@ const Product = (props) => {
                             </Grid>
                         </CardActions>
                     </Card>
+                    <Snackbar open={successMessage} autoHideDuration={3000} onClose={handleSuccessClose}>
+                        <Alert variant="filled" severity="success">
+                            Product successfully added!
+                        </Alert>
+                    </Snackbar>
                 </div>
             ) : null}
         </div>
