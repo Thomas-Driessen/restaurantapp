@@ -132,9 +132,10 @@ const Product = (props) => {
         <div>
             { props.product ? (
                 <div>
-                    <Card style={{display: 'flex'}}>
+                    <Card className="flex-column-mobile" style={{display: 'flex'}}>
                         <CardMedia
-                            style={{ height: 200, width: 250 }}
+                            className="product-card-image"
+                            style={{ height: 200}}
                             component="img"
                             height="250"
                             src={props.product.image}

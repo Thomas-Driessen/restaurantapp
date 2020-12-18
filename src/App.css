@@ -148,6 +148,20 @@ h1{
   stroke: #f03131;
 }
 
+.product-card-image {
+  max-width: 250px;
+}
+
 .width-100-percent{
   width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-column-mobile {
+    flex-direction: column;
+  }
+  .product-card-image {
+    width: 100%;
+    max-width: unset;
+  }
 }
