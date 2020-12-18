@@ -17,9 +17,12 @@ import currentFoodList from '../Current Order/CurrentFoodList';
 import currentDrinkList from '../Current Order/CurrentDrinkList';
 import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 const Product = (props) => {
     const [open, setOpen] = React.useState(false);
+    const [successMessage, showSuccessMessage] = React.useState(false);
     const [foodLike, setFoodLike] = React.useState(localStorage.getItem('foodLikes') ? localStorage.getItem('foodLikes').indexOf(props.product.id) > -1 ? true : false : false)
     const [drinkLike, setDrinkLike] = React.useState(localStorage.getItem('drinkLikes') ? localStorage.getItem('drinkLikes').indexOf(props.product.id) > -1 ? true : false : false)
 
@@ -29,6 +32,14 @@ const Product = (props) => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleSuccessOpen = () => {
+        showSuccessMessage(true);
+    };
+
+    const handleSuccessClose = () => {
+        showSuccessMessage(false);
     };
 
     const addFoodLikes = (e) => {
@@ -105,6 +116,7 @@ const Product = (props) => {
             currentDrinkList.push(props.product);
             sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
+        handleSuccessOpen();
     };
 
     function renderIngredients() {
@@ -192,6 +204,11 @@ const Product = (props) => {
                             </Grid>
                         </CardActions>
                     </Card>
+                    <Snackbar open={successMessage} autoHideDuration={3000} onClose={handleSuccessClose}>
+                        <Alert variant="filled" severity="success">
+                            Product successfully added!
+                        </Alert>
+                    </Snackbar>
                 </div>
             ) : null}
         </div>
