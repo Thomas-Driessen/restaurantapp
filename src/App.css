@@ -148,6 +148,23 @@ h1{
   stroke: #f03131;
 }
 
+.breadcrumbs {
+  padding: 0 20px;
+}
+
+.breadcrumbs .breadcrumb:not(.breadcrumb-current) {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.breadcrumbs .breadcrumb:not(.breadcrumb-current):hover {
+  color: #FF6666;
+}
+
+.breadcrumbs .breadcrumb.breadcrumb-current {
+  color: #444444;
+}
+
 .product-card-image {
   max-width: 250px;
 }
