@@ -9,7 +9,7 @@ class LineChartLikes extends Component {
             data: [],
             axes: [
                 { primary: true, type: 'ordinal', position: 'bottom' },
-                { type: 'linear', position: 'left' }
+                { position: 'left', type: 'linear', stacked: false }
             ]
         }
         this.MyChart();
@@ -30,10 +30,13 @@ class LineChartLikes extends Component {
                 let finalObjCollection = [];
 
                 data.forEach(function(entry) {
-                    let dataCollection = [];
-                    dataCollection.push([entry.timeStamp, entry.likes]);
+                    let dataArr = [];
 
-                    finalObjCollection.push({label: entry.timeStamp, data: dataCollection});
+                    entry.drinkLikes.forEach(function(drinkLike) {
+                        dataArr.push([drinkLike.timeStamp, drinkLike.likes]);
+                    });
+
+                    finalObjCollection.push({label: entry.drink.title, data: dataArr});
                 });
 
                 console.log(finalObjCollection)
