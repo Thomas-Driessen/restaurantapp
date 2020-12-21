@@ -169,12 +169,19 @@ const Product = (props) => {
                                         aria-describedby="product-description"
                                     >
                                         <DialogTitle id="product-title">{props.product.title}</DialogTitle>
-                                        <DialogContent>
+                                        <DialogContent style={{minWidth: 400}}>
                                             <DialogContentText id="product-description">
                                                 {props.product.description}
                                             </DialogContentText>
-                                            <DialogContentText id="product-description">
-                                                <span style={{ float: "right", color: "green", fontWeight: "bold" }}>{props.product.price}€</span>
+                                            <DialogContentText id="product-ingredients">
+                                                <h4>Ingredients</h4>
+                                                {renderIngredients()}
+                                            </DialogContentText>
+                                            <DialogContentText id="product-price">
+                                                <div style={{display: "flex", justifyContent: "flex-start", alignItems: "center"}}>
+                                                <h4>Price</h4>
+                                                <span style={{ marginLeft: 15, color: "green", fontWeight: "bold" }}>{props.product.price}€</span>
+                                                </div>
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
