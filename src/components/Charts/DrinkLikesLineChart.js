@@ -53,7 +53,7 @@ class DrinkLikesLineChart extends Component {
         return (
             <div
                 style={{
-                    width: '600px',
+                    width: '1000px',
                     height: '400px'
                 }}
             >

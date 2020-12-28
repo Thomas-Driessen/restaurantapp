@@ -222,7 +222,7 @@ class Admin extends React.Component {
                 </AppBar>
                 {this.state.showCharts
                     ?
-                    <div style={{ paddingLeft: 230, paddingRight: 60, paddingTop: 50 }}>
+                    <div style={{ paddingLeft: 250, paddingRight: 60, paddingTop: 80 }}>
                         <DrinkLikesLineChart />
                         <FoodLikesLineChart />
                     </div>
