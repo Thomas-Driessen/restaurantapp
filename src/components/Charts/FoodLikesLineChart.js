@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import { Chart } from 'react-charts'
 
-class LineChartLikes extends Component {
+class FoodLikesLineChart extends Component {
 
     constructor() {
-        super()
+        super();
         this.state = {
             data: [],
             axes: [
                 { primary: true, type: 'ordinal', position: 'bottom' },
-                { position: 'left', type: 'linear', stacked: false }
+                { type: 'linear', position: 'left' }
             ]
         }
-        this.MyChart();
     }
 
-    MyChart = () => {
+    componentDidMount() {
         let _this = this;
-        fetch(`${process.env.REACT_APP_API_URL}/api/drinklikes`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/foodlikes`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -32,11 +31,11 @@ class LineChartLikes extends Component {
                 data.forEach(function(entry) {
                     let dataArr = [];
 
-                    entry.drinkLikes.forEach(function(drinkLike) {
-                        dataArr.push([drinkLike.timeStamp, drinkLike.likes]);
+                    entry.foodLikes.forEach(function(foodLike) {
+                        dataArr.push([foodLike.timeStamp, foodLike.likes]);
                     });
 
-                    finalObjCollection.push({label: entry.drink.title, data: dataArr});
+                    finalObjCollection.push({label: entry.food.title, data: dataArr});
                 });
 
                 console.log(finalObjCollection)
@@ -54,8 +53,8 @@ class LineChartLikes extends Component {
         return (
             <div
                 style={{
-                    width: '400px',
-                    height: '300px'
+                    width: '600px',
+                    height: '400px'
                 }}
             >
                 <Chart data={this.state.data} axes={this.state.axes} tooltip/>
@@ -64,4 +63,4 @@ class LineChartLikes extends Component {
     }
 }
 
-export default LineChartLikes;
+export default FoodLikesLineChart;

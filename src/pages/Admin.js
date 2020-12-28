@@ -12,7 +12,8 @@ import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
 import AddIngredientButton from '../components/Admin/AddIngredientButton';
-import LineChartLikes from '../components/Charts/LineChartLikes'
+import DrinkLikesLineChart from '../components/Charts/DrinkLikesLineChart'
+import FoodLikesLineChart from '../components/Charts/FoodLikesLineChart'
 
 class Admin extends React.Component {
     constructor() {
@@ -221,8 +222,9 @@ class Admin extends React.Component {
                 </AppBar>
                 {this.state.showCharts
                     ?
-                    <div style={{ paddingLeft: 230, paddingRight: 60 }}>
-                        <LineChartLikes />
+                    <div style={{ paddingLeft: 230, paddingRight: 60, paddingTop: 50 }}>
+                        <DrinkLikesLineChart />
+                        <FoodLikesLineChart />
                     </div>
                     :
                     <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
