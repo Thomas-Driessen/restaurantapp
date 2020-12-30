@@ -15,7 +15,8 @@ exports[`CategoryList renders correctly 1`] = `
     <div>
       <div>
         <div
-          className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root clickable-card MuiPaper-elevation1 MuiPaper-rounded"
+          onClick={[Function]}
         >
           <img
             alt="Image for Pizza Not Found"
@@ -29,55 +30,22 @@ exports[`CategoryList renders correctly 1`] = `
             title="Pizza"
           />
           <div
-            className="MuiCardContent-root"
+            className="MuiCardContent-root clickable-card-bottom"
           >
             <h2
               className="MuiTypography-root MuiTypography-gutterBottom"
             >
               Pizza
             </h2>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing"
-          >
-            <div
-              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center"
+            <svg
+              className="feather-icon-basic"
+              fill="none"
+              viewBox="0 0 24 24"
             >
-              <button
-                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge"
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onDragLeave={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchEnd={[Function]}
-                onTouchMove={[Function]}
-                onTouchStart={[Function]}
-                tabIndex={0}
-                target="_blank"
-                type="button"
-              >
-                <span
-                  className="MuiButton-label"
-                >
-                  <span
-                    style={
-                      Object {
-                        "fontSize": "18px",
-                        "fontWeight": "bold",
-                      }
-                    }
-                  >
-                    Select Category
-                  </span>
-                </span>
-              </button>
-            </div>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </div>
         </div>
       </div>
