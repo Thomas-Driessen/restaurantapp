@@ -45,6 +45,7 @@ exports[`PreviousOrders render correctly 1`] = `
             <h2
               className="MuiTypography-root MuiTypography-gutterBottom"
             >
+              x  
               <span
                 style={
                   Object {
@@ -53,6 +54,7 @@ exports[`PreviousOrders render correctly 1`] = `
                   }
                 }
               >
+                NaN
                 €
               </span>
             </h2>
@@ -73,6 +75,7 @@ exports[`PreviousOrders render correctly 1`] = `
             <h2
               className="MuiTypography-root MuiTypography-gutterBottom"
             >
+              x  
               <span
                 style={
                   Object {
@@ -81,6 +84,7 @@ exports[`PreviousOrders render correctly 1`] = `
                   }
                 }
               >
+                NaN
                 €
               </span>
             </h2>
@@ -121,6 +125,7 @@ exports[`PreviousOrders render correctly 1`] = `
             <h2
               className="MuiTypography-root MuiTypography-gutterBottom"
             >
+              x  
               <span
                 style={
                   Object {
@@ -129,6 +134,7 @@ exports[`PreviousOrders render correctly 1`] = `
                   }
                 }
               >
+                NaN
                 €
               </span>
             </h2>
@@ -149,6 +155,7 @@ exports[`PreviousOrders render correctly 1`] = `
             <h2
               className="MuiTypography-root MuiTypography-gutterBottom"
             >
+              x  
               <span
                 style={
                   Object {
@@ -157,6 +164,7 @@ exports[`PreviousOrders render correctly 1`] = `
                   }
                 }
               >
+                NaN
                 €
               </span>
             </h2>

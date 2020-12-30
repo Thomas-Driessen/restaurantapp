@@ -36,52 +36,8 @@ class ViewOrder extends React.Component {
         }
       })
       .catch(console.log);
-    fetch(
-      `${process.env.REACT_APP_API_URL}/api/orderdrink/${this.state.tableNumber}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (mounted && data) {
-          sum = data.reduce(
-            (totalPrice, product) => totalPrice + product.price,
-            0
-          );
-          let prevUniqueDrinks = [];
-          data.forEach((element) => {
-            if (this.countIdsInArray(element.id, prevUniqueDrinks) === 0) {
-              let count = this.countIdsInArray(element.id, data);
-              element.count = count;
-              prevUniqueDrinks.push(element);
-            }
-          });
-          this.setState({ pricePreviousDrinks: sum });
-          this.setState({ previousDrinks: prevUniqueDrinks });        }
-      })
-      .catch(console.log);
-
-    fetch(
-      `${process.env.REACT_APP_API_URL}/api/orderfood/${this.state.tableNumber}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (mounted && data) {
-          sum = data.reduce(
-            (totalPrice, product) => totalPrice + product.price,
-            0
-          );
-          let prevUniqueFoods = [];
-          data.forEach((element) => {
-            if (this.countIdsInArray(element.id, prevUniqueFoods) === 0) {
-              let count = this.countIdsInArray(element.id, data);
-              element.count = count;
-              prevUniqueFoods.push(element);
-            }
-          });
-          this.setState({ pricePreviousFoods: sum });
-          this.setState({ previousFoods: prevUniqueFoods });
-        }
-      })
-      .catch(console.log);
+    
+      this.updatePreviousOrders(mounted);
 
     sum = currentDrinkList.reduce(
       (totalPrice, drink) => totalPrice + drink.price,
@@ -132,36 +88,57 @@ class ViewOrder extends React.Component {
 
   sendOrder() {
     this.postOrder();
-    this.updatePreviousOrders();
+    this.updatePreviousOrders(true);
   }
 
   arrayContainsFoodOrDrink() {}
 
-  updatePreviousOrders() {
+  updatePreviousOrders(mounted) {
+    let sum = 0;
     fetch(
       `${process.env.REACT_APP_API_URL}/api/orderdrink/${this.state.tableNumber}`
     )
       .then((res) => res.json())
       .then((data) => {
-        let sum = data.reduce(
-          (totalPrice, product) => totalPrice + product.price,
-          0
-        );
-        this.setState({ pricePreviousDrinks: sum });
-        this.setState({ previousDrinks: data });
+        if (mounted && data) {
+          sum = data.reduce(
+            (totalPrice, product) => totalPrice + product.price,
+            0
+          );
+          let prevUniqueDrinks = [];
+          data.forEach((element) => {
+            if (this.countIdsInArray(element.id, prevUniqueDrinks) === 0) {
+              let count = this.countIdsInArray(element.id, data);
+              element.count = count;
+              prevUniqueDrinks.push(element);
+            }
+          });
+          this.setState({ pricePreviousDrinks: sum });
+          this.setState({ previousDrinks: prevUniqueDrinks });        }
       })
       .catch(console.log);
+
     fetch(
       `${process.env.REACT_APP_API_URL}/api/orderfood/${this.state.tableNumber}`
     )
       .then((res) => res.json())
       .then((data) => {
-        let sum = data.reduce(
-          (totalPrice, product) => totalPrice + product.price,
-          0
-        );
-        this.setState({ pricePreviousFoods: sum });
-        this.setState({ previousFoods: data });
+        if (mounted && data) {
+          sum = data.reduce(
+            (totalPrice, product) => totalPrice + product.price,
+            0
+          );
+          let prevUniqueFoods = [];
+          data.forEach((element) => {
+            if (this.countIdsInArray(element.id, prevUniqueFoods) === 0) {
+              let count = this.countIdsInArray(element.id, data);
+              element.count = count;
+              prevUniqueFoods.push(element);
+            }
+          });
+          this.setState({ pricePreviousFoods: sum });
+          this.setState({ previousFoods: prevUniqueFoods });
+        }
       })
       .catch(console.log);
   }
