@@ -214,7 +214,7 @@ class Admin extends React.Component {
                                     <Button variant="text" disabled={true} />
                                     <Button variant="text" size="large" color="inherit">
                                         Log Out
-                                        </Button>
+                                    </Button>
                                 </ButtonGroup>
                             </div>
                         </Container>

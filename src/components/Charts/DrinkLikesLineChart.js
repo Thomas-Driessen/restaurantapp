@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { Chart } from 'react-charts'
+import Chart from "chart.js";
 
 class DrinkLikesLineChart extends Component {
+
+    chartRef = React.createRef();
 
     constructor() {
         super();
         this.state = {
-            data: [],
-            axes: [
-                { primary: true, type: 'ordinal', position: 'bottom' },
-                { type: 'linear', position: 'left' }
-            ]
+            axesLabels: [],
+            chartData: [],
+            myChart: {}
         }
     }
 
@@ -24,24 +24,31 @@ class DrinkLikesLineChart extends Component {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
 
-                let finalObjCollection = [];
+                let perDrinkDataSet = [];
 
-                data.forEach(function(entry) {
-                    let dataArr = [];
-
-                    entry.drinkLikes.forEach(function(drinkLike) {
-                        dataArr.push([drinkLike.timeStamp, drinkLike.likes]);
-                    });
-
-                    finalObjCollection.push({label: entry.drink.title, data: dataArr});
-                });
-
-                console.log(finalObjCollection)
-                _this.setState({
-                    data: finalObjCollection
+                data.data.forEach(function (entry) {
+                    perDrinkDataSet.push(entry);
                 })
+
+                _this.setState({
+                    axesLabels: data.timeStamps,
+                    chartData: perDrinkDataSet
+                })
+
+                const myChartRef = _this.chartRef.current.getContext("2d");
+
+                new Chart(myChartRef, {
+                    type: "line",
+                    data: {
+                        //Bring in data
+                        labels: _this.state.axesLabels,
+                        datasets: _this.state.chartData
+                    },
+                    options: {
+                        //Customize chart options
+                    }
+                });
 
             })
             .catch(error => {
@@ -52,12 +59,11 @@ class DrinkLikesLineChart extends Component {
     render() {
         return (
             <div
-                style={{
-                    width: '1000px',
-                    height: '400px'
-                }}
             >
-                <Chart data={this.state.data} axes={this.state.axes} tooltip/>
+                <canvas
+                    id="myChart"
+                    ref={this.chartRef}
+                />
             </div>
         )
     }
