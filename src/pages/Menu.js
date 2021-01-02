@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Breadcrumbs, Typography } from '@material-ui/core';
 import React from 'react';
 import NavBar from '../components/Navigation bars/NavBar';
 import SortBar from '../components/Navigation bars/SortBar';
@@ -8,6 +8,12 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Button } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
+
+function handleClick(event) {
+  event.preventDefault();
+  console.info('You clicked a breadcrumb.');
+}
 
 class MenuPage extends React.Component {
 
@@ -155,6 +161,17 @@ class MenuPage extends React.Component {
         <Grid container spacing={0} style={{ padding: 15 }}>
           {this.state.selectedCategory !== "" ? (
             <div className="width-100-percent">
+              <Breadcrumbs aria-label="breadcrumb" className="breadcrumbs">
+                <span color="inherit" className="breadcrumb breadcrumb-current">
+                  Menu
+                </span>
+                <span color="inherit" className="breadcrumb" onClick={this.resetCategory}>
+                  {this.state.productType}
+                </span>
+                <span className="breadcrumb breadcrumb-current" naria-current="page">
+                  {this.state.selectedCategory}
+                </span>
+              </Breadcrumbs>
               <Grid container justify="space-between">
                 <IconButton aria-label="return-to-categories" onClick={this.resetCategory} color="primary">
                   <ArrowBackIcon />
@@ -168,7 +185,17 @@ class MenuPage extends React.Component {
             </div>
           ) : (
               this.state.categoriesShown.length ? (
-                <CategoryList categories={this.state.categoriesShown} selectCategory={this.selectCategory} />
+                <div>
+                  <Breadcrumbs aria-label="breadcrumb" className="breadcrumbs">
+                    <span color="inherit" className="breadcrumb breadcrumb-current">
+                      Menu
+                    </span>
+                    <span className="breadcrumb breadcrumb-current" naria-current="page">
+                      {this.state.productType}
+                    </span>
+                  </Breadcrumbs>
+                  <CategoryList categories={this.state.categoriesShown} selectCategory={this.selectCategory} />
+                </div>
               ) : (
                   <Grid container spacing={0} style={{ padding: 12 }}>
                     <Typography variant="subtitle2" display="block">
