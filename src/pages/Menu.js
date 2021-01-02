@@ -8,12 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Button } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
-
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
 
 class MenuPage extends React.Component {
 
