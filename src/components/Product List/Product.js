@@ -47,6 +47,7 @@ const Product = (props) => {
         else {
             likes.push(props.product.id);
             foodLikeNew.likes++;
+            foodLikeNew.timeStamp = new Date();
             setFoodLike(true);
         }
 
@@ -79,6 +80,7 @@ const Product = (props) => {
         else {
             likes.push(props.product.id);
             drinkLikeNew.likes++;
+            drinkLikeNew.timeStamp = new Date();
             setDrinkLike(true);
         }
 
