@@ -16,7 +16,7 @@ class FoodLikesLineChart extends Component {
 
     componentDidMount() {
         let _this = this;
-        fetch(`${process.env.REACT_APP_API_URL}/api/foodlikes`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/foodlikes/chartdata`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',

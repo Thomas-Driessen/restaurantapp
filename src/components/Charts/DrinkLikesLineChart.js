@@ -16,7 +16,7 @@ class DrinkLikesLineChart extends Component {
 
     componentDidMount() {
         let _this = this;
-        fetch(`${process.env.REACT_APP_API_URL}/api/drinklikes`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/drinklikes/chartdata`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
