@@ -117,6 +117,7 @@ class DrinkLikesLineChart extends Component {
     render() {
         return (
             <div>
+                <h3>Drink Popularity</h3>
                 <FormControl className={"selectedYear"}>
                     <InputLabel id="availableYears">Year</InputLabel>
                     <Select

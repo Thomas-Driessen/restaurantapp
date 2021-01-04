@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-class FoodLikesLineChart extends Component {
+class DrinkOrderLineChart extends Component {
 
     chartRef = React.createRef();
 
@@ -24,7 +24,7 @@ class FoodLikesLineChart extends Component {
     componentDidMount() {
         let _this = this;
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/foodlikes/getAvailableDates`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink/getAvailableDates`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -60,11 +60,8 @@ class FoodLikesLineChart extends Component {
             this.setState({selectedMonth: month})
         }
 
-        console.log("year: " + year);
-        console.log("year state: " + this.state.selectedYear);
-        console.log("month: " + month);
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/foodlikes/chartdata`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink/chartdata`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -73,16 +70,16 @@ class FoodLikesLineChart extends Component {
             body: JSON.stringify({year: year, month: month})
         }).then(response => response.json())
             .then(data => {
-
-                let perFoodDataSet = [];
+                console.log(data)
+                let perDrinkDataSet = [];
 
                 data.data.forEach(function (entry) {
-                    perFoodDataSet.push(entry);
+                    perDrinkDataSet.push(entry);
                 })
 
                 _this.setState({
                     axesLabels: data.timeStamps,
-                    chartData: perFoodDataSet
+                    chartData: perDrinkDataSet
                 })
 
                 const myChartRef = _this.chartRef.current.getContext("2d");
@@ -117,7 +114,7 @@ class FoodLikesLineChart extends Component {
     render() {
         return (
             <div>
-                <h3>Food Popularity</h3>
+                <h3>Drink Sales</h3>
                 <FormControl className={"selectedYear"}>
                     <InputLabel id="availableYears">Year</InputLabel>
                     <Select
@@ -154,4 +151,4 @@ class FoodLikesLineChart extends Component {
     }
 }
 
-export default FoodLikesLineChart;
+export default DrinkOrderLineChart;
