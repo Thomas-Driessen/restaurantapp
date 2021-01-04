@@ -2,7 +2,6 @@ import React from 'react';
 import Loading from '../components/LoadingComponent';
 import { withRouter } from "react-router";
 
-
 class CameraPage extends React.Component {
     constructor() {
         super();

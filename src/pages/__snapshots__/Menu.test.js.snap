@@ -31,7 +31,7 @@ exports[`Menu renders correctly 1`] = `
               role="group"
             >
               <button
-                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButton-colorInherit MuiButton-textSizeLarge MuiButton-sizeLarge"
+                className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal NavBar-buttonPressed-1 MuiButton-colorInherit MuiButton-textSizeLarge MuiButton-sizeLarge"
                 disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
