@@ -47,7 +47,7 @@ class QRScanner extends React.Component {
 
     handleError = (err) => {
         this.setState({
-            result: "There was an error scanning the QR-code! Please try again.",
+            result: "There was an error scanning the QR-code! Please try again and make sure you have given permission to your camera.",
         })
     }
 
