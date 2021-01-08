@@ -1,6 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
@@ -185,10 +186,20 @@ class Admin extends React.Component {
                 />;
             case 'Charts':
                 return <div>
-                    <DrinkLikesLineChart />
-                    <FoodLikesLineChart />
-                    <DrinkOrderLineChart />
-                    <FoodOrderLineChart />
+                    <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                            <DrinkLikesLineChart />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FoodLikesLineChart />
+                        </Grid>
+                        <Grid item xs={6}>
+                               <DrinkOrderLineChart />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FoodOrderLineChart />
+                        </Grid>
+                    </Grid>
                 </div>;
             default:
                 return null;
