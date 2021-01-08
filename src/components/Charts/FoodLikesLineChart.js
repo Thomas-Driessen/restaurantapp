@@ -77,6 +77,7 @@ class FoodLikesLineChart extends Component {
                 let perFoodDataSet = [];
 
                 data.data.forEach(function (entry) {
+                    entry.borderColor = _this.getRandomColor();
                     perFoodDataSet.push(entry);
                 })
 
@@ -102,6 +103,15 @@ class FoodLikesLineChart extends Component {
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    getRandomColor = () => {
+        let letters = '0123456789ABCDEF'.split('');
+        let color = '#';
+        for (let i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     handleYearChange = (prop) => {

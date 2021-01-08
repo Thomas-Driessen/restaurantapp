@@ -77,6 +77,7 @@ class DrinkLikesLineChart extends Component {
                 let perDrinkDataSet = [];
 
                 data.data.forEach(function (entry) {
+                    entry.borderColor = _this.getRandomColor();
                     perDrinkDataSet.push(entry);
                 })
 
@@ -102,6 +103,15 @@ class DrinkLikesLineChart extends Component {
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    getRandomColor = () => {
+        let letters = '0123456789ABCDEF'.split('');
+        let color = '#';
+        for (let i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     handleYearChange = (prop) => {
