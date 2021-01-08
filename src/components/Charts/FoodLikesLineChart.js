@@ -60,10 +60,6 @@ class FoodLikesLineChart extends Component {
             this.setState({selectedMonth: month})
         }
 
-        console.log("year: " + year);
-        console.log("year state: " + this.state.selectedYear);
-        console.log("month: " + month);
-
         fetch(`${process.env.REACT_APP_API_URL}/api/foodlikes/chartdata`, {
             method: 'post',
             headers: {

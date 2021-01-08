@@ -21,7 +21,6 @@ class QRScanner extends React.Component {
 
             var scannedResult = JSON.parse(data);
 
-            console.log(data)
             fetch(`${process.env.REACT_APP_API_URL}/api/table/table`, {
                 method: 'post',
                 headers: {
