@@ -112,11 +112,13 @@ class FoodOrderLineChart extends Component {
     }
 
     handleYearChange = (prop) => {
+        prop.preventDefault();
         this.setState({selectedYear: prop.target.value});
         this.getChartData(prop.target.value, null);
     }
 
     handleMonthChange = (prop) => {
+        prop.preventDefault();
         this.setState({selectedMonth: prop.target.value});
         this.getChartData(null, prop.target.value);
     }

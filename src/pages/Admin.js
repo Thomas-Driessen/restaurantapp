@@ -98,9 +98,7 @@ class Admin extends React.Component {
 
     showCharts = (e) => {
         e.preventDefault();
-        this.setState({
-            showCharts: this.state.showCharts = !this.state.showCharts
-        });
+        this.setState({ selectedType: "Charts" });
     };
 
     selectDrinks = (e) => {
@@ -185,6 +183,13 @@ class Admin extends React.Component {
                     drinkCategories={this.state.drinkCategories}
                     ingredients={this.state.ingredients}
                 />;
+            case 'Charts':
+                return <div>
+                    <DrinkLikesLineChart />
+                    <FoodLikesLineChart />
+                    <DrinkOrderLineChart />
+                    <FoodOrderLineChart />
+                </div>;
             default:
                 return null;
         }
@@ -222,19 +227,9 @@ class Admin extends React.Component {
                         </Container>
                     </ToolBar>
                 </AppBar>
-                {this.state.showCharts
-                    ?
-                    <div style={{ paddingLeft: 250, paddingRight: 60, paddingTop: 80 }}>
-                        <DrinkLikesLineChart />
-                        <FoodLikesLineChart />
-                        <DrinkOrderLineChart />
-                        <FoodOrderLineChart />
-                    </div>
-                    :
                     <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
                         {this.renderProducts(this.state.selectedType, this.state.productType)}
                     </Paper>
-                }
             </div>
         );
     }
