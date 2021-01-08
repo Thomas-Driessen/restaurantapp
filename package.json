@@ -21,12 +21,15 @@
     "react-test-renderer": "^16.13.1",
     "serve": "^11.3.2"
   },
+  "engines": {
+    "node": "14.13.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "serve -s build"
+    "heroku-postbuild": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
