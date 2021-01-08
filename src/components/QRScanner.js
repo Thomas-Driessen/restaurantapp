@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import QrReader from 'react-qr-scanner'
 import { withRouter } from 'react-router-dom'
 
-class QRScanner extends Component {
+class QRScanner extends React.Component {
     static scanned = false;
 
     constructor() {
@@ -14,7 +14,7 @@ class QRScanner extends Component {
         this.handleScan = this.handleScan.bind(this)
     }
 
-    async handleScan(data) {
+    handleScan = (data) => {
         let _this = this;
         if (data != null && QRScanner.scanned === false) {
             QRScanner.scanned = true;
@@ -22,7 +22,7 @@ class QRScanner extends Component {
             var scannedResult = JSON.parse(data);
 
             console.log(data)
-            await fetch(`${process.env.REACT_APP_API_URL}/api/table/table`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/table/table`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -46,7 +46,7 @@ class QRScanner extends Component {
         }
     }
 
-    handleError(err) {
+    handleError = (err) => {
         this.setState({
             result: "There was an error scanning the QR-code! Please try again.",
         })
