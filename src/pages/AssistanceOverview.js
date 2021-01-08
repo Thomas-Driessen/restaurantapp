@@ -48,7 +48,7 @@ class MenuPage extends React.Component {
 
   ConnectToHub() {
     const hubConnection = new HubConnectionBuilder()
-      .withUrl(`https://s3-restaurant-api.herokuapp.com/Order`)
+      .withUrl(`https://cors-anywhere.herokuapp.com/https://s3-restaurant-api.herokuapp.com/Order`)
       .configureLogging(LogLevel.Information)
       .build();
 
