@@ -42,6 +42,7 @@ class KitchenOverview extends React.Component {
                 .catch(err => console.log('Error while establishing connection :('));
 
             this.state.hubConnection.on('OrderSent', (order) => {
+                console.log(order);
                 this.setState({ order });
             });
         });
