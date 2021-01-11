@@ -40,7 +40,7 @@ workflows:
             branches:
               only: master
       - publish-latest:
-          context: Docker
+          context: docker
           filters:
             branches:
               only: master
