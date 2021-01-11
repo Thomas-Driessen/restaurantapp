@@ -13,11 +13,15 @@ class SplitItems extends React.Component {
         this.state = {
             toDoLength: 0,
             progressLength: 0,
-            doneLength: 0
+            doneLength: 0,
+            toDoPressed: false,
+            progressPressed: false,
+            donePressed: false
         }
     }
 
     componentDidMount() {
+        console.log(toDo);
         setInterval(() => {
             this.checkOrderListLength();
         }, 50);
@@ -88,12 +92,55 @@ class SplitItems extends React.Component {
         }
     }
 
+    handlerToDo = () => {
+        this.setState({
+            toDoPressed: !this.state.toDoPressed
+        });
+      }
+
+      handlerProgress= () => {
+        this.setState({
+            progressPressed: !this.state.progressPressed
+        });
+      }
+
+      handlerDone = () => {
+        this.setState({
+            donePressed: !this.state.donePressed
+        });
+      }
+
+
     render() {
+        if(this.state.toDoPressed){
+            return (
+                <Grid container spacing={0} style={{ padding: 5 }}>
+                    <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} fullScreen = {this.state.toDoPressed} click={this.handlerToDo}/>
+                </Grid>
+            )
+        }
+
+        if(this.state.progressPressed){
+            return (
+                <Grid container spacing={0} style={{ padding: 5 }}>
+                    <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} fullScreen = {this.state.progressPressed} click={this.handlerProgress}/>
+                </Grid>
+            )
+        }
+
+        if(this.state.donePressed){
+            return (
+                <Grid container spacing={0} style={{ padding: 5 }}>
+                    <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} fullScreen = {this.state.donePressed} click={this.handlerDone}/>
+                </Grid>
+            )
+        }
+
         return (
             <Grid container spacing={0} style={{ padding: 5 }}>
-                <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} />
-                <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} />
-                <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} />
+                <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} fullScreen = {this.state.toDoPressed} click={this.handlerToDo}/>
+                <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} fullScreen = {this.state.progressPressed} click={this.handlerProgress}/>
+                <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} fullScreen = {this.state.donePressed} click={this.handlerDone}/>
             </Grid>
         )
     }
