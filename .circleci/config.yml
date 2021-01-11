@@ -25,8 +25,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-            cd game-of-life && docker build -t $REACT:latest .
+      - run: docker build -t $REACT:latest .
       - run: docker save -o image.tar $REACT
       - run: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
