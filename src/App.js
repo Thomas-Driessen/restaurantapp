@@ -13,7 +13,7 @@ import Order from './pages/Order';
 import Admin from './pages/Admin'
 import NotFoundPage from './pages/NotFoundPage'
 import KitchenOverview from './pages/KitchenOverview'
-import assistanceOverview from './pages/AssistanceOverview'
+import AssistanceOverview from './pages/AssistanceOverview'
 import LoginPage from './pages/AdminLoginPage'
 import { observer } from 'mobx-react'
 import UserStore from './components/Admin Login/UserStore'
@@ -73,7 +73,7 @@ class App extends React.Component {
                 <Route exact path="/" component={ () => (<Menu name={this.state.restaurantName} />)}/>
                 <Route exact path="/menuredirect/:tableNumber" component={ () => (<MenuRedirectPage name={this.state.restaurantName} />)} />
                 <Route exact path="/kitchenOverview" component={ () => (<KitchenOverview name={this.state.restaurantName} />)} />
-                <Route exact path="/assistanceOverview" component={ () => (<assistanceOverview name={this.state.restaurantName} />)} />
+                <Route exact path="/assistanceOverview" component={ () => (<AssistanceOverview name={this.state.restaurantName} />)} />
                 <Route exact path="/menu" component={ () => (<Menu name={this.state.restaurantName} />)} />
                 <Route path="/order" component={ () => (<Order name={this.state.restaurantName} />)} />
                 <Route exact path="/admin" component={ () => (<Admin name={this.state.restaurantName} />)} />
@@ -91,7 +91,7 @@ class App extends React.Component {
               <Route exact path="/" component={ () => (<Menu name={this.state.restaurantName}/>)}/>
               <Route exact path="/menuredirect/:tableNumber" component={ () => (<MenuRedirectPage name={this.state.restaurantName} />)} />
               <Route exact path="/kitchenOverview" component={ () => (<KitchenOverview name={this.state.restaurantName} />)} />
-              <Route exact path="/assistanceOverview" component={ () => (<assistanceOverview name={this.state.restaurantName} />)} />
+              <Route exact path="/assistanceOverview" component={ () => (<AssistanceOverview name={this.state.restaurantName} />)} />
               <Route exact path="/menu" component={ () => (<Menu name={this.state.restaurantName} />)} />
               <Route path="/order" component={ () => (<Order name={this.state.restaurantName} />)} />
               <Route exact path="/admin" render={() => (<Redirect to="/login" />)} />
