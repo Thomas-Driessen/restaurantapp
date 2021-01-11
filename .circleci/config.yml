@@ -20,7 +20,7 @@ jobs:
       - store_artifacts:
           path: /tmp/build
 
-  publish-latest-react:
+  publish-latest:
     executor: docker-publisher
     steps:
       - checkout
