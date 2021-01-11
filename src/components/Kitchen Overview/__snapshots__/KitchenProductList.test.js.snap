@@ -15,6 +15,13 @@ exports[`KitchenProductList renders correctly 1`] = `
   <div
     className="background-lightgray kitchen-overview-container"
   >
+    <div
+      className="upperRightButton"
+    >
+      <button>
+        -
+      </button>
+    </div>
     <div>
       <div>
         <div
