@@ -31,7 +31,7 @@ class KitchenOverview extends React.Component {
 
     ConnectToHub() {
         const hubConnection = new HubConnectionBuilder()
-            .withUrl(`https://s3-restaurant-api.herokuapp.com/Order`)
+            .withUrl(`https://s3-restaurant-api.azurewebsites.net/Order`)
             .configureLogging(LogLevel.Information)
             .build();
 
