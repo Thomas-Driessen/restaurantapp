@@ -9,12 +9,6 @@ test('Render Navigator Restaurant', () => {
     expect(linkElement).toBeInTheDocument();
 });
 
-test('Render Navigator Dashboard', () => {
-    const { getByText } = render(<Navigator />);
-    const linkElement = getByText(/Dashboard/i);
-    expect(linkElement).toBeInTheDocument();
-});
-
 it('Navigator renders correctly', () => {
     const tree = renderer
         .create(<Navigator />)

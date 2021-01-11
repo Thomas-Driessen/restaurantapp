@@ -32,7 +32,7 @@ class Admin extends React.Component {
     }
 
     componentDidMount() {
-        document.title = "Admin | "+this.props.name
+        document.title = "Admin | " + this.props.name
         let mounted = true;
         fetch(`${process.env.REACT_APP_API_URL}/api/food`)
             .then((res) => res.json())
@@ -209,7 +209,7 @@ class Admin extends React.Component {
                         </Container>
                     </ToolBar>
                 </AppBar>
-                <Paper style={{ paddingLeft: 230, paddingRight: 60 }}>
+                <Paper elevation='0' style={{ paddingLeft: 230, paddingRight: 60, background: '#f7f7f7' }}>
                     {this.renderProducts(this.state.selectedType, this.state.productType)}
                 </Paper>
             </div>

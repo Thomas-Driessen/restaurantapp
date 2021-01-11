@@ -2,10 +2,10 @@
 
 exports[`ProductsList renders correctly 1`] = `
 <div
-  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1"
+  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
   style={
     Object {
-      "padding": 10,
+      "padding": 20,
     }
   }
 >

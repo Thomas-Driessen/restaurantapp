@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
@@ -252,15 +251,7 @@ const ProductEdit = (props) => {
                 <DialogContent>
                     <DialogContentText>
                         Edit this product's details
-                      </DialogContentText>
-                    <CardMedia
-                        style={{ height: 400 }}
-                        component="img"
-                        height="250"
-                        src={props.product.image}
-                        alt={`Image for ${props.product.title} Not Found`}
-                        title={props.product.title}
-                    />
+                      </DialogContentText>  
                     {props.product.title ? (
                         <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)} >
                             <TextField
