@@ -8,13 +8,13 @@ class KitchenOverview extends React.Component {
         super();
 
         this.state = {
-            order: [],
+            order: null,
             hubConnection: null,
         }
     }
 
     componentDidMount() {
-        document.title = "Kitchen Overview | "+this.props.name
+        document.title = "Kitchen Overview | " + this.props.name
         this.ConnectToHub();
         let mounted = true;
 
@@ -42,29 +42,23 @@ class KitchenOverview extends React.Component {
                 .catch(err => console.log('Error while establishing connection :('));
 
             this.state.hubConnection.on('OrderSent', (order) => {
-                console.log(order);
+                let processOrder = order;
+                let processedItem = [];
+                processOrder.title.map(item => (
+                    processedItem.push(false)
+                ));
+                processOrder.state = processedItem;
+                toDo.push(processOrder);
+                localStorage.setItem("toDo", JSON.stringify(toDo));
                 this.setState({ order });
             });
         });
     }
 
-    componentDidUpdate(order) {
-        if (this.state.order !== order) {
-            this.state.order.map(item => {
-                toDo.push(item);
-                return true;
-            })
-
-            if (this.state.order.length) {
-                localStorage.setItem("toDo", JSON.stringify(toDo));
-            }
-        }
-    }
-
     render() {
         return (
             <div>
-                <SplitItems order={this.state.order} />
+                <SplitItems />
             </div>
         )
     }

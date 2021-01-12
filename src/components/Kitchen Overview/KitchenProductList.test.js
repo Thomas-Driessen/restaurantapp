@@ -5,10 +5,16 @@ import renderer from 'react-test-renderer';
 
 const products = [
   {
-    title: "Coca-Cola",
+    title: ["Coca-Cola"],
+    tableNumber: 3,
+    state: [false],
+    timestamp: "14:51:58"
   },
   {
-    title: "Pepsi",
+    title: ["Pepsi"],
+    tableNumber: 2,
+    state: [false],
+    timestamp: "14:53:11"
   },
 ];
 

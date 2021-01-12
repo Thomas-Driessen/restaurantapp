@@ -11,9 +11,9 @@ class SplitItems extends React.Component {
         super();
 
         this.state = {
-            toDoLength: 0,
-            progressLength: 0,
-            doneLength: 0,
+            toDoLength: [],
+            progressLength: [],
+            doneLength: [],
             toDoPressed: false,
             progressPressed: false,
             donePressed: false
@@ -21,7 +21,6 @@ class SplitItems extends React.Component {
     }
 
     componentDidMount() {
-        console.log(toDo);
         setInterval(() => {
             this.checkOrderListLength();
         }, 50);
@@ -44,6 +43,32 @@ class SplitItems extends React.Component {
         return () => mounted = false;
     }
 
+    setItemToTrue(array, element, position, key) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].tableNumber === element.tableNumber && array[i].timeStamp === element.timeStamp) {
+                array[i].state[position] = true;
+            }
+        }
+        localStorage.setItem(key, JSON.stringify(array));
+        this.forceUpdate();
+    }
+
+    itemReady = (element, position, listTitle) => {
+        switch (listTitle) {
+            case "To do":
+                this.setItemToTrue(toDo, element, position, "toDo");
+                break;
+            case "Progress":
+                this.setItemToTrue(progress, element, position, "progress");
+                break;
+            case "Done":
+                this.setItemToTrue(done, element, position, "done");
+                break;
+            default:
+                return null;
+        }
+    }
+
     checkOrderListLength() {
         if (toDo.length !== this.state.toDoLength) {
             this.setState({ toDoLength: toDo.length });
@@ -58,10 +83,14 @@ class SplitItems extends React.Component {
         }
     }
 
-    pushToProgress(title) {
+    
+    pushToProgress(product) {
         for (let i = 0; i < toDo.length; i++) {
-            if (toDo[i].title === title) {
-                progress.push(toDo[i]);
+            if (toDo[i] === product) {
+                for(let j = 0; j < product.state.length; j++){
+                    product.state[j] = false;
+                }
+                progress.push(product);
                 toDo.splice(i, 1);
                 localStorage.setItem("toDo", JSON.stringify(toDo));
                 localStorage.setItem("progress", JSON.stringify(progress));
@@ -70,10 +99,10 @@ class SplitItems extends React.Component {
         }
     }
 
-    pushToDone(title) {
+    pushToDone(product) {
         for (let i = 0; i < progress.length; i++) {
-            if (progress[i].title === title) {
-                done.push(progress[i]);
+            if (progress[i] === product) {
+                done.push(product);
                 progress.splice(i, 1);
                 localStorage.setItem("progress", JSON.stringify(progress));
                 localStorage.setItem("done", JSON.stringify(done));
@@ -82,9 +111,9 @@ class SplitItems extends React.Component {
         }
     }
 
-    pushToPickUp(title) {
+    pushToPickUp(product) {
         for (let i = 0; i < done.length; i++) {
-            if (done[i].title === title) {
+            if (done[i] === product) {
                 done.splice(i, 1);
                 localStorage.setItem("done", JSON.stringify(done));
                 break;
@@ -96,51 +125,51 @@ class SplitItems extends React.Component {
         this.setState({
             toDoPressed: !this.state.toDoPressed
         });
-      }
+    }
 
-      handlerProgress= () => {
+    handlerProgress = () => {
         this.setState({
             progressPressed: !this.state.progressPressed
         });
-      }
+    }
 
-      handlerDone = () => {
+    handlerDone = () => {
         this.setState({
             donePressed: !this.state.donePressed
         });
-      }
+    }
 
 
     render() {
-        if(this.state.toDoPressed){
+        if (this.state.toDoPressed) {
             return (
                 <Grid container spacing={0} style={{ padding: 5 }}>
-                    <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} fullScreen = {this.state.toDoPressed} click={this.handlerToDo}/>
+                    <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} itemReady={this.itemReady} fullScreen={this.state.toDoPressed} click={this.handlerToDo} />
                 </Grid>
             )
         }
 
-        if(this.state.progressPressed){
+        if (this.state.progressPressed) {
             return (
                 <Grid container spacing={0} style={{ padding: 5 }}>
-                    <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} fullScreen = {this.state.progressPressed} click={this.handlerProgress}/>
+                    <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} itemReady={this.itemReady} fullScreen={this.state.progressPressed} click={this.handlerProgress} />
                 </Grid>
             )
         }
 
-        if(this.state.donePressed){
+        if (this.state.donePressed) {
             return (
                 <Grid container spacing={0} style={{ padding: 5 }}>
-                    <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} fullScreen = {this.state.donePressed} click={this.handlerDone}/>
+                    <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} itemReady={this.itemReady} fullScreen={this.state.donePressed} click={this.handlerDone} />
                 </Grid>
             )
         }
 
         return (
             <Grid container spacing={0} style={{ padding: 5 }}>
-                <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} fullScreen = {this.state.toDoPressed} click={this.handlerToDo}/>
-                <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} fullScreen = {this.state.progressPressed} click={this.handlerProgress}/>
-                <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} fullScreen = {this.state.donePressed} click={this.handlerDone}/>
+                <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} itemReady={this.itemReady} fullScreen={this.state.toDoPressed} click={this.handlerToDo} />
+                <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} itemReady={this.itemReady} fullScreen={this.state.progressPressed} click={this.handlerProgress} />
+                <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} itemReady={this.itemReady} fullScreen={this.state.donePressed} click={this.handlerDone} />
             </Grid>
         )
     }
