@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  reverse-proxy:
+    image: robertaro/restaurant-reverse-proxy:latest
+    restart: always
+    ports:
+      - 80:80
+
+  react:
+    image: robertaro/restaurant-app:latest
+    restart: on-failure
+    stdin_open: true

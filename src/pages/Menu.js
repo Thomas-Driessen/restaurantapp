@@ -56,7 +56,7 @@ class MenuPage extends React.Component {
           console.log("/api/drink/available: " + error);
         })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/foodLikes`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/foodLikes`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -74,7 +74,7 @@ class MenuPage extends React.Component {
         console.log("/api/foodLikes: " + error);
       })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/drinkLikes`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/drinkLikes`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -92,7 +92,7 @@ class MenuPage extends React.Component {
           console.log("/api/drinkLikes: " + error);
         })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/category/food`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/category/food`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -103,7 +103,7 @@ class MenuPage extends React.Component {
           console.log("/api/category/food: " + error);
         })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/category/drink`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/category/drink`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
