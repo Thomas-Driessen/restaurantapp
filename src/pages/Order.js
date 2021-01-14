@@ -149,7 +149,9 @@ class ViewOrder extends React.Component {
       var drink = {
         tableId: this.state.tableNumber,
         paid: false,
-        drinkId: currentDrink.id,
+        drink: {
+          id: currentDrink.id
+        }
       };
       fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
         method: "POST",
@@ -171,7 +173,9 @@ class ViewOrder extends React.Component {
       var food = {
         tableId: this.state.tableNumber,
         paid: false,
-        foodId: currentFood.id,
+        food: {
+          id: currentFood.id
+        }
       };
       fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
         method: "POST",
