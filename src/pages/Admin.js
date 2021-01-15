@@ -1,6 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
@@ -12,6 +13,10 @@ import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
 import AddIngredientButton from '../components/Admin/AddIngredientButton';
+import DrinkLikesLineChart from '../components/Charts/DrinkLikesLineChart'
+import FoodLikesLineChart from '../components/Charts/FoodLikesLineChart'
+import DrinkOrderLineChart from "../components/Charts/DrinkSaleLineChart";
+import FoodOrderLineChart from "../components/Charts/FoodSaleLineChart";
 
 class Admin extends React.Component {
     constructor() {
@@ -28,6 +33,7 @@ class Admin extends React.Component {
             ingredients: [],
             selectedType: "",
             productType: "",
+            showCharts: false
         };
     }
 
@@ -89,6 +95,11 @@ class Admin extends React.Component {
         });
         this.setState({ selectedType: "Product" });
         this.setState({ productType: "Food" });
+    };
+
+    showCharts = (e) => {
+        e.preventDefault();
+        this.setState({ selectedType: "Charts" });
     };
 
     selectDrinks = (e) => {
@@ -173,6 +184,23 @@ class Admin extends React.Component {
                     drinkCategories={this.state.drinkCategories}
                     ingredients={this.state.ingredients}
                 />;
+            case 'Charts':
+                return <div>
+                    <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                            <DrinkLikesLineChart />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FoodLikesLineChart />
+                        </Grid>
+                        <Grid item xs={6}>
+                               <DrinkOrderLineChart />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FoodOrderLineChart />
+                        </Grid>
+                    </Grid>
+                </div>;
             default:
                 return null;
         }
@@ -188,6 +216,7 @@ class Admin extends React.Component {
                     selectFoodCategories={this.selectFoodCategories}
                     selectDrinkCategories={this.selectDrinkCategories}
                     selectIngredients={this.selectIngredients}
+                    selectShowCharts={this.showCharts}
                 />
                 <AppBar position="static">
                     <ToolBar>
@@ -203,7 +232,7 @@ class Admin extends React.Component {
                                     <Button variant="text" disabled={true} />
                                     <Button variant="text" size="large" color="inherit">
                                         Log Out
-                                        </Button>
+                                    </Button>
                                 </ButtonGroup>
                             </div>
                         </Container>

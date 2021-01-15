@@ -51,6 +51,16 @@ class Navigator extends React.Component {
                             <MenuBookIcon /> Not On Menu
                         </Button>
                     </ListItem>
+                    <ListItem>
+                        <Button>
+                            <PaletteIcon /> Theme
+                        </Button>
+                    </ListItem>
+                    <ListItem>
+                        <Button onClick={this.props.selectShowCharts}>
+                            <PaletteIcon /> Charts
+                        </Button>
+                    </ListItem>
                 </List>
             </Drawer>
         )
