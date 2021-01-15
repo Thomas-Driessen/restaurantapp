@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import QrReader from 'react-qr-scanner'
 import { withRouter } from 'react-router-dom'
 

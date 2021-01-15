@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CategoryIcon from '@material-ui/icons/Category';
 import KitchenIcon from '@material-ui/icons/Kitchen';
-import PaletteIcon from '@material-ui/icons/PaletteIcon';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 class Navigator extends React.Component {
 
@@ -53,13 +53,8 @@ class Navigator extends React.Component {
                         </Button>
                     </ListItem>
                     <ListItem>
-                        <Button>
-                            <PaletteIcon /> Theme
-                        </Button>
-                    </ListItem>
-                    <ListItem>
                         <Button onClick={this.props.selectShowCharts}>
-                            <PaletteIcon /> Charts
+                            <BarChartIcon /> Charts
                         </Button>
                     </ListItem>
                 </List>
