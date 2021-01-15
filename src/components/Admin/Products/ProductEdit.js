@@ -47,7 +47,7 @@ const ProductEdit = (props) => {
     const [open, setOpen] = React.useState(false);
     const [values, setValues] = React.useState({ ...props.product });
     const [ingredients, setIngredients] = React.useState({ ...props.product.ingredients });
-    const [category, setCategory] = React.useState({ ...props.product.category });
+    let [category, setCategory] = React.useState({ ...props.category });
     const [loading, setLoading] = React.useState(false);
     const [image, setImage] = React.useState("");
     const [show, setShow] = React.useState(false);
@@ -85,7 +85,7 @@ const ProductEdit = (props) => {
 
     React.useEffect(() => {
         setValues(props.product);
-        setCategory(props.product.category);
+        setCategory(category);
         setIngredients(props.product.ingredients);
     }, [props.product]);
 
@@ -119,6 +119,9 @@ const ProductEdit = (props) => {
                     (element) => element.categoryName === cat
                 );
             }
+
+            console.log("cattegory in edit: " + product.category);
+
             fetch(`${process.env.REACT_APP_API_URL}/api/${productType}/${props.product.id}`, {
                 method: "PUT",
                 mode: "cors",

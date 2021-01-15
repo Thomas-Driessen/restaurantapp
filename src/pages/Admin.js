@@ -12,6 +12,7 @@ import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
 import AddIngredientButton from '../components/Admin/AddIngredientButton';
+import Product from "../components/Admin/Products/Product";
 
 class Admin extends React.Component {
     constructor() {
@@ -34,7 +35,7 @@ class Admin extends React.Component {
     componentDidMount() {
         document.title = "Admin | "+this.props.name
         let mounted = true;
-        fetch(`${process.env.REACT_APP_API_URL}/api/food`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/food/getCategoriesWithFoods`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -43,7 +44,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/drink`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/drink/getCategoriesWithDrinks`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -85,16 +86,17 @@ class Admin extends React.Component {
     selectFoods = (e) => {
         e.preventDefault();
         this.setState({
-            shownProducts: this.state.foods.filter((item) => item.onMenu === true),
+            shownProducts: this.state.foods,
         });
         this.setState({ selectedType: "Product" });
         this.setState({ productType: "Food" });
+        console.log(this.state.shownProducts);
     };
 
     selectDrinks = (e) => {
         e.preventDefault();
         this.setState({
-            shownProducts: this.state.drinks.filter((item) => item.onMenu === true),
+            shownProducts: this.state.drinks,
         });
         this.setState({ selectedType: "Product" });
         this.setState({ productType: "Drink" });
@@ -103,22 +105,27 @@ class Admin extends React.Component {
     selectNotOnMenu = (e) => {
         e.preventDefault();
         let productsNotOnMenu = [];
-        this.state.foods.map((item) => {
-            let product = item;
-            product.productType = 'Food';
-            productsNotOnMenu.push(product);
-            return product;
+        this.state.foods.map((category) => {
+            category.products = category.products.reduce(function (res, product) {
+                if (!product.onMenu) {
+                    res.push(product);
+                }
+                return res;
+            }, []);
+            if (category.products.length !== 0)
+                productsNotOnMenu.push(category)
         });
-        this.state.drinks.map((item) => {
-            let product = item;
-            product.productType = 'Drink';
-            productsNotOnMenu.push(product);
-            return product;
-        });
+        this.state.drinks.map((category) => {
+            category.products = category.products.reduce(function (res, product) {
+                if (!product.onMenu) {
+                    res.push(product);
+                }
+                return res;
+            }, []);
 
-        productsNotOnMenu = productsNotOnMenu.filter(
-            (item) => item.onMenu === false
-        );
+            if (category.products.length !== 0)
+                productsNotOnMenu.push(category)
+        });
 
         this.setState({ shownProducts: productsNotOnMenu });
         this.setState({ selectedType: "NotOnMenu" });
@@ -203,7 +210,7 @@ class Admin extends React.Component {
                                     <Button variant="text" disabled={true} />
                                     <Button variant="text" size="large" color="inherit">
                                         Log Out
-                                        </Button>
+                                    </Button>
                                 </ButtonGroup>
                             </div>
                         </Container>
