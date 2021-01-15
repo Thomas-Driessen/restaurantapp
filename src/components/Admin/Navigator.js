@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CategoryIcon from '@material-ui/icons/Category';
 import KitchenIcon from '@material-ui/icons/Kitchen';
+import PaletteIcon from '@material-ui/icons/PaletteIcon';
 
 class Navigator extends React.Component {
 
