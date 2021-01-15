@@ -9,15 +9,15 @@ const ProductsList = (props) => {
     return(
         <Grid container spacing={1} style={{padding: 10, paddingTop: 10}}>
             { props.products.map(currentCategory => (
-                <Card style={{padding: 10, paddingTop: 10}}>
+                <Card key={currentCategory.id} style={{padding: 10, paddingTop: 10}}>
                     <CardContent>
                         <div>
                             <Typography variant="inherit" component="h2">
                                 {currentCategory.categoryName}
                             </Typography>
-                            <Grid container spacing={1} xs={12}>
+                            <Grid key={currentCategory.id} container spacing={1}>
                                 {currentCategory.products.map(currentProduct => (
-                                    <Grid item xs style={{padding: 10}}>
+                                    <Grid item xs key={currentProduct.id} style={{padding: 10}}>
                                         <Product key={currentProduct.id}
                                                  product={currentProduct}
                                                  category={currentCategory}
