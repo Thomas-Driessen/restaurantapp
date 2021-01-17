@@ -13,7 +13,6 @@ import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
 import AddIngredientButton from '../components/Admin/AddIngredientButton';
-import Product from "../components/Admin/Products/Product";
 import DrinkLikesLineChart from '../components/Charts/DrinkLikesLineChart'
 import FoodLikesLineChart from '../components/Charts/FoodLikesLineChart'
 import DrinkOrderLineChart from "../components/Charts/DrinkSaleLineChart";
