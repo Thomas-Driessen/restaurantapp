@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 const ProductsList = (props) => {
     return(
         <Grid container spacing={1} style={{padding: 10, paddingTop: 10}}>
-            { props.products.map(currentCategory => (
+            { props.categories.map(currentCategory => (
                 <Card key={currentCategory.id} style={{padding: 10, paddingTop: 10}}>
                     <CardContent>
                         <div>
