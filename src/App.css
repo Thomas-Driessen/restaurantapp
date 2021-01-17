@@ -12,7 +12,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+body {
+  background-color: #f7f7f7;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -52,6 +54,12 @@
 .kitchen-overview-container {
   padding: 10px 15px;
   min-height: 75vh;
+}
+
+.kitchen-overview-container-fullscreen {
+  padding: 10px 15px;
+  min-height: 75vh;
+  min-width: 190vh;
 }
 
 body, html, #root,.app, .loginPage, .container {
@@ -181,4 +189,8 @@ h1{
     width: 100%;
     max-width: unset;
   }
+}
+
+.upperRightButton{
+  float: right;
 }

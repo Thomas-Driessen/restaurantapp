@@ -145,11 +145,15 @@ class ViewOrder extends React.Component {
 
   postOrder() {
     let order = [];
+    let today = new Date();
+    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     currentDrinkList.map((currentDrink) => {
       var drink = {
         tableId: this.state.tableNumber,
         paid: false,
-        drinkId: currentDrink.id,
+        drink: {
+          id: currentDrink.id
+        }
       };
       fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
         method: "POST",
@@ -160,10 +164,7 @@ class ViewOrder extends React.Component {
         },
         body: JSON.stringify(drink),
       });
-      let item = {
-        title: currentDrink.title,
-      };
-      order.push(item);
+      order.push(currentDrink.title);
       return "Succes";
     });
 
@@ -171,7 +172,9 @@ class ViewOrder extends React.Component {
       var food = {
         tableId: this.state.tableNumber,
         paid: false,
-        foodId: currentFood.id,
+        food: {
+          id: currentFood.id
+        }
       };
       fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
         method: "POST",
@@ -182,10 +185,7 @@ class ViewOrder extends React.Component {
         },
         body: JSON.stringify(food),
       });
-      let item = {
-        title: currentFood.title,
-      };
-      order.push(item);
+      order.push(currentFood.title);
       return "Succes";
     });
 
@@ -196,6 +196,11 @@ class ViewOrder extends React.Component {
     this.setState({ priceCurrentDrinks: 0 });
     this.setState({ priceCurrentFoods: 0 });
 
+    let fullOrder = {
+      title: order,
+      tableNumber: this.state.tableNumber,
+      timeStamp: time
+    }
     fetch(`${process.env.REACT_APP_API_URL}/sendorder`, {
       method: "POST",
       mode: "cors",
@@ -203,8 +208,9 @@ class ViewOrder extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(order),
+      body: JSON.stringify(fullOrder),
     });
+    console.log(fullOrder);
   }
 
   render() {

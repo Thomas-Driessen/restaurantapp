@@ -1,23 +1,47 @@
 version: 2.1
+
+executors:
+  docker-publisher:
+    environment:
+      REACT: robertaro/restaurant-app
+    docker:
+      - image: circleci/buildpack-deps:stretch
+      
 jobs:
-  build:
+  build-and-test:
     docker: 
       - image: cimg/node:14.10.1 
     steps:
       - checkout
       - run: npm install
       - run: npm run build
-      - run: 
-          command: npm test -- --maxWorkers=2 --logHeapUsage
-          environment:
-            NODE_OPTIONS: --max_old_space_size=8192
+      - run: npm test -- --maxWorkers=2 --logHeapUsage
       - run: cp -r build /tmp/build
       - store_artifacts:
           path: /tmp/build
+
+  publish-latest:
+    executor: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build -t $REACT:latest .
+      - run: docker save -o image.tar $REACT
+      - run: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push $REACT:latest
+            
 workflows:
   build_and_test:
     jobs:
-      - build:
+      - build-and-test:
           filters:
             branches:
               only: master
+      - publish-latest:
+          context: docker
+          filters:
+            branches:
+              only: master
+          requires:
+            - build-and-test

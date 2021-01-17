@@ -1,12 +1,9 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
-
+import CheckIcon from '@material-ui/icons/Check';
 
 class KitchenProduct extends React.Component {
 
@@ -15,22 +12,22 @@ class KitchenProduct extends React.Component {
             <div>
                 { this.props.product ? (
                     <div>
-                        <Card>
-                            <CardContent>
-                                <Typography gutterBottom variant="inherit" component="h2">
-                                    {this.props.product.title}
+                        <Grid style={{ paddingLeft: 10, padidngRight: 10 }}>
+                            <div style={{ display: 'flex' }}>
+                                <Typography gutterBottom variant="h6">
+                                    {this.props.product}
                                 </Typography>
-                            </CardContent>
-                            <CardActions>
                                 <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                                    <div style={{ display: 'flex', alignItems: 'right' }}>
-                                        <IconButton aria-label="push" onClick={() => this.props.goToNext(this.props.product.title)}>
-                                            <AddIcon />
-                                        </IconButton>
+                                    <div style={{ alignItems: 'right' }}>
+                                        {!this.props.enabled ? (
+                                            <IconButton aria-label="push" onClick={() => this.props.itemReady(this.props.element, this.props.position, this.props.listTitle)}>
+                                                <AddIcon />
+                                            </IconButton>
+                                        ) : <CheckIcon style={{ color: "green" }} />}
                                     </div>
                                 </Grid>
-                            </CardActions>
-                        </Card>
+                            </div>
+                        </Grid>
                     </div>
                 ) : null}
             </div>

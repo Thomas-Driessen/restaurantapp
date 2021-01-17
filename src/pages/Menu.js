@@ -41,7 +41,9 @@ class MenuPage extends React.Component {
           this.setState({ foods: data })
         }
       })
-      .catch(console.log)
+        .catch((error) => {
+          console.log("/api/food/available: " + error);
+        })
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/drink/available`)
       .then(res => res.json())
@@ -50,9 +52,11 @@ class MenuPage extends React.Component {
           this.setState({ drinks: data })
         }
       })
-      .catch(console.log)
+        .catch((error) => {
+          console.log("/api/drink/available: " + error);
+        })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/foodLikes`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/foodLikes`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -66,9 +70,11 @@ class MenuPage extends React.Component {
           this.setState({ foodsLikes: foods });
         }
       })
-      .catch(console.log)
+      .catch((error) => {
+        console.log("/api/foodLikes: " + error);
+      })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/drinkLikes`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/drinkLikes`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
@@ -82,25 +88,31 @@ class MenuPage extends React.Component {
           this.setState({ drinksLikes: drinks });
         }
       })
-      .catch(console.log)
+        .catch((error) => {
+          console.log("/api/drinkLikes: " + error);
+        })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/category/food`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/category/food`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
           this.setState({ foodCategories: data })
         }
       })
-      .catch(console.log)
+        .catch((error) => {
+          console.log("/api/category/food: " + error);
+        })
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/category/drink`)
+    await fetch(`${process.env.REACT_APP_API_URL}/api/category/drink`)
       .then(res => res.json())
       .then((data) => {
         if (mounted) {
           this.setState({ drinkCategories: data })
         }
       })
-      .catch(console.log)
+        .catch((error) => {
+          console.log("/api/category/drink: " + error);
+        })
 
     return () => mounted = false;
   }
@@ -147,7 +159,6 @@ class MenuPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.drinksLikes);
     return (
       <div>
         <NavBar pageName="menu" />

@@ -15,136 +15,201 @@ exports[`KitchenProductList renders correctly 1`] = `
   <div
     className="background-lightgray kitchen-overview-container"
   >
+    <div
+      className="upperRightButton"
+    >
+      <button>
+        -
+      </button>
+    </div>
     <div>
-      <div>
-        <div
-          className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+      <div
+        className="MuiGrid-root"
+        style={
+          Object {
+            "backgroundColor": "white",
+            "padding": 10,
+          }
+        }
+      >
+        <h5
+          className="MuiTypography-root MuiTypography-h5"
         >
-          <div
-            className="MuiCardContent-root"
-          >
-            <h2
-              className="MuiTypography-root MuiTypography-gutterBottom"
-            >
-              Coca-Cola
-            </h2>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing"
-          >
-            <div
-              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
-            >
+          Table 
+          3
+        </h5>
+        <h5
+          className="MuiTypography-root MuiTypography-h5"
+        >
+          Timestamp 
+        </h5>
+        <div>
+          <div>
+            <div>
               <div
+                className="MuiGrid-root"
                 style={
                   Object {
-                    "alignItems": "right",
-                    "display": "flex",
+                    "paddingLeft": 10,
+                    "padidngRight": 10,
                   }
                 }
               >
-                <button
-                  aria-label="push"
-                  className="MuiButtonBase-root MuiIconButton-root"
-                  disabled={false}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onDragLeave={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  tabIndex={0}
-                  type="button"
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                    }
+                  }
                 >
-                  <span
-                    className="MuiIconButton-label"
+                  <h6
+                    className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
                   >
-                    <svg
-                      aria-hidden={true}
-                      className="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
+                    Coca-Cola
+                  </h6>
+                  <div
+                    className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "alignItems": "right",
+                        }
+                      }
                     >
-                      <path
-                        d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-                      />
-                    </svg>
-                  </span>
-                </button>
+                      <button
+                        aria-label="push"
+                        className="MuiButtonBase-root MuiIconButton-root"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiIconButton-label"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            className="MuiSvgIcon-root"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      <div>
-        <div
-          className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+      <div
+        className="MuiGrid-root"
+        style={
+          Object {
+            "backgroundColor": "white",
+            "padding": 10,
+          }
+        }
+      >
+        <h5
+          className="MuiTypography-root MuiTypography-h5"
         >
-          <div
-            className="MuiCardContent-root"
-          >
-            <h2
-              className="MuiTypography-root MuiTypography-gutterBottom"
-            >
-              Pepsi
-            </h2>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing"
-          >
-            <div
-              className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
-            >
+          Table 
+          2
+        </h5>
+        <h5
+          className="MuiTypography-root MuiTypography-h5"
+        >
+          Timestamp 
+        </h5>
+        <div>
+          <div>
+            <div>
               <div
+                className="MuiGrid-root"
                 style={
                   Object {
-                    "alignItems": "right",
-                    "display": "flex",
+                    "paddingLeft": 10,
+                    "padidngRight": 10,
                   }
                 }
               >
-                <button
-                  aria-label="push"
-                  className="MuiButtonBase-root MuiIconButton-root"
-                  disabled={false}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onDragLeave={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  tabIndex={0}
-                  type="button"
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                    }
+                  }
                 >
-                  <span
-                    className="MuiIconButton-label"
+                  <h6
+                    className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
                   >
-                    <svg
-                      aria-hidden={true}
-                      className="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
+                    Pepsi
+                  </h6>
+                  <div
+                    className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "alignItems": "right",
+                        }
+                      }
                     >
-                      <path
-                        d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-                      />
-                    </svg>
-                  </span>
-                </button>
+                      <button
+                        aria-label="push"
+                        className="MuiButtonBase-root MuiIconButton-root"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiIconButton-label"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            className="MuiSvgIcon-root"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

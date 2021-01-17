@@ -2,14 +2,13 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import HomeIcon from '@material-ui/icons/Home';
 import FastFoodIcon from '@material-ui/icons/Fastfood';
 import LocalCafeIcon from '@material-ui/icons/LocalCafe';
 import Button from '@material-ui/core/Button';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CategoryIcon from '@material-ui/icons/Category';
-import PaletteIcon from '@material-ui/icons/Palette';
 import KitchenIcon from '@material-ui/icons/Kitchen';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 class Navigator extends React.Component {
 
@@ -19,11 +18,6 @@ class Navigator extends React.Component {
                 <List>
                     <ListItem>
                         Restaurant
-                    </ListItem>
-                    <ListItem>
-                        <Button>
-                            <HomeIcon /> Dashboard
-                        </Button>
                     </ListItem>
                     <ListItem>
 
@@ -59,8 +53,8 @@ class Navigator extends React.Component {
                         </Button>
                     </ListItem>
                     <ListItem>
-                        <Button>
-                            <PaletteIcon /> Theme
+                        <Button onClick={this.props.selectShowCharts}>
+                            <BarChartIcon /> Charts
                         </Button>
                     </ListItem>
                 </List>
