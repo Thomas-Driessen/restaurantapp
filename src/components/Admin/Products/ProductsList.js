@@ -1,23 +1,38 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card'
 import Product from './Product';
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 const ProductsList = (props) => {
     return(
-    <Grid container spacing={2} style={{padding: 20}}>
-        { props.products.map((currentProduct, index) => (
-            <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
-                <Product 
-                    key={index} 
-                    product={currentProduct} 
-                    productType={props.productType} 
-                    foodCategories={props.foodCategories} 
-                    drinkCategories={props.drinkCategories} 
-                    ingredients={props.ingredients}
-                />
-            </Grid>
-        ))}
-    </Grid>
+        <Grid container spacing={1} style={{padding: 10, paddingTop: 10}}>
+            { props.categories.map(currentCategory => (
+                <Card key={currentCategory.id} style={{padding: 10, paddingTop: 10}}>
+                    <CardContent>
+                        <div>
+                            <Typography variant="inherit" component="h2">
+                                {currentCategory.categoryName}
+                            </Typography>
+                            <Grid key={currentCategory.id} container spacing={1}>
+                                {currentCategory.products.map(currentProduct => (
+                                    <Grid item xs key={currentProduct.id} style={{padding: 10}}>
+                                        <Product key={currentProduct.id}
+                                                 product={currentProduct}
+                                                 category={currentCategory}
+                                                 foodCategories={props.foodCategories}
+                                                 drinkCategories={props.drinkCategories}
+                                                 ingredients={currentProduct.ingredients}
+                                                 productType={props.productType} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </div>
+                    </CardContent>
+                </Card>
+            ))}
+        </Grid>
     )
 }
 export default ProductsList

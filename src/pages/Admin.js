@@ -13,6 +13,7 @@ import IngredientsList from "../components/Admin/Ingredients/IngredientsList";
 import AddProductButton from '../components/Admin/AddProductButton';
 import AddCategoryButton from '../components/Admin/AddCategoryButton';
 import AddIngredientButton from '../components/Admin/AddIngredientButton';
+import Product from "../components/Admin/Products/Product";
 import DrinkLikesLineChart from '../components/Charts/DrinkLikesLineChart'
 import FoodLikesLineChart from '../components/Charts/FoodLikesLineChart'
 import DrinkOrderLineChart from "../components/Charts/DrinkSaleLineChart";
@@ -29,7 +30,6 @@ class Admin extends React.Component {
             shownCategories: [],
             foodCategories: [],
             drinkCategories: [],
-            shownProducts: [],
             ingredients: [],
             selectedType: "",
             productType: "",
@@ -40,7 +40,7 @@ class Admin extends React.Component {
     componentDidMount() {
         document.title = "Admin | " + this.props.name
         let mounted = true;
-        fetch(`${process.env.REACT_APP_API_URL}/api/food`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/food/getCategoriesWithFoods`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -49,7 +49,7 @@ class Admin extends React.Component {
             })
             .catch(console.log);
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/drink`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/drink/getCategoriesWithDrinks`)
             .then((res) => res.json())
             .then((data) => {
                 if (mounted) {
@@ -90,11 +90,32 @@ class Admin extends React.Component {
 
     selectFoods = (e) => {
         e.preventDefault();
+
+        let foodsOnMenu = [];
+
+        this.state.foods.map((category) => {
+            let foodsCategoryCopy = { ...category };
+
+            foodsCategoryCopy.products = foodsCategoryCopy.products.reduce(function(filtered, product) {
+                if (product.onMenu) {
+                    product.productType = "Food";
+                    product.category = foodsCategoryCopy;
+                    filtered.push(product);
+                }
+                return filtered;
+            }, []);
+
+            if (foodsCategoryCopy.products.length > 0)
+                foodsOnMenu.push(foodsCategoryCopy)
+
+            return foodsCategoryCopy;
+        });
+
         this.setState({
-            shownProducts: this.state.foods.filter((item) => item.onMenu === true),
+            shownCategories: foodsOnMenu
         });
         this.setState({ selectedType: "Product" });
-        this.setState({ productType: "Food" });
+        //this.setState({ productType: "Food" });
     };
 
     showCharts = (e) => {
@@ -104,34 +125,80 @@ class Admin extends React.Component {
 
     selectDrinks = (e) => {
         e.preventDefault();
-        this.setState({
-            shownProducts: this.state.drinks.filter((item) => item.onMenu === true),
+
+        let drinksOnMenu = [];
+
+        this.state.drinks.map((category) => {
+            let drinksCategoryCopy = { ...category };
+
+            drinksCategoryCopy.products = drinksCategoryCopy.products.reduce(function(filtered, product) {
+                if (product.onMenu) {
+                    product.productType = "Drink";
+                    product.category = drinksCategoryCopy;
+                    filtered.push(product);
+                }
+                return filtered;
+            }, []);
+
+            if (drinksCategoryCopy.products.length > 0)
+                drinksOnMenu.push(drinksCategoryCopy)
+
+            return drinksCategoryCopy;
         });
+
+        this.setState({
+            shownCategories: drinksOnMenu
+        });
+
         this.setState({ selectedType: "Product" });
-        this.setState({ productType: "Drink" });
     };
 
     selectNotOnMenu = (e) => {
         e.preventDefault();
+
         let productsNotOnMenu = [];
-        this.state.foods.map((item) => {
-            let product = item;
-            product.productType = 'Food';
-            productsNotOnMenu.push(product);
-            return product;
-        });
-        this.state.drinks.map((item) => {
-            let product = item;
-            product.productType = 'Drink';
-            productsNotOnMenu.push(product);
-            return product;
+
+        this.state.foods.map((category) => {
+            let foodsCategoryCopy = { ...category };
+
+            //categoryCopy.products = categoryCopy.products.flatMap(o => !o.onMenu ? [o] : []);
+
+            foodsCategoryCopy.products = foodsCategoryCopy.products.reduce(function(filtered, product) {
+                if (!product.onMenu) {
+                    product.productType = "Food";
+                    product.category = foodsCategoryCopy;
+                    filtered.push(product);
+                }
+                return filtered;
+            }, []);
+
+            if (foodsCategoryCopy.products.length > 0)
+                productsNotOnMenu.push(foodsCategoryCopy)
+
+            return foodsCategoryCopy;
         });
 
-        productsNotOnMenu = productsNotOnMenu.filter(
-            (item) => item.onMenu === false
-        );
+        this.state.drinks.map((category) => {
+            let drinksCategoryCopy = { ...category };
 
-        this.setState({ shownProducts: productsNotOnMenu });
+            //categoryCopy.products = categoryCopy.products.flatMap(o => !o.onMenu ? [o] : []);
+
+            drinksCategoryCopy.products = drinksCategoryCopy.products.reduce(function(filtered, product) {
+                if (!product.onMenu) {
+                    product.productType = "Drink";
+                    product.category = drinksCategoryCopy;
+                    filtered.push(product);
+                }
+                return filtered;
+            }, []);
+
+            if (drinksCategoryCopy.products.length > 0)
+                productsNotOnMenu.push(drinksCategoryCopy)
+
+            return drinksCategoryCopy;
+        });
+
+        this.setState({ shownCategories: productsNotOnMenu });
         this.setState({ selectedType: "NotOnMenu" });
         this.setState({ productType: "" });
     };
@@ -161,7 +228,7 @@ class Admin extends React.Component {
         switch (selectedType) {
             case 'Product':
                 return <ProductsList
-                    products={this.state.shownProducts}
+                    categories={this.state.shownCategories}
                     productType={productType}
                     foodCategories={this.state.foodCategories}
                     drinkCategories={this.state.drinkCategories}
@@ -178,7 +245,7 @@ class Admin extends React.Component {
                 />;
             case 'NotOnMenu':
                 return <ProductsList
-                    products={this.state.shownProducts}
+                    categories={this.state.shownCategories}
                     productType={productType}
                     foodCategories={this.state.foodCategories}
                     drinkCategories={this.state.drinkCategories}
