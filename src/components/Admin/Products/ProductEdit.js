@@ -42,11 +42,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProductEdit = (props) => {
+    console.log(props.productType);
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [values, setValues] = React.useState({ ...props.product });
     const [ingredients, setIngredients] = React.useState({ ...props.product.ingredients });
-    let [category, setCategory] = React.useState({ ...props.product.category });
+    const [category, setCategory] = React.useState({ ...props.product.category });
     const [loading, setLoading] = React.useState(false);
     const [image, setImage] = React.useState("");
     const [show, setShow] = React.useState(false);
@@ -84,7 +85,7 @@ const ProductEdit = (props) => {
 
     React.useEffect(() => {
         setValues(props.product);
-        setCategory(category);
+        setCategory(props.product.category);
         setIngredients(props.product.ingredients);
     }, [props.product]);
 
@@ -105,11 +106,11 @@ const ProductEdit = (props) => {
             product.price = price;
             product.ingredients = ingredients;
 
-            let productType = props.product.productType;
+            let productType = props.productType;
             if (productType === "NotOnMenu") {
                 productType = props.product.productType;
             }
-            if (props.product.productType === "Food") {
+            if (props.productType === "Food") {
                 product.category = props.foodCategories.find(
                     (element) => element.categoryName === cat
                 );
@@ -158,14 +159,14 @@ const ProductEdit = (props) => {
             ingredient: { ingredientId: newIngredient.ingredientId },
             amount: 0
         }
-        if (props.product.productType === 'Food') {
+        if (props.productType === 'Food') {
             newEntry.food = { id: props.product.id };
         }
         else {
             newEntry.drink = { id: props.product.id };
         }
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient${props.product.productType}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient${props.productType}`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -175,7 +176,7 @@ const ProductEdit = (props) => {
             body: JSON.stringify(newEntry),
         }).then((res) => res.json())
             .then((data) => {
-                if (props.product.productType === 'Food') {
+                if (props.productType === 'Food') {
                     ingredient.ingredientFoodId = data.ingredientFoodId;
                 }
                 else {
@@ -192,13 +193,13 @@ const ProductEdit = (props) => {
     }
 
     const deleteIngredient = (id) => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient${props.product.productType}/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient${props.productType}/${id}`, {
             method: "DELETE",
             mode: "cors",
         }).catch(console.log);
 
         let ingredientsEdit = [];
-        if (props.product.productType === 'Food') {
+        if (props.productType === 'Food') {
             ingredients.map(currentIngredient => {
                 if (currentIngredient.ingredientFoodId !== id) {
                     ingredientsEdit.push(currentIngredient);
@@ -224,7 +225,7 @@ const ProductEdit = (props) => {
         const files = e.target.files;
         const data = new FormData();
         data.append("file", files[0]);
-        data.append("upload_preset", `${props.product.productType}Images`);
+        data.append("upload_preset", `${props.productType}Images`);
         setLoading(true);
         const res = await fetch("https://api.cloudinary.com/v1_1/drb2yh2dy/image/upload", { method: "POST", body: data, });
         const file = await res.json();
@@ -294,7 +295,7 @@ const ProductEdit = (props) => {
                                 <IconButton
                                     size='small'
                                     key={id + ingredients.length + 3}
-                                    onClick={() => deleteIngredient(props.product.productType === 'Food' ? currentIngredient.ingredientFoodId : currentIngredient.ingredientDrinkId)}
+                                    onClick={() => deleteIngredient(props.productType === 'Food' ? currentIngredient.ingredientFoodId : currentIngredient.ingredientDrinkId)}
                                 >
                                     <RemoveIcon key={id + ingredients.length + 4} />
                                 </IconButton>
@@ -345,7 +346,7 @@ const ProductEdit = (props) => {
                             value={category.categoryName}
                             onChange={handleCategoryChange("categoryName")}
                         >
-                            {renderSelect(props.product.productType)}
+                            {renderSelect(props.productType)}
                         </Select>
                     </FormControl>
                     {props.product.price ? (
