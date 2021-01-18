@@ -36,10 +36,13 @@ class ProductsList extends React.Component {
   getTotalItemProgress(items) {
     let count = 0;
 
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].state === true)
+    if (items === undefined || items === null)
+      return;
+
+    items.forEach(function(order) {
+      if (!order)
         count++;
-    }
+    });
 
     return count;
   }
@@ -50,20 +53,24 @@ class ProductsList extends React.Component {
         <Typography variant="h4">{this.props.listTitle}</Typography>
         {this.props.fullScreen ? (
           <div className="background-lightgray kitchen-overview-container-fullscreen">
-            <div style={{textAlign: 'right'}}>
-              {this.props.products.length > 0 ?
-                  <Typography variant="h5">{this.getTotalItemProgress(this.props.products)} out of {this.props.products.length} done!</Typography>
-                  : (null)}
-            </div>
             <div className="upperRightButton" onClick={this.props.click}>
               <button>X</button>
             </div>
             {this.props.products.length > 0 ?
               <div>
                 {this.props.products.map(product => (
-                  <Grid style={{ backgroundColor: 'white', padding: 10 }}>
-                    <Typography variant="h5">Table {product.tableNumber}</Typography>
-                    <Typography variant="h5">Timestamp {product.timeStamp}</Typography>
+                  <Grid container style={{ backgroundColor: 'white', padding: 10 }}>
+                    <Grid item xs={6}>
+                      <Typography variant="h5">Table {product.tableNumber}</Typography>
+                      <Typography variant="h5">Timestamp {product.timeStamp}</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      {this.getTotalItemProgress(product.state) > 0 ?
+                          <Typography style={{textAlign: 'right'}} variant="h5">{this.getTotalItemProgress(product.state)} items remaining!</Typography>
+                          :
+                          <Typography style={{textAlign: 'right'}} variant="h5">Order is done!</Typography>
+                      }
+                    </Grid>
                     {this.displayProducts(product)}
                     <Grid container alignItems="flex-start" justify="flex-end" direction="row">
                       <div style={{ display: 'flex', alignItems: 'right' }}>
@@ -79,21 +86,24 @@ class ProductsList extends React.Component {
           </div>
         ) : (
             <div className="background-lightgray kitchen-overview-container">
-              <div style={{textAlign: 'right'}}>
-                {this.props.products.length > 0 ?
-                  <Typography variant="h5">{this.getTotalItemProgress(this.props.products)} out of {this.props.products.length} done!</Typography>
-                    : (null)}
-              </div>
-
               <div className="upperRightButton" onClick={this.props.click}>
                 <button>-</button>
               </div>
               {this.props.products.length > 0 ?
                 <div>
                   {this.props.products.map(product => (
-                    <Grid style={{ backgroundColor: 'white', padding: 10 }}>
-                      <Typography variant="h5">Table {product.tableNumber}</Typography>
-                      <Typography variant="h5">Timestamp {product.timeStamp}</Typography>
+                    <Grid container style={{ backgroundColor: 'white', padding: 10 }}>
+                      <Grid item xs={6}>
+                        <Typography variant="h5">Table {product.tableNumber}</Typography>
+                        <Typography variant="h5">Timestamp {product.timeStamp}</Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        {this.getTotalItemProgress(product.state) > 0 ?
+                            <Typography style={{textAlign: 'right'}} variant="h5">{this.getTotalItemProgress(product.state)} items remaining!</Typography>
+                            :
+                            <Typography style={{textAlign: 'right'}} variant="h5">Order is done!</Typography>
+                        }
+                      </Grid>
                       {this.displayProducts(product)}
                       {this.checkItemsProgress(product.state) ? (
                         <Grid container alignItems="flex-start" justify="flex-end" direction="row">
@@ -104,7 +114,6 @@ class ProductsList extends React.Component {
                           </div>
                         </Grid>
                       ) : null}
-
                     </Grid>
                   ))}
                 </div>
