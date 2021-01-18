@@ -12,7 +12,7 @@ it('Menu renders correctly', () => {
 
 test('Render Menu', () => {
   const { getByText } = render(<Menu />);
-  const linkElement = getByText(/Choose between Foods, Drinks and Most Liked to see our products/i);
+  const linkElement = getByText(/Welcome in our restaurant!/i);
   expect(linkElement).toBeInTheDocument();
 });
 

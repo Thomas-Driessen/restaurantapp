@@ -32,7 +32,9 @@ const Product = (props) => {
         let newProduct = props.product;
         let productType = isOnMenu === 1 ? props.productType : props.product.productType;
         newProduct.onMenu = isOnMenu;
-        newProduct.category = null;
+        newProduct.products = null;
+        newProduct.category.products = null;
+        console.log(newProduct)
         fetch(`${process.env.REACT_APP_API_URL}/api/${productType}/${newProduct.id}`, {
             method: "PUT",
             mode: "cors",
