@@ -114,7 +114,7 @@ class Admin extends React.Component {
             shownCategories: foodsOnMenu
         });
         this.setState({ selectedType: "Product" });
-        //this.setState({ productType: "Food" });
+        this.setState({ productType: "Food" });
     };
 
     showCharts = (e) => {

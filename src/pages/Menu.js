@@ -163,9 +163,9 @@ class MenuPage extends React.Component {
       <div>
         <NavBar pageName="menu" />
         <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType} />
-        <Grid container spacing={0} style={{ padding: 15 }}>
+        <Grid container spacing={0}>
           {this.state.selectedCategory !== "" ? (
-            <div className="width-100-percent">
+            <div className="width-100-percent" style={{ padding: 15 }}>
               <Breadcrumbs aria-label="breadcrumb" className="breadcrumbs">
                 <span color="inherit" className="breadcrumb breadcrumb-current">
                   Menu
@@ -190,7 +190,7 @@ class MenuPage extends React.Component {
             </div>
           ) : (
               this.state.categoriesShown.length ? (
-                <div>
+                <div style={{ padding: 15 }}>
                   <Breadcrumbs aria-label="breadcrumb" className="breadcrumbs">
                     <span color="inherit" className="breadcrumb breadcrumb-current">
                       Menu
@@ -202,10 +202,60 @@ class MenuPage extends React.Component {
                   <CategoryList categories={this.state.categoriesShown} selectCategory={this.selectCategory} />
                 </div>
               ) : (
-                  <Grid container spacing={0} style={{ padding: 12 }}>
-                    <Typography variant="subtitle2" display="block">
-                      Choose between Foods, Drinks and Most Liked to see our products
-                    </Typography>
+                  <Grid container spacing={0} style={{ padding: 0 }}>
+                    <div id="homepageIntro">
+                      <h1>Welcome in our restaurant!</h1>
+                    </div>
+                    <div id="homepageInstructionsWrapper">
+                      <h2>How it works</h2>
+                      <div id="homepageInstructions">
+                        <div id="instructionScanQr" className="homepage-instruction">
+                          <div className="homepage-instruction-content">
+                            <div className="homepage-instruction-image">
+                              <img src={process.env.PUBLIC_URL + "/images/qr-code.svg"} id="qrfrontpage"/>
+                            </div>
+                            <span className="instruction-text">Scan QR</span>
+                          </div>
+                        </div>
+                        <div id="instructionBrowseFood" className="homepage-instruction">
+                          <div className="homepage-instruction-content">
+                              <div className="homepage-instruction-image">
+                              <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} id="hamburgerfrontpage"/>
+                              </div>
+                            <span className="instruction-text">Browse food</span>
+                          </div>
+                        </div>
+                        <div id="instructionPay" className="homepage-instruction">
+                          <div className="homepage-instruction-content">
+                            <div className="homepage-instruction-image">
+                              <img src={process.env.PUBLIC_URL + "/images/credit-card.svg"} id="creditcardfrontpage"/>
+                            </div>
+                            <span className="instruction-text">Pay orders</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="foodRecommendations">
+                      <h3>Prior foodlovers recommend...</h3>
+                      <div className="popularfoods">
+                        <div className="foodCard">
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <span className="foodCardName">Pizza</span>
+                        </div>
+                        <div className="foodCard">
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <span className="foodCardName">Pizza</span>
+                        </div>
+                        <div className="foodCard">
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <span className="foodCardName">Pizza</span>
+                        </div>
+                        <div className="foodCard">
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <span className="foodCardName">Pizza</span>
+                        </div>
+                      </div>
+                    </div>
                   </Grid>
                 )
             )}

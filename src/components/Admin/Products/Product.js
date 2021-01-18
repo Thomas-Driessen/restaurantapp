@@ -64,7 +64,6 @@ const Product = (props) => {
                 <div style={{ display: "flex", alignItems: "right" }}>
                   <ProductEdit
                     product={props.product}
-                    category={props.category}
                     foodCategories={props.foodCategories}
                     drinkCategories={props.drinkCategories}
                     productType={props.productType}
