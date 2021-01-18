@@ -33,19 +33,34 @@ class ProductsList extends React.Component {
     return true;
   }
 
+  getTotalItemProgress(items) {
+    let count = 0;
+
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].state === true)
+        count++;
+    }
+
+    return count;
+  }
+
   render() {
     return (
       <Grid item xs={12} sm={6} lg={4} xl={4} style={{ padding: 25 }}>
         <Typography variant="h4">{this.props.listTitle}</Typography>
         {this.props.fullScreen ? (
           <div className="background-lightgray kitchen-overview-container-fullscreen">
+            <div style={{textAlign: 'right'}}>
+              {this.props.products.length > 0 ?
+                  <Typography variant="h5">{this.getTotalItemProgress(this.props.products)} out of {this.props.products.length} done!</Typography>
+                  : (null)}
+            </div>
             <div className="upperRightButton" onClick={this.props.click}>
               <button>X</button>
             </div>
             {this.props.products.length > 0 ?
               <div>
                 {this.props.products.map(product => (
-
                   <Grid style={{ backgroundColor: 'white', padding: 10 }}>
                     <Typography variant="h5">Table {product.tableNumber}</Typography>
                     <Typography variant="h5">Timestamp {product.timeStamp}</Typography>
@@ -64,6 +79,12 @@ class ProductsList extends React.Component {
           </div>
         ) : (
             <div className="background-lightgray kitchen-overview-container">
+              <div style={{textAlign: 'right'}}>
+                {this.props.products.length > 0 ?
+                  <Typography variant="h5">{this.getTotalItemProgress(this.props.products)} out of {this.props.products.length} done!</Typography>
+                    : (null)}
+              </div>
+
               <div className="upperRightButton" onClick={this.props.click}>
                 <button>-</button>
               </div>
