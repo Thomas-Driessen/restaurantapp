@@ -1,4 +1,4 @@
-import { Breadcrumbs, Typography } from '@material-ui/core';
+import { Breadcrumbs } from '@material-ui/core';
 import React from 'react';
 import NavBar from '../components/Navigation bars/NavBar';
 import SortBar from '../components/Navigation bars/SortBar';
@@ -212,7 +212,7 @@ class MenuPage extends React.Component {
                         <div id="instructionScanQr" className="homepage-instruction">
                           <div className="homepage-instruction-content">
                             <div className="homepage-instruction-image">
-                              <img src={process.env.PUBLIC_URL + "/images/qr-code.svg"} id="qrfrontpage"/>
+                              <img src={process.env.PUBLIC_URL + "/images/qr-code.svg"} alt="QR-code" id="qrfrontpage"/>
                             </div>
                             <span className="instruction-text">Scan QR</span>
                           </div>
@@ -220,7 +220,7 @@ class MenuPage extends React.Component {
                         <div id="instructionBrowseFood" className="homepage-instruction">
                           <div className="homepage-instruction-content">
                               <div className="homepage-instruction-image">
-                              <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} id="hamburgerfrontpage"/>
+                              <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} alt="Hamburgerfrontpage icon" id="hamburgerfrontpage"/>
                               </div>
                             <span className="instruction-text">Browse food</span>
                           </div>
@@ -228,7 +228,7 @@ class MenuPage extends React.Component {
                         <div id="instructionPay" className="homepage-instruction">
                           <div className="homepage-instruction-content">
                             <div className="homepage-instruction-image">
-                              <img src={process.env.PUBLIC_URL + "/images/credit-card.svg"} id="creditcardfrontpage"/>
+                              <img src={process.env.PUBLIC_URL + "/images/credit-card.svg"} alt="Creditcardfrontpage icon" id="creditcardfrontpage"/>
                             </div>
                             <span className="instruction-text">Pay orders</span>
                           </div>
@@ -239,19 +239,19 @@ class MenuPage extends React.Component {
                       <h3>Prior foodlovers recommend...</h3>
                       <div className="popularfoods">
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
                           <span className="foodCardName">Pizza</span>
                         </div>
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
                           <span className="foodCardName">Pizza</span>
                         </div>
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
                           <span className="foodCardName">Pizza</span>
                         </div>
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"/>
+                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
                           <span className="foodCardName">Pizza</span>
                         </div>
                       </div>
