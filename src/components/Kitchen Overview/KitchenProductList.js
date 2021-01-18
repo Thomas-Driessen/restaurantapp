@@ -11,7 +11,7 @@ class ProductsList extends React.Component {
     var rows = [];
     for (let i = 0; i < product.title.length; i++) {
       rows.push(
-        <KitchenProduct
+        <KitchenProduct key={i}
           product={product.title[i]}
           enabled={product.state[i]}
           element={product}

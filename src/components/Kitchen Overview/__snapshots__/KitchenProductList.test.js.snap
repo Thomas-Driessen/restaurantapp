@@ -24,7 +24,7 @@ exports[`KitchenProductList renders correctly 1`] = `
     </div>
     <div>
       <div
-        className="MuiGrid-root"
+        className="MuiGrid-root MuiGrid-container"
         style={
           Object {
             "backgroundColor": "white",
@@ -32,17 +32,36 @@ exports[`KitchenProductList renders correctly 1`] = `
           }
         }
       >
-        <h5
-          className="MuiTypography-root MuiTypography-h5"
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
         >
-          Table 
-          3
-        </h5>
-        <h5
-          className="MuiTypography-root MuiTypography-h5"
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+          >
+            Table 
+            3
+          </h5>
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+          >
+            Timestamp 
+          </h5>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
         >
-          Timestamp 
-        </h5>
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+            style={
+              Object {
+                "textAlign": "right",
+              }
+            }
+          >
+            1
+             items remaining!
+          </h5>
+        </div>
         <div>
           <div>
             <div>
@@ -120,7 +139,7 @@ exports[`KitchenProductList renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiGrid-root"
+        className="MuiGrid-root MuiGrid-container"
         style={
           Object {
             "backgroundColor": "white",
@@ -128,17 +147,36 @@ exports[`KitchenProductList renders correctly 1`] = `
           }
         }
       >
-        <h5
-          className="MuiTypography-root MuiTypography-h5"
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
         >
-          Table 
-          2
-        </h5>
-        <h5
-          className="MuiTypography-root MuiTypography-h5"
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+          >
+            Table 
+            2
+          </h5>
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+          >
+            Timestamp 
+          </h5>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
         >
-          Timestamp 
-        </h5>
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+            style={
+              Object {
+                "textAlign": "right",
+              }
+            }
+          >
+            1
+             items remaining!
+          </h5>
+        </div>
         <div>
           <div>
             <div>
