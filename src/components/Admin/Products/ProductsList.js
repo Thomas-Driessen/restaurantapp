@@ -9,28 +9,24 @@ const ProductsList = (props) => {
     return(
         <Grid container spacing={1} style={{padding: 10, paddingTop: 10}}>
             { props.categories.map(currentCategory => (
-                <Card key={currentCategory.id} style={{padding: 10, paddingTop: 10}}>
-                    <CardContent>
-                        <div>
-                            <Typography variant="inherit" component="h2">
-                                {currentCategory.categoryName}
-                            </Typography>
-                            <Grid key={currentCategory.id} container spacing={1}>
-                                {currentCategory.products.map(currentProduct => (
-                                    <Grid item xs key={currentProduct.id} style={{padding: 10}}>
-                                        <Product key={currentProduct.id}
-                                                 product={currentProduct}
-                                                 category={currentCategory}
-                                                 foodCategories={props.foodCategories}
-                                                 drinkCategories={props.drinkCategories}
-                                                 ingredients={currentProduct.ingredients}
-                                                 productType={props.productType} />
-                                    </Grid>
-                                ))}
+                <div style={{width: "100%", padding: 10, paddingTop: 10}}>
+                    <Typography variant="inherit" component="h2">
+                        {currentCategory.categoryName}
+                    </Typography>
+                    <Grid key={currentCategory.id} container spacing={1}>
+                        {currentCategory.products.map(currentProduct => (
+                            <Grid item xs={12} sm={6} lg={4} xl={3} key={currentProduct.id} style={{padding: 10}}>
+                                <Product key={currentProduct.id}
+                                         product={currentProduct}
+                                         category={currentCategory}
+                                         foodCategories={props.foodCategories}
+                                         drinkCategories={props.drinkCategories}
+                                         ingredients={currentProduct.ingredients}
+                                         productType={props.productType} />
                             </Grid>
-                        </div>
-                    </CardContent>
-                </Card>
+                        ))}
+                    </Grid>
+                </div>
             ))}
         </Grid>
     )
