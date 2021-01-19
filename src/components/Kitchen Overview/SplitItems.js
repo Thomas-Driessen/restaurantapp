@@ -1,9 +1,12 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import KitchenProductList from './KitchenProductList'
-import toDo from './Arrays/ToDo'
-import progress from './Arrays/Progress'
-import done from './Arrays/Done'
+import KitchenProductList from './KitchenProductList';
+import toDo from './Arrays/ToDo';
+import progress from './Arrays/Progress';
+import done from './Arrays/Done';
+import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 class SplitItems extends React.Component {
 
@@ -16,7 +19,9 @@ class SplitItems extends React.Component {
             doneLength: [],
             toDoPressed: false,
             progressPressed: false,
-            donePressed: false
+            donePressed: false,
+            alertMessage: "",
+            open: false
         }
     }
 
@@ -67,6 +72,7 @@ class SplitItems extends React.Component {
             default:
                 return null;
         }
+        this.setState({alertMessage: "Product finished", open: true});
     }
 
     checkOrderListLength() {
@@ -84,7 +90,7 @@ class SplitItems extends React.Component {
     }
 
     
-    pushToProgress(product) {
+    pushToProgress = (product) => {
         for (let i = 0; i < toDo.length; i++) {
             if (toDo[i] === product) {
                 for(let j = 0; j < product.state.length; j++){
@@ -94,28 +100,31 @@ class SplitItems extends React.Component {
                 toDo.splice(i, 1);
                 localStorage.setItem("toDo", JSON.stringify(toDo));
                 localStorage.setItem("progress", JSON.stringify(progress));
+                this.setState({alertMessage: "Product pushed to progress", open: true});
                 break;
             }
         }
     }
 
-    pushToDone(product) {
+    pushToDone = (product) => {
         for (let i = 0; i < progress.length; i++) {
             if (progress[i] === product) {
                 done.push(product);
                 progress.splice(i, 1);
                 localStorage.setItem("progress", JSON.stringify(progress));
                 localStorage.setItem("done", JSON.stringify(done));
+                this.setState({alertMessage: "Product pushed to done", open: true});
                 break;
             }
         }
     }
 
-    pushToPickUp(product) {
+    pushToPickUp = (product) => {
         for (let i = 0; i < done.length; i++) {
             if (done[i] === product) {
                 done.splice(i, 1);
                 localStorage.setItem("done", JSON.stringify(done));
+                this.setState({alertMessage: "Product ready to pick up", open: true});
                 break;
             }
         }
@@ -141,6 +150,7 @@ class SplitItems extends React.Component {
 
 
     render() {
+
         if (this.state.toDoPressed) {
             return (
                 <Grid container spacing={0} style={{ padding: 5 }}>
@@ -166,11 +176,18 @@ class SplitItems extends React.Component {
         }
 
         return (
+            <div>
             <Grid container spacing={0} style={{ padding: 5 }}>
                 <KitchenProductList products={toDo} listTitle="To do" goToNext={this.pushToProgress} itemReady={this.itemReady} fullScreen={this.state.toDoPressed} click={this.handlerToDo} />
                 <KitchenProductList products={progress} listTitle="Progress" goToNext={this.pushToDone} itemReady={this.itemReady} fullScreen={this.state.progressPressed} click={this.handlerProgress} />
                 <KitchenProductList products={done} listTitle="Done" goToNext={this.pushToPickUp} itemReady={this.itemReady} fullScreen={this.state.donePressed} click={this.handlerDone} />
             </Grid>
+            <Snackbar open={this.state.open} autoHideDuration={2000} onClose={()=>{this.setState({open:false})}}>
+                <Alert variant="filled" severity="success">
+                    {this.state.alertMessage}
+                </Alert>
+            </Snackbar>
+            </div>
         )
     }
 }
