@@ -10,12 +10,6 @@ it('NavBar renders correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
-test('Render NavBar Restaurant Button', () => {
-  const { getByText } = render(<NavBar />);
-  const linkElement = getByText(/Restaurant/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
 test('Render NavBar Menu Button', () => {
   const { getByText } = render(<NavBar />);
   const linkElement = getByText(/Menu/i);

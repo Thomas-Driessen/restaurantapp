@@ -34,26 +34,35 @@ class NavBar extends React.Component {
       redirectMenu: false,
       setOpen: false,
       tableId: sessionStorage.getItem("tableId"),
+      restaurantNameData: { title: "Restaurant" },
     };
   }
+
+  handleOpenModal = () => {
+    this.setState({ setOpen: true });
+  };
 
   componentDidMount() {
     let mounted = true;
 
     if (mounted) {
-        let items = sessionStorage.getItem("currentFoodList") ? JSON.parse(sessionStorage.getItem("currentFoodList") || []) : [];
-        currentFoodList.splice(0, currentFoodList.length);
-        items.map(item => {
-            currentFoodList.push(item);
-            return true;
-        })
+      let items = sessionStorage.getItem("currentFoodList")
+        ? JSON.parse(sessionStorage.getItem("currentFoodList") || [])
+        : [];
+      currentFoodList.splice(0, currentFoodList.length);
+      items.map((item) => {
+        currentFoodList.push(item);
+        return true;
+      });
 
-        items = sessionStorage.getItem("currentDrinkList") ? JSON.parse(sessionStorage.getItem("currentDrinkList") || []) : [];
-        currentDrinkList.splice(0, currentDrinkList.length);
-        items.map(item => {
-            currentDrinkList.push(item);
-            return true;
-        })
+      items = sessionStorage.getItem("currentDrinkList")
+        ? JSON.parse(sessionStorage.getItem("currentDrinkList") || [])
+        : [];
+      currentDrinkList.splice(0, currentDrinkList.length);
+      items.map((item) => {
+        currentDrinkList.push(item);
+        return true;
+      });
     }
 
     setInterval(() => {
@@ -111,6 +120,21 @@ class NavBar extends React.Component {
       this.setState({ totalProductsInOrder: totalItems });
     }
   }
+
+  getRestaurantName = () => {
+    fetch(`${process.env.REACT_APP_API_URL}/api/RestaurantName`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ restaurantNameData: data });
+      });
+  };
 
   callStaff = () => {
     var tableInfo = {
