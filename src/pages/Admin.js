@@ -150,6 +150,7 @@ class Admin extends React.Component {
         });
 
         this.setState({ selectedType: "Product" });
+        this.setState({ productType: "Drink" });
     };
 
     selectNotOnMenu = (e) => {

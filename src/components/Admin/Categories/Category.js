@@ -9,6 +9,7 @@ import CategoryEdit from './CategoryEdit';
 import CategoryDelete from './CategoryDelete';
 
 const Product = (props) => {
+  console.log(props.category);
   return (
     <div>
       { props.category ? (
@@ -39,6 +40,7 @@ const Product = (props) => {
                   />
                   <CategoryDelete
                     category={props.category}
+                    categoryType={props.categoryType}
                   />
                 </div>
               </Grid>

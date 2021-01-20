@@ -19,7 +19,7 @@ const ProductsList = (props) => {
                                          category={currentCategory}
                                          foodCategories={props.foodCategories}
                                          drinkCategories={props.drinkCategories}
-                                         ingredients={currentProduct.ingredients}
+                                         ingredients={props.ingredients}
                                          productType={props.productType} />
                             </Grid>
                         ))}
