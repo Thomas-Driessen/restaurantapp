@@ -14,7 +14,44 @@ exports[`Navigator renders correctly 1`] = `
         className="MuiListItem-root MuiListItem-gutters"
         disabled={false}
       >
-        Restaurant
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline"
+          onClick={[Function]}
+        >
+          <input
+            className="MuiInputBase-input MuiInput-input"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Restaurant"
+            type="text"
+          />
+        </div>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
+          disabled={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Save
+          </span>
+        </button>
       </li>
       <li
         className="MuiListItem-root MuiListItem-gutters"

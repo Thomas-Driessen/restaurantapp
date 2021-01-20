@@ -40,12 +40,12 @@ class ViewOrder extends React.Component {
     this.updatePreviousOrders(mounted);
 
     sum = currentDrinkList.reduce(
-      (totalPrice, drink) => totalPrice + drink.price,
+      (totalPrice, drink) => totalPrice + drink.price * drink.count,
       0
     );
     this.setState({ priceCurrentDrinks: sum });
     sum = currentFoodList.reduce(
-      (totalPrice, food) => totalPrice + food.price,
+      (totalPrice, food) => totalPrice + food.price * food.count,
       0
     );
     this.setState({ priceCurrentFoods: sum });
@@ -69,7 +69,13 @@ class ViewOrder extends React.Component {
       priceCurrentFoods:
         this.state.priceCurrentFoods - currentFoodList[index].price,
     });
-    currentFoodList.splice(index, 1);
+
+    currentFoodList[index].count = currentFoodList[index].count - 1;
+
+    if (currentFoodList[index].count === 0) {
+      currentFoodList.splice(index, 1);
+    }
+
     sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
   };
 
@@ -79,7 +85,40 @@ class ViewOrder extends React.Component {
       priceCurrentDrinks:
         this.state.priceCurrentDrinks - currentDrinkList[index].price,
     });
-    currentDrinkList.splice(index, 1);
+
+    currentDrinkList[index].count = currentDrinkList[index].count - 1;
+
+    if (currentDrinkList[index].count === 0) {
+      currentDrinkList.splice(index, 1);
+    }
+
+    sessionStorage.setItem(
+      "currentDrinkList",
+      JSON.stringify(currentDrinkList)
+    );
+  };
+
+  addOneFood = (product) => {
+    let index = currentFoodList.indexOf(product);
+    this.setState({
+      priceCurrentFoods:
+        this.state.priceCurrentFoods + currentFoodList[index].price,
+    });
+
+    currentFoodList[index].count = currentFoodList[index].count + 1;
+
+    sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
+  };
+
+  addOneDrink = (product) => {
+    let index = currentDrinkList.indexOf(product);
+    this.setState({
+      priceCurrentDrinks:
+        this.state.priceCurrentDrinks + currentDrinkList[index].price,
+    });
+
+    currentDrinkList[index].count = currentDrinkList[index].count + 1;
+
     sessionStorage.setItem(
       "currentDrinkList",
       JSON.stringify(currentDrinkList)
@@ -145,46 +184,51 @@ class ViewOrder extends React.Component {
   async postOrder() {
     let order = [];
     let today = new Date();
-    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    let time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     currentDrinkList.map(async (currentDrink) => {
-      var drink = {
-        tableId: this.state.tableNumber,
-        paid: false,
-        drink: {
-          id: currentDrink.id
-        }
-      };
-      await fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(drink),
-      });
-      order.push(currentDrink.title);
+      for (let i = 0; i < currentDrink.count; i++) {
+        var drink = {
+          tableId: this.state.tableNumber,
+          paid: false,
+          drink: {
+            id: currentDrink.id,
+          },
+        };
+        await fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(drink),
+        });
+        order.push(currentDrink.title);
+      }
       return "Succes";
     });
 
     currentFoodList.map(async (currentFood) => {
-      var food = {
-        tableId: this.state.tableNumber,
-        paid: false,
-        food: {
-          id: currentFood.id
-        }
-      };
-      await fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(food),
-      });
-      order.push(currentFood.title);
+      for (let i = 0; i < currentFood.count; i++) {
+        var food = {
+          tableId: this.state.tableNumber,
+          paid: false,
+          food: {
+            id: currentFood.id,
+          },
+        };
+        await fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(food),
+        });
+        order.push(currentFood.title);
+      }
       return "Succes";
     });
 
@@ -198,8 +242,8 @@ class ViewOrder extends React.Component {
     let fullOrder = {
       title: order,
       tableNumber: this.state.tableNumber,
-      timeStamp: time
-    }
+      timeStamp: time,
+    };
     await fetch(`${process.env.REACT_APP_API_URL}/sendorder`, {
       method: "POST",
       mode: "cors",
@@ -232,6 +276,8 @@ class ViewOrder extends React.Component {
               sendOrder={() => this.sendOrder()}
               removeDrink={this.removeDrink}
               removeFood={this.removeFood}
+              addDrink={this.addOneDrink}
+              addFood={this.addOneFood}
             />
           </Grid>
           <Grid item xs={12} sm={12} lg={6} xl={6}>

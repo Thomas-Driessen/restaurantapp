@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Grid from '@material-ui/core/Grid';
+import AddIcon from '@material-ui/icons/Add';
+
 
 const CurrentOrderProducts = (props) => {
 
@@ -25,7 +27,7 @@ const CurrentOrderProducts = (props) => {
                     <Card >
                         <CardContent>
                             <Typography gutterBottom variant="inherit" component="h2">
-                                {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price}€</span>
+                                {props.product.count}x {props.product.title} <span style={{ float: "right", color: "green" }}>{props.product.price*props.product.count}€</span>
                             </Typography>
                             <Typography component="h6">
                                 {renderIngredients()}
@@ -33,6 +35,9 @@ const CurrentOrderProducts = (props) => {
                         </CardContent>
                         <CardActions>
                             <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                            <IconButton aria-label="add to order" onClick={() => props.add(props.product)}>
+                                    <AddIcon />
+                                </IconButton>
                                 <IconButton aria-label="remove from order" onClick={() => props.remove(props.product)}>
                                     <RemoveIcon />
                                 </IconButton>

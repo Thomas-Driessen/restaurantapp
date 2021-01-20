@@ -18,7 +18,7 @@ class CurrentOrder extends React.Component {
                     textDecorationLine: 'underline',
                     textDecorationColor: 'primary'
                 }}>
-                    This is your current order
+                    This is your current order 
                 </h2>
                 { currentFoodList ? (
                     <Grid
@@ -36,6 +36,7 @@ class CurrentOrder extends React.Component {
                                     product={currentProduct}
                                     productType="Food"
                                     remove={this.props.removeFood}
+                                    add={this.props.addFood}
                                 />
                             </Grid>
                         ))}
@@ -56,6 +57,7 @@ class CurrentOrder extends React.Component {
                                     product={currentProduct}
                                     productType="Drink"
                                     remove={this.props.removeDrink}
+                                    add={this.props.addDrink}
                                 />
                             </Grid>
                         ))}
