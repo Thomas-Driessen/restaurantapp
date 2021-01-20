@@ -36,8 +36,8 @@ class ViewOrder extends React.Component {
         }
       })
       .catch(console.log);
-    
-      this.updatePreviousOrders(mounted);
+
+    this.updatePreviousOrders(mounted);
 
     sum = currentDrinkList.reduce(
       (totalPrice, drink) => totalPrice + drink.price,
@@ -86,16 +86,14 @@ class ViewOrder extends React.Component {
     );
   };
 
-  sendOrder() {
+  async sendOrder() {
     this.postOrder();
     this.updatePreviousOrders(true);
   }
 
-  arrayContainsFoodOrDrink() {}
-
-  updatePreviousOrders(mounted) {
+  async updatePreviousOrders(mounted) {
     let sum = 0;
-    fetch(
+    await fetch(
       `${process.env.REACT_APP_API_URL}/api/orderdrink/${this.state.tableNumber}`
     )
       .then((res) => res.json())
@@ -114,11 +112,12 @@ class ViewOrder extends React.Component {
             }
           });
           this.setState({ pricePreviousDrinks: sum });
-          this.setState({ previousDrinks: prevUniqueDrinks });        }
+          this.setState({ previousDrinks: prevUniqueDrinks });
+        }
       })
       .catch(console.log);
 
-    fetch(
+    await fetch(
       `${process.env.REACT_APP_API_URL}/api/orderfood/${this.state.tableNumber}`
     )
       .then((res) => res.json())
@@ -143,11 +142,11 @@ class ViewOrder extends React.Component {
       .catch(console.log);
   }
 
-  postOrder() {
+  async postOrder() {
     let order = [];
     let today = new Date();
     let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-    currentDrinkList.map((currentDrink) => {
+    currentDrinkList.map(async (currentDrink) => {
       var drink = {
         tableId: this.state.tableNumber,
         paid: false,
@@ -155,7 +154,7 @@ class ViewOrder extends React.Component {
           id: currentDrink.id
         }
       };
-      fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/orderdrink`, {
         method: "POST",
         mode: "cors",
         headers: {
@@ -168,7 +167,7 @@ class ViewOrder extends React.Component {
       return "Succes";
     });
 
-    currentFoodList.map((currentFood) => {
+    currentFoodList.map(async (currentFood) => {
       var food = {
         tableId: this.state.tableNumber,
         paid: false,
@@ -176,7 +175,7 @@ class ViewOrder extends React.Component {
           id: currentFood.id
         }
       };
-      fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/orderfood`, {
         method: "POST",
         mode: "cors",
         headers: {
@@ -201,7 +200,7 @@ class ViewOrder extends React.Component {
       tableNumber: this.state.tableNumber,
       timeStamp: time
     }
-    fetch(`${process.env.REACT_APP_API_URL}/sendorder`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/sendorder`, {
       method: "POST",
       mode: "cors",
       headers: {
