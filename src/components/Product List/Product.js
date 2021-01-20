@@ -111,11 +111,27 @@ const Product = (props) => {
     function addToOrder(e) {
         e.preventDefault();
         if (props.productType === "Food") {
-            currentFoodList.push(props.product);
+            let index = currentFoodList.indexOf(props.product);
+            if(index !== -1){
+                currentFoodList[index].count++;
+            }
+            else{
+                let food = props.product;
+                food.count = 1;
+                currentFoodList.push(food);
+            }
             sessionStorage.setItem("currentFoodList", JSON.stringify(currentFoodList));
         }
         else {
-            currentDrinkList.push(props.product);
+            let index = currentDrinkList.indexOf(props.product);
+            if(index !== -1){
+                currentDrinkList[index].count++;
+            }
+            else{
+                let drink = props.product;
+                drink.count = 1;
+                currentDrinkList.push(drink);
+            }
             sessionStorage.setItem("currentDrinkList", JSON.stringify(currentDrinkList));
         }
         handleSuccessOpen();

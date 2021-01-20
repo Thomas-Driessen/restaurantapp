@@ -12,6 +12,7 @@ exports[`CurrentOrderProducts render correctly 1`] = `
         <h2
           className="MuiTypography-root MuiTypography-gutterBottom"
         >
+          x 
           Coca-Cola
            
           <span
@@ -22,7 +23,7 @@ exports[`CurrentOrderProducts render correctly 1`] = `
               }
             }
           >
-            2.5
+            NaN
             €
           </span>
         </h2>
@@ -38,6 +39,40 @@ exports[`CurrentOrderProducts render correctly 1`] = `
         <div
           className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-flex-end"
         >
+          <button
+            aria-label="add to order"
+            className="MuiButtonBase-root MuiIconButton-root"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                />
+              </svg>
+            </span>
+          </button>
           <button
             aria-label="remove from order"
             className="MuiButtonBase-root MuiIconButton-root"
