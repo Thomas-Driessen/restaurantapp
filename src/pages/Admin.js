@@ -305,7 +305,7 @@ class Admin extends React.Component {
                         </Container>
                     </ToolBar>
                 </AppBar>
-                <Paper elevation='0' style={{ paddingLeft: 230, paddingRight: 60, background: '#f7f7f7' }}>
+                <Paper elevation='0' style={{ paddingLeft: 300, paddingRight: 60, background: '#f7f7f7' }}>
                     {this.renderProducts(this.state.selectedType, this.state.productType)}
                 </Paper>
             </div>
