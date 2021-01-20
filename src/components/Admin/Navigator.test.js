@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import Navigator from './Navigator';
 import renderer from 'react-test-renderer';
 
