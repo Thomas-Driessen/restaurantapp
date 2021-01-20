@@ -15,6 +15,7 @@ class MenuPage extends React.Component {
     super();
     this.state = {
       foods: [],
+      landingPageFoods: [],
       drinks: [],
       mostLiked: [],
       foodLikes: [],
@@ -45,6 +46,17 @@ class MenuPage extends React.Component {
           console.log("/api/food/available: " + error);
         })
 
+        await fetch(`${process.env.REACT_APP_API_URL}/api/food`)
+        .then(res => res.json())
+        .then((data) => {
+          if (mounted) {
+            this.setState({ landingPageFoods: data })
+          }
+        })
+          .catch((error) => {
+            console.log("/api/food: " + error);
+          })
+
     await fetch(`${process.env.REACT_APP_API_URL}/api/drink/available`)
       .then(res => res.json())
       .then((data) => {
@@ -68,6 +80,16 @@ class MenuPage extends React.Component {
             return true;
           })
           this.setState({ foodsLikes: foods });
+          foods = [];
+          this.state.landingPageFoods.map(food => {
+            let element = food;
+            element["likes"] = data.find(e => e.food.id === food.id).likes;
+            foods.push(element);
+            return true;
+          })
+          foods = foods.filter(item => item.onMenu === true);
+          foods = foods.sort((a, b) => (a.likes < b.likes) ? 1 : ((b.likes < a.likes) ? -1 : 0));
+          this.setState({ landingPageFoods: foods });
         }
       })
       .catch((error) => {
@@ -159,6 +181,7 @@ class MenuPage extends React.Component {
   }
 
   render() {
+    console.log(this.state.landingPageFoods);
     return (
       <div>
         <NavBar pageName="menu" />
@@ -239,20 +262,20 @@ class MenuPage extends React.Component {
                       <h3>Prior foodlovers recommend...</h3>
                       <div className="popularfoods">
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
-                          <span className="foodCardName">Pizza</span>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[0].image : null} alt="Pizza"/>
+                          <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[0].title : null}</span>
                         </div>
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
-                          <span className="foodCardName">Pizza</span>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[1].image : null} alt="Pizza"/>
+                          <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[1].title : null}</span>
                         </div>
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
-                          <span className="foodCardName">Pizza</span>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[2].image : null} alt="Pizza"/>
+                          <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[2].title : null}</span>
                         </div>
                         <div className="foodCard">
-                          <img src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg" alt="Pizza"/>
-                          <span className="foodCardName">Pizza</span>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[3].image : null} alt="Pizza"/>
+                          <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[3].title : null}</span>
                         </div>
                       </div>
                     </div>

@@ -4,7 +4,6 @@ import KitchenProductList from './KitchenProductList';
 import toDo from './Arrays/ToDo';
 import progress from './Arrays/Progress';
 import done from './Arrays/Done';
-import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 

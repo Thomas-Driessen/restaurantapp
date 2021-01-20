@@ -1,89 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SplitItems renders correctly 1`] = `
-<div
-  className="MuiGrid-root MuiGrid-container"
-  style={
-    Object {
-      "padding": 5,
-    }
-  }
->
+<div>
   <div
-    className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
+    className="MuiGrid-root MuiGrid-container"
     style={
       Object {
-        "padding": 25,
+        "padding": 5,
       }
     }
   >
-    <h4
-      className="MuiTypography-root MuiTypography-h4"
-    >
-      To do
-    </h4>
     <div
-      className="background-lightgray kitchen-overview-container"
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
+      style={
+        Object {
+          "padding": 25,
+        }
+      }
     >
-      <div
-        className="upperRightButton"
-        onClick={[Function]}
+      <h4
+        className="MuiTypography-root MuiTypography-h4"
       >
-        <button>
-          -
-        </button>
+        To do
+      </h4>
+      <div
+        className="background-lightgray kitchen-overview-container"
+      >
+        <div
+          className="upperRightButton"
+          onClick={[Function]}
+        >
+          <button>
+            -
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
-    style={
-      Object {
-        "padding": 25,
-      }
-    }
-  >
-    <h4
-      className="MuiTypography-root MuiTypography-h4"
-    >
-      Progress
-    </h4>
     <div
-      className="background-lightgray kitchen-overview-container"
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
+      style={
+        Object {
+          "padding": 25,
+        }
+      }
     >
-      <div
-        className="upperRightButton"
-        onClick={[Function]}
+      <h4
+        className="MuiTypography-root MuiTypography-h4"
       >
-        <button>
-          -
-        </button>
+        Progress
+      </h4>
+      <div
+        className="background-lightgray kitchen-overview-container"
+      >
+        <div
+          className="upperRightButton"
+          onClick={[Function]}
+        >
+          <button>
+            -
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
-    style={
-      Object {
-        "padding": 25,
-      }
-    }
-  >
-    <h4
-      className="MuiTypography-root MuiTypography-h4"
-    >
-      Done
-    </h4>
     <div
-      className="background-lightgray kitchen-overview-container"
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
+      style={
+        Object {
+          "padding": 25,
+        }
+      }
     >
-      <div
-        className="upperRightButton"
-        onClick={[Function]}
+      <h4
+        className="MuiTypography-root MuiTypography-h4"
       >
-        <button>
-          -
-        </button>
+        Done
+      </h4>
+      <div
+        className="background-lightgray kitchen-overview-container"
+      >
+        <div
+          className="upperRightButton"
+          onClick={[Function]}
+        >
+          <button>
+            -
+          </button>
+        </div>
       </div>
     </div>
   </div>

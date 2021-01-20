@@ -279,52 +279,44 @@ exports[`Menu renders correctly 1`] = `
           >
             <img
               alt="Pizza"
-              src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"
+              src={null}
             />
             <span
               className="foodCardName"
-            >
-              Pizza
-            </span>
+            />
           </div>
           <div
             className="foodCard"
           >
             <img
               alt="Pizza"
-              src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"
+              src={null}
             />
             <span
               className="foodCardName"
-            >
-              Pizza
-            </span>
+            />
           </div>
           <div
             className="foodCard"
           >
             <img
               alt="Pizza"
-              src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"
+              src={null}
             />
             <span
               className="foodCardName"
-            >
-              Pizza
-            </span>
+            />
           </div>
           <div
             className="foodCard"
           >
             <img
               alt="Pizza"
-              src="https://rutgerbakt.nl/wp-content/uploads/2019/08/pizza_bolognese-1200x0-c-default.jpg"
+              src={null}
             />
             <span
               className="foodCardName"
-            >
-              Pizza
-            </span>
+            />
           </div>
         </div>
       </div>
