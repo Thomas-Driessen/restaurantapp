@@ -33,7 +33,8 @@ class NavBar extends React.Component {
             redirect: false,
             redirectMenu: false,
             setOpen: false,
-            tableId: sessionStorage.getItem("tableId")
+            tableId: sessionStorage.getItem("tableId"),
+            restaurantNameData: {title: 'Restaurant'}
         }
     }
 
@@ -54,6 +55,7 @@ class NavBar extends React.Component {
                 currentDrinkList.push(item);
                 return true;
             })
+            this.getRestaurantName()
         }
 
         setInterval(() => {
@@ -120,6 +122,20 @@ class NavBar extends React.Component {
             });
     }
 
+    getRestaurantName = () => {
+        fetch(`${process.env.REACT_APP_API_URL}/api/RestaurantName`, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+                this.setState({restaurantNameData: data})
+            });
+    }
+    
     render() {
         const { classes } = this.props;
         return (
@@ -127,7 +143,7 @@ class NavBar extends React.Component {
                 <AppBar position="static">
                     <ToolBar>
                         <Typography variant="h6" color="inherit" text-align="center">
-                            Restaurant
+                            {this.state.restaurantNameData.title}
                         </Typography>
                         {this.renderRedirect()}
                         {this.renderRedirectMenu()}
