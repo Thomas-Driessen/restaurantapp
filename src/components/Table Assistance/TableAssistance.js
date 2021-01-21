@@ -6,10 +6,23 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 const TableAssistance = (props) => {
 
+    const [openState, showOpenState] = React.useState(``);
+    const [successMessage, showSuccessMessage] = React.useState(false);
     var tableInfo = {};
+
+    const handleSuccessOpen = (message) => {
+        showSuccessMessage(message);
+        showOpenState(true);
+    };
+
+    const handleSuccessClose = () => {
+        showOpenState(false);
+    };
 
     const FinishAssistance = () => {
         if(props.AssistanceType === "Payment"){
@@ -17,20 +30,6 @@ const TableAssistance = (props) => {
                 "Id": props.TableAssistance.id,
                 "PayAssistance": false
             };
-            fetch(`${process.env.REACT_APP_API_URL}/api/OrderFood/${props.TableAssistance.tableNumber}`, {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
-            fetch(`${process.env.REACT_APP_API_URL}/api/OrderDrink/${props.TableAssistance.tableNumber}`, {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
             fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`, {
                 method: 'post',
                 headers: {
@@ -40,6 +39,7 @@ const TableAssistance = (props) => {
                 body: JSON.stringify(tableInfo)
             }).then(response => response.json())
                 .then(data => {
+                    handleSuccessOpen(`Marked payment at table '${props.TableAssistance.tableNumber}': Finished`);
                     console.log(data)
                 });
         }
@@ -57,11 +57,12 @@ const TableAssistance = (props) => {
                 body: JSON.stringify(tableInfo)
             }).then(response => response.json())
                 .then(data => {
+                    handleSuccessOpen(`Marked assistance at table '${props.TableAssistance.tableNumber}': Finished`);
                     console.log(data)
                 });
         }
         else{
-            alert("There is something wrong with this Request please contact support.")
+            handleSuccessOpen(`There is something wrong with this Request please contact support.`);
         }
     };
     return(
@@ -91,6 +92,11 @@ const TableAssistance = (props) => {
                         </Grid>
                     </CardActions>
                 </Card>
+                <Snackbar open={openState} autoHideDuration={3000} onClose={handleSuccessClose}>
+                    <Alert variant="filled" severity="success">
+                        {successMessage}
+                    </Alert>
+                </Snackbar>
                 </div>
             ) : null}
         </div>

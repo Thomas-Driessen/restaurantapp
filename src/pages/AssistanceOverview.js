@@ -4,7 +4,7 @@ import AssistanceList from '../components/Table Assistance/TableAssistanceList';
 import Grid from '@material-ui/core/Grid';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
-class MenuPage extends React.Component {
+class AssistancePage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -94,4 +94,4 @@ class MenuPage extends React.Component {
   }
 }
 
-export default MenuPage
+export default AssistancePage
