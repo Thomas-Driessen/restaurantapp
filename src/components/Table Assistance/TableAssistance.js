@@ -24,23 +24,36 @@ const TableAssistance = (props) => {
         showOpenState(false);
     };
 
+    const FinishPaymentRequest = () => {
+        tableInfo = {
+            "Id": props.TableAssistance.id,
+            "PayAssistance": false
+        };
+        fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(tableInfo)
+        }).then(response => response.json())
+            .then(data => {
+                handleSuccessOpen(`Marked payment at table '${props.TableAssistance.tableNumber}': Finished`);
+                console.log(data)
+            });
+    }
+
     const FinishAssistance = () => {
         if(props.AssistanceType === "Payment"){
-            tableInfo = {
-                "Id": props.TableAssistance.id,
-                "PayAssistance": false
-            };
-            fetch(`${process.env.REACT_APP_API_URL}/api/table/tablePayAssistance`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/Order/markedPayed/${props.TableAssistance.tableNumber}`, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(tableInfo)
             }).then(response => response.json())
                 .then(data => {
-                    handleSuccessOpen(`Marked payment at table '${props.TableAssistance.tableNumber}': Finished`);
-                    console.log(data)
+                    FinishPaymentRequest()
                 });
         }
         else if(props.AssistanceType === "Assistance"){
