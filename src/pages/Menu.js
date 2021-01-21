@@ -181,12 +181,11 @@ class MenuPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.landingPageFoods);
     return (
       <div>
         <NavBar pageName="menu" />
         <SortBar showFoods={this.showFoods} showDrinks={this.showDrinks} showMostLiked={this.showMostLiked} productType={this.state.productType} />
-        <Grid container spacing={0}>
+        <Grid container spacing={1}>
           {this.state.selectedCategory !== "" ? (
             <div className="width-100-percent" style={{ padding: 15 }}>
               <Breadcrumbs aria-label="breadcrumb" className="breadcrumbs">
@@ -205,7 +204,7 @@ class MenuPage extends React.Component {
                   <ArrowBackIcon />
                 </IconButton>
                 <h1>{this.state.selectedCategory}</h1>
-                <Button style={{margin: 'auto 0'}} size='large' color={this.state.sorted === true ? 'primary.dark' : 'primary'} variant='contained' onClick={this.showMostLiked}>
+                <Button style={{margin: 'auto 0'}} size='medium' color={this.state.sorted === true ? 'primary.dark' : 'primary'} variant='contained' onClick={this.showMostLiked}>
                   <span>Most Liked</span>
                 </Button>
               </Grid>
@@ -227,7 +226,7 @@ class MenuPage extends React.Component {
               ) : (
                   <Grid container spacing={0} style={{ padding: 0 }}>
                     <div id="homepageIntro">
-                      <h1>Welcome in our restaurant!</h1>
+                      <h1>Welcome to our restaurant!</h1>
                     </div>
                     <div id="homepageInstructionsWrapper">
                       <h2>How it works</h2>

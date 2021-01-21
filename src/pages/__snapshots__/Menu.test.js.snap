@@ -168,7 +168,7 @@ exports[`Menu renders correctly 1`] = `
     </header>
   </div>
   <div
-    className="MuiGrid-root MuiGrid-container"
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1"
   >
     <div
       className="MuiGrid-root MuiGrid-container"
@@ -182,7 +182,7 @@ exports[`Menu renders correctly 1`] = `
         id="homepageIntro"
       >
         <h1>
-          Welcome in our restaurant!
+          Welcome to our restaurant!
         </h1>
       </div>
       <div

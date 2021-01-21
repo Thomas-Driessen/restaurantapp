@@ -70,7 +70,7 @@ class AddIngredientButton extends React.Component {
     if (isNaN(price) || isNaN(quantity)) {
       alert("Price is not a valid number");
     } else {
-      fetch("/api/Ingredient", {
+      fetch(`${process.env.REACT_APP_API_URL}/api/Ingredient`, {
         method: "POST",
         headers: {
           Accept: "application/json",

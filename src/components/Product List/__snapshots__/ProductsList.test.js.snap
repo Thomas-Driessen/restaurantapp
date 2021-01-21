@@ -63,7 +63,7 @@ exports[`ProductsList renders correctly 1`] = `
               €
             </span>
             <h6
-              className="MuiTypography-root MuiTypography-body1"
+              className="MuiTypography-root MuiTypography-subtitle2"
             >
               
             </h6>
@@ -181,7 +181,7 @@ exports[`ProductsList renders correctly 1`] = `
               €
             </span>
             <h6
-              className="MuiTypography-root MuiTypography-body1"
+              className="MuiTypography-root MuiTypography-subtitle2"
             >
               
             </h6>

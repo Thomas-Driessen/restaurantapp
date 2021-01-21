@@ -165,7 +165,7 @@ const Product = (props) => {
                                 {props.product.title} 
                             </Typography>
                             <span style={{ float: "right", color: "green", display: "block", fontWeight: 'bold', fontSize: 20, marginBottom: 15 }}>{props.product.price}€</span>
-                            <Typography component="h6">
+                            <Typography variant="subtitle2">
                                 {renderIngredients()}
                             </Typography>
                         </CardContent>
@@ -187,14 +187,16 @@ const Product = (props) => {
                                         aria-describedby="product-description"
                                     >
                                         <DialogTitle id="product-title">{props.product.title}</DialogTitle>
-                                        <DialogContent style={{minWidth: 400}}>
+                                        <DialogContent style={{minWidth: 200}}>
                                             <DialogContentText id="product-description">
                                                 {props.product.description}
                                             </DialogContentText>
+                                            {renderIngredients() !== "" ?
                                             <DialogContentText id="product-ingredients">
                                                 <h4>Ingredients</h4>
                                                 {renderIngredients()}
                                             </DialogContentText>
+                                             : null}
                                             <DialogContentText id="product-price">
                                                 <div style={{display: "flex", justifyContent: "flex-start", alignItems: "center"}}>
                                                 <h4>Price</h4>
