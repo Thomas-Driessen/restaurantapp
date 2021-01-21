@@ -42,20 +42,20 @@ class MenuPage extends React.Component {
           this.setState({ foods: data })
         }
       })
-        .catch((error) => {
-          console.log("/api/food/available: " + error);
-        })
+      .catch((error) => {
+        console.log("/api/food/available: " + error);
+      })
 
-        await fetch(`${process.env.REACT_APP_API_URL}/api/food`)
-        .then(res => res.json())
-        .then((data) => {
-          if (mounted) {
-            this.setState({ landingPageFoods: data })
-          }
-        })
-          .catch((error) => {
-            console.log("/api/food: " + error);
-          })
+    await fetch(`${process.env.REACT_APP_API_URL}/api/food`)
+      .then(res => res.json())
+      .then((data) => {
+        if (mounted) {
+          this.setState({ landingPageFoods: data })
+        }
+      })
+      .catch((error) => {
+        console.log("/api/food: " + error);
+      })
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/drink/available`)
       .then(res => res.json())
@@ -64,9 +64,9 @@ class MenuPage extends React.Component {
           this.setState({ drinks: data })
         }
       })
-        .catch((error) => {
-          console.log("/api/drink/available: " + error);
-        })
+      .catch((error) => {
+        console.log("/api/drink/available: " + error);
+      })
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/foodLikes`)
       .then(res => res.json())
@@ -75,7 +75,7 @@ class MenuPage extends React.Component {
           let foods = [];
           this.state.foods.map(food => {
             let element = food;
-            element["likes"] = data.find(e => e.food.id === food.id).likes;
+            element["likes"] = data.find(e => e.food.id === food.id) !== undefined ? data.find(e => e.food.id === food.id).likes : food.likes;
             foods.push(element);
             return true;
           })
@@ -83,7 +83,7 @@ class MenuPage extends React.Component {
           foods = [];
           this.state.landingPageFoods.map(food => {
             let element = food;
-            element["likes"] = data.find(e => e.food.id === food.id).likes;
+            element["likes"] = data.find(e => e.food.id === food.id) !== undefined ? data.find(e => e.food.id === food.id).likes : food.likes;
             foods.push(element);
             return true;
           })
@@ -103,16 +103,16 @@ class MenuPage extends React.Component {
           let drinks = [];
           this.state.drinks.map(drink => {
             let element = drink;
-            element["likes"] = data.find(e => e.drink.id === drink.id).likes;
+            element["likes"] = data.find(e => e.drink.id === drink.id) !== undefined ? data.find(e => e.drink.id === drink.id).likes : drink.likes;
             drinks.push(element);
             return true;
           })
           this.setState({ drinksLikes: drinks });
         }
       })
-        .catch((error) => {
-          console.log("/api/drinkLikes: " + error);
-        })
+      .catch((error) => {
+        console.log("/api/drinkLikes: " + error);
+      })
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/category/food`)
       .then(res => res.json())
@@ -121,9 +121,9 @@ class MenuPage extends React.Component {
           this.setState({ foodCategories: data })
         }
       })
-        .catch((error) => {
-          console.log("/api/category/food: " + error);
-        })
+      .catch((error) => {
+        console.log("/api/category/food: " + error);
+      })
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/category/drink`)
       .then(res => res.json())
@@ -132,9 +132,9 @@ class MenuPage extends React.Component {
           this.setState({ drinkCategories: data })
         }
       })
-        .catch((error) => {
-          console.log("/api/category/drink: " + error);
-        })
+      .catch((error) => {
+        console.log("/api/category/drink: " + error);
+      })
 
     return () => mounted = false;
   }
@@ -204,7 +204,7 @@ class MenuPage extends React.Component {
                   <ArrowBackIcon />
                 </IconButton>
                 <h1>{this.state.selectedCategory}</h1>
-                <Button style={{margin: 'auto 0'}} size='medium' color={this.state.sorted === true ? 'primary.dark' : 'primary'} variant='contained' onClick={this.showMostLiked}>
+                <Button style={{ margin: 'auto 0' }} size='medium' color={this.state.sorted === true ? 'primary.dark' : 'primary'} variant='contained' onClick={this.showMostLiked}>
                   <span>Most Liked</span>
                 </Button>
               </Grid>
@@ -234,23 +234,23 @@ class MenuPage extends React.Component {
                         <div id="instructionScanQr" className="homepage-instruction">
                           <div className="homepage-instruction-content">
                             <div className="homepage-instruction-image">
-                              <img src={process.env.PUBLIC_URL + "/images/qr-code.svg"} alt="QR-code" id="qrfrontpage"/>
+                              <img src={process.env.PUBLIC_URL + "/images/qr-code.svg"} alt="QR-code" id="qrfrontpage" />
                             </div>
                             <span className="instruction-text">Scan QR</span>
                           </div>
                         </div>
                         <div id="instructionBrowseFood" className="homepage-instruction">
                           <div className="homepage-instruction-content">
-                              <div className="homepage-instruction-image">
-                              <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} alt="Hamburgerfrontpage icon" id="hamburgerfrontpage"/>
-                              </div>
+                            <div className="homepage-instruction-image">
+                              <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} alt="Hamburgerfrontpage icon" id="hamburgerfrontpage" />
+                            </div>
                             <span className="instruction-text">Browse food</span>
                           </div>
                         </div>
                         <div id="instructionPay" className="homepage-instruction">
                           <div className="homepage-instruction-content">
                             <div className="homepage-instruction-image">
-                              <img src={process.env.PUBLIC_URL + "/images/credit-card.svg"} alt="Creditcardfrontpage icon" id="creditcardfrontpage"/>
+                              <img src={process.env.PUBLIC_URL + "/images/credit-card.svg"} alt="Creditcardfrontpage icon" id="creditcardfrontpage" />
                             </div>
                             <span className="instruction-text">Pay orders</span>
                           </div>
@@ -261,19 +261,19 @@ class MenuPage extends React.Component {
                       <h3>Prior foodlovers recommend...</h3>
                       <div className="popularfoods">
                         <div className="foodCard">
-                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[0].image : null} alt="Pizza"/>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[0].image : null} alt="Pizza" />
                           <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[0].title : null}</span>
                         </div>
                         <div className="foodCard">
-                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[1].image : null} alt="Pizza"/>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[1].image : null} alt="Pizza" />
                           <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[1].title : null}</span>
                         </div>
                         <div className="foodCard">
-                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[2].image : null} alt="Pizza"/>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[2].image : null} alt="Pizza" />
                           <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[2].title : null}</span>
                         </div>
                         <div className="foodCard">
-                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[3].image : null} alt="Pizza"/>
+                          <img src={this.state.landingPageFoods.length ? this.state.landingPageFoods[3].image : null} alt="Pizza" />
                           <span className="foodCardName">{this.state.landingPageFoods.length ? this.state.landingPageFoods[3].title : null}</span>
                         </div>
                       </div>
