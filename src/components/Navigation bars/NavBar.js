@@ -161,9 +161,11 @@ class NavBar extends React.Component {
       <div>
         <AppBar position="static">
           <ToolBar>
+          {!sessionStorage.getItem("tableId") ? (
             <Typography variant="h6" color="inherit" text-align="center">
               Restaurant
             </Typography>
+          ) : null}
             {this.renderRedirect()}
             {this.renderRedirectMenu()}
             <Container disableGutters>
