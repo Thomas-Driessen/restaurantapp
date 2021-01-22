@@ -5,7 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import RemoveIcon from '@material-ui/icons/Remove';
+import CloseIcon from '@material-ui/icons/Close';
 import { IconButton } from '@material-ui/core';
 
 const Product = (props) => {
@@ -40,7 +40,7 @@ const Product = (props) => {
         color="primary"
         onClick={handleDeleteOpen}
       >
-        <RemoveIcon />
+        <CloseIcon />
       </IconButton>
 
       <Dialog open={del} onClose={handleDeleteClose} aria-labelledby="product-title">
